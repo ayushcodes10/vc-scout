@@ -10,15 +10,25 @@
 .env.*
 !.env.example
 
-# Logs
-*.log
-logs/
-
-# Dependencies / build
-node_modules/
-dist/
-build/
+# Python
 __pycache__/
 *.py[cod]
 .venv/
 venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+dist/
+build/
+*.egg-info/
+
+# Logs
+*.log
+logs/
+
+# Pipeline output. The committed demo run is the one exception: it lets a reviewer
+# read memos and browse the site without an API key or network access.
+outputs/runs/*
+!outputs/runs/demo/
