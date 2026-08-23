@@ -280,3 +280,67 @@ both means neither is lost.
 **Cost.** Two sources per candidate instead of one. The host is never rewritten - only the
 path is dropped - so this can never turn a link into a different company's website, but it
 also means subdomains such as `app.example.com` are kept rather than folded to the apex.
+
+---
+
+## D19 - BeautifulSoup with an explicit heuristic, not Trafilatura
+
+**Decision.** Extraction uses BeautifulSoup with a hand-written main-content heuristic:
+remove chrome and noise, prefer `<main>`/`<article>`/`[role=main]`/`<body>` in that order,
+then keep block-level text in document order.
+
+**Why.** The plan named Trafilatura. Against it: this stage also needs link discovery,
+heading extraction and title recovery from the same parse, and its behaviour has to be
+pinned by golden-style tests. A heuristic written here is auditable line by line and
+deterministic across versions; Trafilatura's output can shift with a release and would need
+a second parser alongside it anyway.
+
+**Cost.** Trafilatura is genuinely better at extracting article bodies from
+content-heavy pages. On a startup marketing site - which is what this stage almost always
+reads - the gap is small, but a blog post is where this loses.
+
+## D20 - Enrichment never removes a candidate
+
+**Decision.** Every candidate gets a `PageBundle` written, including candidates whose site
+returned nothing at all. An empty bundle carries `status=failed`, the categorised failures,
+and a warning stating that evidence is missing rather than negative.
+
+**Why.** The recommendation policy already separates "we found nothing" from "we found
+something bad". That separation is worthless if the pipeline silently drops the companies it
+could not read - the shortlist would quietly become "companies with good websites", and a
+partner would never see the omission.
+
+**Cost.** Downstream stages must handle empty bundles everywhere rather than assuming text
+exists, and some analysis budget is spent on companies with nothing to analyse.
+
+## D21 - Fetch safety is enforced in one place, with DNS resolved first
+
+**Decision.** `SafeFetcher` is the only module that makes outbound requests. It resolves the
+hostname *before* connecting and refuses any result in loopback, private, link-local,
+multicast, reserved or unspecified space; it follows redirects manually so every hop is
+revalidated; it abandons a response mid-stream at the byte ceiling rather than downloading
+then measuring.
+
+**Why.** Every URL reaching this stage came from third-party text, including URLs found on
+pages that other third-party text pointed at. Checking the string is not enough: a public
+hostname can resolve to `169.254.169.254`, and a safe first URL can redirect to an unsafe
+second one. Resolving first and revalidating each hop closes both.
+
+**Cost.** A DNS lookup on the client side in addition to the one the connection makes, and
+a small TOCTOU window between the check and the connection that this design does not close.
+Closing it properly would mean pinning the connection to the validated address, which httpx
+does not expose cleanly.
+
+## D22 - Four pages per company, chosen by role
+
+**Decision.** The homepage plus at most three additional pages, at most one page per role,
+with roles ranked product, pricing, customers, about, team, changelog, blog. The HN launch
+URL takes one of the three additional slots when it differs from the site origin.
+
+**Why.** A bounded, role-diverse read produces better evidence per request than depth: one
+pricing page and one customers page say more about an SMB workflow product than three blog
+posts. Ranking rather than crawling also keeps the stage deterministic and its load on a
+small company's site trivial.
+
+**Cost.** A company that explains itself across many pages is under-read, and a site whose
+navigation does not use conventional paths yields only its homepage.

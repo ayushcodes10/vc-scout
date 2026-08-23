@@ -13,6 +13,7 @@ import pytest
 from typer.testing import CliRunner
 
 from tests.unit.hn_fixtures import QUERY, load_fixture, make_client
+from tests.unit.web_fixtures import fetcher, html_response, load_html
 from vc_scout import cli
 from vc_scout.cli import NOT_IMPLEMENTED_EXIT, app
 
@@ -46,7 +47,6 @@ def test_each_command_has_its_own_help(command: str) -> None:
 @pytest.mark.parametrize(
     ("command", "args"),
     [
-        ("enrich", ["--run-id", "demo"]),
         ("analyze", ["--run-id", "demo"]),
         ("render", ["--run-id", "demo"]),
         ("build-site", ["--run-id", "demo"]),
@@ -192,3 +192,92 @@ def test_source_exits_non_zero_when_nothing_survives_discovery(
     assert "no candidates survived" in result.output
     # The artifacts are still written, so the empty run can be diagnosed.
     assert (tmp_path / "source-test" / "source-report.json").exists()
+
+
+# -- enrich ------------------------------------------------------------------
+
+
+@pytest.fixture
+def fixture_web(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Point the CLI's fetcher factory at fixtures instead of the network."""
+    routes = {
+        "https://acme.example/": html_response(load_html("homepage")),
+        "https://acme.example/product": html_response(load_html("pricing")),
+    }
+    monkeypatch.setattr(cli, "SafeFetcher", lambda: fetcher(routes))
+
+
+def seeded_run(tmp_path: Path, *, website: str | None = "https://acme.example/") -> Path:
+    """A run directory containing a single-candidate candidates.json."""
+    from vc_scout.models.candidate import Candidate, CandidateSet
+    from vc_scout.models.enums import SourceKind
+    from vc_scout.models.source import SourceReference
+    from vc_scout.store import RunStore
+
+    store = RunStore("source-test", runs_root=tmp_path)
+    store.ensure_root()
+    hn = SourceReference.create("https://news.ycombinator.com/item?id=1", kind=SourceKind.HN_STORY)
+    store.write_candidates(
+        CandidateSet(
+            run_id="source-test",
+            query=QUERY,
+            sources=[hn],
+            candidates=[
+                Candidate(
+                    company_id="acme-ops",
+                    name="Acme Ops",
+                    source_ids=[hn.source_id],
+                    website=website,
+                )
+            ],
+        )
+    )
+    return store.root
+
+
+def test_enrich_reads_pages_and_summarises(fixture_web: None, tmp_path: Path) -> None:
+    run_dir = seeded_run(tmp_path)
+    result = runner.invoke(app, ["enrich", "--run-id", "source-test", "--runs-root", str(tmp_path)])
+    assert result.exit_code == 0, result.output
+    assert "Enriched 1 candidate" in result.output
+    assert "Pages:" in result.output
+    assert "enrichment-report.json" in result.output
+
+    assert (run_dir / "extracted" / "acme-ops.json").exists()
+    assert (run_dir / "enrichment-report.json").exists()
+    assert list((run_dir / "raw" / "web" / "acme-ops").glob("*.html"))
+
+
+def test_enrich_requires_candidates_first(tmp_path: Path) -> None:
+    result = runner.invoke(app, ["enrich", "--run-id", "missing", "--runs-root", str(tmp_path)])
+    assert result.exit_code == 1
+    assert "no candidates.json" in result.output
+
+
+def test_enrich_requires_force_before_overwriting(fixture_web: None, tmp_path: Path) -> None:
+    seeded_run(tmp_path)
+    args = ["enrich", "--run-id", "source-test", "--runs-root", str(tmp_path)]
+    assert runner.invoke(app, args).exit_code == 0
+
+    repeat = runner.invoke(app, args)
+    assert repeat.exit_code == 1
+    assert "--force" in repeat.output
+
+    assert runner.invoke(app, [*args, "--force"]).exit_code == 0
+
+
+def test_enrich_succeeds_and_flags_a_candidate_with_no_readable_pages(
+    fixture_web: None, tmp_path: Path
+) -> None:
+    """A blind candidate is reported, not treated as a run failure."""
+    seeded_run(tmp_path, website="https://unreachable.example/")
+    result = runner.invoke(app, ["enrich", "--run-id", "source-test", "--runs-root", str(tmp_path)])
+    assert result.exit_code == 0, result.output
+    assert "no readable pages" in result.output
+    assert "acme-ops" in result.output
+
+
+def test_enrich_rejects_an_unusable_run_id(tmp_path: Path) -> None:
+    result = runner.invoke(app, ["enrich", "--run-id", "../escape", "--runs-root", str(tmp_path)])
+    assert result.exit_code == 1
+    assert "invalid run id" in result.output

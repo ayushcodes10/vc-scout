@@ -9,8 +9,8 @@ claim cites an evidence ID, every evidence claim cites a source URL, the final
 recommendation is made by deterministic policy rather than by a model, and a whole run
 replays from persisted artifacts with no network and no API key.
 
-> **Status: in progress.** Stages 1-2 (foundation, domain contracts, discovery) are
-> implemented.
+> **Status: in progress.** Stages 1-3 (foundation, domain contracts, discovery and
+> website enrichment) are implemented.
 > The pipeline commands are declared but not yet implemented - they report which stage
 > owns them and exit non-zero. See `docs/PLAN.md` for the full plan and stage order.
 
@@ -36,7 +36,7 @@ uv run vc-scout run \
 | Command | Purpose | Status |
 | --- | --- | --- |
 | `source` | Discover candidates from Hacker News | available |
-| `enrich` | Fetch and extract public company pages | planned (stage 3) |
+| `enrich` | Fetch and extract public company pages | available |
 | `analyze` | Extract evidence, score, apply policy | planned (stages 4-6) |
 | `render` | Write Markdown memos and the ranking | planned (stage 7) |
 | `build-site` | Generate the static report | planned (stage 8) |
@@ -117,6 +117,38 @@ Every component, every matched term and every rejection is recorded in
 **Discovery ranking is not investment scoring.** It runs before any page is fetched, knows
 nothing about the thesis rubric, and is never read by the recommendation policy. A
 top-ranked candidate can still be recommended *pass*.
+
+## Enrichment
+
+`vc-scout enrich` reads a bounded set of pages from each candidate's own website: the
+homepage, the exact URL posted to Hacker News when it differs, and up to three internal
+pages chosen deterministically by role (product, pricing, customers, about, team,
+changelog, blog - at most one per role, same-origin only). Pages are deduplicated by final
+URL and by content hash, reduced to readable text, and persisted with their fetch metadata
+for replay.
+
+**No candidate is ever removed for having a thin or unreachable site.** A company whose
+pages could not be read keeps an empty bundle with categorised failures, so the gap stays
+visible to the stages that judge it. Missing information is missing, not negative.
+
+### Fetch safety
+
+Every URL this stage touches came from third-party text, so all fetching goes through one
+hardened client:
+
+- http and https only, on their default ports
+- hostnames resolved before connecting; loopback, private, link-local, multicast, reserved
+  and unspecified addresses are refused, including IPv4-mapped IPv6 forms
+- redirects followed manually so **every hop is revalidated**, capped at 3
+- explicit 5s connect and 15s read timeouts
+- responses abandoned mid-stream at 2 MB rather than downloaded then measured
+- only `text/html` is parsed; text is capped at 20,000 characters per page
+- `robots.txt` honoured; 401 and 403 respected, never worked around
+- a descriptive User-Agent, and no credential, cookie or authorization header ever sent
+
+Persisted fetch metadata contains response facts only - requested URL, final URL, redirect
+chain, status, content type, content hash, byte count and timestamp. No request headers,
+cookies, environment values or credentials are logged or stored.
 
 ## Investment thesis
 

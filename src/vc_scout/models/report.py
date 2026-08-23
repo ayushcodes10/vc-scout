@@ -13,8 +13,16 @@ from datetime import datetime
 from pydantic import Field
 
 from vc_scout.models.base import ArtifactModel, RecordModel
+from vc_scout.models.enums import EnrichmentStatus
+from vc_scout.models.page import PageFailure
 
-__all__ = ["DiscardedHit", "SourceReport", "VariantResult"]
+__all__ = [
+    "CandidateEnrichment",
+    "DiscardedHit",
+    "EnrichmentReport",
+    "SourceReport",
+    "VariantResult",
+]
 
 
 class VariantResult(RecordModel):
@@ -66,3 +74,34 @@ class SourceReport(ArtifactModel):
     #: Requested limit minus candidates kept. Positive means the run found fewer
     #: defensible candidates than asked for, and said so rather than padding.
     shortfall: int = 0
+
+
+class CandidateEnrichment(RecordModel):
+    """What enrichment managed to read for one candidate."""
+
+    company_id: str
+    status: EnrichmentStatus
+    website: str | None = None
+    pages_attempted: int = 0
+    pages_extracted: int = 0
+    pages_deduplicated: int = 0
+    failures: list[PageFailure] = Field(default_factory=list)
+    chars_extracted: int = 0
+
+
+class EnrichmentReport(ArtifactModel):
+    """The persisted ``enrichment-report.json`` document.
+
+    Records what was attempted, what was read and what failed, per candidate and in total.
+    No candidate is ever dropped for having a thin or unreachable site, so this report is
+    the record of which companies the analysis stage will be working blind on.
+    """
+
+    run_id: str
+    generated_at: datetime | None = None
+    candidates: list[CandidateEnrichment] = Field(default_factory=list)
+    counts: dict[str, int] = Field(default_factory=dict)
+    failures_by_category: dict[str, int] = Field(default_factory=dict)
+    #: The bounds this run was executed under, so a replay can be compared like for like.
+    limits: dict[str, int] = Field(default_factory=dict)
+    notes: list[str] = Field(default_factory=list)

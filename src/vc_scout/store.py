@@ -19,8 +19,8 @@ from vc_scout.models.evidence import EvidenceDossier
 from vc_scout.models.manifest import RunManifest
 from vc_scout.models.page import PageBundle
 from vc_scout.models.recommendation import RecommendationResult
-from vc_scout.models.report import SourceReport
-from vc_scout.util.ids import is_valid_company_id, is_valid_run_id, slugify
+from vc_scout.models.report import EnrichmentReport, SourceReport
+from vc_scout.util.ids import digest, is_valid_company_id, is_valid_run_id, slugify
 from vc_scout.util.jsonio import read_json, write_json
 
 __all__ = ["DEFAULT_RUNS_ROOT", "RunStore", "StoreError"]
@@ -76,6 +76,19 @@ class RunStore:
 
     def source_report_path(self) -> Path:
         return self.resolve("source-report.json")
+
+    def enrichment_report_path(self) -> Path:
+        return self.resolve("enrichment-report.json")
+
+    def raw_web_path(self, company_id: str, url: str, *, suffix: str = ".html") -> Path:
+        """Path for one fetched page's stored body or metadata.
+
+        The filename is a digest of the URL, never the URL itself: a third-party URL is not
+        a safe path segment.
+        """
+        if not is_valid_company_id(company_id):
+            raise StoreError(f"invalid company id {company_id!r}")
+        return self.resolve("raw", "web", company_id, f"{digest(url, length=16)}{suffix}")
 
     def raw_hn_path(self, variant_label: str, *, page: int = 0) -> Path:
         """Path for a verbatim Algolia response.
@@ -147,6 +160,12 @@ class RunStore:
     def read_source_report(self) -> SourceReport:
         return self.read_model(self.source_report_path(), SourceReport)
 
+    def write_enrichment_report(self, report: EnrichmentReport) -> Path:
+        return self.write_model(self.enrichment_report_path(), report)
+
+    def read_enrichment_report(self) -> EnrichmentReport:
+        return self.read_model(self.enrichment_report_path(), EnrichmentReport)
+
     def write_pages(self, bundle: PageBundle) -> Path:
         return self.write_model(self.extracted_path(bundle.company_id), bundle)
 
@@ -195,6 +214,13 @@ class RunStore:
         return self.read_model(self.manifest_path(), RunManifest)
 
     # -- discovery ---------------------------------------------------------
+
+    def extracted_company_ids(self) -> list[str]:
+        """Company IDs that already have an extracted page bundle, in stable order."""
+        directory = self.resolve("extracted")
+        if not directory.is_dir():
+            return []
+        return sorted(path.stem for path in directory.glob("*.json"))
 
     def company_ids(self) -> list[str]:
         """Company IDs that have a persisted analysis, in stable order."""

@@ -10,7 +10,9 @@ Two rules apply to every model in this package:
 
 from __future__ import annotations
 
-from pydantic import BaseModel, ConfigDict
+from typing import Any
+
+from pydantic import BaseModel, ConfigDict, model_validator
 
 from vc_scout import SCHEMA_VERSION
 
@@ -21,6 +23,19 @@ class RecordModel(BaseModel):
     """An immutable record nested inside an artifact."""
 
     model_config = ConfigDict(extra="forbid", frozen=True, use_enum_values=False)
+
+    @model_validator(mode="before")
+    @classmethod
+    def _drop_computed_fields(cls, data: Any) -> Any:
+        """Ignore computed fields when reading an artifact back.
+
+        Computed fields such as ``char_count`` are serialised for the benefit of anyone
+        reading the JSON, but they are derived, not inputs. Without this, ``extra="forbid"``
+        would reject the very documents this package writes.
+        """
+        if isinstance(data, dict) and cls.model_computed_fields:
+            return {k: v for k, v in data.items() if k not in cls.model_computed_fields}
+        return data
 
 
 class ArtifactModel(RecordModel):

@@ -14,8 +14,10 @@ import typer
 from vc_scout import __version__
 from vc_scout.config import DEFAULT_LIMIT
 from vc_scout.net.hn import HnAlgoliaClient, HnError
+from vc_scout.net.http import SafeFetcher
 from vc_scout.policy import POLICY_VERSION, TAKE_A_MEETING_AT, WATCH_AT
 from vc_scout.rubric import RUBRIC, RUBRIC_VERSION
+from vc_scout.stages.enrich import MAX_EXTRA_PAGES, EnrichOutcome, run_enrich
 from vc_scout.stages.source import DEFAULT_WINDOW_DAYS, SourceOutcome, run_source
 from vc_scout.store import RunStore, StoreError
 
@@ -146,16 +148,87 @@ def _report_source(outcome: SourceOutcome, *, limit: int) -> None:
 def enrich(
     run_id: str = _RUN_ID,
     runs_root: Path = _RUNS_ROOT,
-    max_pages: int = typer.Option(4, "--max-pages", min=1, help="Pages fetched per company."),
-    force: bool = typer.Option(False, "--force", help="Recompute even if artifacts exist."),
+    max_extra_pages: int = typer.Option(
+        MAX_EXTRA_PAGES,
+        "--max-extra-pages",
+        min=0,
+        max=MAX_EXTRA_PAGES,
+        help="Internal pages fetched per company, beyond the homepage.",
+    ),
+    force: bool = typer.Option(False, "--force", help="Overwrite existing enrichment output."),
 ) -> None:
     """Fetch public company pages and write extracted/."""
-    _placeholder(
-        "enrich",
-        "stage 3",
-        "fetch each candidate's public website and HN thread, then persist raw/pages/ "
-        "and extracted/<company_id>.json",
+    try:
+        store = RunStore(run_id, runs_root=runs_root)
+    except StoreError as exc:
+        typer.secho(f"vc-scout enrich: {exc}", fg=typer.colors.RED, err=True)
+        raise typer.Exit(code=1) from exc
+
+    if not store.candidates_path().exists():
+        typer.secho(
+            f"vc-scout enrich: run {run_id!r} has no candidates.json. Run `vc-scout source` first.",
+            fg=typer.colors.RED,
+            err=True,
+        )
+        raise typer.Exit(code=1)
+
+    existing = store.extracted_company_ids()
+    if (existing or store.enrichment_report_path().exists()) and not force:
+        typer.secho(
+            f"vc-scout enrich: run {run_id!r} already has enrichment output "
+            f"({len(existing)} bundle(s)). Pass --force to re-fetch.",
+            fg=typer.colors.YELLOW,
+            err=True,
+        )
+        raise typer.Exit(code=1)
+
+    try:
+        with SafeFetcher() as fetcher:
+            outcome = run_enrich(store=store, fetcher=fetcher, max_extra_pages=max_extra_pages)
+    except StoreError as exc:
+        typer.secho(f"vc-scout enrich: {exc}", fg=typer.colors.RED, err=True)
+        raise typer.Exit(code=1) from exc
+
+    _report_enrich(outcome)
+
+
+def _report_enrich(outcome: EnrichOutcome) -> None:
+    """Print what was read and what could not be. Never exits non-zero for thin sites."""
+    report = outcome.report
+    counts = report.counts
+
+    typer.echo(
+        f"Enriched {counts.get('candidates', 0)} candidate(s): "
+        f"{counts.get('success', 0)} complete, {counts.get('partial', 0)} partial, "
+        f"{counts.get('failed', 0)} with no readable page."
     )
+    typer.echo(
+        f"Pages: {counts.get('pages_extracted', 0)} extracted of "
+        f"{counts.get('pages_attempted', 0)} attempted "
+        f"({counts.get('pages_deduplicated', 0)} deduplicated, "
+        f"{counts.get('chars_extracted', 0):,} characters)."
+    )
+    for category, total in sorted(report.failures_by_category.items()):
+        typer.echo(f"  failed {total:>4}  {category}")
+
+    typer.echo("")
+    for row in report.candidates:
+        marker = {"success": " ", "partial": "~", "failed": "!"}[row.status.value]
+        typer.echo(
+            f"  {marker} {row.company_id:<26} {row.pages_extracted} page(s), "
+            f"{row.chars_extracted:>6} chars  {row.website or '(no website)'}"
+        )
+
+    blind = [row.company_id for row in report.candidates if row.pages_extracted == 0]
+    if blind:
+        typer.secho(
+            f"\n{len(blind)} candidate(s) have no readable pages and are retained with "
+            "missing evidence: " + ", ".join(blind),
+            fg=typer.colors.YELLOW,
+        )
+
+    typer.echo("")
+    typer.echo(f"Wrote extracted/ and {outcome.report_path}")
 
 
 @app.command()

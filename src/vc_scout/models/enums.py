@@ -11,6 +11,9 @@ __all__ = [
     "ClaimLabel",
     "ComponentStatus",
     "ConfidenceLevel",
+    "EnrichmentStatus",
+    "FetchFailure",
+    "PageRole",
     "Recommendation",
     "RelevanceClass",
     "RubricDimension",
@@ -46,6 +49,53 @@ class RelevanceClass(StrEnum):
     ADJACENT = "adjacent"
     #: No meaningful AI-automation signal.
     IRRELEVANT = "irrelevant"
+
+
+class PageRole(StrEnum):
+    """Why a page was fetched. Ordering here is the crawl priority within a candidate."""
+
+    HOMEPAGE = "homepage"
+    #: The exact URL posted to Hacker News, when it differs from the site origin.
+    LAUNCH = "launch"
+    PRODUCT = "product"
+    PRICING = "pricing"
+    CUSTOMERS = "customers"
+    ABOUT = "about"
+    TEAM = "team"
+    CHANGELOG = "changelog"
+    BLOG = "blog"
+
+
+class FetchFailure(StrEnum):
+    """Why one page could not be turned into readable text.
+
+    Recorded per page and rolled up per candidate. A failure is never fatal: a company with
+    an unreachable site stays in the run with zero pages, so the gap is visible downstream
+    rather than silently removing the company.
+    """
+
+    UNSAFE_URL = "unsafe_url"
+    TIMEOUT = "timeout"
+    CONNECTION_ERROR = "connection_error"
+    HTTP_ERROR = "http_error"
+    BLOCKED = "blocked"
+    TOO_MANY_REDIRECTS = "too_many_redirects"
+    NON_HTML = "non_html"
+    OVERSIZED = "oversized_response"
+    ROBOTS_DISALLOWED = "robots_disallowed"
+    EXTRACTION_FAILED = "extraction_failed"
+    NO_WEBSITE = "no_website_recorded"
+
+
+class EnrichmentStatus(StrEnum):
+    """Per-candidate outcome of the enrich stage."""
+
+    #: Every page attempted was retrieved and extracted.
+    SUCCESS = "success"
+    #: At least one page succeeded and at least one failed.
+    PARTIAL = "partial"
+    #: No page could be retrieved. The candidate stays in the run regardless.
+    FAILED = "failed"
 
 
 class SourceKind(StrEnum):
