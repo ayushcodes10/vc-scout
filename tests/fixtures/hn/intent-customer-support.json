@@ -1,0 +1,25 @@
+{
+  "hits": [
+    {
+      "_tags": [
+        "story",
+        "launch_hn"
+      ],
+      "author": "founder_50000006",
+      "created_at": "2026-07-02T00:00:00Z",
+      "created_at_i": 1782950400,
+      "num_comments": 7,
+      "objectID": "50000006",
+      "points": 22,
+      "title": "Launch HN: Helpdeskly - AI agent for customer support tickets",
+      "url": "https://helpdeskly.example/"
+    }
+  ],
+  "hitsPerPage": 45,
+  "nbHits": 1,
+  "nbPages": 1,
+  "page": 0,
+  "params": "advancedSyntax=true",
+  "processingTimeMS": 4,
+  "query": "AI agents for SMB operations"
+}

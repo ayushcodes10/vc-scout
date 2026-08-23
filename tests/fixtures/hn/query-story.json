@@ -1,0 +1,137 @@
+{
+  "hits": [
+    {
+      "_tags": [
+        "story",
+        "show_hn"
+      ],
+      "author": "founder_50000010",
+      "created_at": "2026-07-27T00:00:00Z",
+      "created_at_i": 1785110400,
+      "num_comments": 400,
+      "objectID": "50000010",
+      "points": 900,
+      "title": "Show HN: AgentMesh - the fastest runtime for AI agents",
+      "url": "https://agentmesh.example/"
+    },
+    {
+      "_tags": [
+        "story",
+        "launch_hn"
+      ],
+      "author": "founder_50000011",
+      "created_at": "2026-07-24T00:00:00Z",
+      "created_at_i": 1784851200,
+      "num_comments": 250,
+      "objectID": "50000011",
+      "points": 600,
+      "title": "Launch HN: Sandboxly - sandboxes for AI agents",
+      "url": "https://sandboxly.example/"
+    },
+    {
+      "_tags": [
+        "story",
+        "show_hn"
+      ],
+      "author": "founder_50000012",
+      "created_at": "2026-07-20T00:00:00Z",
+      "created_at_i": 1784505600,
+      "num_comments": 180,
+      "objectID": "50000012",
+      "points": 450,
+      "title": "Show HN: VectorHub - an embeddings store for AI agents",
+      "url": "https://vectorhub.example/"
+    },
+    {
+      "_tags": [
+        "story",
+        "show_hn"
+      ],
+      "author": "founder_50000013",
+      "created_at": "2026-07-26T00:00:00Z",
+      "created_at_i": 1785024000,
+      "num_comments": 300,
+      "objectID": "50000013",
+      "points": 800,
+      "title": "Show HN: a knitting pattern generator",
+      "url": "https://knitgen.example/"
+    },
+    {
+      "_tags": [
+        "story",
+        "show_hn"
+      ],
+      "author": "founder_50000014",
+      "created_at": "2026-07-23T00:00:00Z",
+      "created_at_i": 1784764800,
+      "num_comments": 500,
+      "objectID": "50000014",
+      "points": 999,
+      "title": "Show HN: AgentKit - open source AI agents",
+      "url": "https://github.com/someone/agentkit"
+    },
+    {
+      "_tags": [
+        "story",
+        "show_hn"
+      ],
+      "author": "founder_50000015",
+      "created_at": "2026-07-25T00:00:00Z",
+      "created_at_i": 1784937600,
+      "num_comments": 200,
+      "objectID": "50000015",
+      "points": 700,
+      "title": "Introducing an AI agent for customer support",
+      "url": "https://openai.com/index/support-agent"
+    },
+    {
+      "_tags": [
+        "story",
+        "show_hn"
+      ],
+      "author": "founder_50000016",
+      "created_at": "2026-07-12T00:00:00Z",
+      "created_at_i": 1783814400,
+      "num_comments": 90,
+      "objectID": "50000016",
+      "points": 55,
+      "title": "Ask HN: how do you automate invoicing for a small business?"
+    },
+    {
+      "_tags": [
+        "story",
+        "show_hn"
+      ],
+      "author": "founder_50000020",
+      "created_at": "2026-07-12T00:00:00Z",
+      "created_at_i": 1783814400,
+      "num_comments": 3,
+      "objectID": "50000020",
+      "points": "many",
+      "title": "Show HN: Vaguely - AI ops agents",
+      "url": "https://vaguely.example"
+    },
+    "this hit is not an object at all",
+    {
+      "_tags": [
+        "story",
+        "show_hn"
+      ],
+      "author": "founder_50000017",
+      "created_at": "2026-07-27T00:00:00Z",
+      "created_at_i": 1785110400,
+      "num_comments": 12,
+      "objectID": "50000017",
+      "points": 40,
+      "title": "Show HN: Acme Ops now books follow-up jobs automatically",
+      "url": "https://acmeops.example/changelog"
+    }
+  ],
+  "hitsPerPage": 45,
+  "nbHits": 10,
+  "nbPages": 1,
+  "page": 0,
+  "params": "advancedSyntax=true",
+  "processingTimeMS": 4,
+  "query": "AI agents for SMB operations"
+}

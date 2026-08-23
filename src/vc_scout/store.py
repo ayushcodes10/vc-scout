@@ -19,7 +19,8 @@ from vc_scout.models.evidence import EvidenceDossier
 from vc_scout.models.manifest import RunManifest
 from vc_scout.models.page import PageBundle
 from vc_scout.models.recommendation import RecommendationResult
-from vc_scout.util.ids import is_valid_company_id, is_valid_run_id
+from vc_scout.models.report import SourceReport
+from vc_scout.util.ids import is_valid_company_id, is_valid_run_id, slugify
 from vc_scout.util.jsonio import read_json, write_json
 
 __all__ = ["DEFAULT_RUNS_ROOT", "RunStore", "StoreError"]
@@ -73,6 +74,20 @@ class RunStore:
     def candidates_path(self) -> Path:
         return self.resolve("candidates.json")
 
+    def source_report_path(self) -> Path:
+        return self.resolve("source-report.json")
+
+    def raw_hn_path(self, variant_label: str, *, page: int = 0) -> Path:
+        """Path for a verbatim Algolia response.
+
+        The label is slugified because it becomes a filename; an unusable label is an
+        error rather than something to silently rewrite.
+        """
+        slug = slugify(variant_label)
+        if not slug:
+            raise StoreError(f"unusable raw response label {variant_label!r}")
+        return self.resolve("raw", "hn", f"{slug}-p{page}.json")
+
     def extracted_path(self, company_id: str) -> Path:
         return self._company_path("extracted", company_id=company_id, suffix=".json")
 
@@ -125,6 +140,12 @@ class RunStore:
 
     def read_candidates(self) -> CandidateSet:
         return self.read_model(self.candidates_path(), CandidateSet)
+
+    def write_source_report(self, report: SourceReport) -> Path:
+        return self.write_model(self.source_report_path(), report)
+
+    def read_source_report(self) -> SourceReport:
+        return self.read_model(self.source_report_path(), SourceReport)
 
     def write_pages(self, bundle: PageBundle) -> Path:
         return self.write_model(self.extracted_path(bundle.company_id), bundle)

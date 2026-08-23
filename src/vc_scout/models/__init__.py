@@ -10,6 +10,7 @@ from vc_scout.models.analysis import (
     StartupAnalysis,
 )
 from vc_scout.models.candidate import Candidate, CandidateSet
+from vc_scout.models.discovery import DiscoveryRank
 from vc_scout.models.enums import (
     ClaimLabel,
     ComponentStatus,
@@ -25,6 +26,7 @@ from vc_scout.models.evidence import EvidenceClaim, EvidenceDossier
 from vc_scout.models.manifest import CompanyOutcome, RunManifest, StageRecord
 from vc_scout.models.page import ExtractedPage, PageBundle
 from vc_scout.models.recommendation import RecommendationResult, ResearchConfidence
+from vc_scout.models.report import DiscardedHit, SourceReport, VariantResult
 from vc_scout.models.source import SourceReference, TractionSignal, is_safe_url
 
 __all__ = [
@@ -35,6 +37,8 @@ __all__ = [
     "CompanyOutcome",
     "ComponentStatus",
     "ConfidenceLevel",
+    "DiscardedHit",
+    "DiscoveryRank",
     "EvidenceClaim",
     "EvidenceDossier",
     "ExtractedPage",
@@ -47,6 +51,7 @@ __all__ = [
     "RunManifest",
     "ScoreComponent",
     "SourceKind",
+    "SourceReport",
     "SourceReference",
     "StageName",
     "StageRecord",
@@ -54,5 +59,6 @@ __all__ = [
     "StartupAnalysis",
     "TractionKind",
     "TractionSignal",
+    "VariantResult",
     "is_safe_url",
 ]

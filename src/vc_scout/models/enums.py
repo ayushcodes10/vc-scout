@@ -12,6 +12,7 @@ __all__ = [
     "ComponentStatus",
     "ConfidenceLevel",
     "Recommendation",
+    "RelevanceClass",
     "RubricDimension",
     "SourceKind",
     "StageName",
@@ -30,6 +31,21 @@ class RubricDimension(StrEnum):
     TEAM = "team"
     TRACTION = "traction"
     MARKET_TIMING = "market_timing"
+
+
+class RelevanceClass(StrEnum):
+    """How well a discovered story matches the topic being searched for.
+
+    Assigned before any page is fetched, from the story's own text alone. This is a
+    topical judgment for spending enrichment budget, not a judgment about the company.
+    """
+
+    #: An AI-automation signal together with a business buyer or an operational workflow.
+    DIRECT = "direct"
+    #: An AI-automation signal with no identifiable buyer or workflow.
+    ADJACENT = "adjacent"
+    #: No meaningful AI-automation signal.
+    IRRELEVANT = "irrelevant"
 
 
 class SourceKind(StrEnum):

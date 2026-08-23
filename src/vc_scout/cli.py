@@ -13,8 +13,11 @@ import typer
 
 from vc_scout import __version__
 from vc_scout.config import DEFAULT_LIMIT
+from vc_scout.net.hn import HnAlgoliaClient, HnError
 from vc_scout.policy import POLICY_VERSION, TAKE_A_MEETING_AT, WATCH_AT
 from vc_scout.rubric import RUBRIC, RUBRIC_VERSION
+from vc_scout.stages.source import DEFAULT_WINDOW_DAYS, SourceOutcome, run_source
+from vc_scout.store import RunStore, StoreError
 
 __all__ = ["app", "main"]
 
@@ -50,15 +53,93 @@ def source(
     limit: int = typer.Option(DEFAULT_LIMIT, "--limit", min=1, help="Maximum candidates to keep."),
     run_id: str = _RUN_ID,
     runs_root: Path = _RUNS_ROOT,
+    window_days: int = typer.Option(
+        DEFAULT_WINDOW_DAYS, "--window-days", min=1, help="How far back to search."
+    ),
     force: bool = typer.Option(False, "--force", help="Recompute even if artifacts exist."),
 ) -> None:
     """Discover candidate startups and write candidates.json."""
-    _placeholder(
-        "source",
-        "stage 2",
-        "search Hacker News via the Algolia API, dedupe candidates and persist "
-        "raw/hn/ plus candidates.json",
+    try:
+        store = RunStore(run_id, runs_root=runs_root)
+    except StoreError as exc:
+        typer.secho(f"vc-scout source: {exc}", fg=typer.colors.RED, err=True)
+        raise typer.Exit(code=1) from exc
+
+    if store.candidates_path().exists() and not force:
+        typer.secho(
+            f"vc-scout source: {store.relative(store.candidates_path())} already exists in run "
+            f"{run_id!r}. Pass --force to re-run discovery.",
+            fg=typer.colors.YELLOW,
+            err=True,
+        )
+        raise typer.Exit(code=1)
+
+    try:
+        with HnAlgoliaClient() as client:
+            outcome = run_source(
+                store=store, client=client, query=query, limit=limit, window_days=window_days
+            )
+    except HnError as exc:
+        typer.secho(f"vc-scout source: discovery failed: {exc}", fg=typer.colors.RED, err=True)
+        raise typer.Exit(code=1) from exc
+
+    _report_source(outcome, limit=limit)
+
+
+def _report_source(outcome: SourceOutcome, *, limit: int) -> None:
+    """Print the discovery funnel and shortlist. Exits non-zero when nothing was found."""
+    report = outcome.report
+    counts = report.counts
+    kept = len(outcome.candidates.candidates)
+
+    typer.echo(
+        f"Fetched {counts.get('hits_fetched', 0)} hits across {len(report.variants)} "
+        f"query variants."
     )
+    for key in sorted(k for k in counts if k.startswith("rejected_")):
+        typer.echo(f"  discarded {counts[key]:>4}  {key.removeprefix('rejected_')}")
+    for failure in report.failures:
+        typer.secho(f"  warning: {failure}", fg=typer.colors.YELLOW, err=True)
+
+    before, after = report.relevance_before_selection, report.relevance_after_selection
+    typer.echo("")
+    typer.echo(
+        f"Eligible after the relevance gate (min {report.minimum_relevance}): "
+        f"{before.get('direct', 0)} direct, {before.get('adjacent', 0)} adjacent."
+    )
+    typer.echo(
+        f"Shortlist: {kept} of a requested {limit} - "
+        f"{after.get('direct', 0)} direct, {after.get('adjacent', 0)} adjacent."
+    )
+
+    typer.echo("")
+    for candidate in outcome.candidates.candidates:
+        rank = candidate.discovery_rank
+        label = rank.relevance_class.value if rank else "?"
+        relevance = rank.relevance_score if rank else 0.0
+        quality = rank.quality_score if rank else 0.0
+        typer.echo(
+            f"  {label:<8} rel={relevance:.2f} q={quality:.2f}  "
+            f"{candidate.company_id:<26}  {candidate.website or ''}"
+        )
+
+    if report.shortfall:
+        typer.secho(
+            f"\nShortfall: {report.shortfall} place(s) unfilled. Not padded with "
+            "off-topic candidates - see source-report.json.",
+            fg=typer.colors.YELLOW,
+        )
+
+    typer.echo("")
+    typer.echo(f"Wrote {outcome.candidates_path} and {outcome.report_path}")
+
+    if kept == 0:
+        typer.secho(
+            "vc-scout source: no candidates survived discovery; see the sourcing report.",
+            fg=typer.colors.RED,
+            err=True,
+        )
+        raise typer.Exit(code=1)
 
 
 @app.command()

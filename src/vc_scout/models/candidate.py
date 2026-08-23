@@ -7,6 +7,7 @@ from datetime import datetime
 from pydantic import Field, field_validator
 
 from vc_scout.models.base import ArtifactModel, RecordModel
+from vc_scout.models.discovery import DiscoveryRank
 from vc_scout.models.source import SourceReference, TractionSignal, is_safe_url
 from vc_scout.util.ids import COMPANY_ID_PATTERN
 
@@ -29,6 +30,8 @@ class Candidate(RecordModel):
     website: str | None = None
     discovered_via_query: str | None = None
     discovered_at: datetime | None = None
+    #: Transparent pre-analysis ordering. Never an investment signal.
+    discovery_rank: DiscoveryRank | None = None
     traction_signals: list[TractionSignal] = Field(default_factory=list)
     notes: list[str] = Field(default_factory=list)
 
