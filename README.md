@@ -9,8 +9,8 @@ claim cites an evidence ID, every evidence claim cites a source URL, the final
 recommendation is made by deterministic policy rather than by a model, and a whole run
 replays from persisted artifacts with no network and no API key.
 
-> **Status: in progress.** Stages 1-3 (foundation, domain contracts, discovery and
-> website enrichment) are implemented.
+> **Status: in progress.** Stages 1-4 (foundation, domain contracts, discovery, website
+> enrichment and source-grounded evidence extraction) are implemented.
 > The pipeline commands are declared but not yet implemented - they report which stage
 > owns them and exit non-zero. See `docs/PLAN.md` for the full plan and stage order.
 
@@ -20,6 +20,13 @@ replays from persisted artifacts with no network and no API key.
 uv sync
 uv run vc-scout --help      # full command surface
 uv run vc-scout config      # active rubric, thresholds and confidence policy
+```
+
+Evidence extraction is the only stage that needs a credential:
+
+```bash
+export ANTHROPIC_API_KEY=...   # required only for a live run
+export LLM_MODEL=claude-opus-5  # optional; this is the default
 ```
 
 Once the pipeline stages land, the partner-facing entry point is:
@@ -37,7 +44,8 @@ uv run vc-scout run \
 | --- | --- | --- |
 | `source` | Discover candidates from Hacker News | available |
 | `enrich` | Fetch and extract public company pages | available |
-| `analyze` | Extract evidence, score, apply policy | planned (stages 4-6) |
+| `analyze --evidence-only` | Extract source-grounded evidence | available |
+| `analyze` | Score and apply the recommendation policy | planned (stages 5-6) |
 | `render` | Write Markdown memos and the ranking | planned (stage 7) |
 | `build-site` | Generate the static report | planned (stage 8) |
 | `serve` | Serve a generated report locally | planned (stage 8) |
@@ -149,6 +157,56 @@ hardened client:
 Persisted fetch metadata contains response facts only - requested URL, final URL, redirect
 chain, status, content type, content hash, byte count and timestamp. No request headers,
 cookies, environment values or credentials are logged or stored.
+
+## Evidence extraction
+
+`vc-scout analyze --evidence-only` hands each company's own material to a language model
+under a versioned prompt and writes back only what can be verified against that material.
+
+**The model is treated as an untrusted witness.** It sees a bounded, per-candidate view -
+that company's Hacker News record and its extracted pages, nothing else. It never sees
+another candidate, a discovery rank, the rubric or the thesis. Structured output is
+obtained with forced tool use against a fixed JSON schema.
+
+Nothing it returns is written until it has been checked:
+
+| Check | Rejection |
+| --- | --- |
+| Every cited `source_id` was supplied for *this* candidate | `unknown_source_reference` |
+| Every claim carries a supporting excerpt | `schema_validation_failed` |
+| Every excerpt appears in the text of the source it is attached to | `excerpt_not_found` |
+| `independently_supported` is backed by two or more separate sources | `schema_validation_failed` |
+| No duplicate claims | `schema_validation_failed` |
+
+Claim identifiers are **derived** — `ev-<sha256(company_id, claim, sources)[:12]>` — never
+supplied by the model, so a claim cannot be given an identity it did not earn. Invalid
+output earns **exactly one retry** carrying the validation errors back; a second failure is
+recorded and the run continues.
+
+Each claim carries two independent labels: `verification_status`
+(`company_claim` / `community_signal` / `independently_supported`) and `inference_status`
+(`explicit` / `inferred`). Absence is first-class: `unknowns` records what the sources did
+not establish and `conflicts` retains sources that disagree. **A company with no readable
+website still gets a dossier** — the gap becomes unknowns, never a negative claim.
+
+### Prompt-injection defence
+
+Source pages are arbitrary text that any founder can edit. Two defences:
+
+1. System instructions live in a separate channel and contain nothing about any company.
+   Source text appears only in the user message, fenced in explicit
+   `BEGIN/END UNTRUSTED SOURCE <id>` markers and introduced as data, never instructions.
+2. **Validation makes compliance irrelevant.** A model that obeyed an injected instruction
+   to invent revenue would still have to produce an excerpt, and there is no excerpt — so
+   nothing is written. This is the defence that is actually tested.
+
+### Replay
+
+Every attempt persists a request and a response artifact under `llm/`, carrying the exact
+bounded source content supplied, the prompt version and hash, the structured payload, the
+validation result and errors, token usage, stop reason and latency. **No credential,
+header, cookie or absolute path is ever written** — asserted by a test that greps every
+artifact. A stored response can be re-validated without calling the provider.
 
 ## Investment thesis
 

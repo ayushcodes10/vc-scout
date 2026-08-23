@@ -3,8 +3,13 @@
 from __future__ import annotations
 
 from vc_scout.models.analysis import ScoreComponent, StartupAnalysis
-from vc_scout.models.enums import ClaimLabel, RubricDimension, SourceKind
-from vc_scout.models.evidence import EvidenceClaim, EvidenceDossier
+from vc_scout.models.enums import (
+    EvidenceCategory,
+    InferenceStatus,
+    SourceKind,
+    VerificationStatus,
+)
+from vc_scout.models.evidence import EvidenceClaim, EvidenceDossier, SupportingExcerpt
 from vc_scout.models.source import SourceReference
 from vc_scout.rubric import RUBRIC
 
@@ -18,15 +23,18 @@ def source(url: str = "https://acme-ops.example/about") -> SourceReference:
 def claim(
     src: SourceReference,
     text: str = "Acme Ops says it reconciles invoices for plumbing contractors.",
-    label: ClaimLabel = ClaimLabel.COMPANY_CLAIM,
-    dimension: RubricDimension | None = RubricDimension.PAIN_ROI,
+    verification: VerificationStatus = VerificationStatus.COMPANY_CLAIM,
+    category: EvidenceCategory = EvidenceCategory.PRODUCT,
+    excerpt: str = "reconciles invoices for plumbing contractors",
+    inference: InferenceStatus = InferenceStatus.EXPLICIT,
 ) -> EvidenceClaim:
     return EvidenceClaim.create(
         company_id=COMPANY_ID,
+        category=category,
         claim=text,
-        label=label,
-        source_ids=[src.source_id],
-        dimension=dimension,
+        excerpts=[SupportingExcerpt(source_id=src.source_id, excerpt=excerpt)],
+        verification_status=verification,
+        inference_status=inference,
     )
 
 

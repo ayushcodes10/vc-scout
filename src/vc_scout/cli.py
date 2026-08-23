@@ -7,17 +7,30 @@ owns them, and exit non-zero. They do not pretend to have done work.
 
 from __future__ import annotations
 
+import os
 from pathlib import Path
 
 import typer
 
 from vc_scout import __version__
-from vc_scout.config import DEFAULT_LIMIT
+from vc_scout.config import (
+    API_KEY_ENV,
+    DEFAULT_EFFORT,
+    DEFAULT_LIMIT,
+    DEFAULT_MAX_TOKENS,
+    DEFAULT_MODEL,
+    DEFAULT_TIMEOUT_SECONDS,
+    MODEL_ENV,
+)
+from vc_scout.llm.anthropic import AnthropicProvider
+from vc_scout.llm.fake import FakeProvider
+from vc_scout.llm.provider import LlmProvider, ModelConfig
 from vc_scout.net.hn import HnAlgoliaClient, HnError
 from vc_scout.net.http import SafeFetcher
 from vc_scout.policy import POLICY_VERSION, TAKE_A_MEETING_AT, WATCH_AT
 from vc_scout.rubric import RUBRIC, RUBRIC_VERSION
 from vc_scout.stages.enrich import MAX_EXTRA_PAGES, EnrichOutcome, run_enrich
+from vc_scout.stages.evidence import EvidenceStageOutcome, run_evidence
 from vc_scout.stages.source import DEFAULT_WINDOW_DAYS, SourceOutcome, run_source
 from vc_scout.store import RunStore, StoreError
 
@@ -235,17 +248,125 @@ def _report_enrich(outcome: EnrichOutcome) -> None:
 def analyze(
     run_id: str = _RUN_ID,
     runs_root: Path = _RUNS_ROOT,
-    provider: str | None = typer.Option(None, "--provider", help="LLM provider to use."),
-    model: str | None = typer.Option(None, "--model", help="Model identifier."),
-    force: bool = typer.Option(False, "--force", help="Recompute even if artifacts exist."),
+    evidence_only: bool = typer.Option(
+        False, "--evidence-only", help="Run source-grounded evidence extraction and stop."
+    ),
+    provider: str = typer.Option(
+        "anthropic", "--provider", help="LLM provider: anthropic, or fake for offline replay."
+    ),
+    model: str | None = typer.Option(
+        None, "--model", help=f"Model identifier. Defaults to ${MODEL_ENV} or {DEFAULT_MODEL}."
+    ),
+    effort: str = typer.Option(DEFAULT_EFFORT, "--effort", help="Model effort level."),
+    max_tokens: int = typer.Option(DEFAULT_MAX_TOKENS, "--max-tokens", min=1024),
+    force: bool = typer.Option(False, "--force", help="Overwrite existing evidence output."),
 ) -> None:
     """Extract evidence, score against the rubric and apply the recommendation policy."""
-    _placeholder(
-        "analyze",
-        "stages 4-6",
-        "extract cited evidence, score the rubric, then apply the deterministic policy "
-        "to produce evidence/ and analyses/",
+    if not evidence_only:
+        _placeholder(
+            "analyze",
+            "stages 5-6",
+            "score the rubric and apply the deterministic policy. Evidence extraction is "
+            "available now via --evidence-only",
+        )
+
+    try:
+        store = RunStore(run_id, runs_root=runs_root)
+    except StoreError as exc:
+        typer.secho(f"vc-scout analyze: {exc}", fg=typer.colors.RED, err=True)
+        raise typer.Exit(code=1) from exc
+
+    if not store.candidates_path().exists():
+        typer.secho(
+            f"vc-scout analyze: run {run_id!r} has no candidates.json. Run `vc-scout source` "
+            "and `vc-scout enrich` first.",
+            fg=typer.colors.RED,
+            err=True,
+        )
+        raise typer.Exit(code=1)
+
+    existing = store.evidence_company_ids()
+    if (existing or store.evidence_report_path().exists()) and not force:
+        typer.secho(
+            f"vc-scout analyze: run {run_id!r} already has evidence output "
+            f"({len(existing)} dossier(s)). Pass --force to re-extract.",
+            fg=typer.colors.YELLOW,
+            err=True,
+        )
+        raise typer.Exit(code=1)
+
+    resolved_model = model or os.environ.get(MODEL_ENV) or DEFAULT_MODEL
+    llm: LlmProvider
+    if provider == "fake":
+        llm = FakeProvider()
+    elif provider == "anthropic":
+        llm = AnthropicProvider()
+        if not llm.api_key_present:
+            typer.secho(
+                f"vc-scout analyze: {API_KEY_ENV} is not set. Export it, or use "
+                "--provider fake for an offline run.",
+                fg=typer.colors.RED,
+                err=True,
+            )
+            raise typer.Exit(code=1)
+    else:
+        typer.secho(
+            f"vc-scout analyze: unknown provider {provider!r}. Use anthropic or fake.",
+            fg=typer.colors.RED,
+            err=True,
+        )
+        raise typer.Exit(code=1)
+
+    outcome = run_evidence(
+        store=store,
+        provider=llm,
+        config=ModelConfig(
+            model=resolved_model,
+            max_tokens=max_tokens,
+            effort=effort,
+            timeout_seconds=DEFAULT_TIMEOUT_SECONDS,
+        ),
     )
+    _report_evidence(outcome)
+
+
+def _report_evidence(outcome: EvidenceStageOutcome) -> None:
+    """Print what was extracted and what failed. Thin evidence is not a run failure."""
+    report = outcome.report
+    counts = report.counts
+
+    typer.echo(
+        f"Extracted evidence for {counts.get('succeeded', 0)} of "
+        f"{counts.get('candidates', 0)} candidate(s) using {report.provider}/{report.model} "
+        f"({report.prompt_version})."
+    )
+    typer.echo(
+        f"Claims: {counts.get('claims', 0)}  unknowns: {counts.get('unknowns', 0)}  "
+        f"conflicts: {counts.get('conflicts', 0)}  retried: {counts.get('retried', 0)}  "
+        f"tokens in/out: {counts.get('input_tokens', 0):,}/{counts.get('output_tokens', 0):,}"
+    )
+    for category, total in sorted(report.failures_by_category.items()):
+        typer.echo(f"  failed {total:>4}  {category}")
+
+    typer.echo("")
+    for row in report.candidates:
+        marker = " " if row.succeeded else "!"
+        site = "" if row.website_available else "  (no website evidence)"
+        typer.echo(
+            f"  {marker} {row.company_id:<26} {row.claims:>3} claims, "
+            f"{row.unknowns:>2} unknowns, {row.sources_supplied} source(s){site}"
+        )
+
+    blind = [row.company_id for row in report.candidates if not row.succeeded]
+    if blind:
+        typer.secho(
+            f"\n{len(blind)} candidate(s) produced no dossier and are retained with a "
+            "recorded failure: " + ", ".join(blind),
+            fg=typer.colors.YELLOW,
+        )
+
+    typer.echo("")
+    typer.echo(f"Wrote evidence/, llm/ and {outcome.report_path}")
 
 
 @app.command()

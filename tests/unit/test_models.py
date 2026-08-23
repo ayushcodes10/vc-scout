@@ -16,12 +16,21 @@ from vc_scout.models.candidate import Candidate, CandidateSet
 from vc_scout.models.enums import (
     ClaimLabel,
     ComponentStatus,
+    EvidenceCategory,
+    InferenceStatus,
     Recommendation,
     RubricDimension,
     SourceKind,
     TractionKind,
+    VerificationStatus,
 )
-from vc_scout.models.evidence import EvidenceClaim, EvidenceDossier
+from vc_scout.models.evidence import (
+    EvidenceClaim,
+    EvidenceConflict,
+    EvidenceDossier,
+    EvidenceUnknown,
+    SupportingExcerpt,
+)
 from vc_scout.models.source import SourceReference, TractionSignal, is_safe_url
 
 # -- sources -----------------------------------------------------------------
@@ -89,18 +98,22 @@ def test_candidate_set_rejects_duplicate_companies() -> None:
 # -- evidence ----------------------------------------------------------------
 
 
-def test_evidence_claim_requires_source_ids() -> None:
+def test_evidence_claim_requires_a_supporting_excerpt() -> None:
+    src = factories.source()
     with pytest.raises(ValidationError):
         EvidenceClaim(
-            evidence_id="ev-000000000001",
+            claim_id="ev-000000000001",
             company_id="acme-ops",
+            category=EvidenceCategory.PRODUCT,
             claim="x",
-            label=ClaimLabel.INFERENCE,
-            source_ids=[],
+            source_ids=[src.source_id],
+            excerpts=[],
+            verification_status=VerificationStatus.COMPANY_CLAIM,
+            inference_status=InferenceStatus.EXPLICIT,
         )
 
 
-def test_evidence_id_must_be_content_derived() -> None:
+def test_claim_id_must_be_content_derived() -> None:
     """An ID that does not hash to its own content is a tampered or fabricated citation."""
     good = factories.claim(factories.source())
     tampered = good.model_dump(mode="json") | {"claim": "a completely different claim"}
@@ -108,13 +121,54 @@ def test_evidence_id_must_be_content_derived() -> None:
         EvidenceClaim.model_validate(tampered)
 
 
+def test_every_cited_source_needs_its_own_excerpt() -> None:
+    src, other = factories.source(), factories.source("https://acme-ops.example/pricing")
+    good = factories.claim(src)
+    payload = good.model_dump(mode="json")
+    payload["source_ids"] = [src.source_id, other.source_id]
+    with pytest.raises(ValidationError, match="no supporting excerpt"):
+        EvidenceClaim.model_validate(payload)
+
+
+def test_an_excerpt_may_not_cite_a_source_the_claim_does_not_list() -> None:
+    src, other = factories.source(), factories.source("https://acme-ops.example/pricing")
+    payload = factories.claim(src).model_dump(mode="json")
+    payload["excerpts"].append({"source_id": other.source_id, "excerpt": "some other text"})
+    with pytest.raises(ValidationError, match="does not list"):
+        EvidenceClaim.model_validate(payload)
+
+
+def test_independently_supported_requires_two_separate_sources() -> None:
+    """The label a model is most tempted to over-apply is the one that is checked."""
+    src = factories.source()
+    with pytest.raises(ValidationError, match="at least two separate sources"):
+        factories.claim(src, verification=VerificationStatus.INDEPENDENTLY_SUPPORTED)
+
+
+def test_two_sources_do_support_an_independently_supported_claim() -> None:
+    src, other = factories.source(), factories.source("https://news.example/write-up")
+    assert EvidenceClaim.create(
+        company_id=factories.COMPANY_ID,
+        category=EvidenceCategory.TRACTION,
+        claim="Two separate sources describe the same customer.",
+        excerpts=[
+            SupportingExcerpt(source_id=src.source_id, excerpt="a named customer"),
+            SupportingExcerpt(source_id=other.source_id, excerpt="the same named customer"),
+        ],
+        verification_status=VerificationStatus.INDEPENDENTLY_SUPPORTED,
+        inference_status=InferenceStatus.EXPLICIT,
+    )
+
+
 def test_dossier_rejects_a_claim_citing_an_unknown_source() -> None:
     src = factories.source()
     orphan = EvidenceClaim.create(
         company_id=factories.COMPANY_ID,
+        category=EvidenceCategory.RISK,
         claim="Cites a source the dossier does not carry.",
-        label=ClaimLabel.INFERENCE,
-        source_ids=["src-ffffffffffff"],
+        excerpts=[SupportingExcerpt(source_id="src-ffffffffffff", excerpt="not carried here")],
+        verification_status=VerificationStatus.COMPANY_CLAIM,
+        inference_status=InferenceStatus.INFERRED,
     )
     with pytest.raises(ValidationError, match="unknown source_ids"):
         EvidenceDossier(company_id=factories.COMPANY_ID, claims=[orphan], sources=[src])
@@ -122,20 +176,63 @@ def test_dossier_rejects_a_claim_citing_an_unknown_source() -> None:
 
 def test_dossier_accepts_resolvable_citations() -> None:
     bundle = factories.dossier()
-    assert bundle.claims_for(RubricDimension.PAIN_ROI)
-    assert set(bundle.claim_index()) == {bundle.claims[0].evidence_id}
+    assert bundle.claims_for(EvidenceCategory.PRODUCT)
+    assert set(bundle.claim_index()) == {bundle.claims[0].claim_id}
 
 
 def test_dossier_rejects_a_claim_about_another_company() -> None:
     src = factories.source()
     foreign = EvidenceClaim.create(
         company_id="other-co",
+        category=EvidenceCategory.TEAM,
         claim="Belongs elsewhere.",
-        label=ClaimLabel.INFERENCE,
-        source_ids=[src.source_id],
+        excerpts=[SupportingExcerpt(source_id=src.source_id, excerpt="belongs elsewhere")],
+        verification_status=VerificationStatus.COMPANY_CLAIM,
+        inference_status=InferenceStatus.EXPLICIT,
     )
     with pytest.raises(ValidationError):
         EvidenceDossier(company_id=factories.COMPANY_ID, claims=[foreign], sources=[src])
+
+
+def test_unknowns_and_conflicts_are_first_class() -> None:
+    """Absence and disagreement have to survive into the artifact, not be dropped."""
+    src, other = factories.source(), factories.source("https://news.example/write-up")
+    bundle = EvidenceDossier(
+        company_id=factories.COMPANY_ID,
+        sources=[src, other],
+        unknowns=[
+            EvidenceUnknown(
+                category=EvidenceCategory.TEAM,
+                question="Who founded the company?",
+                reason="No team page was published.",
+            )
+        ],
+        conflicts=[
+            EvidenceConflict(
+                category=EvidenceCategory.TRACTION,
+                summary="The two sources give different customer counts.",
+                source_ids=[src.source_id, other.source_id],
+            )
+        ],
+    )
+    assert bundle.unknowns[0].category is EvidenceCategory.TEAM
+    assert len(bundle.conflicts[0].source_ids) == 2
+
+
+def test_a_conflict_must_cite_sources_the_dossier_carries() -> None:
+    src, other = factories.source(), factories.source("https://news.example/write-up")
+    with pytest.raises(ValidationError, match="conflict cites unknown source_ids"):
+        EvidenceDossier(
+            company_id=factories.COMPANY_ID,
+            sources=[src],
+            conflicts=[
+                EvidenceConflict(
+                    category=EvidenceCategory.MARKET,
+                    summary="disagreement",
+                    source_ids=[src.source_id, other.source_id],
+                )
+            ],
+        )
 
 
 # -- scoring -----------------------------------------------------------------

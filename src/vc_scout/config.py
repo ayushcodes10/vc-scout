@@ -13,12 +13,29 @@ from pathlib import Path
 
 from vc_scout.store import DEFAULT_RUNS_ROOT
 
-__all__ = ["API_KEY_ENV", "DEFAULT_LIMIT", "DEFAULT_MODEL", "DEFAULT_PROVIDER", "Settings"]
+__all__ = [
+    "API_KEY_ENV",
+    "DEFAULT_EFFORT",
+    "DEFAULT_LIMIT",
+    "DEFAULT_MAX_TOKENS",
+    "DEFAULT_MODEL",
+    "DEFAULT_PROVIDER",
+    "DEFAULT_TIMEOUT_SECONDS",
+    "MODEL_ENV",
+    "Settings",
+]
 
 API_KEY_ENV = "ANTHROPIC_API_KEY"
+MODEL_ENV = "LLM_MODEL"
 
 DEFAULT_PROVIDER = "anthropic"
-DEFAULT_MODEL = "claude-sonnet-5"
+#: Sampling parameters are rejected by current Claude models, so run determinism comes
+#: from a fixed prompt, a fixed source ordering and a fixed effort level - not from
+#: temperature. See docs/DECISIONS.md D24.
+DEFAULT_MODEL = "claude-opus-5"
+DEFAULT_EFFORT = "medium"
+DEFAULT_MAX_TOKENS = 8000
+DEFAULT_TIMEOUT_SECONDS = 120.0
 DEFAULT_LIMIT = 15
 
 #: Bounds on how many candidates a run may triage, per the assignment.
@@ -49,7 +66,7 @@ class Settings:
         return cls(
             runs_root=runs_root or (Path(env_root) if env_root else DEFAULT_RUNS_ROOT),
             provider=provider or os.environ.get("VC_SCOUT_PROVIDER", DEFAULT_PROVIDER),
-            model=model or os.environ.get("VC_SCOUT_MODEL", DEFAULT_MODEL),
+            model=model or os.environ.get(MODEL_ENV, DEFAULT_MODEL),
             limit=limit if limit is not None else DEFAULT_LIMIT,
         )
 

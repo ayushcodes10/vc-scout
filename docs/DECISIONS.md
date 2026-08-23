@@ -344,3 +344,164 @@ small company's site trivial.
 
 **Cost.** A company that explains itself across many pages is under-read, and a site whose
 navigation does not use conventional paths yields only its homepage.
+
+---
+
+## D23 - Forced tool use, not free-form JSON
+
+**Decision.** Structured output is obtained by declaring one tool carrying the required
+JSON schema, pinning `tool_choice` to it, disabling parallel tool use and setting
+`strict: true`. The model's only legal move is to emit one `tool_use` block whose `input`
+is the schema.
+
+**Why.** Asking for JSON in prose and parsing the reply invites prose around the JSON,
+markdown fences, and silent shape drift. A forced tool moves schema conformance to the API,
+which validates before the response is returned, and makes a refusal or a truncation
+visible as a *missing tool block with a stop reason* rather than as a confusing parse error.
+
+**Cost.** A schema-shaped constraint the API must compile - a one-off latency cost on first
+use - and a schema dialect narrower than JSON Schema: strict mode rejects numeric and
+length constraints and requires `additionalProperties: false` everywhere. Excerpt length
+bounds therefore live in the validator rather than in the schema.
+
+## D24 - Determinism comes from effort and fixed inputs, not temperature
+
+**Decision.** No sampling parameter is sent. Run-to-run stability rests on a versioned
+prompt file, a deterministic source ordering, bounded per-page and per-candidate input, and
+a fixed `effort` level.
+
+**Why.** `temperature`, `top_p` and `top_k` are rejected outright by the current Claude
+models - sending them returns a 400 - so "temperature 0 for determinism" is no longer
+available. What remains controllable is what goes *in*: the same prompt, the same sources,
+in the same order.
+
+**Cost.** Identical inputs can still yield different wording. That is why nothing the model
+writes is trusted on its own: claim identity is derived from content, and every excerpt is
+verified against its source, so run-to-run variation shows up as different claims rather
+than as different facts.
+
+## D25 - Excerpts are verified against the source, with whitespace and a closed punctuation fold
+
+**Decision.** Every excerpt must appear in the text of the specific source it is attached
+to. Exactly three transformations are applied to both sides before matching, and no others:
+
+1. Unicode NFKC normalisation - so non-breaking, narrow and other typographic whitespace
+   behaves like an ordinary space;
+2. a **closed** punctuation fold of exactly seven characters:
+
+   | Character | Name | Folds to |
+   | --- | --- | --- |
+   | `U+2018` | LEFT SINGLE QUOTATION MARK | `'` |
+   | `U+2019` | RIGHT SINGLE QUOTATION MARK | `'` |
+   | `U+201C` | LEFT DOUBLE QUOTATION MARK | `"` |
+   | `U+201D` | RIGHT DOUBLE QUOTATION MARK | `"` |
+   | `U+2013` | EN DASH | `-` |
+   | `U+2014` | EM DASH | `-` |
+   | `U+2026` | HORIZONTAL ELLIPSIS | `...` |
+
+3. whitespace collapse.
+
+**Why the check exists.** This is what makes a fabricated quotation impossible to persist.
+An excerpt is a quotation, so it must be the page's own words.
+
+**Why the fold does not permit paraphrasing.** The seven characters above are *rendering
+variants of the same punctuation mark*, not different words. Every letter, digit, word and
+word order must still match exactly; case is untouched; no other character is mapped. A
+paraphrase (`we're` -> `we are`), a case change (`Beta` -> `beta`), a reordering, or a
+substituted word all still fail, and each is pinned by a test. Punctuation outside the
+table - a guillemet, for instance - is left alone, so the fold cannot quietly grow.
+
+**Why it was widened.** The original rule allowed whitespace normalisation only. On the
+first live run that rejected a fully supported nine-claim dossier for
+`budibase-agents-beta`, because the source wrote `we’re` (`U+2019`) and the model quoted
+`we're` (`U+0027`). One character, everything else verbatim. 13 of the 15 candidates had
+the same exposure and avoided it by luck. `U+2026` is in the table for completeness even
+though NFKC already decomposes it, so the closed set is legible in one place.
+
+**Cost.** The fold is a real, if small, loosening: a page that deliberately distinguished
+an apostrophe from a single quotation mark would no longer have that distinction preserved
+in an excerpt. That is an acceptable trade for a check whose purpose is to prove the words
+came from the page, not to reproduce its typography.
+
+## D25a - Excerpt mismatches report a bounded diagnostic span
+
+**Decision.** When an excerpt does not match, the validation error includes a short span of
+the *same* source near where the excerpt begins to diverge - located by binary search for
+the longest matching leading run, bounded to 160 characters, and only when a run of at
+least 16 characters anchors it. Otherwise the generic message stands.
+
+**Why.** The retry on `budibase-agents-beta` failed identically twice because the error
+said only "copy the excerpt verbatim" and never said what differed. A one-character
+apostrophe mismatch is invisible at a glance, so the model re-emitted the same text. The
+span makes the difference legible.
+
+**Safety.** The span is drawn only from the source the excerpt was attached to, so it
+cannot quote another source or another candidate; it is bounded; and it is diagnostic only
+- it never widens what validation accepts. No fuzzy matching, edit distance or paraphrase
+acceptance was introduced.
+
+**Cost.** Validation errors are longer, which slightly increases retry input.
+
+## D25b - A failed candidate never keeps an earlier dossier
+
+**Decision.** When evidence extraction finishes without a valid dossier, any pre-existing
+dossier for that candidate is deleted before the report is written, via a single validated
+company-specific path.
+
+**Why.** Found in the first live run: `evidence/budibase-agents-beta.json` was a leftover
+from an earlier `--provider fake` run and survived the live `--force` run in which that
+candidate permanently failed. `write_evidence` only runs on success, and `--force` did not
+clear the directory, so a downstream stage reading `evidence/` would have seen a failed
+company as successfully extracted with zero claims - exactly the silent failure this
+pipeline is built to prevent.
+
+**Scope.** The narrowest possible deletion: one validated `company_id`, one path inside
+this run's `evidence/` directory. Other candidates' dossiers are never touched, a missing
+file is not an error, and a successful retry writes its dossier normally.
+
+**Cost.** A failed re-run destroys a previously good dossier for that candidate. That is
+the intended behaviour - a stale dossier is worse than none, because it is indistinguishable
+from a current one.
+
+## D26 - Claim identifiers are derived, never model-supplied
+
+**Decision.** The output schema does not ask for a claim ID. After validation, each claim's
+ID is computed as `ev-<sha256(company_id, normalised claim, sorted source_ids)[:12]>`.
+
+**Why.** An identifier supplied by the witness is an identifier the witness can reuse,
+collide or fabricate. Deriving it makes identity a function of content: the same claim from
+the same sources always has the same ID, two identical claims collide and are rejected as
+duplicates, and no claim can be given an identity it did not earn.
+
+**Cost.** A claim's ID changes if its wording changes, so IDs are stable across reruns only
+while the model phrases the claim the same way.
+
+## D27 - One retry, carrying the validation errors
+
+**Decision.** Invalid output earns exactly one retry. The retry sends the same bounded
+source material plus the full list of validation errors. A second failure writes a
+structured failure record; the candidate stays in the run with no dossier.
+
+**Why.** Most rejections are mechanical - a mis-attributed excerpt, an over-claimed
+`independently_supported` - and are fixed when the model is told precisely what was wrong.
+A second failure is a signal about the material, not a reason to keep paying. All errors
+are collected before raising so the retry sees the whole list rather than one at a time.
+
+**Cost.** A genuinely borderline company can produce no evidence at all. That is recorded
+as a failure with its category, not as a negative finding about the company.
+
+## D28 - Source content is data, in a separate channel
+
+**Decision.** System instructions come from the versioned prompt file and contain nothing
+about any company. Source text is passed only in the user message, fenced in explicit
+`BEGIN/END UNTRUSTED SOURCE <id>` markers, and introduced as untrusted third-party content.
+
+**Why.** Prompt injection is not hypothetical for this pipeline: the model reads arbitrary
+web pages that any founder can edit. Two defences, and the second is the one that matters.
+The prompt tells the model that source text is data and that an instruction inside it is
+page content. And validation makes compliance irrelevant: a model that obeys an injected
+instruction to invent revenue still has to produce an excerpt, and there is no excerpt, so
+nothing is written.
+
+**Cost.** Prompt-level defence is advisory and cannot be proven. What is provable, and
+tested, is that an invented claim cannot reach an artifact.

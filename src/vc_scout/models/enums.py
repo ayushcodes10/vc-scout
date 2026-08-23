@@ -9,8 +9,11 @@ from enum import StrEnum
 
 __all__ = [
     "ClaimLabel",
+    "EvidenceCategory",
     "ComponentStatus",
     "ConfidenceLevel",
+    "InferenceStatus",
+    "LlmErrorCategory",
     "EnrichmentStatus",
     "FetchFailure",
     "PageRole",
@@ -18,6 +21,7 @@ __all__ = [
     "RelevanceClass",
     "RubricDimension",
     "SourceKind",
+    "VerificationStatus",
     "StageName",
     "StageStatus",
     "TractionKind",
@@ -112,6 +116,54 @@ class ClaimLabel(StrEnum):
     COMPANY_CLAIM = "company_claim"
     THIRD_PARTY = "third_party"
     INFERENCE = "inference"
+
+
+class EvidenceCategory(StrEnum):
+    """What an evidence claim is about. Deliberately coarser than the scoring rubric:
+    extraction should not be shaped by how the claim will later be scored."""
+
+    TEAM = "team"
+    PRODUCT = "product"
+    MARKET = "market"
+    TRACTION = "traction"
+    RISK = "risk"
+
+
+class VerificationStatus(StrEnum):
+    """How well-attested a claim is.
+
+    The distinction that matters most: a company saying something about itself is not the
+    same as a third party saying it. ``independently_supported`` is reserved for claims
+    backed by separate eligible sources and is validated, never taken on trust.
+    """
+
+    #: Stated by the company on its own pages. Marketing until proven otherwise.
+    COMPANY_CLAIM = "company_claim"
+    #: Hacker News points, comments and launch timestamps. Reaction, not verification.
+    COMMUNITY_SIGNAL = "community_signal"
+    #: Supported by two or more separate eligible sources.
+    INDEPENDENTLY_SUPPORTED = "independently_supported"
+
+
+class InferenceStatus(StrEnum):
+    """Whether a claim is stated in the sources or reasoned from them."""
+
+    EXPLICIT = "explicit"
+    INFERRED = "inferred"
+
+
+class LlmErrorCategory(StrEnum):
+    """Why an evidence extraction attempt failed. Recorded per attempt and per candidate."""
+
+    MISSING_API_KEY = "missing_api_key"
+    PROVIDER_TIMEOUT = "provider_timeout"
+    PROVIDER_HTTP_ERROR = "provider_http_error"
+    PROVIDER_RATE_LIMITED = "provider_rate_limited"
+    MALFORMED_RESPONSE = "malformed_response"
+    SCHEMA_VALIDATION_FAILED = "schema_validation_failed"
+    UNKNOWN_SOURCE_REFERENCE = "unknown_source_reference"
+    EXCERPT_NOT_FOUND = "excerpt_not_found"
+    PERMANENT_FAILURE = "permanent_failure"
 
 
 class ComponentStatus(StrEnum):

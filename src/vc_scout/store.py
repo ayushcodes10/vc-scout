@@ -19,7 +19,7 @@ from vc_scout.models.evidence import EvidenceDossier
 from vc_scout.models.manifest import RunManifest
 from vc_scout.models.page import PageBundle
 from vc_scout.models.recommendation import RecommendationResult
-from vc_scout.models.report import EnrichmentReport, SourceReport
+from vc_scout.models.report import EnrichmentReport, EvidenceReport, SourceReport
 from vc_scout.util.ids import digest, is_valid_company_id, is_valid_run_id, slugify
 from vc_scout.util.jsonio import read_json, write_json
 
@@ -79,6 +79,24 @@ class RunStore:
 
     def enrichment_report_path(self) -> Path:
         return self.resolve("enrichment-report.json")
+
+    def evidence_report_path(self) -> Path:
+        return self.resolve("evidence-report.json")
+
+    def llm_request_path(self, company_id: str, *, attempt: int) -> Path:
+        """Stable filename for one persisted evidence request."""
+        return self._llm_path("evidence-requests", company_id, attempt)
+
+    def llm_response_path(self, company_id: str, *, attempt: int) -> Path:
+        """Stable filename for one persisted evidence response."""
+        return self._llm_path("evidence-responses", company_id, attempt)
+
+    def _llm_path(self, kind: str, company_id: str, attempt: int) -> Path:
+        if not is_valid_company_id(company_id):
+            raise StoreError(f"invalid company id {company_id!r}")
+        if attempt < 1:
+            raise StoreError(f"invalid attempt number {attempt!r}")
+        return self.resolve("llm", kind, f"{company_id}-attempt{attempt}.json")
 
     def raw_web_path(self, company_id: str, url: str, *, suffix: str = ".html") -> Path:
         """Path for one fetched page's stored body or metadata.
@@ -165,6 +183,33 @@ class RunStore:
 
     def read_enrichment_report(self) -> EnrichmentReport:
         return self.read_model(self.enrichment_report_path(), EnrichmentReport)
+
+    def write_evidence_report(self, report: EvidenceReport) -> Path:
+        return self.write_model(self.evidence_report_path(), report)
+
+    def read_evidence_report(self) -> EvidenceReport:
+        return self.read_model(self.evidence_report_path(), EvidenceReport)
+
+    def delete_evidence(self, company_id: str) -> bool:
+        """Remove one candidate's dossier, if it has one. Returns whether a file was removed.
+
+        Deliberately narrow: it resolves exactly one validated, company-specific path inside
+        this run and unlinks that. It cannot touch another candidate's dossier, another run,
+        or anything outside ``evidence/``. Missing files are not an error, so failure
+        handling stays idempotent.
+        """
+        path = self.evidence_path(company_id)
+        if not path.is_file():
+            return False
+        path.unlink()
+        return True
+
+    def evidence_company_ids(self) -> list[str]:
+        """Company IDs that already have a persisted dossier, in stable order."""
+        directory = self.resolve("evidence")
+        if not directory.is_dir():
+            return []
+        return sorted(path.stem for path in directory.glob("*.json"))
 
     def write_pages(self, bundle: PageBundle) -> Path:
         return self.write_model(self.extracted_path(bundle.company_id), bundle)

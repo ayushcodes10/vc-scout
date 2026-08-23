@@ -16,6 +16,7 @@ from tests.unit.hn_fixtures import QUERY, load_fixture, make_client
 from tests.unit.web_fixtures import fetcher, html_response, load_html
 from vc_scout import cli
 from vc_scout.cli import NOT_IMPLEMENTED_EXIT, app
+from vc_scout.store import RunStore
 
 REQUIRED_COMMANDS = [
     "source",
@@ -47,7 +48,6 @@ def test_each_command_has_its_own_help(command: str) -> None:
 @pytest.mark.parametrize(
     ("command", "args"),
     [
-        ("analyze", ["--run-id", "demo"]),
         ("render", ["--run-id", "demo"]),
         ("build-site", ["--run-id", "demo"]),
         ("serve", ["--run-id", "demo"]),
@@ -281,3 +281,118 @@ def test_enrich_rejects_an_unusable_run_id(tmp_path: Path) -> None:
     result = runner.invoke(app, ["enrich", "--run-id", "../escape", "--runs-root", str(tmp_path)])
     assert result.exit_code == 1
     assert "invalid run id" in result.output
+
+
+# -- analyze --evidence-only -------------------------------------------------
+
+
+def evidence_run(tmp_path: Path) -> RunStore:
+    from tests.unit.evidence_fixtures import seed_run
+
+    store = RunStore("source-test", runs_root=tmp_path)
+    seed_run(store)
+    return store
+
+
+@pytest.fixture
+def fixture_llm(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Point the CLI's provider factory at the deterministic fake."""
+    from vc_scout.llm.fake import FakeProvider
+
+    monkeypatch.setattr(cli, "FakeProvider", FakeProvider)
+
+
+def test_analyze_without_evidence_only_is_still_unimplemented(tmp_path: Path) -> None:
+    result = runner.invoke(
+        app, ["analyze", "--run-id", "source-test", "--runs-root", str(tmp_path)]
+    )
+    assert result.exit_code == NOT_IMPLEMENTED_EXIT
+    assert "not implemented yet" in result.output
+    assert "--evidence-only" in result.output
+
+
+def test_analyze_evidence_only_writes_artifacts(fixture_llm: None, tmp_path: Path) -> None:
+    store = evidence_run(tmp_path)
+    result = runner.invoke(
+        app,
+        [
+            "analyze",
+            "--run-id",
+            "source-test",
+            "--runs-root",
+            str(tmp_path),
+            "--evidence-only",
+            "--provider",
+            "fake",
+        ],
+    )
+    assert result.exit_code == 0, result.output
+    assert "Extracted evidence for" in result.output
+    assert "evidence-report.json" in result.output
+
+    assert store.evidence_report_path().exists()
+    assert list(store.resolve("llm", "evidence-requests").glob("*.json"))
+    assert list(store.resolve("llm", "evidence-responses").glob("*.json"))
+
+
+def test_analyze_requires_candidates_first(tmp_path: Path) -> None:
+    result = runner.invoke(
+        app,
+        ["analyze", "--run-id", "missing", "--runs-root", str(tmp_path), "--evidence-only"],
+    )
+    assert result.exit_code == 1
+    assert "no candidates.json" in result.output
+
+
+def test_analyze_requires_force_before_overwriting(fixture_llm: None, tmp_path: Path) -> None:
+    evidence_run(tmp_path)
+    args = [
+        "analyze",
+        "--run-id",
+        "source-test",
+        "--runs-root",
+        str(tmp_path),
+        "--evidence-only",
+        "--provider",
+        "fake",
+    ]
+    assert runner.invoke(app, args).exit_code == 0
+
+    repeat = runner.invoke(app, args)
+    assert repeat.exit_code == 1
+    assert "--force" in repeat.output
+
+    assert runner.invoke(app, [*args, "--force"]).exit_code == 0
+
+
+def test_analyze_refuses_the_live_provider_without_a_key(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    evidence_run(tmp_path)
+    result = runner.invoke(
+        app,
+        ["analyze", "--run-id", "source-test", "--runs-root", str(tmp_path), "--evidence-only"],
+    )
+    assert result.exit_code == 1
+    assert "ANTHROPIC_API_KEY is not set" in result.output
+    assert "--provider fake" in result.output
+
+
+def test_analyze_rejects_an_unknown_provider(tmp_path: Path) -> None:
+    evidence_run(tmp_path)
+    result = runner.invoke(
+        app,
+        [
+            "analyze",
+            "--run-id",
+            "source-test",
+            "--runs-root",
+            str(tmp_path),
+            "--evidence-only",
+            "--provider",
+            "openai",
+        ],
+    )
+    assert result.exit_code == 1
+    assert "unknown provider" in result.output

@@ -13,13 +13,16 @@ from datetime import datetime
 from pydantic import Field
 
 from vc_scout.models.base import ArtifactModel, RecordModel
-from vc_scout.models.enums import EnrichmentStatus
+from vc_scout.models.enums import EnrichmentStatus, LlmErrorCategory
 from vc_scout.models.page import PageFailure
 
 __all__ = [
     "CandidateEnrichment",
     "DiscardedHit",
     "EnrichmentReport",
+    "EvidenceAttempt",
+    "EvidenceOutcome",
+    "EvidenceReport",
     "SourceReport",
     "VariantResult",
 ]
@@ -103,5 +106,64 @@ class EnrichmentReport(ArtifactModel):
     counts: dict[str, int] = Field(default_factory=dict)
     failures_by_category: dict[str, int] = Field(default_factory=dict)
     #: The bounds this run was executed under, so a replay can be compared like for like.
+    limits: dict[str, int] = Field(default_factory=dict)
+    notes: list[str] = Field(default_factory=list)
+
+
+class EvidenceAttempt(RecordModel):
+    """One provider call, successful or not.
+
+    Recorded per attempt rather than per candidate so that a retry is visible: the report
+    shows what was wrong the first time and whether the second attempt fixed it.
+    """
+
+    attempt: int = Field(ge=1)
+    succeeded: bool
+    provider: str
+    model: str | None = None
+    request_id: str | None = None
+    stop_reason: str | None = None
+    input_tokens: int = 0
+    output_tokens: int = 0
+    latency_seconds: float = 0.0
+    error_category: LlmErrorCategory | None = None
+    validation_errors: list[str] = Field(default_factory=list)
+
+
+class EvidenceOutcome(RecordModel):
+    """What evidence extraction produced for one candidate."""
+
+    company_id: str
+    succeeded: bool
+    attempts: list[EvidenceAttempt] = Field(default_factory=list)
+    claims: int = 0
+    unknowns: int = 0
+    conflicts: int = 0
+    sources_supplied: int = 0
+    website_available: bool = True
+    truncated_sources: list[str] = Field(default_factory=list)
+    error_category: LlmErrorCategory | None = None
+    error_detail: str | None = None
+
+
+class EvidenceReport(ArtifactModel):
+    """The persisted ``evidence-report.json`` document.
+
+    Every candidate appears, including those whose extraction failed twice. A company is
+    never dropped from the run for being hard to extract evidence about.
+    """
+
+    run_id: str
+    generated_at: datetime | None = None
+    prompt_version: str | None = None
+    prompt_sha256: str | None = None
+    #: The evidence tool's output schema version. Distinct from ``schema_version``,
+    #: which versions this artifact's own shape.
+    output_schema_version: str | None = None
+    provider: str | None = None
+    model: str | None = None
+    candidates: list[EvidenceOutcome] = Field(default_factory=list)
+    counts: dict[str, int] = Field(default_factory=dict)
+    failures_by_category: dict[str, int] = Field(default_factory=dict)
     limits: dict[str, int] = Field(default_factory=dict)
     notes: list[str] = Field(default_factory=list)
