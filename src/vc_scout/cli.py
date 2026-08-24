@@ -32,10 +32,18 @@ from vc_scout.models.enums import PipelineStage, PipelineStageStatus
 from vc_scout.models.report import StageRun
 from vc_scout.net.hn import HnAlgoliaClient, HnError
 from vc_scout.net.http import SafeFetcher
-from vc_scout.pipeline import STAGE_ORDER, PipelineAbortedError, PipelineResult, Plan, run_pipeline
+from vc_scout.pipeline import (
+    STAGE_ORDER,
+    PipelineAbortedError,
+    PipelineResult,
+    Plan,
+    apply_recovery,
+    run_pipeline,
+)
 from vc_scout.policy import POLICY_VERSION, TAKE_A_MEETING_AT, WATCH_AT
 from vc_scout.rubric import RUBRIC, RUBRIC_VERSION
 from vc_scout.stages.analysis import (
+    MAX_ATTEMPTS,
     AnalysisStageOutcome,
     UnknownCandidateError,
     run_analysis,
@@ -47,6 +55,12 @@ from vc_scout.stages.recommend import (
     MissingArtifactError,
     RecommendStageOutcome,
     run_recommend,
+)
+from vc_scout.stages.recover import (
+    RecoveryError,
+    RecoveryOutcome,
+    plan_recovery,
+    recover_analyses,
 )
 from vc_scout.stages.source import DEFAULT_WINDOW_DAYS, SourceOutcome, run_source
 from vc_scout.stages.ui import MissingArtifactError as UiArtifactError
@@ -74,6 +88,11 @@ _FORCE_STAGE = typer.Option(
         "Rerun this stage and everything downstream of it. Repeatable. One of: "
         + ", ".join(stage.value for stage in PipelineStage)
     ),
+)
+_RECOVER_COMPANY_ID = typer.Option(
+    [],
+    "--company-id",
+    help="Recover only this candidate. Repeatable. Must be recorded as failed.",
 )
 _DESTINATION = typer.Option(
     Path("demo"), "--destination", help="Directory to write. Intended to be committed."
@@ -704,6 +723,143 @@ def run(
     )
     llm = _provider_for(provider, command="run")
     _execute_pipeline(store=store, plan=plan, llm=llm)
+
+
+@app.command("recover-analysis")
+def recover_analysis(
+    run_id: str = _RUN_ID,
+    runs_root: Path = _RUNS_ROOT,
+    provider: str = typer.Option(
+        "anthropic", "--provider", help="LLM provider: anthropic, or fake for offline replay."
+    ),
+    model: str | None = typer.Option(
+        None, "--model", help=f"Model identifier. Defaults to ${MODEL_ENV} or {DEFAULT_MODEL}."
+    ),
+    effort: str = typer.Option(DEFAULT_EFFORT, "--effort", help="Model effort level."),
+    max_tokens: int = typer.Option(DEFAULT_MAX_TOKENS, "--max-tokens", min=1024),
+    company_id: list[str] = _RECOVER_COMPANY_ID,
+) -> None:
+    """Retry only the candidates a completed analysis run failed on, and rebuild downstream.
+
+    Every successful analysis is left byte-identical. The failed candidates get the normal
+    two attempts, the results are merged back into the full report with its candidate order
+    and every total recomputed, and the memos and the site are rebuilt offline if anything
+    recovered.
+    """
+    try:
+        store = RunStore(run_id, runs_root=runs_root)
+    except StoreError as exc:
+        _fail("recover-analysis", str(exc))
+    if provider not in ("anthropic", "fake"):
+        _fail("recover-analysis", f"unknown provider {provider!r}. Use anthropic or fake.")
+
+    # Read and plan before building a provider, so a refusal never depends on a credential.
+    try:
+        existing = store.read_analysis_report()
+        targets = plan_recovery(existing, only=list(company_id))
+    except (RecoveryError, StoreError, ValueError) as exc:
+        _fail("recover-analysis", str(exc))
+
+    if not targets:
+        typer.echo(
+            f"Nothing to recover: all {len(existing.candidates)} candidate(s) in "
+            f"{run_id!r} already have a successful analysis. No provider call was made."
+        )
+        return
+
+    typer.echo(
+        f"Recovering {len(targets)} failed candidate(s) of {len(existing.candidates)}: "
+        + ", ".join(targets)
+    )
+    typer.echo(
+        f"  up to {MAX_ATTEMPTS} attempt(s) each, so at most "
+        f"{len(targets) * MAX_ATTEMPTS} request(s). Every other analysis is left untouched."
+    )
+
+    llm = _provider_for(provider, command="recover-analysis")
+    config = ModelConfig(
+        model=model or os.environ.get(MODEL_ENV) or DEFAULT_MODEL,
+        max_tokens=max_tokens,
+        effort=effort,
+        timeout_seconds=DEFAULT_TIMEOUT_SECONDS,
+    )
+    try:
+        outcome = recover_analyses(store=store, provider=llm, config=config)
+    except RecoveryError as exc:
+        _fail("recover-analysis", str(exc))
+    _report_recovery(outcome, store)
+
+
+def _report_recovery(outcome: RecoveryOutcome, store: RunStore) -> None:
+    """Print what recovered, what did not, and what was rebuilt from it."""
+    report = outcome.report
+    typer.echo("")
+    for company_id in outcome.attempted:
+        row = next(row for row in report.candidates if row.company_id == company_id)
+        rounds = [a for a in row.attempts if a.recovery_round == outcome.recovery_round]
+        if row.succeeded:
+            typer.secho(
+                f"  recovered  {company_id:<26} {row.total_score:>3}/100  "
+                f"{row.decision.value if row.decision else '?':<15} "
+                f"({len(rounds)} attempt(s) this round)",
+                fg=typer.colors.GREEN,
+            )
+        else:
+            reason = row.error_category.value if row.error_category else "unknown"
+            typer.secho(
+                f"  failed     {company_id:<26} {reason} ({len(rounds)} attempt(s) this round)",
+                fg=typer.colors.YELLOW,
+            )
+
+    counts = report.counts
+    typer.echo("")
+    typer.echo(
+        f"Analyses: {counts.get('succeeded', 0)} of {counts.get('candidates', 0)} succeeded"
+        + (f", {len(outcome.still_failed)} still failing" if outcome.still_failed else "")
+        + "."
+    )
+    if not outcome.verified:
+        typer.secho(
+            "  ! the merged report claims a success whose analysis file does not load. "
+            "Downstream stages were not rebuilt.",
+            fg=typer.colors.RED,
+            err=True,
+        )
+        raise typer.Exit(code=2)
+
+    analysis_stage = StageRun(
+        stage=PipelineStage.ANALYSIS,
+        status=(
+            PipelineStageStatus.PARTIAL if outcome.still_failed else PipelineStageStatus.COMPLETED
+        ),
+        decision=(
+            f"recovery round {outcome.recovery_round}: recovered "
+            f"{len(outcome.recovered)} of {len(outcome.attempted)} failed candidate(s)"
+        ),
+        candidates_in=counts.get("candidates", 0),
+        candidates_out=counts.get("succeeded", 0),
+        failures=counts.get("failed", 0),
+        artifacts=[outcome.report_path],
+        upstream_fingerprint=report.upstream_fingerprint,
+    )
+    rebuild = apply_recovery(store=store, analysis_stage=analysis_stage, rebuild=outcome.changed)
+    if rebuild.rebuilt:
+        typer.echo(f"Rebuilt {rebuild.memos} memo(s) and {rebuild.pages} page(s).")
+    else:
+        typer.secho(
+            "Nothing recovered, so the memos and the site were left as they were.",
+            fg=typer.colors.YELLOW,
+        )
+
+    typer.echo("")
+    typer.echo(f"Report:  {outcome.report_path}")
+    if store.ranking_path().is_file():
+        typer.echo(f"Ranking: {store.relative(store.ranking_path())}")
+    if (store.site_dir / "index.html").is_file():
+        typer.echo(f"Site:    {store.relative(store.site_dir)}/")
+        typer.echo("")
+        typer.echo("Preview the site with:")
+        typer.echo(f"  python3 -m http.server 8000 --directory {store.site_dir}")
 
 
 @app.command()

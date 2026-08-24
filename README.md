@@ -54,6 +54,20 @@ uv run vc-scout run ... --force-stage analysis   # re-analyse, re-render, re-pub
 uv run vc-scout run ... --stop-after evidence    # stop early, then continue later
 ```
 
+### Repair a run that partly failed
+
+If a run left a few analyses failed - a model returning the wrong shape, a transient
+provider error - retry only those, rather than paying for all fifteen again:
+
+```bash
+uv run vc-scout recover-analysis --run-id ai-smb-ops-demo --provider anthropic
+```
+
+It reads the full report, retries only the candidates recorded as failed, merges the
+results back into that report with its candidate order and every total recomputed, and
+rebuilds the memos and the site offline. Every analysis that already succeeded is left byte
+for byte as it was.
+
 ### Look at the result
 
 ```bash
@@ -100,6 +114,7 @@ an artifact a memo should be built on.
 | `enrich` | Fetch and extract public company pages | available |
 | `analyze --evidence-only` | Extract source-grounded evidence | available |
 | `analyze` | Score and apply the recommendation policy | available |
+| `recover-analysis` | Retry only the candidates a run failed on | available |
 | `recommend` | Write partner-ready memos and the ranking | available |
 | `render` | Deprecated alias for `recommend` | available |
 | `build-ui` | Generate the static research site | available |

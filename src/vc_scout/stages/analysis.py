@@ -52,11 +52,16 @@ __all__ = [
     "ANALYSIS_PROMPT_VERSION",
     "MAX_ATTEMPTS",
     "AnalysisStageOutcome",
+    "Aggregates",
+    "CandidateRun",
+    "aggregate_outcomes",
+    "analyse_candidate",
+    "outcome_for",
     "render_dossier_payload",
     "run_analysis",
 ]
 
-ANALYSIS_PROMPT_VERSION = "analysis_v2"
+ANALYSIS_PROMPT_VERSION = "analysis_v2.1"
 
 #: One retry, never more.
 MAX_ATTEMPTS = 2
@@ -76,7 +81,7 @@ class AnalysisStageOutcome:
 
 
 @dataclass(slots=True)
-class _CandidateRun:
+class CandidateRun:
     """Mutable working state for one candidate."""
 
     candidate: Candidate
@@ -204,6 +209,22 @@ def render_dossier_payload(
             ),
             "",
             *(f"- {error}" for error in validation_errors),
+            "",
+            # The required shape is repeated verbatim on the retry. The first live failures
+            # were shape failures - a missing section, a missing dimension, one changer -
+            # and a correction that only lists what was wrong leaves the model to remember
+            # what was required.
+            "Whatever else you change, the answer must still carry all of this:",
+            "- exactly one `team`, one `product`, one `market` and one `thesis` section;",
+            "- all seven score_components, each exactly once: "
+            + ", ".join(spec.key.value for spec in RUBRIC)
+            + ";",
+            "- exactly two or three recommendation_changers;",
+            "- every section and every component anchored to an evidence claim ID or a "
+            "recorded unknown reference;",
+            "- no component marked supported where the dossier records a conflict over a "
+            "source it cites, unless that conflict is named in that component's caveats.",
+            "Thin evidence changes your statuses and your scores. It never changes this shape.",
         ]
     return "\n".join(parts)
 
@@ -328,7 +349,7 @@ def _assemble(
     return analysis, decide(analysis, dossier, confidence, decided_at=now)
 
 
-def _analyse_candidate(
+def analyse_candidate(
     candidate: Candidate,
     dossier: EvidenceDossier,
     *,
@@ -336,9 +357,9 @@ def _analyse_candidate(
     provider: LlmProvider,
     config: ModelConfig,
     now: datetime,
-) -> _CandidateRun:
+) -> CandidateRun:
     """Run up to two attempts for one candidate, persisting every one."""
-    run = _CandidateRun(candidate=candidate)
+    run = CandidateRun(candidate=candidate)
     system = prompt_text(ANALYSIS_PROMPT_VERSION)
     validation_errors: list[str] = []
 
@@ -500,9 +521,6 @@ def run_analysis(
     outcomes: list[AnalysisOutcome] = []
     analyses: list[StartupAnalysis] = []
     totals: Counter[str] = Counter()
-    recommendations: Counter[str] = Counter()
-    guardrails: Counter[str] = Counter()
-    categories: Counter[str] = Counter()
 
     aborted: LlmError | None = None
     for candidate in selected:
@@ -517,9 +535,7 @@ def run_analysis(
             totals["stale_attempts_removed"] += store.delete_llm_attempts(
                 candidate.company_id, stage="analysis"
             )
-            totals["candidates"] += 1
             totals["not_attempted"] += 1
-            categories[aborted.category.value] += 1
             continue
 
         # Clear this candidate's previous attempt files first, so what remains on disk
@@ -530,16 +546,16 @@ def run_analysis(
 
         dossier = _load_dossier(store, candidate.company_id)
         if dossier is None:
-            run = _CandidateRun(candidate=candidate)
+            run = CandidateRun(candidate=candidate)
             run.error_category = LlmErrorCategory.MISSING_EVIDENCE
             run.error_detail = "no evidence dossier exists for this candidate"
         else:
             try:
-                run = _analyse_candidate(
+                run = analyse_candidate(
                     candidate, dossier, store=store, provider=provider, config=config, now=now
                 )
             except Exception as exc:  # noqa: BLE001 - one candidate must never fail the run.
-                run = _CandidateRun(candidate=candidate)
+                run = CandidateRun(candidate=candidate)
                 run.error_category = LlmErrorCategory.PERMANENT_FAILURE
                 run.error_detail = f"unexpected {type(exc).__name__} while analysing"
 
@@ -558,22 +574,9 @@ def run_analysis(
             # A failed candidate must not be represented by an analysis from an earlier run.
             totals["stale_analyses_removed"] += 1
 
-        outcomes.append(_outcome(candidate.company_id, run, dossier))
-        totals["candidates"] += 1
-        totals["succeeded" if run.analysis is not None else "failed"] += 1
-        totals["attempts"] += len(run.attempts)
-        totals["retried"] += 1 if len(run.attempts) > 1 else 0
-        totals["input_tokens"] += sum(a.input_tokens for a in run.attempts)
-        totals["output_tokens"] += sum(a.output_tokens for a in run.attempts)
-        if run.recommendation is not None:
-            recommendations[run.recommendation.decision.value] += 1
-            for guardrail in run.recommendation.guardrails_applied:
-                guardrails[guardrail] += 1
-            if run.recommendation.model_disagreed:
-                totals["model_policy_disagreements"] += 1
-        if run.analysis is None and run.error_category is not None:
-            categories[run.error_category.value] += 1
+        outcomes.append(outcome_for(candidate.company_id, run, dossier))
 
+    aggregates = aggregate_outcomes(outcomes, extras=dict(totals))
     report = AnalysisReport(
         run_id=store.run_id,
         generated_at=now,
@@ -587,10 +590,10 @@ def run_analysis(
         provider=provider.name,
         model=config.model,
         candidates=outcomes,
-        counts=dict(sorted(totals.items())),
-        recommendations=dict(sorted(recommendations.items())),
-        guardrails=dict(sorted(guardrails.items())),
-        failures_by_category=dict(sorted(categories.items())),
+        counts=aggregates.counts,
+        recommendations=aggregates.recommendations,
+        guardrails=aggregates.guardrails,
+        failures_by_category=aggregates.failures_by_category,
         limits={"max_attempts": MAX_ATTEMPTS, "max_tokens": config.max_tokens},
         filtered_to=only_company_id,
         notes=(
@@ -626,8 +629,74 @@ def run_analysis(
     )
 
 
-def _outcome(
-    company_id: str, run: _CandidateRun, dossier: EvidenceDossier | None
+@dataclass(frozen=True, slots=True)
+class Aggregates:
+    """Every total an analysis report carries, derived from its own outcomes.
+
+    Derived rather than accumulated so that a report assembled from a merge - a recovery
+    that replaced two of fifteen outcomes - cannot disagree with the outcomes it lists.
+    """
+
+    counts: dict[str, int]
+    recommendations: dict[str, int]
+    guardrails: dict[str, int]
+    failures_by_category: dict[str, int]
+
+
+def aggregate_outcomes(
+    outcomes: list[AnalysisOutcome], *, extras: dict[str, int] | None = None
+) -> Aggregates:
+    """Recompute every total from ``outcomes``.
+
+    ``extras`` carries the few counters that are facts about the *run* rather than about
+    its outcomes - stale files removed, candidates never attempted - which cannot be
+    derived from the outcome list and are supplied by the caller that observed them.
+    """
+    # Seeded so a report always states its totals, including the zeroes. A missing
+    # "failed" key reads as "unknown" to anything reconciling the report later.
+    totals: Counter[str] = Counter(
+        {
+            "candidates": 0,
+            "succeeded": 0,
+            "failed": 0,
+            "attempts": 0,
+            "retried": 0,
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "model_policy_disagreements": 0,
+        }
+    )
+    totals.update(extras or {})
+    recommendations: Counter[str] = Counter()
+    guardrails: Counter[str] = Counter()
+    categories: Counter[str] = Counter()
+
+    for outcome in outcomes:
+        totals["candidates"] += 1
+        totals["succeeded" if outcome.succeeded else "failed"] += 1
+        totals["attempts"] += len(outcome.attempts)
+        totals["retried"] += 1 if len(outcome.attempts) > 1 else 0
+        totals["input_tokens"] += sum(a.input_tokens for a in outcome.attempts)
+        totals["output_tokens"] += sum(a.output_tokens for a in outcome.attempts)
+        if outcome.succeeded and outcome.decision is not None:
+            recommendations[outcome.decision.value] += 1
+            for guardrail in outcome.guardrails_applied:
+                guardrails[guardrail] += 1
+            if outcome.model_disagreed:
+                totals["model_policy_disagreements"] += 1
+        if not outcome.succeeded and outcome.error_category is not None:
+            categories[outcome.error_category.value] += 1
+
+    return Aggregates(
+        counts=dict(sorted(totals.items())),
+        recommendations=dict(sorted(recommendations.items())),
+        guardrails=dict(sorted(guardrails.items())),
+        failures_by_category=dict(sorted(categories.items())),
+    )
+
+
+def outcome_for(
+    company_id: str, run: CandidateRun, dossier: EvidenceDossier | None
 ) -> AnalysisOutcome:
     analysis, recommendation = run.analysis, run.recommendation
     headroom = (

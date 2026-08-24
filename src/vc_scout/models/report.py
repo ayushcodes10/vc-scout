@@ -201,6 +201,10 @@ class AnalysisAttempt(RecordModel):
     """One analysis provider call, successful or not."""
 
     attempt: int = Field(ge=1)
+    #: 0 for the original run; 1 upward for each targeted recovery invocation. Recovery
+    #: attempts are appended rather than replacing the history, so a report shows what the
+    #: first pass actually cost as well as what the repair cost.
+    recovery_round: int = Field(default=0, ge=0)
     succeeded: bool
     provider: str
     model: str | None = None

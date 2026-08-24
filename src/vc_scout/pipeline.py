@@ -56,6 +56,8 @@ from vc_scout.thesis import THESIS_VERSION
 
 __all__ = [
     "STAGE_ORDER",
+    "RebuildResult",
+    "apply_recovery",
     "PipelineAbortedError",
     "PipelineResult",
     "Plan",
@@ -708,4 +710,121 @@ def _build_report(
         resumability=resumability,
         stopped_after=plan.stop_after,
         forced_stages=sorted(plan.forced, key=STAGE_ORDER.index),
+    )
+
+
+# -- recovery ----------------------------------------------------------------
+
+
+@dataclass(slots=True)
+class RebuildResult:
+    """What rebuilding the derived stages after a recovery produced."""
+
+    memos: int = 0
+    pages: int = 0
+    stages: list[StageRun] = field(default_factory=list)
+    rebuilt: bool = False
+
+
+def apply_recovery(*, store: RunStore, analysis_stage: StageRun, rebuild: bool) -> RebuildResult:
+    """Rebuild the memos and the site after a recovery, and reconcile the run report.
+
+    Only the three derived stages move. Source, enrichment and evidence produced what they
+    produced, and a repair to the analysis on top of them is not a fact about any of them -
+    so their outcomes in the run report are left exactly as they were.
+    """
+    result = RebuildResult(stages=[analysis_stage])
+    if rebuild:
+        recommend = run_recommend(store=store)
+        _stamp(store, PipelineStage.RECOMMEND)
+        ui = run_build_ui(store=store, force=True)
+        _stamp(store, PipelineStage.UI)
+        result.memos = recommend.report.memos_written
+        result.pages = ui.report.pages_written
+        result.rebuilt = True
+        result.stages += [
+            StageRun(
+                stage=PipelineStage.RECOMMEND,
+                status=(
+                    PipelineStageStatus.PARTIAL
+                    if recommend.report.failures
+                    else PipelineStageStatus.COMPLETED
+                ),
+                decision=(
+                    f"rebuilt after recovery: {recommend.report.memos_written} of "
+                    f"{recommend.report.candidate_count} memo(s) rendered"
+                ),
+                candidates_in=recommend.report.candidate_count,
+                candidates_out=recommend.report.memos_written,
+                failures=len(recommend.report.failures),
+                artifacts=[recommend.ranking_path, recommend.report_path],
+                upstream_fingerprint=_current_fingerprint(store, PipelineStage.RECOMMEND),
+            ),
+            StageRun(
+                stage=PipelineStage.UI,
+                status=(
+                    PipelineStageStatus.PARTIAL
+                    if ui.report.failures
+                    else PipelineStageStatus.COMPLETED
+                ),
+                decision=f"rebuilt after recovery: {ui.report.pages_written} page(s) generated",
+                candidates_in=ui.report.candidate_count,
+                candidates_out=len(ui.report.company_pages),
+                failures=len(ui.report.failures),
+                artifacts=[ui.index_path, ui.report_path],
+                upstream_fingerprint=_current_fingerprint(store, PipelineStage.UI),
+            ),
+        ]
+
+    _reconcile_run_report(store, result)
+    return result
+
+
+def _reconcile_run_report(store: RunStore, result: RebuildResult) -> None:
+    """Replace the derived stage records in run-report.json, and nothing else."""
+    if not store.run_report_path().exists():
+        return
+    try:
+        report = store.read_run_report()
+    except (StoreError, ValueError):
+        return
+
+    replacements = {record.stage: record for record in result.stages}
+    stages = [replacements.get(record.stage, record) for record in report.stages]
+    for stage, record in replacements.items():
+        if all(existing.stage is not stage for existing in report.stages):
+            stages.append(record)
+
+    flow = dict(report.candidate_flow)
+    tokens = dict(report.token_usage)
+    recommendations = dict(report.recommendations)
+    failures = dict(report.failure_summary)
+
+    analysis_report = store.read_analysis_report()
+    tokens["analysis_input_tokens"] = analysis_report.counts.get("input_tokens", 0)
+    tokens["analysis_output_tokens"] = analysis_report.counts.get("output_tokens", 0)
+    failures = {name: total for name, total in failures.items() if not name.startswith("analysis.")}
+    for category, total in analysis_report.failures_by_category.items():
+        failures[f"analysis.{category}"] = total
+    for record in result.stages:
+        flow[f"{record.stage.value}_in"] = record.candidates_in
+        flow[f"{record.stage.value}_out"] = record.candidates_out
+    if store.recommendation_report_path().exists():
+        recommendations = dict(store.read_recommendation_report().recommendations)
+
+    resumability = dict(report.resumability)
+    for record in result.stages:
+        resumability[record.stage.value] = f"ran: {record.decision or record.status.value}"
+
+    store.write_run_report(
+        report.model_copy(
+            update={
+                "stages": stages,
+                "candidate_flow": flow,
+                "token_usage": dict(sorted(tokens.items())),
+                "recommendations": recommendations,
+                "failure_summary": dict(sorted(failures.items())),
+                "resumability": resumability,
+            }
+        )
     )

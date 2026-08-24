@@ -1019,3 +1019,28 @@ unreviewed third-party markup into a repository buys nothing.
 **Cost.** A reviewer cannot diff the extracted text against the original HTML from `demo/`
 alone; that stays in the run directory. The AI trace is one call rather than all of them,
 chosen deterministically as the highest-ranked successful candidate.
+
+## D53 - A failed candidate is repaired in place, not by re-running the run
+
+**Decision.** `vc-scout recover-analysis` retries only the candidates a completed analysis
+report records as failed, through the same single-candidate path the run uses, and merges
+the results into the full report: original candidate order preserved, every aggregate
+recomputed from the merged outcomes, `filtered_to` still null, and the earlier attempts
+retained with a `recovery_round`. Every analysis that already succeeded is left byte for
+byte as it was. It refuses a `filtered_to` report outright.
+
+**Why.** The live run left thirteen of fifteen good and two rejected on shape. Re-running
+all fifteen would spend twenty-six requests to repair two and would discard thirteen
+analyses a partner could already read. `analyze --company-id` is not the alternative: it
+writes a report describing one candidate, which cannot stand in for a full-run report
+without implying the other fourteen were never analysed.
+
+Aggregates are recomputed rather than adjusted, from one function the full run also uses,
+because an incrementally patched total is a total that can quietly stop matching the
+outcomes beneath it. And the merged report is verified against the analysis files on disk
+before the memos and the site are rebuilt, so a report can never claim a success it cannot
+show.
+
+**Cost.** Recovery is a second code path over the analysis stage, and a report can now
+carry attempts from more than one round - which is more to read, and is the point: the
+report still shows what the first pass actually cost.
