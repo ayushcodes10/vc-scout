@@ -7,6 +7,7 @@ having done nothing.
 
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 import pytest
@@ -33,12 +34,31 @@ REQUIRED_COMMANDS = [
 
 runner = CliRunner()
 
+_ANSI = re.compile(r"\x1b\[[0-9;]*m")
+
+
+def help_text(*args: str) -> str:
+    """Help output with styling removed.
+
+    Typer renders help through rich, which styles *inside* a token - ``--query`` comes
+    back as ``\x1b[1;36m-\x1b[0m\x1b[1;36m-query\x1b[0m``, so a plain substring check
+    finds nothing. Whether that styling is emitted depends on the terminal the runner
+    detects, which differs between a developer's shell and a CI runner: the assertions
+    below passed locally and failed on CI for a reason that had nothing to do with the CLI.
+
+    Stripping the escapes also restores the *negative* assertions. Under styling,
+    "--provider is not in this help" was true of every help text, including one that
+    listed it.
+    """
+    return _ANSI.sub("", runner.invoke(app, [*args, "--help"]).output)
+
 
 def test_help_lists_every_required_command() -> None:
     result = runner.invoke(app, ["--help"])
     assert result.exit_code == 0
+    output = _ANSI.sub("", result.output)
     for command in REQUIRED_COMMANDS:
-        assert command in result.output
+        assert command in output
 
 
 @pytest.mark.parametrize("command", REQUIRED_COMMANDS)
@@ -615,10 +635,10 @@ def test_recommend_renders_memos_and_reports_the_shortlist(tmp_path: Path) -> No
 def test_recommend_needs_no_provider_and_no_api_key(tmp_path: Path) -> None:
     """The command declares no --provider and no --model, and reads no credential."""
     _seed_for_recommend(tmp_path)
-    help_text = runner.invoke(app, ["recommend", "--help"]).output
-    assert "--provider" not in help_text
-    assert "--model" not in help_text
-    assert "API_KEY" not in help_text
+    rendered = help_text("recommend")
+    assert "--provider" not in rendered
+    assert "--model" not in rendered
+    assert "API_KEY" not in rendered
 
     result = runner.invoke(
         app, ["recommend", "--run-id", "source-test", "--runs-root", str(tmp_path)]
@@ -729,10 +749,10 @@ def test_build_ui_generates_the_site_and_prints_the_preview_command(tmp_path: Pa
 
 def test_build_ui_needs_no_provider_and_no_api_key(tmp_path: Path) -> None:
     _seed_for_ui(tmp_path)
-    help_text = runner.invoke(app, ["build-ui", "--help"]).output
-    assert "--provider" not in help_text
-    assert "--model" not in help_text
-    assert "API_KEY" not in help_text
+    rendered = help_text("build-ui")
+    assert "--provider" not in rendered
+    assert "--model" not in rendered
+    assert "API_KEY" not in rendered
 
     result = runner.invoke(
         app, ["build-ui", "--run-id", "source-test", "--runs-root", str(tmp_path)]
@@ -787,7 +807,7 @@ def test_build_site_still_works_as_a_deprecated_alias(tmp_path: Path) -> None:
 
 
 def test_run_help_puts_the_happy_path_first() -> None:
-    output = runner.invoke(app, ["run", "--help"]).output
+    output = help_text("run")
     for option in ("--query", "--limit", "--run-id", "--provider", "--model", "--effort"):
         assert option in output
     for option in ("--max-extra-pages", "--force-stage", "--stop-after"):

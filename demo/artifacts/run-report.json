@@ -8,28 +8,11 @@
     "source_report": "source-report.json",
     "ui_report": "site/ui-report.json"
   },
-  "candidate_flow": {
-    "analysis_in": 15,
-    "analysis_out": 15,
-    "enrich_in": 15,
-    "enrich_out": 15,
-    "evidence_in": 15,
-    "evidence_out": 15,
-    "recommend_in": 15,
-    "recommend_out": 15,
-    "source_in": 15,
-    "source_out": 15,
-    "ui_in": 15,
-    "ui_out": 15
-  },
-  "completed_at": "2026-08-24T14:11:49.095810Z",
-  "duration_seconds": 681.151,
+  "candidate_flow": {},
+  "completed_at": "2026-08-24T18:30:39.248641Z",
+  "duration_seconds": 0.0,
   "effort": "low",
-  "failure_summary": {
-    "enrich.blocked": 1,
-    "enrich.http_error": 2,
-    "recommend.no analysis was produced for this candid": 2
-  },
+  "failure_summary": {},
   "forced_stages": [],
   "memos_path": "memos",
   "model": "claude-sonnet-5",
@@ -42,121 +25,101 @@
   },
   "requested_limit": 15,
   "resumability": {
-    "analysis": "ran: recovery round 3: recovered 1 of 1 failed candidate(s)",
-    "enrich": "ran: 31 page(s) read; 2 candidate(s) with no readable page, retained",
-    "evidence": "ran: all 15 candidate(s) succeeded",
-    "recommend": "ran: rebuilt after recovery: 15 of 15 memo(s) rendered",
-    "source": "ran: kept 15 of a requested 15",
-    "ui": "ran: rebuilt after recovery: 16 page(s) generated"
+    "analysis": "resumed: 15 analysis file(s) current for this evidence",
+    "enrich": "resumed: 15 page bundle(s) current for these candidates",
+    "evidence": "resumed: 15 dossier(s) current for this enrichment",
+    "recommend": "resumed: 15 memo(s) current for these analyses",
+    "source": "resumed: 15 candidate(s) already discovered",
+    "ui": "resumed: 16 page(s) current for these memos"
   },
   "run_id": "ai-smb-ops-demo",
   "schema_version": "1.1.0",
   "site_path": "site",
   "stages": [
     {
-      "artifacts": [
-        "candidates.json",
-        "source-report.json"
-      ],
-      "candidates_in": 15,
-      "candidates_out": 15,
-      "decision": "kept 15 of a requested 15",
-      "duration_seconds": 18.353,
+      "artifacts": [],
+      "candidates_in": 0,
+      "candidates_out": 0,
+      "decision": "resumed: 15 candidate(s) already discovered",
+      "duration_seconds": 0.0,
       "failures": 0,
-      "resumed": false,
+      "resumed": true,
       "stage": "source",
       "status": "completed",
       "upstream_fingerprint": null,
       "warnings": []
     },
     {
-      "artifacts": [
-        "enrichment-report.json"
-      ],
-      "candidates_in": 15,
-      "candidates_out": 15,
-      "decision": "31 page(s) read; 2 candidate(s) with no readable page, retained",
-      "duration_seconds": 57.315,
-      "failures": 2,
-      "resumed": false,
+      "artifacts": [],
+      "candidates_in": 0,
+      "candidates_out": 0,
+      "decision": "resumed: 15 page bundle(s) current for these candidates",
+      "duration_seconds": 0.0,
+      "failures": 0,
+      "resumed": true,
       "stage": "enrich",
-      "status": "partial",
+      "status": "completed",
       "upstream_fingerprint": "fp1:9138ffe0107eb43f",
       "warnings": []
     },
     {
-      "artifacts": [
-        "evidence-report.json"
-      ],
-      "candidates_in": 15,
-      "candidates_out": 15,
-      "decision": "all 15 candidate(s) succeeded",
-      "duration_seconds": 223.203,
+      "artifacts": [],
+      "candidates_in": 0,
+      "candidates_out": 0,
+      "decision": "resumed: 15 dossier(s) current for this enrichment",
+      "duration_seconds": 0.0,
       "failures": 0,
-      "resumed": false,
+      "resumed": true,
       "stage": "evidence",
       "status": "completed",
       "upstream_fingerprint": "fp1:295cf2100ba6fe2d",
       "warnings": []
     },
     {
-      "artifacts": [
-        "analysis-report.json"
-      ],
-      "candidates_in": 15,
-      "candidates_out": 15,
-      "decision": "recovery round 3: recovered 1 of 1 failed candidate(s)",
+      "artifacts": [],
+      "candidates_in": 0,
+      "candidates_out": 0,
+      "decision": "resumed: 15 analysis file(s) current for this evidence",
       "duration_seconds": 0.0,
       "failures": 0,
-      "resumed": false,
+      "resumed": true,
       "stage": "analysis",
       "status": "completed",
       "upstream_fingerprint": "fp1:8ae4210914950e9c",
       "warnings": []
     },
     {
-      "artifacts": [
-        "ranking.md",
-        "recommendation-report.json"
-      ],
-      "candidates_in": 15,
-      "candidates_out": 15,
-      "decision": "rebuilt after recovery: 15 of 15 memo(s) rendered",
+      "artifacts": [],
+      "candidates_in": 0,
+      "candidates_out": 0,
+      "decision": "resumed: 15 memo(s) current for these analyses",
       "duration_seconds": 0.0,
       "failures": 0,
-      "resumed": false,
+      "resumed": true,
       "stage": "recommend",
       "status": "completed",
       "upstream_fingerprint": "fp1:ff6b92bbeb5ae37e",
       "warnings": []
     },
     {
-      "artifacts": [
-        "site/index.html",
-        "site/ui-report.json"
-      ],
-      "candidates_in": 15,
-      "candidates_out": 15,
-      "decision": "rebuilt after recovery: 16 page(s) generated",
+      "artifacts": [],
+      "candidates_in": 0,
+      "candidates_out": 0,
+      "decision": "resumed: 16 page(s) current for these memos",
       "duration_seconds": 0.0,
       "failures": 0,
-      "resumed": false,
+      "resumed": true,
       "stage": "ui",
       "status": "completed",
       "upstream_fingerprint": "fp1:680ded89cad7bbae",
       "warnings": []
     }
   ],
-  "started_at": "2026-08-24T14:00:27.939690Z",
+  "started_at": "2026-08-24T18:30:39.222974Z",
   "stopped_after": null,
-  "token_usage": {
-    "analysis_input_tokens": 220482,
-    "analysis_output_tokens": 41100,
-    "evidence_input_tokens": 94691,
-    "evidence_output_tokens": 20438
-  },
+  "token_usage": {},
   "versions": {
-    "analysis_prompt": "analysis_v2",
+    "analysis_prompt": "analysis_v2.1",
     "assessment_policy": "assessment_v1",
     "evidence_prompt": "evidence_v1",
     "memo_template": "memo_v1",

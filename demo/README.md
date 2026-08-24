@@ -5,8 +5,8 @@ An AI-augmented investment triage run, exported for review. Everything here was 
 
 **Query:** AI customer support and back-office automation for small businesses
 **Provider / model:** `anthropic` / `claude-sonnet-5`
-**Candidates:** 15 discovered, 15 analysed and written up.
-**Calls:** analysis_input_tokens 220,482, analysis_output_tokens 41,100, evidence_input_tokens 94,691, evidence_output_tokens 20,438.
+**Candidates:** 0 discovered, 15 analysed and written up.
+**Calls:** none recorded.
 
 ## Preview the site
 
