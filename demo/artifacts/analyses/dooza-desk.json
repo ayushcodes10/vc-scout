@@ -1,0 +1,261 @@
+{
+  "analysis": {
+    "analysis_warnings": [],
+    "buyer": null,
+    "company_id": "dooza-desk",
+    "competitive_observations": [],
+    "confidence_rationale": [
+      "1 of 1 supplied source(s) were cited by at least one claim.",
+      "2 evidence claim(s) across 2 of 5 categories.",
+      "No page from the company's own website could be read.",
+      "1 of 2 claim(s) are company-authored; 1 come from other voices.",
+      "No finding was identified as corroborated by separate sources.",
+      "5 question(s) were left unanswered."
+    ],
+    "corroborated_findings": [],
+    "generated_at": "2026-08-24T14:05:26.796843Z",
+    "identity_warnings": [],
+    "market_assessment": {
+      "evidence_claim_ids": [],
+      "text": "No market size, competitive landscape, or timing rationale is supplied in the dossier.",
+      "unknown_references": [
+        "unk-ef4fa1d1a510"
+      ]
+    },
+    "model": "claude-sonnet-5",
+    "model_suggested_recommendation": "pass",
+    "open_questions": [],
+    "plain_language_product": "Dooza Desk is described as AI-native customer support software aimed at small teams, currently offered via free pilots. No further product detail is available.",
+    "product_assessment": {
+      "evidence_claim_ids": [
+        "ev-7424ee107bec"
+      ],
+      "text": "The only product evidence is a one-line company description: AI-native customer support software for small teams, offered via free pilots. No specifics on features, integrations, or workflow depth are available.",
+      "unknown_references": [
+        "unk-8eaaae61e281"
+      ]
+    },
+    "prompt_version": "analysis_v2",
+    "provider": "anthropic",
+    "recommendation_changers": [
+      "Evidence of actual pilot customers or usage data beyond the Show HN listing",
+      "Product/website detail describing specific features, integrations with support systems of record, and pricing",
+      "Founder background and team composition information"
+    ],
+    "research_confidence": {
+      "components": {
+        "category_span": 0.4,
+        "claim_volume": 0.25,
+        "corroboration": 0.0,
+        "independence": 0.5,
+        "source_coverage": 1.0,
+        "website": 0.0
+      },
+      "level": "low",
+      "missing": [
+        "market",
+        "product",
+        "risk",
+        "team",
+        "traction",
+        "company_website"
+      ],
+      "reasons": [
+        "1 of 1 supplied source(s) were cited by at least one claim.",
+        "2 evidence claim(s) across 2 of 5 categories.",
+        "No page from the company's own website could be read.",
+        "1 of 2 claim(s) are company-authored; 1 come from other voices.",
+        "No finding was identified as corroborated by separate sources.",
+        "5 question(s) were left unanswered."
+      ],
+      "score": 0.305
+    },
+    "risks": [
+      {
+        "evidence_claim_ids": [
+          "ev-65a4b3138d01"
+        ],
+        "text": "Traction evidence is limited to a Show HN launch with minimal engagement (2 points, 0 comments), which is evidence of freshness/attention only, not adoption or revenue, and no paying-customer or pilot-result evidence exists.",
+        "unknown_references": [
+          "unk-0a7aa75eda7d"
+        ]
+      },
+      {
+        "evidence_claim_ids": [],
+        "text": "No information is available regarding operational, competitive, or execution risks the company faces.",
+        "unknown_references": [
+          "unk-5b259a1fb409"
+        ]
+      }
+    ],
+    "schema_version": "1.1.0",
+    "score_components": [
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "pain_roi",
+        "evidence_claim_ids": [
+          "ev-7424ee107bec"
+        ],
+        "maximum": 20,
+        "rationale": "The one-liner names a workflow (customer support) but gives no detail on how ROI is measured or the cost of the problem; no company framing of cost is present beyond the label itself.",
+        "score": 5,
+        "unknown_references": [
+          "unk-8eaaae61e281"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "wedge",
+        "evidence_claim_ids": [
+          "ev-7424ee107bec"
+        ],
+        "maximum": 15,
+        "rationale": "No concrete facts about product features, integrations, pricing, or delivery model are available beyond a one-line description; cannot establish a specific entry point.",
+        "score": 6,
+        "unknown_references": [
+          "unk-8eaaae61e281"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "distribution",
+        "evidence_claim_ids": [
+          "ev-7424ee107bec"
+        ],
+        "maximum": 15,
+        "rationale": "No stated go-to-market motion, channel, or self-serve availability beyond 'free pilots' is detailed; insufficient to assess distribution.",
+        "score": 4,
+        "unknown_references": [
+          "unk-ef4fa1d1a510"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "defensibility",
+        "evidence_claim_ids": [],
+        "maximum": 15,
+        "rationale": "No evidence of proprietary workflow data, integrations, or operational depth is supplied.",
+        "score": 3,
+        "unknown_references": [
+          "unk-8eaaae61e281"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "team",
+        "evidence_claim_ids": [],
+        "maximum": 15,
+        "rationale": "No founder names, backgrounds, or team composition are given in the dossier.",
+        "score": 3,
+        "unknown_references": [
+          "unk-0eaefc5420d6"
+        ]
+      },
+      {
+        "assessment_status": "partially_supported",
+        "caveats": [
+          "Very low engagement suggests limited visibility, not necessarily a negative product signal"
+        ],
+        "component": "traction",
+        "evidence_claim_ids": [
+          "ev-65a4b3138d01"
+        ],
+        "maximum": 10,
+        "rationale": "A Show HN launch is recorded with 2 points and 0 comments, indicating minimal community engagement; this shows freshness but no adoption, customers, or revenue evidence.",
+        "score": 2,
+        "unknown_references": [
+          "unk-0a7aa75eda7d"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "market_timing",
+        "evidence_claim_ids": [],
+        "maximum": 10,
+        "rationale": "No regulatory, technical, or workflow shift is cited as the reason this is buildable or buyable now.",
+        "score": 3,
+        "unknown_references": [
+          "unk-ef4fa1d1a510"
+        ]
+      }
+    ],
+    "team_assessment": {
+      "evidence_claim_ids": [],
+      "text": "No information is available about the founders, their background, or ability to ship. This is a recorded unknown.",
+      "unknown_references": [
+        "unk-0eaefc5420d6"
+      ]
+    },
+    "thesis_assessment": {
+      "evidence_claim_ids": [
+        "ev-7424ee107bec"
+      ],
+      "rationale": "The one-liner suggests customer support automation for SMBs, which is a recurring, potentially revenue-critical workflow and would be adjacent to or aligned with the thesis if substantiated. However, with only a single Show HN listing and no product, integration, or customer detail, fit cannot be determined.",
+      "unknown_references": [
+        "unk-8eaaae61e281",
+        "unk-ef4fa1d1a510"
+      ],
+      "verdict": "undetermined"
+    },
+    "thesis_version": "thesis_v1",
+    "total_score": 26,
+    "workflow": null
+  },
+  "recommendation": {
+    "band": "pass",
+    "band_label": "0-64",
+    "cap_reason": null,
+    "capped": false,
+    "company_id": "dooza-desk",
+    "confidence": {
+      "components": {
+        "category_span": 0.4,
+        "claim_volume": 0.25,
+        "corroboration": 0.0,
+        "independence": 0.5,
+        "source_coverage": 1.0,
+        "website": 0.0
+      },
+      "level": "low",
+      "missing": [
+        "market",
+        "product",
+        "risk",
+        "team",
+        "traction",
+        "company_website"
+      ],
+      "reasons": [
+        "1 of 1 supplied source(s) were cited by at least one claim.",
+        "2 evidence claim(s) across 2 of 5 categories.",
+        "No page from the company's own website could be read.",
+        "1 of 2 claim(s) are company-authored; 1 come from other voices.",
+        "No finding was identified as corroborated by separate sources.",
+        "5 question(s) were left unanswered."
+      ],
+      "score": 0.305
+    },
+    "decided_at": "2026-08-24T14:05:26.796843Z",
+    "decision": "watch",
+    "guardrails_applied": [
+      "insufficient_evidence_watch"
+    ],
+    "model_disagreed": true,
+    "model_suggested": "pass",
+    "policy_version": "2.0.0",
+    "rationale": [
+      "Scored 26/100 against the rubric, which falls in the 0-64 band (pass).",
+      "Research confidence is low (0.30).",
+      "6 dimension(s) could not be assessed from the available evidence: pain_roi, wedge, distribution, defensibility, team, market_timing. Only 10 of 100 points were assessable.",
+      "The score is low, but 6 dimensions were unassessable and research confidence is low, with no evidence that the company sits outside the thesis. That is an evidence shortfall, not a judgment; recommending watch."
+    ],
+    "schema_version": "1.1.0",
+    "total_score": 26
+  }
+}

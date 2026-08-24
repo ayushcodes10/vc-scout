@@ -1,0 +1,116 @@
+{
+  "claims": [
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "Dooza Desk describes itself as AI-native customer support software targeted at small teams, offered via free pilots",
+      "claim_id": "ev-7424ee107bec",
+      "company_id": "dooza-desk",
+      "excerpts": [
+        {
+          "excerpt": "Show HN: Dooza Desk - AI-native customer support for small teams (free pilots)",
+          "source_id": "src-825b3af6f379"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-825b3af6f379"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "traction",
+      "caveat": null,
+      "claim": "The Show HN launch thread received minimal engagement, with 2 points and 0 comments on Hacker News as of the posting date",
+      "claim_id": "ev-65a4b3138d01",
+      "company_id": "dooza-desk",
+      "excerpts": [
+        {
+          "excerpt": "The thread has 2 points on Hacker News.",
+          "source_id": "src-825b3af6f379"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-825b3af6f379"
+      ],
+      "verification_status": "community_signal"
+    }
+  ],
+  "company_id": "dooza-desk",
+  "confidence_inputs": {
+    "claims_by_category": {
+      "product": 1,
+      "traction": 1
+    },
+    "claims_by_verification": {
+      "community_signal": 1,
+      "company_claim": 1
+    },
+    "claims_total": 2,
+    "conflicts": 0,
+    "distinct_domains": 1,
+    "inferred_claims": 0,
+    "unknowns": 5
+  },
+  "conflicts": [],
+  "generated_at": "2026-08-24T14:01:43.587956Z",
+  "model": "claude-sonnet-5",
+  "prompt_version": "evidence_v1",
+  "provider": "anthropic",
+  "schema_version": "1.1.0",
+  "source_coverage": {
+    "hn_sources": 1,
+    "pages_supplied": 0,
+    "sources_cited": 1,
+    "sources_supplied": 1,
+    "supplied_chars": 407,
+    "truncated_pages": [],
+    "website_available": false
+  },
+  "sources": [
+    {
+      "domain": "news.ycombinator.com",
+      "hn_num_comments": 0,
+      "hn_object_id": "46157695",
+      "hn_points": 2,
+      "kind": "hn_story",
+      "published_at": "2025-12-05T07:31:43Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-825b3af6f379",
+      "title": "Show HN: Dooza Desk – AI-native customer support for small teams (free pilots)",
+      "url": "https://news.ycombinator.com/item?id=46157695"
+    }
+  ],
+  "unknowns": [
+    {
+      "category": "team",
+      "question": "Who founded or works at Dooza Desk, and what is their background?",
+      "reason": "No website or team information was available in the supplied sources."
+    },
+    {
+      "category": "product",
+      "question": "What specific features or capabilities does Dooza Desk's AI-native support product provide?",
+      "reason": "Only a one-line description is available; no product detail or website content was retrievable."
+    },
+    {
+      "category": "market",
+      "question": "What market size or competitive landscape does Dooza Desk operate within?",
+      "reason": "No market data was supplied."
+    },
+    {
+      "category": "traction",
+      "question": "Does Dooza Desk have any paying customers, pilot results, or usage metrics?",
+      "reason": "Only HN engagement metrics were supplied, which reflect launch visibility, not product traction."
+    },
+    {
+      "category": "risk",
+      "question": "What risks or limitations does Dooza Desk face?",
+      "reason": "No source discussed risks or limitations explicitly."
+    }
+  ],
+  "warnings": [
+    "No website page could be read for this company. Evidence is missing, which is not the same as evidence of weakness.",
+    "No website content could be retrieved for this company in this run; all evidence is limited to a single Hacker News Show HN listing with minimal engagement metrics."
+  ]
+}

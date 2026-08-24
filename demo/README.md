@@ -1,12 +1,12 @@
-# VC Scout - run `offline-demo`
+# VC Scout - run `ai-smb-ops-demo`
 
 An AI-augmented investment triage run, exported for review. Everything here was produced by
 `vc-scout run` from public sources; nothing in this directory was written by hand.
 
 **Query:** AI customer support and back-office automation for small businesses
-**Provider / model:** `fake` / `fake-model-1`
-**Candidates:** 0 discovered, 9 analysed and written up.
-**Calls:** none recorded.
+**Provider / model:** `anthropic` / `claude-sonnet-5`
+**Candidates:** 15 discovered, 15 analysed and written up.
+**Calls:** analysis_input_tokens 220,482, analysis_output_tokens 41,100, evidence_input_tokens 94,691, evidence_output_tokens 20,438.
 
 ## Preview the site
 
@@ -33,13 +33,13 @@ browser's file:// rules may block the stylesheet - the server above avoids that.
 
 This is the property the whole pipeline exists to give you. Pick any statement in a memo:
 
-1. Open `memos/agentkit-core.md` and find a sentence carrying a marker like `[S1]`.
+1. Open `memos/dooza-desk.md` and find a sentence carrying a marker like `[S1]`.
 2. Scroll to **Sources** at the foot of that memo. `[S1]` resolves to exactly one entry
    there, with the page title, its role, the URL and the date it was read.
 3. That URL is public. Open it and check the excerpt quoted beneath the source entry.
-4. To go further down: `artifacts/analyses/agentkit-core.json` shows which
+4. To go further down: `artifacts/analyses/dooza-desk.json` shows which
    `ev-` evidence claim IDs that statement cited, and
-   `artifacts/evidence/agentkit-core.json` shows each of those claims with the
+   `artifacts/evidence/dooza-desk.json` shows each of those claims with the
    verbatim excerpt and the `src-` source it came from.
 
 Every marker in a memo resolves to exactly one source, and every source listed is cited
@@ -60,4 +60,4 @@ compared. `ai-trace/` shows one full round trip of this.
 No raw HTML: `raw/` holds third-party page bodies, which are the input to extraction rather
 than evidence. No credentials, headers or absolute filesystem paths - the export refuses to
 write if it finds any. The full run directory, including the raw pages and every persisted
-request and response, stays under `outputs/runs/offline-demo/`.
+request and response, stays under `outputs/runs/ai-smb-ops-demo/`.

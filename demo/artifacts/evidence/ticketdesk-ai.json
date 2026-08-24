@@ -1,0 +1,302 @@
+{
+  "claims": [
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "Ticketdesk AI offers AI agents that automatically handle customer support tickets across chat and email, learning from documentation and routing complex issues to humans.",
+      "claim_id": "ev-6e2a1e5b09b2",
+      "company_id": "ticketdesk-ai",
+      "excerpts": [
+        {
+          "excerpt": "Transform your customer support with AI agents that handle tickets automatically, learn from your documentation, and route complex issues to the right team members - available on chat and email.",
+          "source_id": "src-12155aee7a09"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-12155aee7a09"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "product",
+      "caveat": "Same company voice repeated across its own pages, not independently verified.",
+      "claim": "The company claims its AI can resolve up to 70% of tickets without human handoff.",
+      "claim_id": "ev-b77cbc9d5382",
+      "company_id": "ticketdesk-ai",
+      "excerpts": [
+        {
+          "excerpt": "Resolve up to 70% of tickets without human handoff",
+          "source_id": "src-12155aee7a09"
+        },
+        {
+          "excerpt": "Resolve up to 70% of tickets without human handoff",
+          "source_id": "src-ba813fbcd6eb"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-12155aee7a09",
+        "src-ba813fbcd6eb"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "Product features include canned responses, human-in-loop handoff, white-label email, multiple inboxes, tagging/priority, search/filter, API access, reporting, multiple AI models, and an embeddable chat widget.",
+      "claim_id": "ev-e5876c668dec",
+      "company_id": "ticketdesk-ai",
+      "excerpts": [
+        {
+          "excerpt": "Canned Responses Create and manage pre-written responses with dynamic variables",
+          "source_id": "src-65e4373d1690"
+        },
+        {
+          "excerpt": "Embeddable Chat Add a chat widget to your website with one line of code",
+          "source_id": "src-65e4373d1690"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-65e4373d1690"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "market",
+      "caveat": "Comparison is self-reported and described as for 'informational purposes only' with prices as of 2026, which is an unusual/future date for a pricing snapshot.",
+      "claim": "The company positions itself as far cheaper than competing customer support platforms, claiming to be '10x cheaper than the alternatives.'",
+      "claim_id": "ev-dac746327fb8",
+      "company_id": "ticketdesk-ai",
+      "excerpts": [
+        {
+          "excerpt": "10x cheaper than the alternatives",
+          "source_id": "src-936797ed9154"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-936797ed9154"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "Pricing tiers range from $29/month to $249/month with varying numbers of AI agents, credits, automation rules, team members and training sources, plus a custom 'Contact us' enterprise tier; all plans include a 14-day free trial.",
+      "claim_id": "ev-6c2dbd82c10c",
+      "company_id": "ticketdesk-ai",
+      "excerpts": [
+        {
+          "excerpt": "$29 /month 1 AI agent 5,000 AI credits 5 automation rules 3 team members 250 training sources",
+          "source_id": "src-936797ed9154"
+        },
+        {
+          "excerpt": "All plans include a 14-day free trial.",
+          "source_id": "src-936797ed9154"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-936797ed9154"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "traction",
+      "caveat": "Unverified marketing claim with no named customers or data.",
+      "claim": "The company claims 'hundreds of teams' use Ticketdesk AI.",
+      "claim_id": "ev-d09f65450729",
+      "company_id": "ticketdesk-ai",
+      "excerpts": [
+        {
+          "excerpt": "Join hundreds of teams using Ticketdesk AI to deliver exceptional customer support.",
+          "source_id": "src-12155aee7a09"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-12155aee7a09"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "traction",
+      "caveat": null,
+      "claim": "A Show HN launch post for the product received minimal community engagement (1 point, 1 comment).",
+      "claim_id": "ev-d162bbe54e33",
+      "company_id": "ticketdesk-ai",
+      "excerpts": [
+        {
+          "excerpt": "The thread has 1 points on Hacker News. The thread has 1 comments on Hacker News.",
+          "source_id": "src-5f70b65d63a8"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-5f70b65d63a8"
+      ],
+      "verification_status": "community_signal"
+    },
+    {
+      "category": "traction",
+      "caveat": null,
+      "claim": "Elsewhere the company claims 'thousands of teams' already use the product, conflicting with the 'hundreds of teams' claim made on other pages.",
+      "claim_id": "ev-def8fbccc194",
+      "company_id": "ticketdesk-ai",
+      "excerpts": [
+        {
+          "excerpt": "Join thousands of teams already using Ticketdesk.ai to deliver exceptional customer support.",
+          "source_id": "src-65e4373d1690"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-65e4373d1690"
+      ],
+      "verification_status": "company_claim"
+    }
+  ],
+  "company_id": "ticketdesk-ai",
+  "confidence_inputs": {
+    "claims_by_category": {
+      "market": 1,
+      "product": 4,
+      "traction": 3
+    },
+    "claims_by_verification": {
+      "community_signal": 1,
+      "company_claim": 7
+    },
+    "claims_total": 8,
+    "conflicts": 1,
+    "distinct_domains": 2,
+    "inferred_claims": 0,
+    "unknowns": 5
+  },
+  "conflicts": [
+    {
+      "category": "traction",
+      "excerpts": [
+        {
+          "excerpt": "Join hundreds of teams using Ticketdesk AI to deliver exceptional customer support.",
+          "source_id": "src-12155aee7a09"
+        },
+        {
+          "excerpt": "Join thousands of teams already using Ticketdesk.ai to deliver exceptional customer support.",
+          "source_id": "src-65e4373d1690"
+        }
+      ],
+      "source_ids": [
+        "src-12155aee7a09",
+        "src-65e4373d1690"
+      ],
+      "summary": "The homepage claims 'hundreds of teams' use the product while the features page claims 'thousands of teams' use it."
+    }
+  ],
+  "generated_at": "2026-08-24T14:01:43.587956Z",
+  "model": "claude-sonnet-5",
+  "prompt_version": "evidence_v1",
+  "provider": "anthropic",
+  "schema_version": "1.1.0",
+  "source_coverage": {
+    "hn_sources": 1,
+    "pages_supplied": 4,
+    "sources_cited": 5,
+    "sources_supplied": 5,
+    "supplied_chars": 6301,
+    "truncated_pages": [],
+    "website_available": true
+  },
+  "sources": [
+    {
+      "domain": "news.ycombinator.com",
+      "hn_num_comments": 1,
+      "hn_object_id": "45288011",
+      "hn_points": 1,
+      "kind": "hn_story",
+      "published_at": "2025-09-18T10:43:22Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-5f70b65d63a8",
+      "title": "Show HN: AI agents to handle customer support tickets",
+      "url": "https://news.ycombinator.com/item?id=45288011"
+    },
+    {
+      "domain": "ticketdesk.ai",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T14:01:18.046080Z",
+      "source_id": "src-12155aee7a09",
+      "title": "AI Agents for Customer Support - Ticketdesk AI",
+      "url": "https://ticketdesk.ai/"
+    },
+    {
+      "domain": "ticketdesk.ai",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T14:01:18.299802Z",
+      "source_id": "src-65e4373d1690",
+      "title": "Features - Ticketdesk AI",
+      "url": "https://ticketdesk.ai/features"
+    },
+    {
+      "domain": "ticketdesk.ai",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T14:01:18.868060Z",
+      "source_id": "src-936797ed9154",
+      "title": "Pricing - Ticketdesk AI",
+      "url": "https://ticketdesk.ai/pricing"
+    },
+    {
+      "domain": "ticketdesk.ai",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T14:01:19.370637Z",
+      "source_id": "src-ba813fbcd6eb",
+      "title": "Customer Support AI - Ticketdesk AI",
+      "url": "https://ticketdesk.ai/customer-support-ai"
+    }
+  ],
+  "unknowns": [
+    {
+      "category": "team",
+      "question": "Who founded or works at Ticketdesk AI, and what is their background?",
+      "reason": "No source provides team or founder information."
+    },
+    {
+      "category": "traction",
+      "question": "How many actual paying customers or active users does Ticketdesk AI have?",
+      "reason": "Only vague marketing phrases ('hundreds of teams', 'thousands of teams') are given, with no verifiable figures."
+    },
+    {
+      "category": "market",
+      "question": "What is the actual size of the customer support software market or Ticketdesk's competitive position?",
+      "reason": "No independent market data is supplied; only a self-authored cost comparison claim."
+    },
+    {
+      "category": "product",
+      "question": "How accurate is the AI in practice, and what is the real-world resolution rate?",
+      "reason": "The 70% resolution figure is asserted by the company with no methodology or independent verification."
+    },
+    {
+      "category": "risk",
+      "question": "What are the company's funding status, financials, or business risks?",
+      "reason": "No sources provide financial or funding information."
+    }
+  ],
+  "warnings": []
+}

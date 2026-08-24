@@ -1,0 +1,122 @@
+{
+  "claims": [],
+  "company_id": "gibsonai-com",
+  "confidence_inputs": {
+    "claims_by_category": {},
+    "claims_by_verification": {},
+    "claims_total": 0,
+    "conflicts": 0,
+    "distinct_domains": 0,
+    "inferred_claims": 0,
+    "unknowns": 5
+  },
+  "conflicts": [],
+  "generated_at": "2026-08-24T14:01:43.587956Z",
+  "model": "claude-sonnet-5",
+  "prompt_version": "evidence_v1",
+  "provider": "anthropic",
+  "schema_version": "1.1.0",
+  "source_coverage": {
+    "hn_sources": 1,
+    "pages_supplied": 4,
+    "sources_cited": 0,
+    "sources_supplied": 5,
+    "supplied_chars": 9658,
+    "truncated_pages": [],
+    "website_available": true
+  },
+  "sources": [
+    {
+      "domain": "news.ycombinator.com",
+      "hn_num_comments": 0,
+      "hn_object_id": "45668780",
+      "hn_points": 3,
+      "kind": "hn_story",
+      "published_at": "2025-10-22T13:24:47Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-1b4c5d7e7c59",
+      "title": "Show HN: Customer Support AI Agent with Memory",
+      "url": "https://news.ycombinator.com/item?id=45668780"
+    },
+    {
+      "domain": "memorilabs.ai",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T14:01:13.285770Z",
+      "source_id": "src-73ad98afdbdf",
+      "title": "Memori – Agent-native memory infrastructure",
+      "url": "https://memorilabs.ai/"
+    },
+    {
+      "domain": "memorilabs.ai",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T14:01:14.602841Z",
+      "source_id": "src-8b526a4d7f92",
+      "title": "Customer support | Memori – Agent-native memory infrastructure",
+      "url": "https://memorilabs.ai/use-cases/customer-support"
+    },
+    {
+      "domain": "memorilabs.ai",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T14:01:15.767255Z",
+      "source_id": "src-e815a3b77a57",
+      "title": "Solutions | Memori – Agent-native memory infrastructure",
+      "url": "https://memorilabs.ai/solutions"
+    },
+    {
+      "domain": "memorilabs.ai",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T14:01:15.824673Z",
+      "source_id": "src-382bc5f105a8",
+      "title": "Pricing | Memori – Agent-native memory infrastructure",
+      "url": "https://memorilabs.ai/pricing"
+    }
+  ],
+  "unknowns": [
+    {
+      "category": "product",
+      "question": "What does gibsonai.com actually offer and how does it work?",
+      "reason": "The supplied sources do not correspond to gibsonai.com; all company_page sources are for a different company, memorilabs.ai, and the only source referencing the candidate (an HN thread) provides no product detail."
+    },
+    {
+      "category": "team",
+      "question": "Who founded or works at gibsonai.com?",
+      "reason": "No source provides team information for the candidate."
+    },
+    {
+      "category": "market",
+      "question": "What market does gibsonai.com serve and how large is it?",
+      "reason": "No source provides market information for the candidate."
+    },
+    {
+      "category": "traction",
+      "question": "Does gibsonai.com have customers, usage, or revenue?",
+      "reason": "The only source tied to the candidate (HN story) reports minimal engagement (3 points, 0 comments) and no traction metrics."
+    },
+    {
+      "category": "risk",
+      "question": "What are the risks or limitations of gibsonai.com's product?",
+      "reason": "No source material specific to gibsonai.com discusses risks."
+    }
+  ],
+  "warnings": [
+    "Four of the five supplied sources (src-73ad98afdbdf, src-8b526a4d7f92, src-e815a3b77a57, src-382bc5f105a8) are company pages for memorilabs.ai, a different company from the candidate gibsonai.com, and were not used to support any claims about the candidate since they do not describe it.",
+    "The only source that references the candidate is the Hacker News story (src-1b4c5d7e7c59), which contains only submission metadata (points, comments, date) and no substantive product, team, market, or traction information.",
+    "No claims could be responsibly made about gibsonai.com given the mismatch between the candidate and the supplied company-page sources."
+  ]
+}

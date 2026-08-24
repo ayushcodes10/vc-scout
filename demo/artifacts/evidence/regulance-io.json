@@ -1,0 +1,87 @@
+{
+  "claims": [],
+  "company_id": "regulance-io",
+  "confidence_inputs": {
+    "claims_by_category": {},
+    "claims_by_verification": {},
+    "claims_total": 0,
+    "conflicts": 0,
+    "distinct_domains": 0,
+    "inferred_claims": 0,
+    "unknowns": 5
+  },
+  "conflicts": [],
+  "generated_at": "2026-08-24T14:01:43.587956Z",
+  "model": "claude-sonnet-5",
+  "prompt_version": "evidence_v1",
+  "provider": "anthropic",
+  "schema_version": "1.1.0",
+  "source_coverage": {
+    "hn_sources": 1,
+    "pages_supplied": 1,
+    "sources_cited": 0,
+    "sources_supplied": 2,
+    "supplied_chars": 6400,
+    "truncated_pages": [
+      "src-9d28fb1af821"
+    ],
+    "website_available": true
+  },
+  "sources": [
+    {
+      "domain": "news.ycombinator.com",
+      "hn_num_comments": 0,
+      "hn_object_id": "46485049",
+      "hn_points": 2,
+      "kind": "hn_story",
+      "published_at": "2026-01-04T04:50:54Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-135a7776ef94",
+      "title": "Show HN: AI compliance automation for startups and lean teams",
+      "url": "https://news.ycombinator.com/item?id=46485049"
+    },
+    {
+      "domain": "stubes.info",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T14:00:49.419099Z",
+      "source_id": "src-9d28fb1af821",
+      "title": "Kèo Bóng Đá | Tỷ Lệ Kèo Aff Cup Keonhacai 5 Hôm Nay",
+      "url": "https://stubes.info/"
+    }
+  ],
+  "unknowns": [
+    {
+      "category": "product",
+      "question": "What does regulance.io's product actually do and how does it work?",
+      "reason": "The company website source provided (src-9d28fb1af821) is unrelated content (a Vietnamese football betting odds site) and contains no information about regulance.io."
+    },
+    {
+      "category": "team",
+      "question": "Who founded or works at regulance.io?",
+      "reason": "No source provides team information."
+    },
+    {
+      "category": "market",
+      "question": "What market or customer segment does regulance.io serve, beyond the one-liner?",
+      "reason": "No independent market information was provided in the sources."
+    },
+    {
+      "category": "traction",
+      "question": "Does regulance.io have any users, customers, or revenue?",
+      "reason": "Only a Hacker News Show HN post with minimal engagement was supplied; no other traction data exists."
+    },
+    {
+      "category": "risk",
+      "question": "What are the actual risks or limitations of regulance.io's product?",
+      "reason": "No source discusses risks specific to the company."
+    }
+  ],
+  "warnings": [
+    "The supplied 'company_page' source (src-9d28fb1af821, https://stubes.info/) does not correspond to regulance.io; it is content about football betting odds (Kèo Bóng Đá) in Vietnamese, seemingly an unrelated or mismatched page. No usable product/company evidence could be extracted from it.",
+    "The Hacker News source (src-135a7776ef94) only provides a Show HN title, one-liner, and engagement metrics (2 points, 0 comments), which is community signal only and does not describe the product's functionality in detail."
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "company_id": "drafting-ai",
+  "failures": [],
+  "generated_at": "2026-08-24T14:00:46.298396Z",
+  "pages": [
+    {
+      "body_truncated": false,
+      "char_count": 1662,
+      "company_id": "drafting-ai",
+      "content_sha256": "2dd755b1232ba66c7d95d13460c21bc89840e2dc024163d19885de7b6bb3d949",
+      "content_type": "text/html",
+      "extractor": "bs4-main-content/1",
+      "fetched_at": "2026-08-24T14:00:58.038315Z",
+      "final_url": "https://getdrafting.com/",
+      "headings": [
+        "Ops and Customer Support AI automation with human supervision",
+        "Your Ops and CX people are more valuable than ever supervising and reviewing AI's work",
+        "How it works",
+        "Prompt-based configuration",
+        "Define workflows",
+        "Workflows have a trigger and an action",
+        "Draft replies",
+        "Develop your prompts",
+        "Why human-in-the-loop?",
+        "A browser based approach to automation",
+        "Safe to deploy",
+        "Incrementally adoptable",
+        "Works with the all the tools you already use",
+        "Improve with real-world usage",
+        "Faster, more consistent execution",
+        "The best reviewer experience",
+        "Partial automation welcome",
+        "Easy integration",
+        "Incremental Automation",
+        "Typical journey for a single workflow"
+      ],
+      "http_status": 200,
+      "role": "homepage",
+      "source_id": "src-b79092e88686",
+      "text": "Drafting AI\nOps and Customer Support AI automation with human supervision\nYour Ops and CX people are more valuable than ever supervising and reviewing AI's work\nHow it works\nPrompt-based configuration\nDefine workflows\nWorkflows have a trigger and an action\nThe trigger defines which emails trigger this workflow.\nThe action is which URL to open and which form fields to fill when this workflow is triggered.\nDraft replies\nDevelop your prompts\nWhy human-in-the-loop?\nA browser based approach to automation\nSafe to deploy\nIncrementally adoptable\nWorks with the all the tools you already use\nImprove with real-world usage\nFaster, more consistent execution\nThe best reviewer experience\nPartial automation welcome\nEasy integration\nIncremental Automation\nWe help you drive your organization from 0 to AI the right way, with value delivered and clear next steps at every stop along the way.\nPartial automation changes the risk/ROI for implementing AI.\nWithout it, you have to map out an entire workflow and get 100% of the cases right before you can deploy. With partial automation, we suggest starting to automate a workflow by configuring the AI to do just the first few, well defined steps, then handing off to a person to finish. Then, gradually add more scope to the AI as you get real-world data about how your people are completing the task.\nBecause the AI is being trained to use the same tools as a person, there's no replatforming or rework as you grow it towards full automation.\nTypical journey for a single workflow\nEach step of incremental automation delivers immediate incremental value.\nWant to see how partial automation changes your AI implementation?",
+      "title": "Drafting AI",
+      "truncated": false,
+      "url": "https://getdrafting.com/"
+    }
+  ],
+  "schema_version": "1.1.0",
+  "sources": [
+    {
+      "domain": "getdrafting.com",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T14:00:58.038315Z",
+      "source_id": "src-b79092e88686",
+      "title": "Drafting AI",
+      "url": "https://getdrafting.com/"
+    }
+  ],
+  "status": "success",
+  "total_chars": 1662,
+  "warnings": []
+}

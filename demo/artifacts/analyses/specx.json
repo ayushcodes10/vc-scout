@@ -1,0 +1,262 @@
+{
+  "analysis": {
+    "analysis_warnings": [
+      "Dossier is extremely thin - one company tagline and one low-engagement HN post - most rubric dimensions are not_assessable"
+    ],
+    "buyer": null,
+    "company_id": "specx",
+    "competitive_observations": [],
+    "confidence_rationale": [
+      "2 of 2 supplied source(s) were cited by at least one claim.",
+      "3 evidence claim(s) across 2 of 5 categories.",
+      "A page from the company's own website was read.",
+      "1 of 3 claim(s) are company-authored; 2 come from other voices.",
+      "No finding was identified as corroborated by separate sources.",
+      "5 question(s) were left unanswered."
+    ],
+    "corroborated_findings": [],
+    "generated_at": "2026-08-24T14:05:26.796843Z",
+    "identity_warnings": [],
+    "market_assessment": {
+      "evidence_claim_ids": [],
+      "text": "No source establishes market size, target customer segment, or timing rationale for SpecX.",
+      "unknown_references": [
+        "unk-733d41a3c63a"
+      ]
+    },
+    "model": "claude-sonnet-5",
+    "model_suggested_recommendation": "pass",
+    "open_questions": [],
+    "plain_language_product": "SpecX (via redoxsoft.com) appears to be a tool that turns a team's documented knowledge and processes into \"AI work\" that can be reviewed, trusted, and rerun by the team - essentially workflow automation for AI agents. Beyond this single tagline, no concrete feature, integration, pricing, or delivery detail is available.",
+    "product_assessment": {
+      "evidence_claim_ids": [
+        "ev-cc771a69fcd7"
+      ],
+      "text": "The only product detail available is a homepage tagline stating the product turns team knowledge and processes into reviewable, trustable, rerunnable AI work. No specifics on integrations, pricing, target workflow, or delivery model are given.",
+      "unknown_references": [
+        "unk-a0cdaf9875a9"
+      ]
+    },
+    "prompt_version": "analysis_v2",
+    "provider": "anthropic",
+    "recommendation_changers": [
+      "Evidence of named customers, users, or revenue to establish real traction beyond a low-engagement Show HN post",
+      "Founder background and team composition information to assess earned insight and execution ability",
+      "Specific product detail on the workflow targeted, integrations with systems of record, and pricing to evaluate wedge and defensibility"
+    ],
+    "research_confidence": {
+      "components": {
+        "category_span": 0.4,
+        "claim_volume": 0.375,
+        "corroboration": 0.0,
+        "independence": 0.6667,
+        "source_coverage": 1.0,
+        "website": 1.0
+      },
+      "level": "medium",
+      "missing": [
+        "market",
+        "product",
+        "risk",
+        "team",
+        "traction"
+      ],
+      "reasons": [
+        "2 of 2 supplied source(s) were cited by at least one claim.",
+        "3 evidence claim(s) across 2 of 5 categories.",
+        "A page from the company's own website was read.",
+        "1 of 3 claim(s) are company-authored; 2 come from other voices.",
+        "No finding was identified as corroborated by separate sources.",
+        "5 question(s) were left unanswered."
+      ],
+      "score": 0.505
+    },
+    "risks": [
+      {
+        "evidence_claim_ids": [],
+        "text": "No source discusses known limitations or risks of the product; this is a data gap rather than a demonstrated weakness.",
+        "unknown_references": [
+          "unk-fa58e0333bd8"
+        ]
+      },
+      {
+        "evidence_claim_ids": [
+          "ev-2515ed2f03c3"
+        ],
+        "text": "The Show HN launch received minimal community engagement (2 points, 0 comments), indicating very limited external attention so far.",
+        "unknown_references": []
+      }
+    ],
+    "schema_version": "1.1.0",
+    "score_components": [
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [
+          "Tagline is generic and lacks a named workflow"
+        ],
+        "component": "pain_roi",
+        "evidence_claim_ids": [
+          "ev-cc771a69fcd7"
+        ],
+        "maximum": 20,
+        "rationale": "The homepage tagline references turning 'proven processes' into AI work, but does not name a specific recurring, revenue-critical workflow or any ROI measure. No basis to assess pain or 30-day value.",
+        "score": 4,
+        "unknown_references": [
+          "unk-733d41a3c63a",
+          "unk-a0cdaf9875a9"
+        ]
+      },
+      {
+        "assessment_status": "partially_supported",
+        "caveats": [
+          "No integration or pricing detail provided"
+        ],
+        "component": "wedge",
+        "evidence_claim_ids": [
+          "ev-cc771a69fcd7"
+        ],
+        "maximum": 15,
+        "rationale": "The company states its product converts team knowledge/processes into reviewable AI work, a concrete-ish claim, but lacks specifics on buyer, system of record entry point, pricing or integrations, so this is marketing language more than a defined wedge.",
+        "score": 5,
+        "unknown_references": [
+          "unk-a0cdaf9875a9"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "distribution",
+        "evidence_claim_ids": [],
+        "maximum": 15,
+        "rationale": "No source describes a go-to-market motion, channel, or self-serve availability.",
+        "score": 3,
+        "unknown_references": [
+          "unk-733d41a3c63a"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "defensibility",
+        "evidence_claim_ids": [
+          "ev-cc771a69fcd7"
+        ],
+        "maximum": 15,
+        "rationale": "No concrete proprietary data, integration depth, or operational feature is described beyond a generic tagline.",
+        "score": 3,
+        "unknown_references": [
+          "unk-a0cdaf9875a9"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "team",
+        "evidence_claim_ids": [],
+        "maximum": 15,
+        "rationale": "No founder or team information is available in any source.",
+        "score": 2,
+        "unknown_references": [
+          "unk-5ad993fd3a8f"
+        ]
+      },
+      {
+        "assessment_status": "partially_supported",
+        "caveats": [
+          "Very low engagement suggests limited external validation"
+        ],
+        "component": "traction",
+        "evidence_claim_ids": [
+          "ev-2515ed2f03c3",
+          "ev-d30b0a945cde"
+        ],
+        "maximum": 10,
+        "rationale": "A Show HN post exists dated 2025-11-27 establishing recency, but it received only 2 points and 0 comments, indicating minimal community attention. No customer or revenue evidence exists.",
+        "score": 2,
+        "unknown_references": [
+          "unk-fd152e5eed55"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "market_timing",
+        "evidence_claim_ids": [],
+        "maximum": 10,
+        "rationale": "No source names a regulatory, technical, or workflow shift that makes this buyable now, nor market size data.",
+        "score": 2,
+        "unknown_references": [
+          "unk-733d41a3c63a"
+        ]
+      }
+    ],
+    "team_assessment": {
+      "evidence_claim_ids": [],
+      "text": "No source provides any information about SpecX's founders or team composition, so team quality and workflow insight cannot be assessed.",
+      "unknown_references": [
+        "unk-5ad993fd3a8f"
+      ]
+    },
+    "thesis_assessment": {
+      "evidence_claim_ids": [
+        "ev-cc771a69fcd7"
+      ],
+      "rationale": "The dossier does not establish whether SpecX targets a recurring, revenue-critical SMB workflow, integrates into an existing system of record, or is buyer-specific. The single tagline is too generic ('AI work', 'proven processes') to place it inside or outside the thesis with confidence, so fit is undetermined rather than aligned or mismatched.",
+      "unknown_references": [
+        "unk-733d41a3c63a",
+        "unk-a0cdaf9875a9"
+      ],
+      "verdict": "undetermined"
+    },
+    "thesis_version": "thesis_v1",
+    "total_score": 21,
+    "workflow": null
+  },
+  "recommendation": {
+    "band": "pass",
+    "band_label": "0-64",
+    "cap_reason": null,
+    "capped": false,
+    "company_id": "specx",
+    "confidence": {
+      "components": {
+        "category_span": 0.4,
+        "claim_volume": 0.375,
+        "corroboration": 0.0,
+        "independence": 0.6667,
+        "source_coverage": 1.0,
+        "website": 1.0
+      },
+      "level": "medium",
+      "missing": [
+        "market",
+        "product",
+        "risk",
+        "team",
+        "traction"
+      ],
+      "reasons": [
+        "2 of 2 supplied source(s) were cited by at least one claim.",
+        "3 evidence claim(s) across 2 of 5 categories.",
+        "A page from the company's own website was read.",
+        "1 of 3 claim(s) are company-authored; 2 come from other voices.",
+        "No finding was identified as corroborated by separate sources.",
+        "5 question(s) were left unanswered."
+      ],
+      "score": 0.505
+    },
+    "decided_at": "2026-08-24T14:05:26.796843Z",
+    "decision": "pass",
+    "guardrails_applied": [],
+    "model_disagreed": false,
+    "model_suggested": "pass",
+    "policy_version": "2.0.0",
+    "rationale": [
+      "Scored 21/100 against the rubric, which falls in the 0-64 band (pass).",
+      "Research confidence is medium (0.51).",
+      "5 dimension(s) could not be assessed from the available evidence: pain_roi, distribution, defensibility, team, market_timing. Only 25 of 100 points were assessable."
+    ],
+    "schema_version": "1.1.0",
+    "total_score": 21
+  }
+}

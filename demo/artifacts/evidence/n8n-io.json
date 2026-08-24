@@ -1,0 +1,387 @@
+{
+  "claims": [
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "n8n is a workflow automation platform combining AI capabilities with business process automation, allowing both code and no-code workflow building.",
+      "claim_id": "ev-12b2991a5882",
+      "company_id": "n8n-io",
+      "excerpts": [
+        {
+          "excerpt": "n8n is a workflow automation platform that uniquely combines AI capabilities with business process automation, giving technical teams the flexibility of code with the speed of no-code.",
+          "source_id": "src-5506ef5e4e0a"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-5506ef5e4e0a"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "n8n offers over 400 pre-configured integrations and an HTTP request node for custom connections.",
+      "claim_id": "ev-5b96d03a03f1",
+      "company_id": "n8n-io",
+      "excerpts": [
+        {
+          "excerpt": "We've built over 400 pre-configured integrations to help you achieve this.",
+          "source_id": "src-011bc935b8dc"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-011bc935b8dc"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "n8n supports code fallback via JavaScript or Python nodes, and can add npm packages on self-hosted instances.",
+      "claim_id": "ev-c53511d0b25f",
+      "company_id": "n8n-io",
+      "excerpts": [
+        {
+          "excerpt": "Use the code node to write custom transformations in JavaScript or Python. On self-hosted instances, add npm packages for even more power.",
+          "source_id": "src-011bc935b8dc"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-011bc935b8dc"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "n8n can be self-hosted (Docker/K8s, air-gapped) or used via a cloud offering, with a free community edition.",
+      "claim_id": "ev-918fc617427d",
+      "company_id": "n8n-io",
+      "excerpts": [
+        {
+          "excerpt": "Go fully on-premise with Docker or K8s in minutes. Run it air-gapped on your private network, or use our robust cloud solution. The community version is free, an enterprise license isn't.",
+          "source_id": "src-011bc935b8dc"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-011bc935b8dc"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "n8n states it can handle up to 220 workflow executions per second on a single instance.",
+      "claim_id": "ev-14f97b96bf4b",
+      "company_id": "n8n-io",
+      "excerpts": [
+        {
+          "excerpt": "n8n handles up to 220 workflow executions per second on a single instance.",
+          "source_id": "src-011bc935b8dc"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-011bc935b8dc"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "n8n claims SOC 2 audit compliance and regular external penetration testing.",
+      "claim_id": "ev-f038a274ede2",
+      "company_id": "n8n-io",
+      "excerpts": [
+        {
+          "excerpt": "We are SOC 2 audited and regularly perform external pen tests.",
+          "source_id": "src-011bc935b8dc"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-011bc935b8dc"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "market",
+      "caveat": null,
+      "claim": "n8n describes itself as the world's most popular workflow automation platform for technical teams, citing GitHub stars, G2 rating, and community size.",
+      "claim_id": "ev-ee8793d1df6a",
+      "company_id": "n8n-io",
+      "excerpts": [
+        {
+          "excerpt": "Top 50 Github. Our 202.2k stars place us among the most popular projects.",
+          "source_id": "src-5506ef5e4e0a"
+        },
+        {
+          "excerpt": "4.7/5 stars on G2. To quote \"I can move fast and never feel boxed in.\"",
+          "source_id": "src-5506ef5e4e0a"
+        },
+        {
+          "excerpt": "200k+ community members. This wouldn't be possible without you.",
+          "source_id": "src-5506ef5e4e0a"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-5506ef5e4e0a"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "traction",
+      "caveat": "These are company-published case study summaries with named individuals but no independent verification of the figures.",
+      "claim": "n8n's homepage cites case studies of Huel saving 1,000 hours of manual work and Vodafone saving £2.2 million using n8n.",
+      "claim_id": "ev-fe28b7aa68ba",
+      "company_id": "n8n-io",
+      "excerpts": [
+        {
+          "excerpt": "How Huel built an AI first company culture and saved 1,000 hours of manual work",
+          "source_id": "src-5506ef5e4e0a"
+        },
+        {
+          "excerpt": "How n8n revolutionized threat intelligence at Vodafone and saved £2.2 Million",
+          "source_id": "src-5506ef5e4e0a"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-5506ef5e4e0a"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "n8n's pricing includes tiered plans (Starter, Pro, Business, Enterprise) with differing execution limits, AI credits, and support levels, billed per full workflow execution rather than per step.",
+      "claim_id": "ev-26c6735dcf88",
+      "company_id": "n8n-io",
+      "excerpts": [
+        {
+          "excerpt": "Unlike other tools that charge per step or user, n8n lets you build freely and only pay when a workflow runs from start to finish.",
+          "source_id": "src-3e76d64d37d3"
+        },
+        {
+          "excerpt": "3 shared projects 20 concurrent executions 7 days of insights Up to 13,700 AI credits/month",
+          "source_id": "src-3e76d64d37d3"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-3e76d64d37d3"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "product",
+      "caveat": "This is a third-party workflow template listed on n8n's site, not a claim about n8n's own product or team; traffic/monetization figures are unverified self-reported claims by the template creator.",
+      "claim": "A third-party-published n8n workflow template ('AI blog automation') is a marketplace item unrelated to n8n's own product claims, offered for sale by an independent creator for $29, describing itself as a tool to auto-generate and publish blog content.",
+      "claim_id": "ev-5102ff30d0a1",
+      "company_id": "n8n-io",
+      "excerpts": [
+        {
+          "excerpt": "Buy Now for only $29 and get instant traffic to your blog / wordpress site",
+          "source_id": "src-f7780a3698ce"
+        },
+        {
+          "excerpt": "This is a fully automated AI powered blog content generation and distribution workflow built for the n8n automation platform.",
+          "source_id": "src-f7780a3698ce"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-f7780a3698ce"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "traction",
+      "caveat": "Self-reported by the template's individual creator/seller, not independently verified, and not a claim about n8n the company.",
+      "claim": "The template creator claims a specific v2 traffic result of ~10-30 visitors/day at ~$21/month OpenAI cost producing 10 posts/day.",
+      "claim_id": "ev-df64ff56bd1e",
+      "company_id": "n8n-io",
+      "excerpts": [
+        {
+          "excerpt": "Daily traffic increase: ~10-30 visitors/day Monthly cost: ~$21 for OpenAI tokens Content output: 10 SEO-rich posts/day",
+          "source_id": "src-f7780a3698ce"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-f7780a3698ce"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "risk",
+      "caveat": null,
+      "claim": "The n8n workflow template page contains promotional/sales language, including solicitations to buy a $29 product and unverifiable revenue claims, which is third-party marketplace content hosted on n8n.io rather than an n8n company statement.",
+      "claim_id": "ev-11d674a06cae",
+      "company_id": "n8n-io",
+      "excerpts": [
+        {
+          "excerpt": "Revenue Potential & Monetization Use Cases This workflow can generate revenue if deployed strategically.",
+          "source_id": "src-f7780a3698ce"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-f7780a3698ce"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "traction",
+      "caveat": null,
+      "claim": "The associated Show HN submission for this candidate received minimal community engagement (1 point, 0 comments).",
+      "claim_id": "ev-8504ab70afc5",
+      "company_id": "n8n-io",
+      "excerpts": [
+        {
+          "excerpt": "The thread has 1 points on Hacker News. The thread has 0 comments on Hacker News.",
+          "source_id": "src-da86575f7940"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-da86575f7940"
+      ],
+      "verification_status": "community_signal"
+    }
+  ],
+  "company_id": "n8n-io",
+  "confidence_inputs": {
+    "claims_by_category": {
+      "market": 1,
+      "product": 8,
+      "risk": 1,
+      "traction": 3
+    },
+    "claims_by_verification": {
+      "community_signal": 1,
+      "company_claim": 12
+    },
+    "claims_total": 13,
+    "conflicts": 0,
+    "distinct_domains": 2,
+    "inferred_claims": 0,
+    "unknowns": 5
+  },
+  "conflicts": [],
+  "generated_at": "2026-08-24T14:01:43.587956Z",
+  "model": "claude-sonnet-5",
+  "prompt_version": "evidence_v1",
+  "provider": "anthropic",
+  "schema_version": "1.1.0",
+  "source_coverage": {
+    "hn_sources": 1,
+    "pages_supplied": 4,
+    "sources_cited": 5,
+    "sources_supplied": 5,
+    "supplied_chars": 18021,
+    "truncated_pages": [
+      "src-3e76d64d37d3",
+      "src-f7780a3698ce"
+    ],
+    "website_available": true
+  },
+  "sources": [
+    {
+      "domain": "news.ycombinator.com",
+      "hn_num_comments": 0,
+      "hn_object_id": "44784983",
+      "hn_points": 1,
+      "kind": "hn_story",
+      "published_at": "2025-08-04T12:38:19Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-da86575f7940",
+      "title": "Show HN: I automated blog CPR for dead startup blogs",
+      "url": "https://news.ycombinator.com/item?id=44784983"
+    },
+    {
+      "domain": "n8n.io",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T14:01:38.464494Z",
+      "source_id": "src-5506ef5e4e0a",
+      "title": "AI Workflow Automation Platform - n8n",
+      "url": "https://n8n.io/"
+    },
+    {
+      "domain": "n8n.io",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T14:01:41.632654Z",
+      "source_id": "src-f7780a3698ce",
+      "title": "AI blog automation: Publish hourly SEO articles to WordPress & Twitter v3 | n8n workflow template",
+      "url": "https://n8n.io/workflows/6734-ai-blog-automation-publish-hourly-seo-articles-to-wordpress-and-twitter-v3"
+    },
+    {
+      "domain": "n8n.io",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T14:01:42.547940Z",
+      "source_id": "src-011bc935b8dc",
+      "title": "Workflows App Automation Features from n8n.io",
+      "url": "https://n8n.io/features"
+    },
+    {
+      "domain": "n8n.io",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T14:01:43.514770Z",
+      "source_id": "src-3e76d64d37d3",
+      "title": "n8n Plans and Pricing - n8n.io",
+      "url": "https://n8n.io/pricing"
+    }
+  ],
+  "unknowns": [
+    {
+      "category": "team",
+      "question": "Who founded or works at n8n, and what is their background?",
+      "reason": "No source provides team/founder information."
+    },
+    {
+      "category": "market",
+      "question": "What is the size of the workflow automation market, or n8n's market share?",
+      "reason": "No market sizing data supplied."
+    },
+    {
+      "category": "traction",
+      "question": "What are n8n's actual user counts, revenue, or growth metrics beyond self-reported GitHub stars and community member counts?",
+      "reason": "Only company-published figures are available, with no independent verification."
+    },
+    {
+      "category": "product",
+      "question": "How does the third-party 'blog automation' workflow template relate to the candidate's one-liner about automating dead startup blogs?",
+      "reason": "The one-liner references a Show HN post with no comments/engagement and the only related source is a marketplace template listing, not a distinct product from a company called n8n-io specifically for blog CPR."
+    },
+    {
+      "category": "risk",
+      "question": "Is there any independent verification of the Huel and Vodafone case study figures (1,000 hours, £2.2 million)?",
+      "reason": "Only the company's own homepage cites these figures; no independent source confirms them."
+    }
+  ],
+  "warnings": [
+    "The workflow template source (src-f7780a3698ce) contains embedded promotional/sales content and unverifiable monetization/traffic claims written in a persuasive, instruction-like style (e.g., 'Buy Now', links to 'Read Customer Reviews'); this was treated as page content to quote, not followed as instruction.",
+    "The candidate's one-liner ('I automated blog CPR for dead startup blogs') appears to refer to a separate, low-engagement Show HN post rather than to n8n.io the company itself; the relationship between this one-liner and the n8n.io company pages is unclear from the supplied sources."
+  ]
+}

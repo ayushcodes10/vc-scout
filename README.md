@@ -1,18 +1,49 @@
 # VC Scout
 
-An AI-augmented investment triage pipeline for a seed-stage VC firm. It discovers
-candidate startups from public sources, analyses them against a written investment
-thesis, and produces a one-page memo and a ranked, browsable static report.
+[![CI](https://github.com/ayushcodes10/vc-scout/actions/workflows/ci.yml/badge.svg)](https://github.com/ayushcodes10/vc-scout/actions/workflows/ci.yml)
 
-The design goal is not "an LLM writes memos". It is **auditability**: every analytical
-claim cites an evidence ID, every evidence claim cites a source URL, the final
-recommendation is made by deterministic policy rather than by a model, and a whole run
-replays from persisted artifacts with no network and no API key.
+**A partner runs one command and gets fifteen startups triaged against a written investment
+thesis - each with a one-page memo in which every claim traces back to a public URL.**
 
-> **Status.** The pipeline runs end to end: discovery, website enrichment, evidence
-> extraction, scoring, the deterministic recommendation, Markdown memos, the static site
-> and a reviewer-ready export. `serve` is the one declared command still unimplemented.
-> See `docs/PLAN.md` for the plan and `worklog/` for how each stage actually went.
+The design goal is not "an LLM writes memos". It is **auditability**: every analytical claim
+cites an evidence ID, every evidence claim cites a source URL and carries a verbatim
+excerpt, the final recommendation is made by deterministic policy rather than by a model,
+and a whole run replays from persisted artifacts with no network and no API key.
+
+## Start here
+
+| | |
+| --- | --- |
+| **Browse the live run** | [`demo/site/index.html`](demo/site/index.html) - 15 companies, scored and written up. Preview: `python3 -m http.server 8000 --directory demo/site` |
+| **Read the shortlist** | [`demo/ranking.md`](demo/ranking.md) - thesis, thresholds, the triage queue |
+| **Read one memo** | [`demo/memos/n8n-io.md`](demo/memos/n8n-io.md) - the best-evidenced candidate in the run |
+| **See one AI call end to end** | [`demo/ai-trace/`](demo/ai-trace/) - request, response, and what validation decided |
+| **How AI was used** | [`docs/AI_WORKFLOW.md`](docs/AI_WORKFLOW.md) - decisions, constraints, failures |
+| **How it was built** | [`worklog/`](worklog/) - nine chronological stage entries, written as it happened |
+| **Five-minute walkthrough** | [`docs/WALKTHROUGH.md`](docs/WALKTHROUGH.md) |
+
+## The pipeline
+
+```mermaid
+flowchart LR
+    Q[Seed query] --> S[Source]
+    S --> E[Enrich]
+    E --> V[Evidence]
+    V --> A[Analysis]
+    A --> P[Policy]
+    P --> M[Memos + UI]
+
+    classDef llm fill:#e9f0ec,stroke:#1f4d3a,stroke-width:2px,color:#16181a;
+    classDef det fill:#f4f1ea,stroke:#8a8579,color:#16181a;
+    class V,A llm;
+    class Q,S,E,P,M det;
+```
+
+**Green is the only place a model runs.** `Evidence` extracts source-backed claims;
+`Analysis` scores seven rubric dimensions and writes the narrative. Everything else -
+discovery, fetching, the total, the confidence, the recommendation, the memos and the site -
+is deterministic Python. The model's own suggested recommendation is recorded next to the
+binding call and never consulted; in the live run the two disagreed on 7 of the 15.
 
 ## Quick start
 
@@ -467,23 +498,120 @@ Missing information is recorded as *unknown*, never as a negative judgment - it 
 dimension unscored and lowers confidence, and low confidence caps the recommendation at
 *watch*.
 
-## Development
+## Architecture
+
+```
+src/vc_scout/
+├── pipeline.py          one-command orchestration: order, resume, stop/continue
+├── stages/              source · enrich · evidence · analysis · recommend · ui · recover · export
+├── llm/                 provider (raw httpx), compact schemas, the real validators, fake provider
+├── models/              Pydantic artifact contracts, frozen, extra="forbid"
+├── render/              Markdown memos and the HTML site, from shared view models
+├── policy.py            confidence and the binding recommendation. No model, no network
+├── rubric.py            the seven dimensions and their weights
+├── thesis.py            the thesis, versioned and content-hashed
+├── assessment_policy.py what a source may be used to support, per dimension
+└── prompts/             versioned prompt files, hashed into every artifact
+```
+
+Every artifact is a validated Pydantic document written atomically with sorted keys, so a
+run diffs cleanly. Every path is built by `RunStore` and asserted to live inside the run
+directory. Derived reports carry a fingerprint of the artifacts they were derived from, so
+a resume can tell "already done" from "done against different inputs".
+
+## Output structure
+
+```
+outputs/runs/<run-id>/
+├── candidates.json          source-report.json
+├── extracted/<id>.json      enrichment-report.json
+├── evidence/<id>.json       evidence-report.json
+├── analyses/<id>.json       analysis-report.json
+├── memos/<id>.md            ranking.md   recommendation-report.json
+├── site/                    index.html · companies/<id>.html · assets/ · ui-report.json
+├── llm/                     every request and response, per attempt
+├── raw/                     fetched page bodies
+└── run-report.json          the whole run: stages, timings, tokens, versions
+```
+
+## Trace a claim back to its source
+
+This is the property the whole pipeline exists to give you. Open
+[`demo/memos/n8n-io.md`](demo/memos/n8n-io.md) and pick a sentence carrying a marker:
+
+1. The scorecard row for *Product wedge* cites `[S2]`.
+2. **Sources** at the foot of the memo resolves `[S2]` to one entry: the page title, its
+   role, the public URL and the date it was read - with the excerpt quoted beneath it.
+3. `demo/artifacts/analyses/n8n-io.json` shows which `ev-` claim IDs that row cited.
+4. `demo/artifacts/evidence/n8n-io.json` shows each of those claims with its verbatim
+   excerpt and the `src-` source it came from.
+
+Every marker in a memo resolves to exactly one source, and every listed source is cited
+somewhere above it. A statement resting only on a recorded gap is labelled *Open question*
+rather than left unattributed.
+
+## Design decisions and limitations
+
+56 numbered decisions with their costs are in [`docs/DECISIONS.md`](docs/DECISIONS.md). The
+ones that shape the output most:
+
+- **The model never makes the call.** The total is recomputed in Python from its own
+  components; confidence comes from coverage; the recommendation comes from `policy.py`.
+- **Absence of evidence is not evidence of weakness.** A dimension the sources cannot reach
+  is `not_assessable`, which caps what it may score and lowers confidence - it never becomes
+  a negative finding, and the memos say so in those words.
+- **Provenance caps what a source may conclude, not whether it may.** A company's own page
+  is good evidence of what its product does; it is not evidence of a result, an advantage or
+  a scale.
+- **A conflict blocks the dimension it is about**, not every dimension sharing a page with it.
+
+Known limitations: the evidence in this run is thin and mostly company-authored, so no
+candidate reached the meeting band; the rubric is uncalibrated against real outcomes;
+prompt injection is mitigated rather than solved; sourcing depends on what Hacker News
+happened to contain that week. `docs/AI_WORKFLOW.md` states these in full.
+
+## Testing
 
 ```bash
-uv run pytest          # offline, no API key required
+uv run pytest                  # 950+ tests, offline, no API key required
 uv run ruff check .
 uv run ruff format --check .
-uv run mypy src
+uv run mypy src                # strict on src/
 ```
+
+The suite cannot reach the network: an autouse fixture blocks sockets and DNS and strips
+every `*_API_KEY` from the environment, so a regression that reintroduced a live call fails
+loudly rather than quietly costing money. Network stages are exercised through the
+production clients over `httpx.MockTransport`; the LLM is exercised through a deterministic
+fake that quotes only what it was given. CI runs the same four commands on Python 3.12.
+
+## Five-minute walkthrough
+
+[`docs/WALKTHROUGH.md`](docs/WALKTHROUGH.md) is a timed outline:
+
+| | |
+| --- | --- |
+| 0:00-0:30 | The problem, and the thesis being applied |
+| 0:30-1:10 | One command, and where the models actually run |
+| 1:10-2:30 | One startup from a Hacker News post to verified evidence |
+| 2:30-3:30 | Analysis, the score, and the deterministic call |
+| 3:30-4:15 | The dashboard and one memo |
+| 4:15-5:00 | AI workflow, what broke, trade-offs |
 
 ## Documentation
 
-- `docs/PLAN.md` - architecture, artifact contracts, stage boundaries, non-goals
-- `docs/DECISIONS.md` - design decisions and their trade-offs
-- `worklog/` - incremental implementation notes
+- [`docs/AI_WORKFLOW.md`](docs/AI_WORKFLOW.md) - how AI was used, and how its output is constrained
+- [`docs/DECISIONS.md`](docs/DECISIONS.md) - 56 design decisions with their costs
+- [`docs/PLAN.md`](docs/PLAN.md) - the plan agreed before implementation, including non-goals
+- [`docs/WALKTHROUGH.md`](docs/WALKTHROUGH.md) - the five-minute walkthrough outline
+- [`worklog/`](worklog/) - nine chronological stage entries, written at each boundary
 
 ## AI assistance
 
-This repository was built with AI assistance. How it was used is disclosed in
-`docs/AI_WORKFLOW.md` (added in a later stage). All commits are authored by the
-repository owner.
+Built with AI assistance, disclosed in full in
+[`docs/AI_WORKFLOW.md`](docs/AI_WORKFLOW.md). Every commit is authored by the repository
+owner; no commit carries an AI trailer.
+
+## License
+
+No license provided. All rights reserved by the repository owner.

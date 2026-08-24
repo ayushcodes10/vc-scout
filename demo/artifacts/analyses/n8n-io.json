@@ -1,0 +1,297 @@
+{
+  "analysis": {
+    "analysis_warnings": [
+      "Most evidentiary claims concern n8n.io, a large general-purpose automation platform, while the candidate's stated one-liner concerns a niche blog-automation concept; these may not be the same product/company."
+    ],
+    "buyer": null,
+    "company_id": "n8n-io",
+    "competitive_observations": [],
+    "confidence_rationale": [
+      "5 of 5 supplied source(s) were cited by at least one claim.",
+      "13 evidence claim(s) across 4 of 5 categories.",
+      "A page from the company's own website was read.",
+      "12 of 13 claim(s) are company-authored; 1 come from other voices.",
+      "No finding was identified as corroborated by separate sources.",
+      "5 question(s) were left unanswered.",
+      "1 identity warning(s): the sources may not describe this company."
+    ],
+    "corroborated_findings": [],
+    "generated_at": "2026-08-24T14:05:26.796843Z",
+    "identity_warnings": [
+      "The candidate's one-liner references a separate, low-engagement Show HN post distinct from n8n.io the established workflow automation platform; most evidence in the dossier describes n8n.io broadly, not a distinct 'blog CPR' product, creating an unresolved identity mismatch."
+    ],
+    "market_assessment": {
+      "evidence_claim_ids": [
+        "ev-ee8793d1df6a"
+      ],
+      "text": "n8n claims to be a popular platform (GitHub stars, G2 rating, community size) but no independent market sizing or share data is supplied, and these figures are self-reported.",
+      "unknown_references": [
+        "unk-4649f32a7793"
+      ]
+    },
+    "model": "claude-sonnet-5",
+    "model_suggested_recommendation": "pass",
+    "open_questions": [],
+    "plain_language_product": "n8n is a general-purpose workflow automation platform (code + no-code) with 400+ integrations, self-hosted or cloud deployment, targeted at technical teams building automations. The candidate's one-liner (\"automated blog CPR for dead startup blogs\") appears to reference an unrelated, low-engagement Show HN post and a third-party marketplace workflow template sold on n8n.io, not a distinct product built by an \"n8n-io\" team.",
+    "product_assessment": {
+      "evidence_claim_ids": [
+        "ev-12b2991a5882",
+        "ev-5b96d03a03f1",
+        "ev-c53511d0b25f",
+        "ev-918fc617427d",
+        "ev-26c6735dcf88"
+      ],
+      "text": "n8n itself is a broad workflow automation platform with 400+ integrations, code/no-code building, self-hosting and cloud options, and tiered pricing billed per execution. This is developer/technical-team infrastructure rather than an SMB-specific vertical workflow product.",
+      "unknown_references": []
+    },
+    "prompt_version": "analysis_v2",
+    "provider": "anthropic",
+    "recommendation_changers": [
+      "Clarification of how the 'blog CPR' one-liner and Show HN post relate to n8n.io as a company - is this a distinct startup or just a marketplace template on n8n's platform?",
+      "Independent verification of the Huel and Vodafone ROI case study figures",
+      "Evidence of actual founder/team background specific to the candidate concept, and any independent traction (users, revenue) for the blog-automation product itself rather than the n8n platform"
+    ],
+    "research_confidence": {
+      "components": {
+        "category_span": 0.8,
+        "claim_volume": 1.0,
+        "corroboration": 0.0,
+        "independence": 0.0769,
+        "source_coverage": 1.0,
+        "website": 1.0
+      },
+      "level": "low",
+      "missing": [
+        "market",
+        "product",
+        "risk",
+        "team",
+        "traction"
+      ],
+      "reasons": [
+        "5 of 5 supplied source(s) were cited by at least one claim.",
+        "13 evidence claim(s) across 4 of 5 categories.",
+        "A page from the company's own website was read.",
+        "12 of 13 claim(s) are company-authored; 1 come from other voices.",
+        "No finding was identified as corroborated by separate sources.",
+        "5 question(s) were left unanswered.",
+        "1 identity warning(s): the sources may not describe this company."
+      ],
+      "score": 0.3715
+    },
+    "risks": [
+      {
+        "evidence_claim_ids": [
+          "ev-8504ab70afc5"
+        ],
+        "text": "The candidate identity is unclear: the one-liner references a Show HN post with 1 point and 0 comments, distinct from the large n8n.io platform whose evidence dominates the dossier. This is a significant identity/relevance mismatch.",
+        "unknown_references": [
+          "unk-c884e564aaac"
+        ]
+      },
+      {
+        "evidence_claim_ids": [
+          "ev-fe28b7aa68ba"
+        ],
+        "text": "Case study ROI figures (Huel 1,000 hours saved, Vodafone £2.2M saved) are self-published by the company with no independent verification.",
+        "unknown_references": [
+          "unk-6e7a2703bf3a"
+        ]
+      },
+      {
+        "evidence_claim_ids": [
+          "ev-11d674a06cae",
+          "ev-df64ff56bd1e"
+        ],
+        "text": "The blog-automation template page contains promotional sales language and unverifiable traffic/revenue claims from an independent third-party seller, not from n8n or a distinct startup team.",
+        "unknown_references": []
+      }
+    ],
+    "schema_version": "1.1.0",
+    "score_components": [
+      {
+        "assessment_status": "partially_supported",
+        "caveats": [
+          "Case study figures unverified",
+          "Identity mismatch with stated one-liner"
+        ],
+        "component": "pain_roi",
+        "evidence_claim_ids": [
+          "ev-fe28b7aa68ba"
+        ],
+        "maximum": 20,
+        "rationale": "n8n's case studies claim time/cost savings (Huel 1,000 hrs, Vodafone £2.2M) framing automation ROI, but these are self-reported and unverified; also unclear these apply to the actual candidate (the blog-CPR one-liner) rather than n8n the platform generally.",
+        "score": 6,
+        "unknown_references": [
+          "unk-6e7a2703bf3a",
+          "unk-c884e564aaac"
+        ]
+      },
+      {
+        "assessment_status": "partially_supported",
+        "caveats": [
+          "Broad platform, not narrow wedge",
+          "Unclear link to one-liner"
+        ],
+        "component": "wedge",
+        "evidence_claim_ids": [
+          "ev-5b96d03a03f1",
+          "ev-26c6735dcf88"
+        ],
+        "maximum": 15,
+        "rationale": "n8n has concrete product facts (400+ integrations, code/no-code, self-host/cloud, pricing tiers) but this describes a broad general-purpose automation platform, not a narrow SMB workflow wedge; the specific blog-automation angle referenced in the one-liner is a third-party marketplace template, not a company-built wedge.",
+        "score": 5,
+        "unknown_references": [
+          "unk-c884e564aaac"
+        ]
+      },
+      {
+        "assessment_status": "partially_supported",
+        "caveats": [
+          "Evidence is about n8n platform broadly, not verified for the specific candidate concept"
+        ],
+        "component": "distribution",
+        "evidence_claim_ids": [
+          "ev-918fc617427d",
+          "ev-5102ff30d0a1"
+        ],
+        "maximum": 15,
+        "rationale": "n8n has self-serve cloud, free community edition, and a public marketplace of templates, suggesting a distribution motion, but this applies to n8n as a platform, and there is no evidence tying distribution specifically to the candidate's stated blog-automation concept.",
+        "score": 5,
+        "unknown_references": [
+          "unk-c884e564aaac"
+        ]
+      },
+      {
+        "assessment_status": "partially_supported",
+        "caveats": [
+          "Moat claim not independently verified"
+        ],
+        "component": "defensibility",
+        "evidence_claim_ids": [
+          "ev-5b96d03a03f1",
+          "ev-14f97b96bf4b",
+          "ev-f038a274ede2"
+        ],
+        "maximum": 15,
+        "rationale": "n8n cites scale (400+ integrations, 220 executions/sec, SOC2 compliance) as concrete operational depth, but whether this constitutes a durable moat is a judgement not settled by company pages alone; also this platform-level depth doesn't map onto the candidate's specific one-liner.",
+        "score": 5,
+        "unknown_references": []
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "team",
+        "evidence_claim_ids": [],
+        "maximum": 15,
+        "rationale": "No information about founders or team is provided anywhere in the dossier.",
+        "score": 2,
+        "unknown_references": [
+          "unk-688560283768"
+        ]
+      },
+      {
+        "assessment_status": "contradicted",
+        "caveats": [
+          "Identity mismatch between platform-level metrics and candidate-specific traction"
+        ],
+        "component": "traction",
+        "evidence_claim_ids": [
+          "ev-8504ab70afc5",
+          "ev-ee8793d1df6a"
+        ],
+        "maximum": 10,
+        "rationale": "The Show HN post directly tied to the candidate's one-liner shows minimal engagement (1 point, 0 comments), indicating essentially no community traction for the specific candidate concept, even though the broader n8n platform claims large scale (200k+ community, GitHub stars) - these are not the same entity/product as evidenced by the identity mismatch warning.",
+        "score": 2,
+        "unknown_references": [
+          "unk-503fc2d0ba2d",
+          "unk-c884e564aaac"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "market_timing",
+        "evidence_claim_ids": [
+          "ev-ee8793d1df6a"
+        ],
+        "maximum": 10,
+        "rationale": "No concrete regulatory, technical, or workflow change is cited as the reason this is buildable/buyable now; only broad popularity claims are given for the n8n platform, not the specific candidate concept.",
+        "score": 3,
+        "unknown_references": [
+          "unk-4649f32a7793"
+        ]
+      }
+    ],
+    "team_assessment": {
+      "evidence_claim_ids": [],
+      "text": "No founder or team information is provided anywhere in the dossier; n8n.io appears to be an established, large platform company, not a matching identity for the stated one-liner/candidate.",
+      "unknown_references": [
+        "unk-688560283768"
+      ]
+    },
+    "thesis_assessment": {
+      "evidence_claim_ids": [
+        "ev-12b2991a5882",
+        "ev-5102ff30d0a1",
+        "ev-11d674a06cae"
+      ],
+      "rationale": "The evidence shows n8n.io is a general workflow-automation infrastructure/dev-tool platform serving technical teams and enterprises (case studies: Huel, Vodafone), not an AI-native product automating one specific recurring, revenue-critical SMB workflow. The candidate's own one-liner refers to a separate, unrelated, low-traction blog-automation template/Show HN post, which is marketplace content sold on n8n's site rather than a company-built product. This is a mismatch: the core evidence describes dev infrastructure/automation-platform, and the specific 'blog CPR' concept is not substantiated as a company product.",
+      "unknown_references": [
+        "unk-c884e564aaac"
+      ],
+      "verdict": "mismatch"
+    },
+    "thesis_version": "thesis_v1",
+    "total_score": 28,
+    "workflow": null
+  },
+  "recommendation": {
+    "band": "pass",
+    "band_label": "0-64",
+    "cap_reason": null,
+    "capped": false,
+    "company_id": "n8n-io",
+    "confidence": {
+      "components": {
+        "category_span": 0.8,
+        "claim_volume": 1.0,
+        "corroboration": 0.0,
+        "independence": 0.0769,
+        "source_coverage": 1.0,
+        "website": 1.0
+      },
+      "level": "low",
+      "missing": [
+        "market",
+        "product",
+        "risk",
+        "team",
+        "traction"
+      ],
+      "reasons": [
+        "5 of 5 supplied source(s) were cited by at least one claim.",
+        "13 evidence claim(s) across 4 of 5 categories.",
+        "A page from the company's own website was read.",
+        "12 of 13 claim(s) are company-authored; 1 come from other voices.",
+        "No finding was identified as corroborated by separate sources.",
+        "5 question(s) were left unanswered.",
+        "1 identity warning(s): the sources may not describe this company."
+      ],
+      "score": 0.3715
+    },
+    "decided_at": "2026-08-24T14:05:26.796843Z",
+    "decision": "pass",
+    "guardrails_applied": [],
+    "model_disagreed": false,
+    "model_suggested": "pass",
+    "policy_version": "2.0.0",
+    "rationale": [
+      "Scored 28/100 against the rubric, which falls in the 0-64 band (pass).",
+      "Research confidence is low (0.37).",
+      "2 dimension(s) could not be assessed from the available evidence: team, market_timing. Only 75 of 100 points were assessable."
+    ],
+    "schema_version": "1.1.0",
+    "total_score": 28
+  }
+}

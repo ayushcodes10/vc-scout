@@ -1,0 +1,222 @@
+{
+  "claims": [
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "MakePlans launched an MCP (Model Context Protocol) server that lets AI assistants like Claude or ChatGPT check availability, list services/events, look up customers, and create/cancel bookings.",
+      "claim_id": "ev-eea5a93a8319",
+      "company_id": "mcp-server-for-appointment-booking",
+      "excerpts": [
+        {
+          "excerpt": "Once connected, your assistant can work with your MakePlans account: Check availability and find open slots List your services and events Look up customers Create and cancel bookings",
+          "source_id": "src-e9912db7463c"
+        },
+        {
+          "excerpt": "Once connected, your assistant can work with your MakePlans account: Check availability and find open slots List your services and events Look up customers Create and cancel bookings",
+          "source_id": "src-b6f5813cc83f"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-e9912db7463c",
+        "src-b6f5813cc83f"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "The MCP integration is built on an open protocol rather than a proprietary plugin, so it can work with any MCP-capable assistant, not just Claude or ChatGPT.",
+      "claim_id": "ev-5239f374c0f5",
+      "company_id": "mcp-server-for-appointment-booking",
+      "excerpts": [
+        {
+          "excerpt": "We did not build a Claude plugin or a ChatGPT plugin. We built one integration based on an open protocol, and any assistant or agent that speaks MCP can use it",
+          "source_id": "src-b6f5813cc83f"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-b6f5813cc83f"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "The MCP server authenticates using the business's own MakePlans API credentials, with the same access level as the private API, and is intended for the business rather than its end-customers.",
+      "claim_id": "ev-5d750c046bfa",
+      "company_id": "mcp-server-for-appointment-booking",
+      "excerpts": [
+        {
+          "excerpt": "The MCP server is for you , the business. It connects using your own MakePlans API credentials, with the same access as our private API. It is not something your end-customers connect their assistants to",
+          "source_id": "src-b6f5813cc83f"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-b6f5813cc83f"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "MakePlans is a broader appointment booking and event registration system with an API and other integrations, of which the MCP server is an addition rather than a replacement.",
+      "claim_id": "ev-de55e15cff59",
+      "company_id": "mcp-server-for-appointment-booking",
+      "excerpts": [
+        {
+          "excerpt": "a user-friendly system for appointment booking and event registration with a fully featured API and many integrations",
+          "source_id": "src-b6f5813cc83f"
+        },
+        {
+          "excerpt": "this is an addition, not a replacement. The admin panel, the API, the integrations - everything works as before.",
+          "source_id": "src-e9912db7463c"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-b6f5813cc83f",
+        "src-e9912db7463c"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "traction",
+      "caveat": null,
+      "claim": "The Show HN launch post received minimal community engagement, with 1 point and 1 comment.",
+      "claim_id": "ev-ac8efe74bcfc",
+      "company_id": "mcp-server-for-appointment-booking",
+      "excerpts": [
+        {
+          "excerpt": "The thread has 1 points on Hacker News. The thread has 1 comments on Hacker News.",
+          "source_id": "src-5ecfab24a2aa"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-5ecfab24a2aa"
+      ],
+      "verification_status": "community_signal"
+    },
+    {
+      "category": "team",
+      "caveat": null,
+      "claim": "MakePlans is based in Norway.",
+      "claim_id": "ev-e4caff570233",
+      "company_id": "mcp-server-for-appointment-booking",
+      "excerpts": [
+        {
+          "excerpt": "MakePlans is based in Norway and NOK is the currency of choice here",
+          "source_id": "src-e9912db7463c"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-e9912db7463c"
+      ],
+      "verification_status": "company_claim"
+    }
+  ],
+  "company_id": "mcp-server-for-appointment-booking",
+  "confidence_inputs": {
+    "claims_by_category": {
+      "product": 4,
+      "team": 1,
+      "traction": 1
+    },
+    "claims_by_verification": {
+      "community_signal": 1,
+      "company_claim": 5
+    },
+    "claims_total": 6,
+    "conflicts": 0,
+    "distinct_domains": 2,
+    "inferred_claims": 0,
+    "unknowns": 5
+  },
+  "conflicts": [],
+  "generated_at": "2026-08-24T14:01:43.587956Z",
+  "model": "claude-sonnet-5",
+  "prompt_version": "evidence_v1",
+  "provider": "anthropic",
+  "schema_version": "1.1.0",
+  "source_coverage": {
+    "hn_sources": 1,
+    "pages_supplied": 2,
+    "sources_cited": 3,
+    "sources_supplied": 3,
+    "supplied_chars": 9054,
+    "truncated_pages": [
+      "src-e9912db7463c"
+    ],
+    "website_available": true
+  },
+  "sources": [
+    {
+      "domain": "news.ycombinator.com",
+      "hn_num_comments": 1,
+      "hn_object_id": "49326992",
+      "hn_points": 1,
+      "kind": "hn_story",
+      "published_at": "2026-08-17T05:58:02Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-5ecfab24a2aa",
+      "title": "Show HN: MCP Server for Appointment Booking",
+      "url": "https://news.ycombinator.com/item?id=49326992"
+    },
+    {
+      "domain": "blog.makeplans.com",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T14:01:09.380976Z",
+      "source_id": "src-e9912db7463c",
+      "title": "We Make Plans - the MakePlans blog",
+      "url": "https://blog.makeplans.com/"
+    },
+    {
+      "domain": "blog.makeplans.com",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T14:01:10.178183Z",
+      "source_id": "src-b6f5813cc83f",
+      "title": "Your AI assistant can now manage your bookings - We Make Plans",
+      "url": "https://blog.makeplans.com/2026/08/15/your-ai-assistant-can-now-manage-your-bookings.html"
+    }
+  ],
+  "unknowns": [
+    {
+      "category": "team",
+      "question": "Who founded or works at MakePlans, and what is their background?",
+      "reason": "Sources do not name any individuals, employees, or founders."
+    },
+    {
+      "category": "traction",
+      "question": "How many businesses or customers use MakePlans or its MCP server, and what usage volumes exist?",
+      "reason": "No user counts, revenue, or adoption metrics are given in the sources."
+    },
+    {
+      "category": "market",
+      "question": "What is the size of the appointment-booking market or MakePlans' competitive position within it?",
+      "reason": "No market sizing or competitor comparison is provided."
+    },
+    {
+      "category": "risk",
+      "question": "Are there any technical limitations, security issues, or failure cases of the MCP server reported by independent users?",
+      "reason": "The only community source is a near-empty HN thread with no substantive comments."
+    },
+    {
+      "category": "product",
+      "question": "What pricing applies to the MCP server or MakePlans platform overall?",
+      "reason": "No pricing page or figures are included in the supplied sources."
+    }
+  ],
+  "warnings": []
+}

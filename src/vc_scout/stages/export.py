@@ -89,22 +89,38 @@ def _copy_text(src: Path, dest: Path, files: list[str], root: Path) -> None:
     files.append(dest.relative_to(root).as_posix())
 
 
-def _select_trace(store: RunStore) -> AnalysisOutcome | None:
-    """The highest-ranked candidate with a successful analysis in the current report.
+#: A trace worth reading needs enough evidence to show the chain working. Below this, the
+#: interesting thing about the candidate is what was missing, which teaches a reviewer
+#: about the run rather than about the pipeline.
+MIN_TRACE_CLAIMS = 3
 
-    Ranking order comes from the recommendation report, which is the order the memos and
-    the site already present. Deterministic by construction: same artifacts, same choice.
+
+def _select_trace(store: RunStore) -> AnalysisOutcome | None:
+    """The most informative trace, chosen by rule rather than by name.
+
+    Ranking order alone put a zero-evidence Watch first - the workflow queue leads with
+    candidates the research came up short on, which is right for triage and wrong for a
+    worked example. A reviewer opening `ai-trace/` should see extraction, validation,
+    scoring and the deterministic policy all doing something.
+
+    So the order is: successful analyses carrying at least three evidence claims, then the
+    largest evidence base, then the highest total, then the company ID. Every tiebreak is a
+    recorded fact, so the same run always exports the same trace and no candidate is
+    picked by hand.
     """
     try:
-        recommendation = store.read_recommendation_report()
         analysis = store.read_analysis_report()
     except (StoreError, ValueError):
         return None
-    succeeded = {row.company_id: row for row in analysis.candidates if row.succeeded}
-    for company_id in recommendation.ordered_company_ids:
-        if company_id in succeeded:
-            return succeeded[company_id]
-    return None
+    succeeded = [row for row in analysis.candidates if row.succeeded]
+    if not succeeded:
+        return None
+
+    def rank(row: AnalysisOutcome) -> tuple[int, int, str]:
+        return (-row.evidence_claims, -(row.total_score or 0), row.company_id)
+
+    substantial = [row for row in succeeded if row.evidence_claims >= MIN_TRACE_CLAIMS]
+    return sorted(substantial or succeeded, key=rank)[0]
 
 
 def _trace_payload(path: Path, *, label: str) -> str:
@@ -132,9 +148,20 @@ def _trace_readme(store: RunStore, outcome: AnalysisOutcome) -> str:
     lines = [
         "# One AI call, end to end",
         "",
-        f"This is the analysis request and response for **{outcome.company_id}** - the "
-        "highest-ranked candidate in this run with a successful analysis. It is here so "
+        f"This is the analysis request and response for **{outcome.company_id}**, here so "
         "the AI workflow can be read rather than taken on trust.",
+        "",
+        "## Why this candidate",
+        "",
+        "Chosen by rule, not by hand: among candidates with a successful analysis and at "
+        f"least {MIN_TRACE_CLAIMS} evidence claims, the largest evidence base wins, then "
+        "the highest total score, then the company ID. Every tiebreak is a recorded fact, "
+        "so the same run always exports the same trace.",
+        "",
+        f"`{outcome.company_id}` won it with **{outcome.evidence_claims} evidence claims** "
+        f"across {len(dossier.sources)} sources, scoring "
+        f"{outcome.total_score}/100. Ranking order alone would have led with a "
+        "zero-evidence Watch - correct for a triage queue, useless as a worked example.",
         "",
         "## What was sent",
         "",

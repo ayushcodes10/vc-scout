@@ -1,0 +1,271 @@
+{
+  "claims": [
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "Deacon is an AI customer support agent that answers user questions, onboards users, and surfaces feedback/knowledge gaps for SaaS products",
+      "claim_id": "ev-3dbb75bf0879",
+      "company_id": "heydeacon",
+      "excerpts": [
+        {
+          "excerpt": "Support your users as though you were in the room. Deacon answers questions, guides them through your product, and tells you what they want to achieve.",
+          "source_id": "src-4820dab83954"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-4820dab83954"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "Deacon ingests documentation, website URLs, and how-to videos to build its knowledge base, and can be installed via a one-line script",
+      "claim_id": "ev-a936055a1417",
+      "company_id": "heydeacon",
+      "excerpts": [
+        {
+          "excerpt": "Deacon learns from your documentation, website URLs, and how-to videos. Add a source in the dashboard and its knowledge base updates",
+          "source_id": "src-4820dab83954"
+        },
+        {
+          "excerpt": "One line of script in your application, then a handful of URLs and help documents in the dashboard. Deacon is answering the same afternoon.",
+          "source_id": "src-4820dab83954"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-4820dab83954"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "Deacon scores its own answers for validity against the provided knowledge base and states when it lacks support for a reply rather than guessing",
+      "claim_id": "ev-663464aa6314",
+      "company_id": "heydeacon",
+      "excerpts": [
+        {
+          "excerpt": "Every answer is reviewed and scored against your own knowledge base before it reaches a customer. Where your material does not support a reply, Deacon says so rather than guessing.",
+          "source_id": "src-4820dab83954"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-4820dab83954"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "market",
+      "caveat": null,
+      "claim": "Deacon positions itself as an alternative to other AI customer support tools such as Fin and Decagon",
+      "claim_id": "ev-9bebd1ba671d",
+      "company_id": "heydeacon",
+      "excerpts": [
+        {
+          "excerpt": "What differentiates Deacon from other customer support AI such as Fin and Decagon?",
+          "source_id": "src-4820dab83954"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-4820dab83954"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "traction",
+      "caveat": "This is an unattributed testimonial on the company's own site, not independently verifiable.",
+      "claim": "A customer testimonial on the homepage claims a company switched from Intercom and Fin to Deacon",
+      "claim_id": "ev-47327a47fab7",
+      "company_id": "heydeacon",
+      "excerpts": [
+        {
+          "excerpt": "We moved across from Intercom and Fin because Deacon does more. It helps our customers, and it tells us what they need, at a lower cost.",
+          "source_id": "src-4820dab83954"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-4820dab83954"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "traction",
+      "caveat": "Unattributed, undated testimonials with no named customer or verifiable metric source.",
+      "claim": "Homepage testimonials claim NPS, revenue, bounce rate, and conversion improvements from using Deacon",
+      "claim_id": "ev-4c2d2662ee37",
+      "company_id": "heydeacon",
+      "excerpts": [
+        {
+          "excerpt": "We have seen NPS and revenue move since adding Deacon",
+          "source_id": "src-4820dab83954"
+        },
+        {
+          "excerpt": "Bounce rate dropped and conversions rose after we added it. For a company our size, it paid for itself inside the first month.",
+          "source_id": "src-4820dab83954"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-4820dab83954"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "traction",
+      "caveat": null,
+      "claim": "The company's Show HN launch post received minimal community engagement (4 points, 1 comment)",
+      "claim_id": "ev-4a2b327abd49",
+      "company_id": "heydeacon",
+      "excerpts": [
+        {
+          "excerpt": "The thread has 4 points on Hacker News. The thread has 1 comments on Hacker News.",
+          "source_id": "src-80acc896eb7e"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-80acc896eb7e"
+      ],
+      "verification_status": "community_signal"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "Pricing is usage-based on number of AI answers/conversations, with a free tier (300 pages crawled/month, 1 seat) and paid tiers Starter ($40/mo) and Growth ($120/mo)",
+      "claim_id": "ev-c28762ea7c0c",
+      "company_id": "heydeacon",
+      "excerpts": [
+        {
+          "excerpt": "Yearly prices: Free $0 a month, Starter $40 a month, Growth $120 a month .",
+          "source_id": "src-a513a34102b5"
+        },
+        {
+          "excerpt": "1 MB of content 300 pages crawled a month 1 seat",
+          "source_id": "src-a513a34102b5"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-a513a34102b5"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "When Deacon cannot answer a question, it captures visitor details and logs the gap rather than failing silently",
+      "claim_id": "ev-7699225de008",
+      "company_id": "heydeacon",
+      "excerpts": [
+        {
+          "excerpt": "When Deacon can't answer, your visitor doesn't get a shrug. It takes their details and brings you the whole conversation, and you reply from your own inbox, so the thread still ends with a person.",
+          "source_id": "src-a513a34102b5"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-a513a34102b5"
+      ],
+      "verification_status": "company_claim"
+    }
+  ],
+  "company_id": "heydeacon",
+  "confidence_inputs": {
+    "claims_by_category": {
+      "market": 1,
+      "product": 5,
+      "traction": 3
+    },
+    "claims_by_verification": {
+      "community_signal": 1,
+      "company_claim": 8
+    },
+    "claims_total": 9,
+    "conflicts": 0,
+    "distinct_domains": 2,
+    "inferred_claims": 0,
+    "unknowns": 4
+  },
+  "conflicts": [],
+  "generated_at": "2026-08-24T14:01:43.587956Z",
+  "model": "claude-sonnet-5",
+  "prompt_version": "evidence_v1",
+  "provider": "anthropic",
+  "schema_version": "1.1.0",
+  "source_coverage": {
+    "hn_sources": 1,
+    "pages_supplied": 2,
+    "sources_cited": 3,
+    "sources_supplied": 3,
+    "supplied_chars": 8516,
+    "truncated_pages": [],
+    "website_available": true
+  },
+  "sources": [
+    {
+      "domain": "news.ycombinator.com",
+      "hn_num_comments": 1,
+      "hn_object_id": "49262666",
+      "hn_points": 4,
+      "kind": "hn_story",
+      "published_at": "2026-08-11T18:41:37Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-80acc896eb7e",
+      "title": "Show HN: HeyDeacon, AI customer support agent for SaaS founders",
+      "url": "https://news.ycombinator.com/item?id=49262666"
+    },
+    {
+      "domain": "heydeacon.com",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T14:01:06.719125Z",
+      "source_id": "src-4820dab83954",
+      "title": "AI customer support and insights for your app | Deacon",
+      "url": "https://heydeacon.com/"
+    },
+    {
+      "domain": "heydeacon.com",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T14:01:07.624182Z",
+      "source_id": "src-a513a34102b5",
+      "title": "Pricing for AI customer support | Deacon",
+      "url": "https://heydeacon.com/pricing"
+    }
+  ],
+  "unknowns": [
+    {
+      "category": "team",
+      "question": "Who founded or works at HeyDeacon, and what is their background?",
+      "reason": "No source provides founder or employee information."
+    },
+    {
+      "category": "traction",
+      "question": "How many customers, users, or paying accounts does HeyDeacon have?",
+      "reason": "Only unattributed testimonials are provided; no verifiable customer counts or names are given."
+    },
+    {
+      "category": "market",
+      "question": "What is the size of the market for AI customer support tools for SaaS founders?",
+      "reason": "No market sizing data is present in the sources."
+    },
+    {
+      "category": "risk",
+      "question": "What are the company's funding status or financial runway?",
+      "reason": "No funding or financial information is included in the sources."
+    }
+  ],
+  "warnings": []
+}

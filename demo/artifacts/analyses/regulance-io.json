@@ -1,0 +1,235 @@
+{
+  "analysis": {
+    "analysis_warnings": [
+      "No usable evidence claims were extracted for this company; all dimensions are scored under near-total absence of evidence, not as negative findings."
+    ],
+    "buyer": null,
+    "company_id": "regulance-io",
+    "competitive_observations": [],
+    "confidence_rationale": [
+      "The dossier contains no evidence claims, so nothing about this company was established. This is a statement about the research, not about the company.",
+      "1 identity warning(s) were recorded."
+    ],
+    "corroborated_findings": [],
+    "generated_at": "2026-08-24T14:05:26.796843Z",
+    "identity_warnings": [
+      "The supplied company_page source (src-9d28fb1af821) is unrelated content (a Vietnamese football betting odds site) and does not correspond to regulance.io; no product content should be attributed to the candidate from this source."
+    ],
+    "market_assessment": {
+      "evidence_claim_ids": [],
+      "text": "No independent evidence establishes the market or customer segment beyond the one-liner.",
+      "unknown_references": [
+        "unk-1d3a590f4f2d"
+      ]
+    },
+    "model": "claude-sonnet-5",
+    "model_suggested_recommendation": "pass",
+    "open_questions": [],
+    "plain_language_product": "The dossier could not establish what regulance.io's product actually does. The one-liner suggests \"AI compliance automation for startups and lean teams,\" but the supplied company page source was mismatched (unrelated Vietnamese betting content) and no usable product detail was extracted.",
+    "product_assessment": {
+      "evidence_claim_ids": [],
+      "text": "No usable evidence describes the product's functionality; the supplied company-page source was an unrelated website, so what regulance.io actually does could not be verified.",
+      "unknown_references": [
+        "unk-5a413457ad59"
+      ]
+    },
+    "prompt_version": "analysis_v2",
+    "provider": "anthropic",
+    "recommendation_changers": [
+      "A working, accurately sourced company website or product page describing the actual compliance workflow, features, pricing and integrations",
+      "Verifiable evidence of paying customers, usage, or revenue beyond the minimal Show HN post",
+      "Founder background and team composition establishing earned insight into compliance workflows"
+    ],
+    "research_confidence": {
+      "components": {
+        "category_span": 0.0,
+        "claim_volume": 0.0,
+        "corroboration": 0.0,
+        "independence": 0.0,
+        "source_coverage": 0.0,
+        "website": 1.0
+      },
+      "level": "low",
+      "missing": [
+        "market",
+        "product",
+        "risk",
+        "team",
+        "traction",
+        "all_evidence"
+      ],
+      "reasons": [
+        "The dossier contains no evidence claims, so nothing about this company was established. This is a statement about the research, not about the company.",
+        "1 identity warning(s) were recorded."
+      ],
+      "score": 0.0
+    },
+    "risks": [
+      {
+        "evidence_claim_ids": [],
+        "text": "The primary source intended to describe the company's website was mismatched content (an unrelated Vietnamese betting odds site), which is a data quality/identity risk rather than a finding about the company itself.",
+        "unknown_references": [
+          "unk-6170f240c7a5"
+        ]
+      }
+    ],
+    "schema_version": "1.1.0",
+    "score_components": [
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [
+          "one-liner alone gives no concrete workflow detail"
+        ],
+        "component": "pain_roi",
+        "evidence_claim_ids": [],
+        "maximum": 20,
+        "rationale": "No evidence describes the targeted workflow or any ROI framing beyond the unverified one-liner.",
+        "score": 3,
+        "unknown_references": [
+          "unk-5a413457ad59"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "wedge",
+        "evidence_claim_ids": [],
+        "maximum": 15,
+        "rationale": "No concrete product facts (features, pricing, integrations, delivery model) were extracted from any source.",
+        "score": 2,
+        "unknown_references": [
+          "unk-5a413457ad59"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "distribution",
+        "evidence_claim_ids": [],
+        "maximum": 15,
+        "rationale": "No channel, GTM motion, or self-serve availability is described anywhere in the dossier.",
+        "score": 2,
+        "unknown_references": [
+          "unk-5a413457ad59",
+          "unk-1d3a590f4f2d"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "defensibility",
+        "evidence_claim_ids": [],
+        "maximum": 15,
+        "rationale": "No proprietary data, integration depth, or operational detail is available to assess a moat.",
+        "score": 2,
+        "unknown_references": [
+          "unk-5a413457ad59"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "team",
+        "evidence_claim_ids": [],
+        "maximum": 15,
+        "rationale": "No team composition, founder background or biography information was found in any source.",
+        "score": 2,
+        "unknown_references": [
+          "unk-3493d36c435d"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [
+          "HN engagement was extremely low (2 points, 0 comments), suggesting little external attention, though this is not proof of product weakness"
+        ],
+        "component": "traction",
+        "evidence_claim_ids": [],
+        "maximum": 10,
+        "rationale": "Only a Show HN post with 2 points and 0 comments exists as community signal; this indicates minimal attention rather than absence, but does not establish usage, customers, or revenue.",
+        "score": 1,
+        "unknown_references": [
+          "unk-6fa79dd26854"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "market_timing",
+        "evidence_claim_ids": [],
+        "maximum": 10,
+        "rationale": "No regulatory, technical or workflow shift is cited anywhere in the dossier to explain timing.",
+        "score": 2,
+        "unknown_references": [
+          "unk-1d3a590f4f2d"
+        ]
+      }
+    ],
+    "team_assessment": {
+      "evidence_claim_ids": [],
+      "text": "No evidence identifies any founders or team members for regulance.io.",
+      "unknown_references": [
+        "unk-3493d36c435d"
+      ]
+    },
+    "thesis_assessment": {
+      "evidence_claim_ids": [],
+      "rationale": "Given the complete absence of usable evidence about the product, workflow, buyer, or integrations, fit with the thesis cannot be determined one way or another.",
+      "unknown_references": [
+        "unk-5a413457ad59",
+        "unk-1d3a590f4f2d"
+      ],
+      "verdict": "undetermined"
+    },
+    "thesis_version": "thesis_v1",
+    "total_score": 14,
+    "workflow": null
+  },
+  "recommendation": {
+    "band": "pass",
+    "band_label": "0-64",
+    "cap_reason": null,
+    "capped": false,
+    "company_id": "regulance-io",
+    "confidence": {
+      "components": {
+        "category_span": 0.0,
+        "claim_volume": 0.0,
+        "corroboration": 0.0,
+        "independence": 0.0,
+        "source_coverage": 0.0,
+        "website": 1.0
+      },
+      "level": "low",
+      "missing": [
+        "market",
+        "product",
+        "risk",
+        "team",
+        "traction",
+        "all_evidence"
+      ],
+      "reasons": [
+        "The dossier contains no evidence claims, so nothing about this company was established. This is a statement about the research, not about the company.",
+        "1 identity warning(s) were recorded."
+      ],
+      "score": 0.0
+    },
+    "decided_at": "2026-08-24T14:05:26.796843Z",
+    "decision": "watch",
+    "guardrails_applied": [
+      "zero_claim_dossier"
+    ],
+    "model_disagreed": true,
+    "model_suggested": "pass",
+    "policy_version": "2.0.0",
+    "rationale": [
+      "Scored 14/100 against the rubric, which falls in the 0-64 band (pass).",
+      "Research confidence is low (0.00).",
+      "No dimension could be assessed from the available evidence: pain_roi, wedge, distribution, defensibility, team, traction, market_timing. The points shown reflect residual uncertainty, not established merit.",
+      "No evidence claims could be extracted for this company, so there is no basis for either a positive or a negative call. Recommending watch on insufficient evidence rather than passing on an absence of information."
+    ],
+    "schema_version": "1.1.0",
+    "total_score": 14
+  }
+}

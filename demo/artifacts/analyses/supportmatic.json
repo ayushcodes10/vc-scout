@@ -1,0 +1,248 @@
+{
+  "analysis": {
+    "analysis_warnings": [
+      "Dossier is extremely sparse: only one evidence claim (a low-engagement HN launch) and a parked-domain homepage with no substantive product content.",
+      "Possible risk that the company is no longer active given the 'domain for sale' homepage state."
+    ],
+    "buyer": null,
+    "company_id": "supportmatic",
+    "competitive_observations": [],
+    "confidence_rationale": [
+      "1 of 2 supplied source(s) were cited by at least one claim.",
+      "1 evidence claim(s) across 1 of 5 categories.",
+      "A page from the company's own website was read.",
+      "0 of 1 claim(s) are company-authored; 1 come from other voices.",
+      "No finding was identified as corroborated by separate sources.",
+      "5 question(s) were left unanswered."
+    ],
+    "corroborated_findings": [],
+    "generated_at": "2026-08-24T14:42:47.411957Z",
+    "identity_warnings": [],
+    "market_assessment": {
+      "evidence_claim_ids": [],
+      "text": "No source describes the target market or customer segment for SupportMatic.",
+      "unknown_references": [
+        "unk-7e76555f0dd7"
+      ]
+    },
+    "model": "claude-sonnet-5",
+    "model_suggested_recommendation": "pass",
+    "open_questions": [],
+    "plain_language_product": "The one-liner describes an \"AI agent for email customer support,\" but the dossier provides no substantive detail on what the product does, how it works, or its buyer, since the company website returned only a parked-domain placeholder.",
+    "product_assessment": {
+      "evidence_claim_ids": [],
+      "text": "Beyond the one-liner 'AI agent for email customer support,' nothing concrete about the product's functionality, workflow, or integrations is established; the homepage was a parked-domain placeholder with no substantive content.",
+      "unknown_references": [
+        "unk-2d632bed4fe2"
+      ]
+    },
+    "prompt_version": "analysis_v2.1",
+    "provider": "anthropic",
+    "recommendation_changers": [
+      "Verification of whether SupportMatic is still an active, operating company given the parked-domain homepage state",
+      "Concrete evidence of the product's actual functionality, integrations, and target buyer",
+      "Evidence of any customers, usage, or revenue beyond the single low-engagement HN launch"
+    ],
+    "research_confidence": {
+      "components": {
+        "category_span": 0.2,
+        "claim_volume": 0.125,
+        "corroboration": 0.0,
+        "independence": 1.0,
+        "source_coverage": 0.5,
+        "website": 1.0
+      },
+      "level": "low",
+      "missing": [
+        "market",
+        "product",
+        "risk",
+        "team",
+        "traction"
+      ],
+      "reasons": [
+        "1 of 2 supplied source(s) were cited by at least one claim.",
+        "1 evidence claim(s) across 1 of 5 categories.",
+        "A page from the company's own website was read.",
+        "0 of 1 claim(s) are company-authored; 1 come from other voices.",
+        "No finding was identified as corroborated by separate sources.",
+        "5 question(s) were left unanswered."
+      ],
+      "score": 0.39
+    },
+    "risks": [
+      {
+        "evidence_claim_ids": [],
+        "text": "The homepage currently displays 'This domain may be for sale,' suggesting the product/site may no longer be actively operated, though this is evidence about domain status only, not a definitive judgment on company status.",
+        "unknown_references": [
+          "unk-f53df2ddd599"
+        ]
+      }
+    ],
+    "schema_version": "1.1.0",
+    "score_components": [
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "pain_roi",
+        "evidence_claim_ids": [],
+        "maximum": 20,
+        "rationale": "No evidence describes the specific workflow, its recurrence, revenue-criticality, or any ROI measurement window.",
+        "score": 2,
+        "unknown_references": [
+          "unk-2d632bed4fe2",
+          "unk-7e76555f0dd7"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "wedge",
+        "evidence_claim_ids": [],
+        "maximum": 15,
+        "rationale": "No concrete facts about product features, integrations, pricing, or delivery model are available beyond the generic one-liner.",
+        "score": 2,
+        "unknown_references": [
+          "unk-2d632bed4fe2"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "distribution",
+        "evidence_claim_ids": [],
+        "maximum": 15,
+        "rationale": "No channel, go-to-market motion, or self-serve availability is described in the dossier.",
+        "score": 1,
+        "unknown_references": [
+          "unk-2d632bed4fe2",
+          "unk-7e76555f0dd7"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "defensibility",
+        "evidence_claim_ids": [],
+        "maximum": 15,
+        "rationale": "No proprietary data, integrations, or operational depth are described anywhere in the dossier.",
+        "score": 1,
+        "unknown_references": [
+          "unk-2d632bed4fe2"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "team",
+        "evidence_claim_ids": [],
+        "maximum": 15,
+        "rationale": "No source names founders or describes any team background.",
+        "score": 1,
+        "unknown_references": [
+          "unk-10b918f20532"
+        ]
+      },
+      {
+        "assessment_status": "partially_supported",
+        "caveats": [
+          "Minimal community engagement limits what can be inferred about attention or interest."
+        ],
+        "component": "traction",
+        "evidence_claim_ids": [
+          "ev-d2ca3da052e9"
+        ],
+        "maximum": 10,
+        "rationale": "The only traction evidence is a Hacker News Show HN launch with minimal engagement (1 point, 1 comment), which is a real but very weak freshness signal and does not establish customers, usage or revenue.",
+        "score": 2,
+        "unknown_references": [
+          "unk-f044c6a78eac"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "market_timing",
+        "evidence_claim_ids": [],
+        "maximum": 10,
+        "rationale": "No regulatory, technical, or workflow shift is named as a reason this is buildable or buyable now.",
+        "score": 1,
+        "unknown_references": [
+          "unk-7e76555f0dd7"
+        ]
+      }
+    ],
+    "team_assessment": {
+      "evidence_claim_ids": [],
+      "text": "No source provides any information about SupportMatic's founders or team composition.",
+      "unknown_references": [
+        "unk-10b918f20532"
+      ]
+    },
+    "thesis_assessment": {
+      "evidence_claim_ids": [
+        "ev-d2ca3da052e9"
+      ],
+      "rationale": "The dossier does not establish enough about the product, workflow, buyer, or integrations to determine whether SupportMatic fits an AI-native SMB workflow-automation thesis. The only concrete evidence is a low-engagement Hacker News launch, and the current homepage appears to be a parked domain, raising doubt about whether the company is even active.",
+      "unknown_references": [
+        "unk-2d632bed4fe2",
+        "unk-7e76555f0dd7",
+        "unk-f53df2ddd599"
+      ],
+      "verdict": "undetermined"
+    },
+    "thesis_version": "thesis_v1",
+    "total_score": 10,
+    "workflow": null
+  },
+  "recommendation": {
+    "band": "pass",
+    "band_label": "0-64",
+    "cap_reason": null,
+    "capped": false,
+    "company_id": "supportmatic",
+    "confidence": {
+      "components": {
+        "category_span": 0.2,
+        "claim_volume": 0.125,
+        "corroboration": 0.0,
+        "independence": 1.0,
+        "source_coverage": 0.5,
+        "website": 1.0
+      },
+      "level": "low",
+      "missing": [
+        "market",
+        "product",
+        "risk",
+        "team",
+        "traction"
+      ],
+      "reasons": [
+        "1 of 2 supplied source(s) were cited by at least one claim.",
+        "1 evidence claim(s) across 1 of 5 categories.",
+        "A page from the company's own website was read.",
+        "0 of 1 claim(s) are company-authored; 1 come from other voices.",
+        "No finding was identified as corroborated by separate sources.",
+        "5 question(s) were left unanswered."
+      ],
+      "score": 0.39
+    },
+    "decided_at": "2026-08-24T14:42:47.411957Z",
+    "decision": "watch",
+    "guardrails_applied": [
+      "insufficient_evidence_watch"
+    ],
+    "model_disagreed": true,
+    "model_suggested": "pass",
+    "policy_version": "2.0.0",
+    "rationale": [
+      "Scored 10/100 against the rubric, which falls in the 0-64 band (pass).",
+      "Research confidence is low (0.39).",
+      "6 dimension(s) could not be assessed from the available evidence: pain_roi, wedge, distribution, defensibility, team, market_timing. Only 10 of 100 points were assessable.",
+      "The score is low, but 6 dimensions were unassessable and research confidence is low, with no evidence that the company sits outside the thesis. That is an evidence shortfall, not a judgment; recommending watch."
+    ],
+    "schema_version": "1.1.0",
+    "total_score": 10
+  }
+}

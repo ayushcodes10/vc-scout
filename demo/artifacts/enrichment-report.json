@@ -1,109 +1,196 @@
 {
   "candidates": [
     {
-      "chars_extracted": 908,
-      "company_id": "deskloop",
+      "chars_extracted": 12560,
+      "company_id": "regulance-io",
       "failures": [],
-      "pages_attempted": 3,
+      "pages_attempted": 1,
       "pages_deduplicated": 0,
-      "pages_extracted": 3,
+      "pages_extracted": 1,
       "status": "success",
-      "website": "https://deskloop.example/"
+      "website": "https://regulance.io/"
     },
     {
-      "chars_extracted": 754,
-      "company_id": "stockmind",
+      "chars_extracted": 531,
+      "company_id": "recursive",
       "failures": [],
-      "pages_attempted": 3,
+      "pages_attempted": 1,
       "pages_deduplicated": 0,
-      "pages_extracted": 3,
+      "pages_extracted": 1,
       "status": "success",
-      "website": "https://stockmind-io.example/"
+      "website": "https://recursive.support/"
     },
     {
-      "chars_extracted": 877,
-      "company_id": "ledgerpilot",
+      "chars_extracted": 1662,
+      "company_id": "drafting-ai",
       "failures": [],
-      "pages_attempted": 3,
+      "pages_attempted": 1,
       "pages_deduplicated": 0,
-      "pages_extracted": 3,
+      "pages_extracted": 1,
       "status": "success",
-      "website": "https://ledgerpilot.example/"
+      "website": "https://getdrafting.com/"
     },
     {
-      "chars_extracted": 816,
-      "company_id": "permitpath",
+      "chars_extracted": 7771,
+      "company_id": "helphubassistant-pages-dev",
       "failures": [],
       "pages_attempted": 3,
       "pages_deduplicated": 0,
       "pages_extracted": 3,
       "status": "success",
-      "website": "https://permitpath.example/"
+      "website": "https://helphubassistant.pages.dev/"
     },
     {
-      "chars_extracted": 796,
-      "company_id": "rotamesh",
-      "failures": [],
-      "pages_attempted": 3,
-      "pages_deduplicated": 0,
-      "pages_extracted": 3,
-      "status": "success",
-      "website": "https://rotamesh.example/"
+      "chars_extracted": 0,
+      "company_id": "dooza-desk",
+      "failures": [
+        {
+          "category": "http_error",
+          "detail": "HTTP 404",
+          "http_status": 404,
+          "role": "homepage",
+          "url": "https://www.doozadesk.com/"
+        }
+      ],
+      "pages_attempted": 1,
+      "pages_deduplicated": 1,
+      "pages_extracted": 0,
+      "status": "failed",
+      "website": "https://www.doozadesk.com/"
     },
     {
-      "chars_extracted": 729,
-      "company_id": "quotecrate",
+      "chars_extracted": 8137,
+      "company_id": "heydeacon",
       "failures": [],
-      "pages_attempted": 3,
+      "pages_attempted": 2,
       "pages_deduplicated": 0,
-      "pages_extracted": 3,
+      "pages_extracted": 2,
       "status": "success",
-      "website": "https://quotecrate.example/"
+      "website": "https://heydeacon.com/"
     },
     {
-      "chars_extracted": 808,
-      "company_id": "frontdeskly",
+      "chars_extracted": 18825,
+      "company_id": "mcp-server-for-appointment-booking",
       "failures": [],
-      "pages_attempted": 3,
+      "pages_attempted": 2,
       "pages_deduplicated": 0,
-      "pages_extracted": 3,
+      "pages_extracted": 2,
       "status": "success",
-      "website": "https://frontdeskly.example/"
+      "website": "https://blog.makeplans.com/"
     },
     {
-      "chars_extracted": 801,
-      "company_id": "agentkit-core",
+      "chars_extracted": 9302,
+      "company_id": "gibsonai-com",
       "failures": [],
-      "pages_attempted": 3,
+      "pages_attempted": 4,
       "pages_deduplicated": 0,
-      "pages_extracted": 3,
+      "pages_extracted": 4,
       "status": "success",
-      "website": "https://agentkitcore.example/"
+      "website": "https://www.gibsonai.com/"
     },
     {
-      "chars_extracted": 788,
-      "company_id": "claimlane",
+      "chars_extracted": 5931,
+      "company_id": "ticketdesk-ai",
       "failures": [],
-      "pages_attempted": 3,
+      "pages_attempted": 4,
+      "pages_deduplicated": 0,
+      "pages_extracted": 4,
+      "status": "success",
+      "website": "https://ticketdesk.ai/"
+    },
+    {
+      "chars_extracted": 103,
+      "company_id": "specx",
+      "failures": [],
+      "pages_attempted": 1,
+      "pages_deduplicated": 0,
+      "pages_extracted": 1,
+      "status": "success",
+      "website": "https://redoxsoft.com/"
+    },
+    {
+      "chars_extracted": 7710,
+      "company_id": "ai-agents-for-customer-support",
+      "failures": [
+        {
+          "category": "http_error",
+          "detail": "HTTP 404",
+          "http_status": 404,
+          "role": "launch",
+          "url": "https://www.sparrowdesk.com/ref=hn"
+        }
+      ],
+      "pages_attempted": 4,
       "pages_deduplicated": 0,
       "pages_extracted": 3,
+      "status": "partial",
+      "website": "https://www.sparrowdesk.com/"
+    },
+    {
+      "chars_extracted": 0,
+      "company_id": "inboto",
+      "failures": [
+        {
+          "category": "blocked",
+          "detail": "access denied (403)",
+          "http_status": 403,
+          "role": "homepage",
+          "url": "https://inboto.com/"
+        }
+      ],
+      "pages_attempted": 1,
+      "pages_deduplicated": 1,
+      "pages_extracted": 0,
+      "status": "failed",
+      "website": "https://inboto.com/"
+    },
+    {
+      "chars_extracted": 37828,
+      "company_id": "luca",
+      "failures": [],
+      "pages_attempted": 4,
+      "pages_deduplicated": 0,
+      "pages_extracted": 4,
       "status": "success",
-      "website": "https://claimlane.example/"
+      "website": "https://www.leapfin.com/"
+    },
+    {
+      "chars_extracted": 112,
+      "company_id": "supportmatic",
+      "failures": [],
+      "pages_attempted": 1,
+      "pages_deduplicated": 0,
+      "pages_extracted": 1,
+      "status": "success",
+      "website": "https://supportmatic.co/"
+    },
+    {
+      "chars_extracted": 24843,
+      "company_id": "n8n-io",
+      "failures": [],
+      "pages_attempted": 4,
+      "pages_deduplicated": 0,
+      "pages_extracted": 4,
+      "status": "success",
+      "website": "https://n8n.io/"
     }
   ],
   "counts": {
-    "candidates": 9,
-    "chars_extracted": 7277,
-    "failed": 0,
-    "pages_attempted": 27,
-    "pages_deduplicated": 0,
-    "pages_extracted": 27,
-    "pages_failed": 0,
-    "partial": 0,
-    "success": 9
+    "candidates": 15,
+    "chars_extracted": 135315,
+    "failed": 2,
+    "pages_attempted": 34,
+    "pages_deduplicated": 2,
+    "pages_extracted": 31,
+    "pages_failed": 3,
+    "partial": 1,
+    "success": 12
   },
-  "failures_by_category": {},
-  "generated_at": "2026-08-24T13:53:35.953075Z",
+  "failures_by_category": {
+    "blocked": 1,
+    "http_error": 2
+  },
+  "generated_at": "2026-08-24T14:00:46.298396Z",
   "limits": {
     "connect_timeout_seconds": 5,
     "max_extra_pages": 3,
@@ -115,7 +202,7 @@
   "notes": [
     "Candidates with no readable pages are retained. Enrichment records what could be read; it does not judge whether a company is worth reading."
   ],
-  "run_id": "offline-demo",
+  "run_id": "ai-smb-ops-demo",
   "schema_version": "1.1.0",
-  "upstream_fingerprint": "fp1:efe1485e2bb03fb4"
+  "upstream_fingerprint": "fp1:9138ffe0107eb43f"
 }

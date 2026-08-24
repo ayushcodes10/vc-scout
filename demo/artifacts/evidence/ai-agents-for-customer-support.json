@@ -1,0 +1,280 @@
+{
+  "claims": [
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "SparrowDesk offers an AI agent (Zoona) that reads support tickets and auto-resolves them across email, chat, and other channels, with human handoff when needed.",
+      "claim_id": "ev-5bf90daec033",
+      "company_id": "ai-agents-for-customer-support",
+      "excerpts": [
+        {
+          "excerpt": "Zoona reads every ticket, works out what the customer needs, and answers on its own - day or night. Your team steps in only when a human's needed.",
+          "source_id": "src-30c67f78d566"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-30c67f78d566"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "Zoona is trained by pointing it at existing resources like website, help center, Notion, docs, and past conversations, without manual writing.",
+      "claim_id": "ev-fba86286a9ef",
+      "company_id": "ai-agents-for-customer-support",
+      "excerpts": [
+        {
+          "excerpt": "Zoona learns from what you already have - your website, help center, Notion, docs, even past conversations. Point it at your sources and it starts answering. You don't write a thing.",
+          "source_id": "src-30c67f78d566"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-30c67f78d566"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "The product supports multiple channels (email, live chat, WhatsApp, Slack) and multiple languages.",
+      "claim_id": "ev-770dde288acc",
+      "company_id": "ai-agents-for-customer-support",
+      "excerpts": [
+        {
+          "excerpt": "Email, live chat, WhatsApp, Slack - Zoona works across all of them. It responds in the language your customer writes in, so language is never a barrier to great support.",
+          "source_id": "src-30c67f78d566"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-30c67f78d566"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "SparrowDesk includes a built-in CSAT feature that sends surveys after ticket resolution and reports on satisfaction trends.",
+      "claim_id": "ev-a758488009ee",
+      "company_id": "ai-agents-for-customer-support",
+      "excerpts": [
+        {
+          "excerpt": "Send CSAT surveys automatically after a support interaction is completed. Feedback is collected when it makes sense, without manual effort.",
+          "source_id": "src-82f84519240a"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-82f84519240a"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "SparrowDesk offers tiered pricing plans (Free, Starter, Professional, Enterprise) starting from $16 per agent, with a 14-day free trial.",
+      "claim_id": "ev-4012d5d00a0f",
+      "company_id": "ai-agents-for-customer-support",
+      "excerpts": [
+        {
+          "excerpt": "Helpdesk plans from $16 per agent. Email, chat, shared inbox, and help center in one place. Try any plan free for 14 days, no credit card required.",
+          "source_id": "src-80932567e5bd"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-80932567e5bd"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "The company states it is SOC 2 Type II certified and GDPR compliant, and that customer data is not used to train AI models.",
+      "claim_id": "ev-0b7812b4aea3",
+      "company_id": "ai-agents-for-customer-support",
+      "excerpts": [
+        {
+          "excerpt": "SparrowDesk is SOC 2 Type II certified and GDPR compliant. Your data is never used to train AI models.",
+          "source_id": "src-30c67f78d566"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-30c67f78d566"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "traction",
+      "caveat": "This figure appears only on the company's own pages, which are the same voice; no independent source confirms it.",
+      "claim": "The company claims to be 'trusted by 1,000+ support teams,' a figure repeated on multiple company pages but not independently verified.",
+      "claim_id": "ev-d2d982d6498b",
+      "company_id": "ai-agents-for-customer-support",
+      "excerpts": [
+        {
+          "excerpt": "Trusted by 1,000+ support teams",
+          "source_id": "src-30c67f78d566"
+        },
+        {
+          "excerpt": "Trusted by 1,000+ support teams",
+          "source_id": "src-82f84519240a"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-30c67f78d566",
+        "src-82f84519240a"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "traction",
+      "caveat": "This is a single testimonial quote on the company's own site, not independently verified data.",
+      "claim": "A customer testimonial states Zoona handles more than 67% of conversations for one company (UprootSecurity), though this is an unverified single-customer quote.",
+      "claim_id": "ev-563eec55e936",
+      "company_id": "ai-agents-for-customer-support",
+      "excerpts": [
+        {
+          "excerpt": "with Zoona handling more than 67% of conversations, our small team can keep up as customer support grows.",
+          "source_id": "src-30c67f78d566"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-30c67f78d566"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "traction",
+      "caveat": null,
+      "claim": "The company's Show HN launch received minimal community engagement (1 point, 0 comments).",
+      "claim_id": "ev-35974cb2ad19",
+      "company_id": "ai-agents-for-customer-support",
+      "excerpts": [
+        {
+          "excerpt": "The thread has 1 points on Hacker News. The thread has 0 comments on Hacker News.",
+          "source_id": "src-e97665c6220d"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-e97665c6220d"
+      ],
+      "verification_status": "community_signal"
+    }
+  ],
+  "company_id": "ai-agents-for-customer-support",
+  "confidence_inputs": {
+    "claims_by_category": {
+      "product": 6,
+      "traction": 3
+    },
+    "claims_by_verification": {
+      "community_signal": 1,
+      "company_claim": 8
+    },
+    "claims_total": 9,
+    "conflicts": 0,
+    "distinct_domains": 2,
+    "inferred_claims": 0,
+    "unknowns": 5
+  },
+  "conflicts": [],
+  "generated_at": "2026-08-24T14:01:43.587956Z",
+  "model": "claude-sonnet-5",
+  "prompt_version": "evidence_v1",
+  "provider": "anthropic",
+  "schema_version": "1.1.0",
+  "source_coverage": {
+    "hn_sources": 1,
+    "pages_supplied": 3,
+    "sources_cited": 4,
+    "sources_supplied": 4,
+    "supplied_chars": 8000,
+    "truncated_pages": [],
+    "website_available": true
+  },
+  "sources": [
+    {
+      "domain": "news.ycombinator.com",
+      "hn_num_comments": 0,
+      "hn_object_id": "46075684",
+      "hn_points": 1,
+      "kind": "hn_story",
+      "published_at": "2025-11-28T05:05:34Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-e97665c6220d",
+      "title": "Show HN: AI Agents for Customer Support",
+      "url": "https://news.ycombinator.com/item?id=46075684"
+    },
+    {
+      "domain": "sparrowdesk.com",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T14:01:23.033825Z",
+      "source_id": "src-30c67f78d566",
+      "title": "AI Customer Support Software That Automates 60% of Tickets",
+      "url": "https://www.sparrowdesk.com/"
+    },
+    {
+      "domain": "sparrowdesk.com",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T14:01:25.750720Z",
+      "source_id": "src-82f84519240a",
+      "title": "Built-In CSAT for Customer Support | SparrowDesk",
+      "url": "https://www.sparrowdesk.com/features/csat"
+    },
+    {
+      "domain": "sparrowdesk.com",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T14:01:25.838953Z",
+      "source_id": "src-80932567e5bd",
+      "title": "SparrowDesk Pricing | Helpdesk plans from $16 per agent",
+      "url": "https://www.sparrowdesk.com/pricing"
+    }
+  ],
+  "unknowns": [
+    {
+      "category": "team",
+      "question": "Who founded or works at the company, and what is their background?",
+      "reason": "No source provides team or founder information."
+    },
+    {
+      "category": "market",
+      "question": "What is the size of the customer support software market or the company's target market share?",
+      "reason": "No market sizing data is present in any source."
+    },
+    {
+      "category": "traction",
+      "question": "What are actual, independently verified customer counts, revenue, or usage metrics?",
+      "reason": "Only company-stated figures ('1,000+ support teams', '67% of conversations') are available, with no independent verification."
+    },
+    {
+      "category": "risk",
+      "question": "Are there any known technical limitations, outages, or failure cases of the AI agent?",
+      "reason": "Sources do not discuss failure modes beyond generic marketing language about escalation to humans."
+    },
+    {
+      "category": "product",
+      "question": "What underlying AI models or technology power Zoona?",
+      "reason": "No source describes the technical architecture."
+    }
+  ],
+  "warnings": []
+}

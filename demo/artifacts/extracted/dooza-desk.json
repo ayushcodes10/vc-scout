@@ -1,0 +1,21 @@
+{
+  "company_id": "dooza-desk",
+  "failures": [
+    {
+      "category": "http_error",
+      "detail": "HTTP 404",
+      "http_status": 404,
+      "role": "homepage",
+      "url": "https://www.doozadesk.com/"
+    }
+  ],
+  "generated_at": "2026-08-24T14:00:46.298396Z",
+  "pages": [],
+  "schema_version": "1.1.0",
+  "sources": [],
+  "status": "failed",
+  "total_chars": 0,
+  "warnings": [
+    "No page could be read for this company. It remains a candidate; downstream stages must treat its evidence as missing rather than negative."
+  ]
+}

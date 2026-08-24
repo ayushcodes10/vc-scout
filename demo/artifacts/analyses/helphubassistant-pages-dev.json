@@ -1,0 +1,282 @@
+{
+  "analysis": {
+    "analysis_warnings": [],
+    "buyer": null,
+    "company_id": "helphubassistant-pages-dev",
+    "competitive_observations": [],
+    "confidence_rationale": [
+      "3 of 4 supplied source(s) were cited by at least one claim.",
+      "8 evidence claim(s) across 3 of 5 categories.",
+      "A page from the company's own website was read.",
+      "7 of 8 claim(s) are company-authored; 1 come from other voices.",
+      "No finding was identified as corroborated by separate sources.",
+      "5 question(s) were left unanswered."
+    ],
+    "corroborated_findings": [],
+    "generated_at": "2026-08-24T14:05:26.796843Z",
+    "identity_warnings": [],
+    "market_assessment": {
+      "evidence_claim_ids": [
+        "ev-9ea0009fb52c",
+        "ev-4a1d9843ea9e"
+      ],
+      "text": "The company's blog cites external statistics (a 2023 IBM study on cost reduction, and a claim that 75% of consumers expect fast responses) to argue for market demand, but these are unlinked and unverifiable, and no independent market sizing or competitive analysis is supplied.",
+      "unknown_references": [
+        "unk-40198d7938b7",
+        "unk-76e02b6d5f83"
+      ]
+    },
+    "model": "claude-sonnet-5",
+    "model_suggested_recommendation": "pass",
+    "open_questions": [],
+    "plain_language_product": "An AI chatbot for small business customer support, offering 24/7 automated responses, no-code setup, payment integration (PayPal/Stripe), and a live demo.",
+    "product_assessment": {
+      "evidence_claim_ids": [
+        "ev-86fdb58218dc",
+        "ev-80aedf29ffba",
+        "ev-a3430255df4b",
+        "ev-03ef3ce5394c"
+      ],
+      "text": "HelpHub Assistant is a company-described AI chatbot for customer support, marketed as no-code, 24/7, GDPR-compliant, integrating with PayPal and Stripe, and offering a free live demo without registration.",
+      "unknown_references": [
+        "unk-36083feab3a2"
+      ]
+    },
+    "prompt_version": "analysis_v2",
+    "provider": "anthropic",
+    "recommendation_changers": [
+      "Verified named customers with usage or revenue data, rather than illustrative examples",
+      "Founder/team background information establishing domain expertise in customer support workflows",
+      "Evidence of deeper integration into an existing system of record (e.g., CRM or helpdesk) beyond payment processors"
+    ],
+    "research_confidence": {
+      "components": {
+        "category_span": 0.6,
+        "claim_volume": 1.0,
+        "corroboration": 0.0,
+        "independence": 0.125,
+        "source_coverage": 0.75,
+        "website": 1.0
+      },
+      "level": "medium",
+      "missing": [
+        "market",
+        "product",
+        "risk",
+        "team",
+        "traction"
+      ],
+      "reasons": [
+        "3 of 4 supplied source(s) were cited by at least one claim.",
+        "8 evidence claim(s) across 3 of 5 categories.",
+        "A page from the company's own website was read.",
+        "7 of 8 claim(s) are company-authored; 1 come from other voices.",
+        "No finding was identified as corroborated by separate sources.",
+        "5 question(s) were left unanswered."
+      ],
+      "score": 0.5513
+    },
+    "risks": [
+      {
+        "evidence_claim_ids": [
+          "ev-eedfbac15fc0"
+        ],
+        "text": "Illustrative case studies (a boutique, a repair service) with specific percentage improvements appear to be marketing examples rather than verified customers, per the dossier's own caveat.",
+        "unknown_references": []
+      },
+      {
+        "evidence_claim_ids": [
+          "ev-9ea0009fb52c",
+          "ev-4a1d9843ea9e"
+        ],
+        "text": "External statistics cited in the blog (IBM study, 75% consumer expectation) lack links or verifiable sourcing.",
+        "unknown_references": [
+          "unk-76e02b6d5f83"
+        ]
+      },
+      {
+        "evidence_claim_ids": [
+          "ev-bb00ea8badd6"
+        ],
+        "text": "The Hacker News launch received minimal engagement (1 point, 1 comment), indicating little third-party attention or validation.",
+        "unknown_references": []
+      }
+    ],
+    "schema_version": "1.1.0",
+    "score_components": [
+      {
+        "assessment_status": "partially_supported",
+        "caveats": [
+          "Cited study is unlinked and unverifiable"
+        ],
+        "component": "pain_roi",
+        "evidence_claim_ids": [
+          "ev-9ea0009fb52c"
+        ],
+        "maximum": 20,
+        "rationale": "The company frames customer support as a costly recurring workflow and cites a study claiming 30-40% cost reduction, but this is a self-reported, unlinked statistic and no direct customer ROI evidence is given.",
+        "score": 6,
+        "unknown_references": [
+          "unk-76e02b6d5f83"
+        ]
+      },
+      {
+        "assessment_status": "supported",
+        "caveats": [
+          "No evidence of integration beyond payment platforms into a broader system of record"
+        ],
+        "component": "wedge",
+        "evidence_claim_ids": [
+          "ev-86fdb58218dc",
+          "ev-80aedf29ffba",
+          "ev-03ef3ce5394c"
+        ],
+        "maximum": 15,
+        "rationale": "The company describes a concrete product: a no-code AI chatbot with a specific delivery model (live demo, no registration), integrating with PayPal and Stripe for payment. This is concrete detail about the wedge, even though depth of integration into a broader system of record is unclear.",
+        "score": 9,
+        "unknown_references": [
+          "unk-36083feab3a2"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "distribution",
+        "evidence_claim_ids": [],
+        "maximum": 15,
+        "rationale": "No channel, GTM motion, or partnership evidence is supplied beyond the existence of a website and a Hacker News launch post with minimal traction.",
+        "score": 3,
+        "unknown_references": [
+          "unk-40198d7938b7"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [
+          "Payment integrations are common and not shown to be exclusive or deep"
+        ],
+        "component": "defensibility",
+        "evidence_claim_ids": [
+          "ev-80aedf29ffba"
+        ],
+        "maximum": 15,
+        "rationale": "No proprietary data, integration depth, or operational moat is described beyond generic payment platform integrations; nothing establishes a durable advantage.",
+        "score": 3,
+        "unknown_references": []
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "team",
+        "evidence_claim_ids": [],
+        "maximum": 15,
+        "rationale": "No source provides any founder or team information, so team capability and earned insight cannot be assessed.",
+        "score": 2,
+        "unknown_references": [
+          "unk-fd5b53491ded"
+        ]
+      },
+      {
+        "assessment_status": "partially_supported",
+        "caveats": [
+          "Case studies appear to be illustrative marketing examples, not verified customers"
+        ],
+        "component": "traction",
+        "evidence_claim_ids": [
+          "ev-bb00ea8badd6",
+          "ev-eedfbac15fc0"
+        ],
+        "maximum": 10,
+        "rationale": "The only third-party traction signal is a Hacker News post with 1 point and 1 comment, indicating minimal community attention. Customer case studies are illustrative and unverified.",
+        "score": 2,
+        "unknown_references": [
+          "unk-d720a6aafbb8"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [
+          "Cited statistic is unsourced"
+        ],
+        "component": "market_timing",
+        "evidence_claim_ids": [
+          "ev-4a1d9843ea9e"
+        ],
+        "maximum": 10,
+        "rationale": "No concrete regulatory, technical, or workflow shift is cited as the reason this is buildable now; only generic market-demand statistics are given, which are unverifiable.",
+        "score": 3,
+        "unknown_references": [
+          "unk-40198d7938b7"
+        ]
+      }
+    ],
+    "team_assessment": {
+      "evidence_claim_ids": [],
+      "text": "No source provides any information about founders, team composition, or background. This dimension is unassessable.",
+      "unknown_references": [
+        "unk-fd5b53491ded"
+      ]
+    },
+    "thesis_assessment": {
+      "evidence_claim_ids": [
+        "ev-86fdb58218dc",
+        "ev-80aedf29ffba"
+      ],
+      "rationale": "The product touches a recurring SMB workflow (customer support) and is AI-native, which is adjacent to the thesis. However, there is no evidence of integration into an existing system of record beyond payment platforms, no verified ROI within 30 days, and no proprietary defensibility beyond generic chatbot functionality, so it sits at the edge of thesis fit rather than squarely inside it.",
+      "unknown_references": [
+        "unk-36083feab3a2"
+      ],
+      "verdict": "adjacent"
+    },
+    "thesis_version": "thesis_v1",
+    "total_score": 28,
+    "workflow": null
+  },
+  "recommendation": {
+    "band": "pass",
+    "band_label": "0-64",
+    "cap_reason": null,
+    "capped": false,
+    "company_id": "helphubassistant-pages-dev",
+    "confidence": {
+      "components": {
+        "category_span": 0.6,
+        "claim_volume": 1.0,
+        "corroboration": 0.0,
+        "independence": 0.125,
+        "source_coverage": 0.75,
+        "website": 1.0
+      },
+      "level": "medium",
+      "missing": [
+        "market",
+        "product",
+        "risk",
+        "team",
+        "traction"
+      ],
+      "reasons": [
+        "3 of 4 supplied source(s) were cited by at least one claim.",
+        "8 evidence claim(s) across 3 of 5 categories.",
+        "A page from the company's own website was read.",
+        "7 of 8 claim(s) are company-authored; 1 come from other voices.",
+        "No finding was identified as corroborated by separate sources.",
+        "5 question(s) were left unanswered."
+      ],
+      "score": 0.5513
+    },
+    "decided_at": "2026-08-24T14:05:26.796843Z",
+    "decision": "pass",
+    "guardrails_applied": [],
+    "model_disagreed": false,
+    "model_suggested": "pass",
+    "policy_version": "2.0.0",
+    "rationale": [
+      "Scored 28/100 against the rubric, which falls in the 0-64 band (pass).",
+      "Research confidence is medium (0.55).",
+      "4 dimension(s) could not be assessed from the available evidence: distribution, defensibility, team, market_timing. Only 45 of 100 points were assessable."
+    ],
+    "schema_version": "1.1.0",
+    "total_score": 28
+  }
+}

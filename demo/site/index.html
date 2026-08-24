@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="robots" content="noindex">
-<title>Portfolio — offline-demo — VC Scout</title>
+<title>Portfolio — ai-smb-ops-demo — VC Scout</title>
 <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
@@ -17,7 +17,7 @@
 <p class="tagline">Evidence-grounded startup triage</p>
 </div>
 <div class="header-meta">
-<span class="muted small">Run <span class="run-id">offline-demo</span></span>
+<span class="muted small">Run <span class="run-id">ai-smb-ops-demo</span></span>
 <a href="../ranking.md">Export ranking</a>
 </div>
 </div>
@@ -29,7 +29,7 @@
 <div class="summary">
 <div class="summary__cell">
 <p class="summary__label">Candidates</p>
-<p class="summary__value">9</p>
+<p class="summary__value">15</p>
 </div>
 <div class="summary__cell">
 <p class="summary__label">Take a meeting</p>
@@ -37,11 +37,11 @@
 </div>
 <div class="summary__cell">
 <p class="summary__label">Watch</p>
-<p class="summary__value">0</p>
+<p class="summary__value">5</p>
 </div>
 <div class="summary__cell">
 <p class="summary__label">Pass</p>
-<p class="summary__value">9</p>
+<p class="summary__value">10</p>
 </div>
 <div class="summary__cell">
 <p class="summary__label">High</p>
@@ -53,11 +53,11 @@
 </div>
 <div class="summary__cell">
 <p class="summary__label">Low</p>
-<p class="summary__value">0</p>
+<p class="summary__value">6</p>
 </div>
 <div class="summary__cell">
 <p class="summary__label">Sources cited</p>
-<p class="summary__value">36</p>
+<p class="summary__value">44</p>
 </div>
 </div>
 </section>
@@ -110,7 +110,7 @@
 <button type="button" id="vcs-reset" class="button--secondary">Reset</button>
 </div>
 </form>
-<p class="result-count" id="vcs-count" role="status">Showing all 9 analysed candidates. Triage order: recommendation, then score, then confidence, then name.</p>
+<p class="result-count" id="vcs-count" role="status">Showing all 15 analysed candidates. Triage order: recommendation, then score, then confidence, then name.</p>
 <p class="result-count" id="vcs-empty" hidden>No candidate matches these filters.</p>
 
 <div class="table-wrap">
@@ -129,163 +129,178 @@
 </tr>
 </thead>
 <tbody>
-<tr data-company="agentkit-core">
+<tr data-company="dooza-desk">
 <td data-label="Rank" class="rank">1</td>
 <td data-label="Company">
-<a class="company-name" href="companies/agentkit-core.html">AgentKit Core</a>
+<a class="company-name" href="companies/dooza-desk.html">Dooza Desk</a>
 <p class="cell-note">
-<a href="companies/agentkit-core.html">View analysis</a>
-<span class="dot">·</span> <a class="external" href="https://agentkitcore.example/" rel="noopener noreferrer nofollow">Website</a>
+<a href="companies/dooza-desk.html">View analysis</a>
+<span class="dot">·</span> <a class="external" href="https://www.doozadesk.com/" rel="noopener noreferrer nofollow">Website</a>
 </p>
 </td>
 <td data-label="Call">
-<span class="badge badge--pass">Pass</span>
+<span class="badge badge--watch">Watch</span>
+<p class="cell-note">needs research</p>
 </td>
 <td data-label="Score">
 <span class="score-cell">
-<span class="score-value">41<span class="muted">/100</span></span>
-<span class="bar"><span class="bar__fill bar__fill--pass bar__w40"></span></span>
+<span class="score-value">26<span class="muted">/100</span></span>
+<span class="bar"><span class="bar__fill bar__fill--watch bar__w25"></span></span>
 </span>
 </td>
-<td data-label="Confidence">medium</td>
+<td data-label="Confidence">low</td>
 <td data-label="Thesis fit" class="secondary">Not established by the sources</td>
 <td data-label="Product, buyer and workflow">
-<p class="clamp-2">An offline derived description based only on the supplied evidence.</p>
-<p class="cell-note clamp-1"><span class="meta-label">Buyer</span> Derived from the supplied evidence.</p>
-<p class="cell-note clamp-1"><span class="meta-label">Workflow</span> Derived from the supplied evidence.</p>
+<p class="clamp-2">Dooza Desk is described as AI-native customer support software aimed at small teams, currently offered via free pilots. No further product detail is available.</p>
+<p class="cell-note clamp-1"><span class="meta-label">Buyer</span> Not established</p>
+<p class="cell-note clamp-1"><span class="meta-label">Workflow</span> Not established</p>
 </td>
 <td data-label="Context" class="secondary">
-<p class="cell-note">Max 82/100</p>
+<p class="cell-note">Max 50/100</p>
+<p class="cell-note">Meeting out of reach</p>
+<span class="chip chip--flag">Evidence shortfall</span>
 <span class="chip chip--flag">Policy override</span>
 </td>
 </tr>
-<tr data-company="claimlane">
+<tr data-company="inboto">
 <td data-label="Rank" class="rank">2</td>
 <td data-label="Company">
-<a class="company-name" href="companies/claimlane.html">Claimlane</a>
+<a class="company-name" href="companies/inboto.html">Inboto</a>
 <p class="cell-note">
-<a href="companies/claimlane.html">View analysis</a>
-<span class="dot">·</span> <a class="external" href="https://claimlane.example/" rel="noopener noreferrer nofollow">Website</a>
+<a href="companies/inboto.html">View analysis</a>
+<span class="dot">·</span> <a class="external" href="https://inboto.com/" rel="noopener noreferrer nofollow">Website</a>
 </p>
 </td>
 <td data-label="Call">
-<span class="badge badge--pass">Pass</span>
+<span class="badge badge--watch">Watch</span>
+<p class="cell-note">needs research</p>
 </td>
 <td data-label="Score">
 <span class="score-cell">
-<span class="score-value">41<span class="muted">/100</span></span>
-<span class="bar"><span class="bar__fill bar__fill--pass bar__w40"></span></span>
+<span class="score-value">18<span class="muted">/100</span></span>
+<span class="bar"><span class="bar__fill bar__fill--watch bar__w20"></span></span>
 </span>
 </td>
-<td data-label="Confidence">medium</td>
+<td data-label="Confidence">low</td>
 <td data-label="Thesis fit" class="secondary">Not established by the sources</td>
 <td data-label="Product, buyer and workflow">
-<p class="clamp-2">An offline derived description based only on the supplied evidence.</p>
-<p class="cell-note clamp-1"><span class="meta-label">Buyer</span> Derived from the supplied evidence.</p>
-<p class="cell-note clamp-1"><span class="meta-label">Workflow</span> Derived from the supplied evidence.</p>
+<p class="clamp-2">Inboto is described as an AI agent for handling email-based customer support, per a Show HN launch title. No further product detail, website content, or feature description is available in the dossier.</p>
+<p class="cell-note clamp-1"><span class="meta-label">Buyer</span> Not established</p>
+<p class="cell-note clamp-1"><span class="meta-label">Workflow</span> Not established</p>
 </td>
 <td data-label="Context" class="secondary">
-<p class="cell-note">Max 82/100</p>
+<p class="cell-note">Max 50/100</p>
+<p class="cell-note">Meeting out of reach</p>
+<span class="chip chip--flag">Evidence shortfall</span>
 <span class="chip chip--flag">Policy override</span>
 </td>
 </tr>
-<tr data-company="deskloop">
+<tr data-company="gibsonai-com">
 <td data-label="Rank" class="rank">3</td>
 <td data-label="Company">
-<a class="company-name" href="companies/deskloop.html">Deskloop</a>
+<a class="company-name" href="companies/gibsonai-com.html">gibsonai.com</a>
 <p class="cell-note">
-<a href="companies/deskloop.html">View analysis</a>
-<span class="dot">·</span> <a class="external" href="https://deskloop.example/" rel="noopener noreferrer nofollow">Website</a>
+<a href="companies/gibsonai-com.html">View analysis</a>
+<span class="dot">·</span> <a class="external" href="https://www.gibsonai.com/" rel="noopener noreferrer nofollow">Website</a>
 </p>
 </td>
 <td data-label="Call">
-<span class="badge badge--pass">Pass</span>
+<span class="badge badge--watch">Watch</span>
+<p class="cell-note">no usable evidence</p>
 </td>
 <td data-label="Score">
 <span class="score-cell">
-<span class="score-value">41<span class="muted">/100</span></span>
-<span class="bar"><span class="bar__fill bar__fill--pass bar__w40"></span></span>
+<span class="score-value">14<span class="muted">/100</span></span>
+<span class="bar"><span class="bar__fill bar__fill--watch bar__w15"></span></span>
 </span>
 </td>
-<td data-label="Confidence">medium</td>
+<td data-label="Confidence">low</td>
 <td data-label="Thesis fit" class="secondary">Not established by the sources</td>
 <td data-label="Product, buyer and workflow">
-<p class="clamp-2">An offline derived description based only on the supplied evidence.</p>
-<p class="cell-note clamp-1"><span class="meta-label">Buyer</span> Derived from the supplied evidence.</p>
-<p class="cell-note clamp-1"><span class="meta-label">Workflow</span> Derived from the supplied evidence.</p>
+<p class="clamp-2">The dossier provides no reliable evidence of what gibsonai.com&#39;s product actually does. The company one-liner suggests a customer support AI agent with memory, but the supplied sources describing a &#34;company page&#34; actually describe a different company (memorilabs.ai), and the only source tied to the candidate is a low-engagement Hacker News submission with no product detail.</p>
+<p class="cell-note clamp-1"><span class="meta-label">Buyer</span> Not established</p>
+<p class="cell-note clamp-1"><span class="meta-label">Workflow</span> Not established</p>
 </td>
 <td data-label="Context" class="secondary">
-<p class="cell-note">Max 82/100</p>
+<p class="cell-note">Max 48/100</p>
+<p class="cell-note">Meeting out of reach</p>
+<span class="chip chip--flag">No usable evidence</span>
 <span class="chip chip--flag">Policy override</span>
 </td>
 </tr>
-<tr data-company="frontdeskly">
+<tr data-company="regulance-io">
 <td data-label="Rank" class="rank">4</td>
 <td data-label="Company">
-<a class="company-name" href="companies/frontdeskly.html">Frontdeskly</a>
+<a class="company-name" href="companies/regulance-io.html">regulance.io</a>
 <p class="cell-note">
-<a href="companies/frontdeskly.html">View analysis</a>
-<span class="dot">·</span> <a class="external" href="https://frontdeskly.example/" rel="noopener noreferrer nofollow">Website</a>
+<a href="companies/regulance-io.html">View analysis</a>
+<span class="dot">·</span> <a class="external" href="https://regulance.io/" rel="noopener noreferrer nofollow">Website</a>
 </p>
 </td>
 <td data-label="Call">
-<span class="badge badge--pass">Pass</span>
+<span class="badge badge--watch">Watch</span>
+<p class="cell-note">no usable evidence</p>
 </td>
 <td data-label="Score">
 <span class="score-cell">
-<span class="score-value">41<span class="muted">/100</span></span>
-<span class="bar"><span class="bar__fill bar__fill--pass bar__w40"></span></span>
+<span class="score-value">14<span class="muted">/100</span></span>
+<span class="bar"><span class="bar__fill bar__fill--watch bar__w15"></span></span>
 </span>
 </td>
-<td data-label="Confidence">medium</td>
+<td data-label="Confidence">low</td>
 <td data-label="Thesis fit" class="secondary">Not established by the sources</td>
 <td data-label="Product, buyer and workflow">
-<p class="clamp-2">An offline derived description based only on the supplied evidence.</p>
-<p class="cell-note clamp-1"><span class="meta-label">Buyer</span> Derived from the supplied evidence.</p>
-<p class="cell-note clamp-1"><span class="meta-label">Workflow</span> Derived from the supplied evidence.</p>
+<p class="clamp-2">The dossier could not establish what regulance.io&#39;s product actually does. The one-liner suggests &#34;AI compliance automation for startups and lean teams,&#34; but the supplied company page source was mismatched (unrelated Vietnamese betting content) and no usable product detail was extracted.</p>
+<p class="cell-note clamp-1"><span class="meta-label">Buyer</span> Not established</p>
+<p class="cell-note clamp-1"><span class="meta-label">Workflow</span> Not established</p>
 </td>
 <td data-label="Context" class="secondary">
-<p class="cell-note">Max 82/100</p>
+<p class="cell-note">Max 48/100</p>
+<p class="cell-note">Meeting out of reach</p>
+<span class="chip chip--flag">No usable evidence</span>
 <span class="chip chip--flag">Policy override</span>
 </td>
 </tr>
-<tr data-company="ledgerpilot">
+<tr data-company="supportmatic">
 <td data-label="Rank" class="rank">5</td>
 <td data-label="Company">
-<a class="company-name" href="companies/ledgerpilot.html">LedgerPilot</a>
+<a class="company-name" href="companies/supportmatic.html">SupportMatic</a>
 <p class="cell-note">
-<a href="companies/ledgerpilot.html">View analysis</a>
-<span class="dot">·</span> <a class="external" href="https://ledgerpilot.example/" rel="noopener noreferrer nofollow">Website</a>
+<a href="companies/supportmatic.html">View analysis</a>
+<span class="dot">·</span> <a class="external" href="https://supportmatic.co/" rel="noopener noreferrer nofollow">Website</a>
 </p>
 </td>
 <td data-label="Call">
-<span class="badge badge--pass">Pass</span>
+<span class="badge badge--watch">Watch</span>
+<p class="cell-note">needs research</p>
 </td>
 <td data-label="Score">
 <span class="score-cell">
-<span class="score-value">41<span class="muted">/100</span></span>
-<span class="bar"><span class="bar__fill bar__fill--pass bar__w40"></span></span>
+<span class="score-value">10<span class="muted">/100</span></span>
+<span class="bar"><span class="bar__fill bar__fill--watch bar__w10"></span></span>
 </span>
 </td>
-<td data-label="Confidence">medium</td>
+<td data-label="Confidence">low</td>
 <td data-label="Thesis fit" class="secondary">Not established by the sources</td>
 <td data-label="Product, buyer and workflow">
-<p class="clamp-2">An offline derived description based only on the supplied evidence.</p>
-<p class="cell-note clamp-1"><span class="meta-label">Buyer</span> Derived from the supplied evidence.</p>
-<p class="cell-note clamp-1"><span class="meta-label">Workflow</span> Derived from the supplied evidence.</p>
+<p class="clamp-2">The one-liner describes an &#34;AI agent for email customer support,&#34; but the dossier provides no substantive detail on what the product does, how it works, or its buyer, since the company website returned only a parked-domain placeholder.</p>
+<p class="cell-note clamp-1"><span class="meta-label">Buyer</span> Not established</p>
+<p class="cell-note clamp-1"><span class="meta-label">Workflow</span> Not established</p>
 </td>
 <td data-label="Context" class="secondary">
-<p class="cell-note">Max 82/100</p>
+<p class="cell-note">Max 50/100</p>
+<p class="cell-note">Meeting out of reach</p>
+<span class="chip chip--flag">Evidence shortfall</span>
 <span class="chip chip--flag">Policy override</span>
 </td>
 </tr>
-<tr data-company="permitpath">
+<tr data-company="ai-agents-for-customer-support">
 <td data-label="Rank" class="rank">6</td>
 <td data-label="Company">
-<a class="company-name" href="companies/permitpath.html">PermitPath</a>
+<a class="company-name" href="companies/ai-agents-for-customer-support.html">AI Agents for Customer Support</a>
 <p class="cell-note">
-<a href="companies/permitpath.html">View analysis</a>
-<span class="dot">·</span> <a class="external" href="https://permitpath.example/" rel="noopener noreferrer nofollow">Website</a>
+<a href="companies/ai-agents-for-customer-support.html">View analysis</a>
+<span class="dot">·</span> <a class="external" href="https://www.sparrowdesk.com/" rel="noopener noreferrer nofollow">Website</a>
 </p>
 </td>
 <td data-label="Call">
@@ -293,29 +308,30 @@
 </td>
 <td data-label="Score">
 <span class="score-cell">
-<span class="score-value">41<span class="muted">/100</span></span>
+<span class="score-value">42<span class="muted">/100</span></span>
 <span class="bar"><span class="bar__fill bar__fill--pass bar__w40"></span></span>
 </span>
 </td>
 <td data-label="Confidence">medium</td>
-<td data-label="Thesis fit" class="secondary">Not established by the sources</td>
+<td data-label="Thesis fit" class="secondary">Aligned with the thesis</td>
 <td data-label="Product, buyer and workflow">
-<p class="clamp-2">An offline derived description based only on the supplied evidence.</p>
-<p class="cell-note clamp-1"><span class="meta-label">Buyer</span> Derived from the supplied evidence.</p>
-<p class="cell-note clamp-1"><span class="meta-label">Workflow</span> Derived from the supplied evidence.</p>
+<p class="clamp-2">An AI support agent (Zoona) that auto-resolves customer support tickets across email, chat, WhatsApp and Slack, trained on existing help docs/notion/website content, with built-in CSAT surveys, tiered per-agent pricing, and SOC2/GDPR compliance claims.</p>
+<p class="cell-note clamp-1"><span class="meta-label">Buyer</span> Not established</p>
+<p class="cell-note clamp-1"><span class="meta-label">Workflow</span> Not established</p>
 </td>
 <td data-label="Context" class="secondary">
-<p class="cell-note">Max 82/100</p>
+<p class="cell-note">Max 68/100</p>
+<p class="cell-note">Meeting out of reach</p>
 <span class="chip chip--flag">Policy override</span>
 </td>
 </tr>
-<tr data-company="quotecrate">
+<tr data-company="heydeacon">
 <td data-label="Rank" class="rank">7</td>
 <td data-label="Company">
-<a class="company-name" href="companies/quotecrate.html">Quotecrate</a>
+<a class="company-name" href="companies/heydeacon.html">HeyDeacon</a>
 <p class="cell-note">
-<a href="companies/quotecrate.html">View analysis</a>
-<span class="dot">·</span> <a class="external" href="https://quotecrate.example/" rel="noopener noreferrer nofollow">Website</a>
+<a href="companies/heydeacon.html">View analysis</a>
+<span class="dot">·</span> <a class="external" href="https://heydeacon.com/" rel="noopener noreferrer nofollow">Website</a>
 </p>
 </td>
 <td data-label="Call">
@@ -323,29 +339,29 @@
 </td>
 <td data-label="Score">
 <span class="score-cell">
-<span class="score-value">41<span class="muted">/100</span></span>
+<span class="score-value">39<span class="muted">/100</span></span>
 <span class="bar"><span class="bar__fill bar__fill--pass bar__w40"></span></span>
 </span>
 </td>
 <td data-label="Confidence">medium</td>
-<td data-label="Thesis fit" class="secondary">Not established by the sources</td>
+<td data-label="Thesis fit" class="secondary">Adjacent to the thesis</td>
 <td data-label="Product, buyer and workflow">
-<p class="clamp-2">An offline derived description based only on the supplied evidence.</p>
-<p class="cell-note clamp-1"><span class="meta-label">Buyer</span> Derived from the supplied evidence.</p>
-<p class="cell-note clamp-1"><span class="meta-label">Workflow</span> Derived from the supplied evidence.</p>
+<p class="clamp-2">HeyDeacon (Deacon) is an AI customer support agent for SaaS founders: it answers user questions, onboards users, and surfaces feedback/knowledge gaps by ingesting documentation, website content and how-to videos. It installs via a one-line script, scores its own answers for validity against the knowledge base, and captures visitor details/escalates when it cannot answer. Pricing is usage-based with a free tier and Starter ($40/mo)/Growth ($120/mo) paid tiers.</p>
+<p class="cell-note clamp-1"><span class="meta-label">Buyer</span> Not established</p>
+<p class="cell-note clamp-1"><span class="meta-label">Workflow</span> Not established</p>
 </td>
 <td data-label="Context" class="secondary">
-<p class="cell-note">Max 82/100</p>
-<span class="chip chip--flag">Policy override</span>
+<p class="cell-note">Max 65/100</p>
+<p class="cell-note">Meeting out of reach</p>
 </td>
 </tr>
-<tr data-company="rotamesh">
+<tr data-company="luca">
 <td data-label="Rank" class="rank">8</td>
 <td data-label="Company">
-<a class="company-name" href="companies/rotamesh.html">Rotamesh</a>
+<a class="company-name" href="companies/luca.html">Luca</a>
 <p class="cell-note">
-<a href="companies/rotamesh.html">View analysis</a>
-<span class="dot">·</span> <a class="external" href="https://rotamesh.example/" rel="noopener noreferrer nofollow">Website</a>
+<a href="companies/luca.html">View analysis</a>
+<span class="dot">·</span> <a class="external" href="https://www.leapfin.com/" rel="noopener noreferrer nofollow">Website</a>
 </p>
 </td>
 <td data-label="Call">
@@ -353,29 +369,60 @@
 </td>
 <td data-label="Score">
 <span class="score-cell">
-<span class="score-value">41<span class="muted">/100</span></span>
+<span class="score-value">39<span class="muted">/100</span></span>
 <span class="bar"><span class="bar__fill bar__fill--pass bar__w40"></span></span>
 </span>
 </td>
 <td data-label="Confidence">medium</td>
-<td data-label="Thesis fit" class="secondary">Not established by the sources</td>
+<td data-label="Thesis fit" class="secondary">Adjacent to the thesis</td>
 <td data-label="Product, buyer and workflow">
-<p class="clamp-2">An offline derived description based only on the supplied evidence.</p>
-<p class="cell-note clamp-1"><span class="meta-label">Buyer</span> Derived from the supplied evidence.</p>
-<p class="cell-note clamp-1"><span class="meta-label">Workflow</span> Derived from the supplied evidence.</p>
+<p class="clamp-2">Luca is an AI agent from Leapfin that lets finance teams query, analyze and report on financial data using natural-language prompts, and build accounting automation workflows (e.g., order-to-cash, revenue recognition), standardizing data from sources like Stripe, Salesforce and NetSuite into a universal accounting schema, with a deterministic execution layer designed to avoid LLM hallucination in financial calculations.</p>
+<p class="cell-note clamp-1"><span class="meta-label">Buyer</span> Not established</p>
+<p class="cell-note clamp-1"><span class="meta-label">Workflow</span> Not established</p>
 </td>
 <td data-label="Context" class="secondary">
-<p class="cell-note">Max 82/100</p>
+<p class="cell-note">Max 67/100</p>
+<p class="cell-note">Meeting out of reach</p>
+</td>
+</tr>
+<tr data-company="drafting-ai">
+<td data-label="Rank" class="rank">9</td>
+<td data-label="Company">
+<a class="company-name" href="companies/drafting-ai.html">Drafting AI</a>
+<p class="cell-note">
+<a href="companies/drafting-ai.html">View analysis</a>
+<span class="dot">·</span> <a class="external" href="https://getdrafting.com/" rel="noopener noreferrer nofollow">Website</a>
+</p>
+</td>
+<td data-label="Call">
+<span class="badge badge--pass">Pass</span>
+</td>
+<td data-label="Score">
+<span class="score-cell">
+<span class="score-value">35<span class="muted">/100</span></span>
+<span class="bar"><span class="bar__fill bar__fill--pass bar__w35"></span></span>
+</span>
+</td>
+<td data-label="Confidence">medium</td>
+<td data-label="Thesis fit" class="secondary">Adjacent to the thesis</td>
+<td data-label="Product, buyer and workflow">
+<p class="clamp-2">Drafting AI is a browser-based tool that lets ops/CX teams define email-triggered workflows where an AI drafts responses/actions and a human reviews or completes them, with support for incrementally expanding automation scope over time.</p>
+<p class="cell-note clamp-1"><span class="meta-label">Buyer</span> Not established</p>
+<p class="cell-note clamp-1"><span class="meta-label">Workflow</span> Not established</p>
+</td>
+<td data-label="Context" class="secondary">
+<p class="cell-note">Max 65/100</p>
+<p class="cell-note">Meeting out of reach</p>
 <span class="chip chip--flag">Policy override</span>
 </td>
 </tr>
-<tr data-company="stockmind">
-<td data-label="Rank" class="rank">9</td>
+<tr data-company="mcp-server-for-appointment-booking">
+<td data-label="Rank" class="rank">10</td>
 <td data-label="Company">
-<a class="company-name" href="companies/stockmind.html">Stockmind</a>
+<a class="company-name" href="companies/mcp-server-for-appointment-booking.html">MCP Server for Appointment Booking</a>
 <p class="cell-note">
-<a href="companies/stockmind.html">View analysis</a>
-<span class="dot">·</span> <a class="external" href="https://stockmind-io.example/" rel="noopener noreferrer nofollow">Website</a>
+<a href="companies/mcp-server-for-appointment-booking.html">View analysis</a>
+<span class="dot">·</span> <a class="external" href="https://blog.makeplans.com/" rel="noopener noreferrer nofollow">Website</a>
 </p>
 </td>
 <td data-label="Call">
@@ -383,20 +430,171 @@
 </td>
 <td data-label="Score">
 <span class="score-cell">
-<span class="score-value">41<span class="muted">/100</span></span>
-<span class="bar"><span class="bar__fill bar__fill--pass bar__w40"></span></span>
+<span class="score-value">34<span class="muted">/100</span></span>
+<span class="bar"><span class="bar__fill bar__fill--pass bar__w35"></span></span>
+</span>
+</td>
+<td data-label="Confidence">medium</td>
+<td data-label="Thesis fit" class="secondary">Adjacent to the thesis</td>
+<td data-label="Product, buyer and workflow">
+<p class="clamp-2">MakePlans is an existing appointment booking and event registration platform (with API and integrations) that has added an MCP (Model Context Protocol) server, allowing AI assistants like Claude or ChatGPT to check availability, list services, look up customers, and create/cancel bookings on behalf of the business.</p>
+<p class="cell-note clamp-1"><span class="meta-label">Buyer</span> Not established</p>
+<p class="cell-note clamp-1"><span class="meta-label">Workflow</span> Not established</p>
+</td>
+<td data-label="Context" class="secondary">
+<p class="cell-note">Max 72/100</p>
+<p class="cell-note">Meeting out of reach</p>
+</td>
+</tr>
+<tr data-company="ticketdesk-ai">
+<td data-label="Rank" class="rank">11</td>
+<td data-label="Company">
+<a class="company-name" href="companies/ticketdesk-ai.html">ticketdesk.ai</a>
+<p class="cell-note">
+<a href="companies/ticketdesk-ai.html">View analysis</a>
+<span class="dot">·</span> <a class="external" href="https://ticketdesk.ai/" rel="noopener noreferrer nofollow">Website</a>
+</p>
+</td>
+<td data-label="Call">
+<span class="badge badge--pass">Pass</span>
+</td>
+<td data-label="Score">
+<span class="score-cell">
+<span class="score-value">34<span class="muted">/100</span></span>
+<span class="bar"><span class="bar__fill bar__fill--pass bar__w35"></span></span>
+</span>
+</td>
+<td data-label="Confidence">medium</td>
+<td data-label="Thesis fit" class="secondary">Adjacent to the thesis</td>
+<td data-label="Product, buyer and workflow">
+<p class="clamp-2">Ticketdesk.ai sells AI agents that automatically handle customer support tickets over chat and email, learning from documentation, routing complex issues to humans, with claimed 70% autonomous resolution. It has tiered SaaS pricing ($29-$249/mo) with a 14-day free trial, and features like canned responses, multiple inboxes, API access, and an embeddable widget.</p>
+<p class="cell-note clamp-1"><span class="meta-label">Buyer</span> Not established</p>
+<p class="cell-note clamp-1"><span class="meta-label">Workflow</span> Not established</p>
+</td>
+<td data-label="Context" class="secondary">
+<p class="cell-note">Max 65/100</p>
+<p class="cell-note">Meeting out of reach</p>
+</td>
+</tr>
+<tr data-company="recursive">
+<td data-label="Rank" class="rank">12</td>
+<td data-label="Company">
+<a class="company-name" href="companies/recursive.html">Recursive</a>
+<p class="cell-note">
+<a href="companies/recursive.html">View analysis</a>
+<span class="dot">·</span> <a class="external" href="https://recursive.support/" rel="noopener noreferrer nofollow">Website</a>
+</p>
+</td>
+<td data-label="Call">
+<span class="badge badge--pass">Pass</span>
+</td>
+<td data-label="Score">
+<span class="score-cell">
+<span class="score-value">29<span class="muted">/100</span></span>
+<span class="bar"><span class="bar__fill bar__fill--pass bar__w30"></span></span>
+</span>
+</td>
+<td data-label="Confidence">medium</td>
+<td data-label="Thesis fit" class="secondary">Adjacent to the thesis</td>
+<td data-label="Product, buyer and workflow">
+<p class="clamp-2">Recursive builds AI chat agents that answer customer support questions for small businesses by using the business&#39;s existing documentation, accessible via a chat widget and programmatically by other AI agents. It is priced from $49/month with no setup fee.</p>
+<p class="cell-note clamp-1"><span class="meta-label">Buyer</span> Not established</p>
+<p class="cell-note clamp-1"><span class="meta-label">Workflow</span> Not established</p>
+</td>
+<td data-label="Context" class="secondary">
+<p class="cell-note">Max 65/100</p>
+<p class="cell-note">Meeting out of reach</p>
+</td>
+</tr>
+<tr data-company="helphubassistant-pages-dev">
+<td data-label="Rank" class="rank">13</td>
+<td data-label="Company">
+<a class="company-name" href="companies/helphubassistant-pages-dev.html">helphubassistant.pages.dev</a>
+<p class="cell-note">
+<a href="companies/helphubassistant-pages-dev.html">View analysis</a>
+<span class="dot">·</span> <a class="external" href="https://helphubassistant.pages.dev/" rel="noopener noreferrer nofollow">Website</a>
+</p>
+</td>
+<td data-label="Call">
+<span class="badge badge--pass">Pass</span>
+</td>
+<td data-label="Score">
+<span class="score-cell">
+<span class="score-value">28<span class="muted">/100</span></span>
+<span class="bar"><span class="bar__fill bar__fill--pass bar__w30"></span></span>
+</span>
+</td>
+<td data-label="Confidence">medium</td>
+<td data-label="Thesis fit" class="secondary">Adjacent to the thesis</td>
+<td data-label="Product, buyer and workflow">
+<p class="clamp-2">An AI chatbot for small business customer support, offering 24/7 automated responses, no-code setup, payment integration (PayPal/Stripe), and a live demo.</p>
+<p class="cell-note clamp-1"><span class="meta-label">Buyer</span> Not established</p>
+<p class="cell-note clamp-1"><span class="meta-label">Workflow</span> Not established</p>
+</td>
+<td data-label="Context" class="secondary">
+<p class="cell-note">Max 62/100</p>
+<p class="cell-note">Meeting out of reach</p>
+</td>
+</tr>
+<tr data-company="n8n-io">
+<td data-label="Rank" class="rank">14</td>
+<td data-label="Company">
+<a class="company-name" href="companies/n8n-io.html">n8n.io</a>
+<p class="cell-note">
+<a href="companies/n8n-io.html">View analysis</a>
+<span class="dot">·</span> <a class="external" href="https://n8n.io/" rel="noopener noreferrer nofollow">Website</a>
+</p>
+</td>
+<td data-label="Call">
+<span class="badge badge--pass">Pass</span>
+<p class="cell-note">outside thesis</p>
+</td>
+<td data-label="Score">
+<span class="score-cell">
+<span class="score-value">28<span class="muted">/100</span></span>
+<span class="bar"><span class="bar__fill bar__fill--pass bar__w30"></span></span>
+</span>
+</td>
+<td data-label="Confidence">low</td>
+<td data-label="Thesis fit" class="secondary">Outside the thesis, on evidence</td>
+<td data-label="Product, buyer and workflow">
+<p class="clamp-2">n8n is a general-purpose workflow automation platform (code + no-code) with 400+ integrations, self-hosted or cloud deployment, targeted at technical teams building automations. The candidate&#39;s one-liner (&#34;automated blog CPR for dead startup blogs&#34;) appears to reference an unrelated, low-engagement Show HN post and a third-party marketplace workflow template sold on n8n.io, not a distinct product built by an &#34;n8n-io&#34; team.</p>
+<p class="cell-note clamp-1"><span class="meta-label">Buyer</span> Not established</p>
+<p class="cell-note clamp-1"><span class="meta-label">Workflow</span> Not established</p>
+</td>
+<td data-label="Context" class="secondary">
+<p class="cell-note">Max 66/100</p>
+<p class="cell-note">Meeting out of reach</p>
+</td>
+</tr>
+<tr data-company="specx">
+<td data-label="Rank" class="rank">15</td>
+<td data-label="Company">
+<a class="company-name" href="companies/specx.html">SpecX</a>
+<p class="cell-note">
+<a href="companies/specx.html">View analysis</a>
+<span class="dot">·</span> <a class="external" href="https://redoxsoft.com/" rel="noopener noreferrer nofollow">Website</a>
+</p>
+</td>
+<td data-label="Call">
+<span class="badge badge--pass">Pass</span>
+</td>
+<td data-label="Score">
+<span class="score-cell">
+<span class="score-value">21<span class="muted">/100</span></span>
+<span class="bar"><span class="bar__fill bar__fill--pass bar__w20"></span></span>
 </span>
 </td>
 <td data-label="Confidence">medium</td>
 <td data-label="Thesis fit" class="secondary">Not established by the sources</td>
 <td data-label="Product, buyer and workflow">
-<p class="clamp-2">An offline derived description based only on the supplied evidence.</p>
-<p class="cell-note clamp-1"><span class="meta-label">Buyer</span> Derived from the supplied evidence.</p>
-<p class="cell-note clamp-1"><span class="meta-label">Workflow</span> Derived from the supplied evidence.</p>
+<p class="clamp-2">SpecX (via redoxsoft.com) appears to be a tool that turns a team&#39;s documented knowledge and processes into &#34;AI work&#34; that can be reviewed, trusted, and rerun by the team - essentially workflow automation for AI agents. Beyond this single tagline, no concrete feature, integration, pricing, or delivery detail is available.</p>
+<p class="cell-note clamp-1"><span class="meta-label">Buyer</span> Not established</p>
+<p class="cell-note clamp-1"><span class="meta-label">Workflow</span> Not established</p>
 </td>
 <td data-label="Context" class="secondary">
-<p class="cell-note">Max 82/100</p>
-<span class="chip chip--flag">Policy override</span>
+<p class="cell-note">Max 53/100</p>
+<p class="cell-note">Meeting out of reach</p>
 </td>
 </tr>
 </tbody>
@@ -423,8 +621,8 @@
 <div class="disclosure__body">
 <ul class="rule-list">
 <li>No candidate reached the take-a-meeting band at 80/100.</li>
-<li>Across 9 analysed candidate(s), the 63 scored dimension slots were assessed as: 36 supported, 0 partially supported, 0 contradicted, 27 not assessable.</li>
-<li>For 0 of 9 candidate(s) the recorded assessment statuses capped the achievable total below 80 before any judgement about the company; the highest achievable total was 82/100.</li>
+<li>Across 15 analysed candidate(s), the 105 scored dimension slots were assessed as: 8 supported, 30 partially supported, 4 contradicted, 63 not assessable.</li>
+<li>For 15 of 15 candidate(s) the recorded assessment statuses capped the achievable total below 80 before any judgement about the company; the highest achievable total was 72/100.</li>
 <li>No score was raised to produce a recommendation.</li>
 </ul>
 </div>
@@ -437,7 +635,7 @@
 <p>Generated by VC Scout from persisted run artifacts. Scores are recomputed in Python from the analysis model&#39;s per-dimension components; research confidence and the final recommendation are produced by deterministic policy, not by a model.</p>
 </div>
 </footer>
-<script type="application/json" id="vcs-filter-data">[{"call":"pass","confidence":"medium","fit":"not","id":"agentkit-core","name":"agentkit core","rank":1,"score":41,"text":"agentkit core agentkit-core an offline derived description based only on the supplied evidence. derived from the supplied evidence. derived from the supplied evidence. not established by the sources"},{"call":"pass","confidence":"medium","fit":"not","id":"claimlane","name":"claimlane","rank":2,"score":41,"text":"claimlane claimlane an offline derived description based only on the supplied evidence. derived from the supplied evidence. derived from the supplied evidence. not established by the sources"},{"call":"pass","confidence":"medium","fit":"not","id":"deskloop","name":"deskloop","rank":3,"score":41,"text":"deskloop deskloop an offline derived description based only on the supplied evidence. derived from the supplied evidence. derived from the supplied evidence. not established by the sources"},{"call":"pass","confidence":"medium","fit":"not","id":"frontdeskly","name":"frontdeskly","rank":4,"score":41,"text":"frontdeskly frontdeskly an offline derived description based only on the supplied evidence. derived from the supplied evidence. derived from the supplied evidence. not established by the sources"},{"call":"pass","confidence":"medium","fit":"not","id":"ledgerpilot","name":"ledgerpilot","rank":5,"score":41,"text":"ledgerpilot ledgerpilot an offline derived description based only on the supplied evidence. derived from the supplied evidence. derived from the supplied evidence. not established by the sources"},{"call":"pass","confidence":"medium","fit":"not","id":"permitpath","name":"permitpath","rank":6,"score":41,"text":"permitpath permitpath an offline derived description based only on the supplied evidence. derived from the supplied evidence. derived from the supplied evidence. not established by the sources"},{"call":"pass","confidence":"medium","fit":"not","id":"quotecrate","name":"quotecrate","rank":7,"score":41,"text":"quotecrate quotecrate an offline derived description based only on the supplied evidence. derived from the supplied evidence. derived from the supplied evidence. not established by the sources"},{"call":"pass","confidence":"medium","fit":"not","id":"rotamesh","name":"rotamesh","rank":8,"score":41,"text":"rotamesh rotamesh an offline derived description based only on the supplied evidence. derived from the supplied evidence. derived from the supplied evidence. not established by the sources"},{"call":"pass","confidence":"medium","fit":"not","id":"stockmind","name":"stockmind","rank":9,"score":41,"text":"stockmind stockmind an offline derived description based only on the supplied evidence. derived from the supplied evidence. derived from the supplied evidence. not established by the sources"}]</script>
+<script type="application/json" id="vcs-filter-data">[{"call":"watch","confidence":"low","fit":"not","id":"dooza-desk","name":"dooza desk","rank":1,"score":26,"text":"dooza desk dooza-desk dooza desk is described as ai-native customer support software aimed at small teams, currently offered via free pilots. no further product detail is available. not established by the sources not established by the sources not established by the sources"},{"call":"watch","confidence":"low","fit":"not","id":"inboto","name":"inboto","rank":2,"score":18,"text":"inboto inboto inboto is described as an ai agent for handling email-based customer support, per a show hn launch title. no further product detail, website content, or feature description is available in the dossier. not established by the sources not established by the sources not established by the sources"},{"call":"watch","confidence":"low","fit":"not","id":"gibsonai-com","name":"gibsonai.com","rank":3,"score":14,"text":"gibsonai.com gibsonai-com the dossier provides no reliable evidence of what gibsonai.com's product actually does. the company one-liner suggests a customer support ai agent with memory, but the supplied sources describing a \"company page\" actually describe a different company (memorilabs.ai), and the only source tied to the candidate is a low-engagement hacker news submission with no product detail. not established by the sources not established by the sources not established by the sources"},{"call":"watch","confidence":"low","fit":"not","id":"regulance-io","name":"regulance.io","rank":4,"score":14,"text":"regulance.io regulance-io the dossier could not establish what regulance.io's product actually does. the one-liner suggests \"ai compliance automation for startups and lean teams,\" but the supplied company page source was mismatched (unrelated vietnamese betting content) and no usable product detail was extracted. not established by the sources not established by the sources not established by the sources"},{"call":"watch","confidence":"low","fit":"not","id":"supportmatic","name":"supportmatic","rank":5,"score":10,"text":"supportmatic supportmatic the one-liner describes an \"ai agent for email customer support,\" but the dossier provides no substantive detail on what the product does, how it works, or its buyer, since the company website returned only a parked-domain placeholder. not established by the sources not established by the sources not established by the sources"},{"call":"pass","confidence":"medium","fit":"aligned","id":"ai-agents-for-customer-support","name":"ai agents for customer support","rank":6,"score":42,"text":"ai agents for customer support ai-agents-for-customer-support an ai support agent (zoona) that auto-resolves customer support tickets across email, chat, whatsapp and slack, trained on existing help docs/notion/website content, with built-in csat surveys, tiered per-agent pricing, and soc2/gdpr compliance claims. not established by the sources not established by the sources aligned with the thesis"},{"call":"pass","confidence":"medium","fit":"adjacent","id":"heydeacon","name":"heydeacon","rank":7,"score":39,"text":"heydeacon heydeacon heydeacon (deacon) is an ai customer support agent for saas founders: it answers user questions, onboards users, and surfaces feedback/knowledge gaps by ingesting documentation, website content and how-to videos. it installs via a one-line script, scores its own answers for validity against the knowledge base, and captures visitor details/escalates when it cannot answer. pricing is usage-based with a free tier and starter ($40/mo)/growth ($120/mo) paid tiers. not established by the sources not established by the sources adjacent to the thesis"},{"call":"pass","confidence":"medium","fit":"adjacent","id":"luca","name":"luca","rank":8,"score":39,"text":"luca luca luca is an ai agent from leapfin that lets finance teams query, analyze and report on financial data using natural-language prompts, and build accounting automation workflows (e.g., order-to-cash, revenue recognition), standardizing data from sources like stripe, salesforce and netsuite into a universal accounting schema, with a deterministic execution layer designed to avoid llm hallucination in financial calculations. not established by the sources not established by the sources adjacent to the thesis"},{"call":"pass","confidence":"medium","fit":"adjacent","id":"drafting-ai","name":"drafting ai","rank":9,"score":35,"text":"drafting ai drafting-ai drafting ai is a browser-based tool that lets ops/cx teams define email-triggered workflows where an ai drafts responses/actions and a human reviews or completes them, with support for incrementally expanding automation scope over time. not established by the sources not established by the sources adjacent to the thesis"},{"call":"pass","confidence":"medium","fit":"adjacent","id":"mcp-server-for-appointment-booking","name":"mcp server for appointment booking","rank":10,"score":34,"text":"mcp server for appointment booking mcp-server-for-appointment-booking makeplans is an existing appointment booking and event registration platform (with api and integrations) that has added an mcp (model context protocol) server, allowing ai assistants like claude or chatgpt to check availability, list services, look up customers, and create/cancel bookings on behalf of the business. not established by the sources not established by the sources adjacent to the thesis"},{"call":"pass","confidence":"medium","fit":"adjacent","id":"ticketdesk-ai","name":"ticketdesk.ai","rank":11,"score":34,"text":"ticketdesk.ai ticketdesk-ai ticketdesk.ai sells ai agents that automatically handle customer support tickets over chat and email, learning from documentation, routing complex issues to humans, with claimed 70% autonomous resolution. it has tiered saas pricing ($29-$249/mo) with a 14-day free trial, and features like canned responses, multiple inboxes, api access, and an embeddable widget. not established by the sources not established by the sources adjacent to the thesis"},{"call":"pass","confidence":"medium","fit":"adjacent","id":"recursive","name":"recursive","rank":12,"score":29,"text":"recursive recursive recursive builds ai chat agents that answer customer support questions for small businesses by using the business's existing documentation, accessible via a chat widget and programmatically by other ai agents. it is priced from $49/month with no setup fee. not established by the sources not established by the sources adjacent to the thesis"},{"call":"pass","confidence":"medium","fit":"adjacent","id":"helphubassistant-pages-dev","name":"helphubassistant.pages.dev","rank":13,"score":28,"text":"helphubassistant.pages.dev helphubassistant-pages-dev an ai chatbot for small business customer support, offering 24/7 automated responses, no-code setup, payment integration (paypal/stripe), and a live demo. not established by the sources not established by the sources adjacent to the thesis"},{"call":"pass","confidence":"low","fit":"outside","id":"n8n-io","name":"n8n.io","rank":14,"score":28,"text":"n8n.io n8n-io n8n is a general-purpose workflow automation platform (code + no-code) with 400+ integrations, self-hosted or cloud deployment, targeted at technical teams building automations. the candidate's one-liner (\"automated blog cpr for dead startup blogs\") appears to reference an unrelated, low-engagement show hn post and a third-party marketplace workflow template sold on n8n.io, not a distinct product built by an \"n8n-io\" team. not established by the sources not established by the sources outside the thesis, on evidence"},{"call":"pass","confidence":"medium","fit":"not","id":"specx","name":"specx","rank":15,"score":21,"text":"specx specx specx (via redoxsoft.com) appears to be a tool that turns a team's documented knowledge and processes into \"ai work\" that can be reviewed, trusted, and rerun by the team - essentially workflow automation for ai agents. beyond this single tagline, no concrete feature, integration, pricing, or delivery detail is available. not established by the sources not established by the sources not established by the sources"}]</script>
 <script src="assets/app.js" defer></script>
 </body>
 </html>

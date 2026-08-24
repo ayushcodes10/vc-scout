@@ -1,0 +1,279 @@
+{
+  "claims": [
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "Luca is an AI agent built by Leapfin that lets users query, analyze, and report on financial data using natural language, and build accounting automation workflows.",
+      "claim_id": "ev-d3d5eb9b9e12",
+      "company_id": "luca",
+      "excerpts": [
+        {
+          "excerpt": "Explore, analyze, and report on your financial data using natural language AI prompts.",
+          "source_id": "src-df158ad144a5"
+        },
+        {
+          "excerpt": "Build automated accounting workflows for any scenario in minutes using natural language prompts with Luca 's agentic AI.",
+          "source_id": "src-120f6d1620a5"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-df158ad144a5",
+        "src-120f6d1620a5"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "Leapfin describes an architecture called 'Architect-Builder separation' with a deterministic execution layer intended to avoid the variability/hallucination issues of raw LLMs in financial calculations.",
+      "claim_id": "ev-e47a80dd2dcc",
+      "company_id": "luca",
+      "excerpts": [
+        {
+          "excerpt": "Luca's architecture is built on a principle I call the Architect-Builder separation : a solution-oriented probabilistic AI architect that designs the plan, and a deterministic, mathematical builder that executes it with perfect repeatability at massive scale.",
+          "source_id": "src-3074350251b7"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-3074350251b7"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "Leapfin's platform standardizes data from sources like Stripe, Salesforce, and NetSuite into a universal accounting schema.",
+      "claim_id": "ev-80aaaeec588f",
+      "company_id": "luca",
+      "excerpts": [
+        {
+          "excerpt": "Every data source (Stripe, Salesforce, NetSuite, custom billing systems) gets transformed into a universal accounting schema at ingestion.",
+          "source_id": "src-3074350251b7"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-3074350251b7"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "traction",
+      "caveat": "Single-source company claim on its own blog; not independently verified.",
+      "claim": "The company claims Luca is in production automating order-to-cash accounting workflows for companies processing billions of transactions, though this figure is unverified beyond the company's own blog.",
+      "claim_id": "ev-63f9fcbe1ba6",
+      "company_id": "luca",
+      "excerpts": [
+        {
+          "excerpt": "Luca is in production today, automating complete order-to-cash accounting workflows for companies processing billions of transactions.",
+          "source_id": "src-3074350251b7"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-3074350251b7"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "traction",
+      "caveat": "These are customer quotes curated and published by the company on its own site; not independently verifiable from these sources.",
+      "claim": "Customer testimonials on the homepage cite specific efficiency metrics such as close time reductions (e.g., 90%, 89%, 50%) and volumes (e.g., 700K transactions/month, 1.2M orders/yr), attributed to named individuals with titles.",
+      "claim_id": "ev-86d5d04e1e54",
+      "company_id": "luca",
+      "excerpts": [
+        {
+          "excerpt": "90% reduction in close time 700K transactions per month 3 workbooks & 30+ tabs eliminated",
+          "source_id": "src-df158ad144a5"
+        },
+        {
+          "excerpt": "Automating rev rec for 1.2M orders/yr Transforming fragmented data into insights",
+          "source_id": "src-df158ad144a5"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-df158ad144a5"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "Leapfin states typical implementation takes four to six weeks, with adoption of Luca reducing implementation time toward days.",
+      "claim_id": "ev-b663c663d120",
+      "company_id": "luca",
+      "excerpts": [
+        {
+          "excerpt": "Most Leapfin customers will take four to six weeks to complete implementation.",
+          "source_id": "src-120f6d1620a5"
+        },
+        {
+          "excerpt": "With the adoption of Luca - Leapin's native AI agent - implementation is getting increasingly easier and is rapidly accelerating, reducing implementation time down to days.",
+          "source_id": "src-120f6d1620a5"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-120f6d1620a5"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "traction",
+      "caveat": "Very low engagement; limited signal of community interest or validation.",
+      "claim": "A Show HN post for Luca received minimal community engagement (1 point, 0 comments).",
+      "claim_id": "ev-71c33e4f1906",
+      "company_id": "luca",
+      "excerpts": [
+        {
+          "excerpt": "Recorded signal - hn_points: 1",
+          "source_id": "src-555a4df7483f"
+        },
+        {
+          "excerpt": "Recorded signal - hn_comments: 0",
+          "source_id": "src-555a4df7483f"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-555a4df7483f"
+      ],
+      "verification_status": "community_signal"
+    },
+    {
+      "category": "risk",
+      "caveat": null,
+      "claim": "The company itself acknowledges that raw LLMs used for accounting can produce inconsistent, non-repeatable outputs, which it frames as a compliance risk it built Luca to address.",
+      "claim_id": "ev-d00d65abd013",
+      "company_id": "luca",
+      "excerpts": [
+        {
+          "excerpt": "Three runs. Three different answers. For creative writing, this variability is a feature. For a SOX audit, it's an absolute nightmare.",
+          "source_id": "src-3074350251b7"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-3074350251b7"
+      ],
+      "verification_status": "company_claim"
+    }
+  ],
+  "company_id": "luca",
+  "confidence_inputs": {
+    "claims_by_category": {
+      "product": 4,
+      "risk": 1,
+      "traction": 3
+    },
+    "claims_by_verification": {
+      "community_signal": 1,
+      "company_claim": 7
+    },
+    "claims_total": 8,
+    "conflicts": 0,
+    "distinct_domains": 2,
+    "inferred_claims": 0,
+    "unknowns": 5
+  },
+  "conflicts": [],
+  "generated_at": "2026-08-24T14:01:43.587956Z",
+  "model": "claude-sonnet-5",
+  "prompt_version": "evidence_v1",
+  "provider": "anthropic",
+  "schema_version": "1.1.0",
+  "source_coverage": {
+    "hn_sources": 1,
+    "pages_supplied": 3,
+    "sources_cited": 4,
+    "sources_supplied": 4,
+    "supplied_chars": 18016,
+    "truncated_pages": [
+      "src-120f6d1620a5",
+      "src-3074350251b7",
+      "src-df158ad144a5"
+    ],
+    "website_available": true
+  },
+  "sources": [
+    {
+      "domain": "news.ycombinator.com",
+      "hn_num_comments": 0,
+      "hn_object_id": "45568901",
+      "hn_points": 1,
+      "kind": "hn_story",
+      "published_at": "2025-10-13T14:47:56Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-555a4df7483f",
+      "title": "Show HN: Luca, an AI agent for finance and accounting workflows",
+      "url": "https://news.ycombinator.com/item?id=45568901"
+    },
+    {
+      "domain": "leapfin.com",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T14:01:33.441002Z",
+      "source_id": "src-df158ad144a5",
+      "title": "The AI Infrastructure for Record to Report | Leapfin",
+      "url": "https://www.leapfin.com/"
+    },
+    {
+      "domain": "leapfin.com",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T14:01:33.578051Z",
+      "source_id": "src-3074350251b7",
+      "title": "Building Luca: An AI Agent for Finance and Accounting Workflows That Auditors Actually Trust",
+      "url": "https://www.leapfin.com/blog/building-luca-an-ai-agent-for-finance-and-accounting-workflows-that-auditors-actually-trust"
+    },
+    {
+      "domain": "leapfin.com",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T14:01:34.699580Z",
+      "source_id": "src-120f6d1620a5",
+      "title": "Revenue Recognition and Reconciliation Software Overview | Leapfin",
+      "url": "https://www.leapfin.com/product/overview"
+    }
+  ],
+  "unknowns": [
+    {
+      "category": "team",
+      "question": "Who founded or leads Leapfin/Luca, and what is their background?",
+      "reason": "No source provides founder or team information."
+    },
+    {
+      "category": "market",
+      "question": "What is the size of the market for AI finance/accounting agents, and who are Leapfin's competitors?",
+      "reason": "No market sizing or competitive landscape data supplied."
+    },
+    {
+      "category": "traction",
+      "question": "How many customers use Leapfin/Luca, and what are verified revenue or usage figures?",
+      "reason": "Only customer testimonials and company blog claims are available; no independent verification or aggregate metrics."
+    },
+    {
+      "category": "team",
+      "question": "How large is the company, and when was it founded?",
+      "reason": "Not addressed in any supplied source."
+    },
+    {
+      "category": "risk",
+      "question": "Are there any independently reported issues, security incidents, or audits of Luca's accuracy claims?",
+      "reason": "Only the company's own architecture description is available; no third-party audit or review is present."
+    }
+  ],
+  "warnings": []
+}

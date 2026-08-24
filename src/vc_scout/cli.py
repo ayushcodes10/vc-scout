@@ -931,7 +931,10 @@ def export_demo_command(
         f"{result.memos} memo(s), {result.company_pages} company page(s)."
     )
     if result.trace_company_id:
-        typer.echo(f"AI trace: {result.trace_company_id} (highest-ranked successful analysis).")
+        typer.echo(
+            f"AI trace: {result.trace_company_id} - the richest successful analysis. "
+            "The rule is in ai-trace/README.md."
+        )
     else:
         typer.secho(
             "No AI trace: this run produced no successful analysis.",

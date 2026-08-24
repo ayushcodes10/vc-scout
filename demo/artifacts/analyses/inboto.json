@@ -1,0 +1,255 @@
+{
+  "analysis": {
+    "analysis_warnings": [
+      "Dossier consists of a single Hacker News Show HN title with minimal engagement; no website content was retrieved.",
+      "Most rubric dimensions are not_assessable due to lack of evidence rather than demonstrated weakness."
+    ],
+    "buyer": null,
+    "company_id": "inboto",
+    "competitive_observations": [],
+    "confidence_rationale": [
+      "1 of 1 supplied source(s) were cited by at least one claim.",
+      "2 evidence claim(s) across 2 of 5 categories.",
+      "No page from the company's own website could be read.",
+      "1 of 2 claim(s) are company-authored; 1 come from other voices.",
+      "No finding was identified as corroborated by separate sources.",
+      "5 question(s) were left unanswered."
+    ],
+    "corroborated_findings": [],
+    "generated_at": "2026-08-24T14:05:26.796843Z",
+    "identity_warnings": [],
+    "market_assessment": {
+      "evidence_claim_ids": [],
+      "text": "No information on target customer segment or market size is present in the dossier.",
+      "unknown_references": [
+        "unk-4a0004d08411"
+      ]
+    },
+    "model": "claude-sonnet-5",
+    "model_suggested_recommendation": "pass",
+    "open_questions": [],
+    "plain_language_product": "Inboto is described as an AI agent for handling email-based customer support, per a Show HN launch title. No further product detail, website content, or feature description is available in the dossier.",
+    "product_assessment": {
+      "evidence_claim_ids": [
+        "ev-77a558555902"
+      ],
+      "text": "The only product description is the one-liner from a Show HN title: an AI agent for email customer support. No details on features, integrations, pricing, or delivery model are available.",
+      "unknown_references": [
+        "unk-ae6d4930d567"
+      ]
+    },
+    "prompt_version": "analysis_v2",
+    "provider": "anthropic",
+    "recommendation_changers": [
+      "Verified evidence of paying customers or active usage of Inboto's email support agent",
+      "Founder background and technical capability information",
+      "Product detail on integrations with existing helpdesk/email systems and pricing model"
+    ],
+    "research_confidence": {
+      "components": {
+        "category_span": 0.4,
+        "claim_volume": 0.25,
+        "corroboration": 0.0,
+        "independence": 0.5,
+        "source_coverage": 1.0,
+        "website": 0.0
+      },
+      "level": "low",
+      "missing": [
+        "market",
+        "product",
+        "risk",
+        "team",
+        "traction",
+        "company_website"
+      ],
+      "reasons": [
+        "1 of 1 supplied source(s) were cited by at least one claim.",
+        "2 evidence claim(s) across 2 of 5 categories.",
+        "No page from the company's own website could be read.",
+        "1 of 2 claim(s) are company-authored; 1 come from other voices.",
+        "No finding was identified as corroborated by separate sources.",
+        "5 question(s) were left unanswered."
+      ],
+      "score": 0.305
+    },
+    "risks": [
+      {
+        "evidence_claim_ids": [],
+        "text": "No risk-relevant content was present in the supplied source; risks are unknown rather than assessed.",
+        "unknown_references": [
+          "unk-f675e6fd926e"
+        ]
+      }
+    ],
+    "schema_version": "1.1.0",
+    "score_components": [
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "pain_roi",
+        "evidence_claim_ids": [
+          "ev-77a558555902"
+        ],
+        "maximum": 20,
+        "rationale": "The one-liner names email customer support as the target workflow, which is plausibly recurring, but there is no evidence of cost framing, ROI, or measurability within 30 days.",
+        "score": 4,
+        "unknown_references": [
+          "unk-ae6d4930d567"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "wedge",
+        "evidence_claim_ids": [
+          "ev-77a558555902"
+        ],
+        "maximum": 15,
+        "rationale": "No concrete facts about the product's specific entry point, integrations, pricing, or delivery model are supplied beyond a generic label.",
+        "score": 4,
+        "unknown_references": [
+          "unk-ae6d4930d567"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "distribution",
+        "evidence_claim_ids": [],
+        "maximum": 15,
+        "rationale": "No channel, go-to-market motion, or self-serve availability is described in the dossier.",
+        "score": 2,
+        "unknown_references": [
+          "unk-4a0004d08411",
+          "unk-ae6d4930d567"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "defensibility",
+        "evidence_claim_ids": [],
+        "maximum": 15,
+        "rationale": "No information on proprietary data, integrations, or operational depth is available to assess defensibility.",
+        "score": 2,
+        "unknown_references": [
+          "unk-ae6d4930d567"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "team",
+        "evidence_claim_ids": [],
+        "maximum": 15,
+        "rationale": "No founder or team information is present in the dossier.",
+        "score": 2,
+        "unknown_references": [
+          "unk-4ffc77cf80b5"
+        ]
+      },
+      {
+        "assessment_status": "partially_supported",
+        "caveats": [
+          "Very low engagement; not strong evidence of traction"
+        ],
+        "component": "traction",
+        "evidence_claim_ids": [
+          "ev-9045d06c8b3b"
+        ],
+        "maximum": 10,
+        "rationale": "A Show HN launch is recorded but with minimal engagement (2 points, 1 comment), indicating freshness but very limited public attention or validation.",
+        "score": 2,
+        "unknown_references": [
+          "unk-d3c0a418966c"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "market_timing",
+        "evidence_claim_ids": [],
+        "maximum": 10,
+        "rationale": "No regulatory, technical, or workflow shift is named in the dossier to justify why this is buildable or buyable now.",
+        "score": 2,
+        "unknown_references": [
+          "unk-4a0004d08411"
+        ]
+      }
+    ],
+    "team_assessment": {
+      "evidence_claim_ids": [],
+      "text": "No information on founders or team background is available in the dossier.",
+      "unknown_references": [
+        "unk-4ffc77cf80b5"
+      ]
+    },
+    "thesis_assessment": {
+      "evidence_claim_ids": [
+        "ev-77a558555902"
+      ],
+      "rationale": "Email customer support automation could plausibly be a recurring, revenue-relevant SMB workflow, but the dossier contains no evidence of measurable ROI, integration into a system of record, defensibility, or customer adoption, so fit with the thesis cannot be determined from what is supplied.",
+      "unknown_references": [
+        "unk-ae6d4930d567",
+        "unk-4a0004d08411",
+        "unk-d3c0a418966c"
+      ],
+      "verdict": "undetermined"
+    },
+    "thesis_version": "thesis_v1",
+    "total_score": 18,
+    "workflow": null
+  },
+  "recommendation": {
+    "band": "pass",
+    "band_label": "0-64",
+    "cap_reason": null,
+    "capped": false,
+    "company_id": "inboto",
+    "confidence": {
+      "components": {
+        "category_span": 0.4,
+        "claim_volume": 0.25,
+        "corroboration": 0.0,
+        "independence": 0.5,
+        "source_coverage": 1.0,
+        "website": 0.0
+      },
+      "level": "low",
+      "missing": [
+        "market",
+        "product",
+        "risk",
+        "team",
+        "traction",
+        "company_website"
+      ],
+      "reasons": [
+        "1 of 1 supplied source(s) were cited by at least one claim.",
+        "2 evidence claim(s) across 2 of 5 categories.",
+        "No page from the company's own website could be read.",
+        "1 of 2 claim(s) are company-authored; 1 come from other voices.",
+        "No finding was identified as corroborated by separate sources.",
+        "5 question(s) were left unanswered."
+      ],
+      "score": 0.305
+    },
+    "decided_at": "2026-08-24T14:05:26.796843Z",
+    "decision": "watch",
+    "guardrails_applied": [
+      "insufficient_evidence_watch"
+    ],
+    "model_disagreed": true,
+    "model_suggested": "pass",
+    "policy_version": "2.0.0",
+    "rationale": [
+      "Scored 18/100 against the rubric, which falls in the 0-64 band (pass).",
+      "Research confidence is low (0.30).",
+      "6 dimension(s) could not be assessed from the available evidence: pain_roi, wedge, distribution, defensibility, team, market_timing. Only 10 of 100 points were assessable.",
+      "The score is low, but 6 dimensions were unassessable and research confidence is low, with no evidence that the company sits outside the thesis. That is an evidence shortfall, not a judgment; recommending watch."
+    ],
+    "schema_version": "1.1.0",
+    "total_score": 18
+  }
+}

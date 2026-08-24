@@ -97,22 +97,42 @@ def test_every_link_inside_the_export_resolves(exported: Path) -> None:
     assert checked > 20
 
 
-def test_the_ai_trace_is_the_highest_ranked_successful_candidate(
-    tmp_path: Path,
-) -> None:
+def test_the_ai_trace_is_the_richest_successful_candidate(tmp_path: Path) -> None:
+    """Chosen by evidence weight, not by ranking position and not by name."""
+    from vc_scout.stages.export import MIN_TRACE_CLAIMS
+
     store = RunStore("offline-demo", runs_root=tmp_path / "runs")
     execute(store)
     destination = tmp_path / "demo"
     result = export_demo(store=store, destination=destination)
 
-    recommendation = store.read_recommendation_report()
     analysis = store.read_analysis_report()
-    succeeded = {row.company_id for row in analysis.candidates if row.succeeded}
-    expected = next(c for c in recommendation.ordered_company_ids if c in succeeded)
+    succeeded = [row for row in analysis.candidates if row.succeeded]
+    substantial = [row for row in succeeded if row.evidence_claims >= MIN_TRACE_CLAIMS]
+    expected = sorted(
+        substantial or succeeded,
+        key=lambda row: (-row.evidence_claims, -(row.total_score or 0), row.company_id),
+    )[0]
 
-    assert result.trace_company_id == expected
+    assert result.trace_company_id == expected.company_id
     request = json.loads((destination / "ai-trace" / "selected-request.json").read_text())
-    assert expected in json.dumps(request)
+    assert expected.company_id in json.dumps(request)
+    # It is not merely whichever candidate the ranking happens to lead with.
+    chosen = next(r for r in succeeded if r.company_id == result.trace_company_id)
+    assert chosen.evidence_claims == max(row.evidence_claims for row in succeeded)
+
+
+def test_the_trace_readme_states_why_that_candidate_was_chosen(tmp_path: Path) -> None:
+    store = RunStore("offline-demo", runs_root=tmp_path / "runs")
+    execute(store)
+    destination = tmp_path / "demo"
+    result = export_demo(store=store, destination=destination)
+    readme = (destination / "ai-trace" / "README.md").read_text()
+
+    assert "## Why this candidate" in readme
+    assert "Chosen by rule, not by hand" in readme
+    assert "evidence claims" in readme
+    assert str(result.trace_company_id) in readme
 
 
 def test_the_trace_names_the_provider_prompt_and_validation_outcome(exported: Path) -> None:

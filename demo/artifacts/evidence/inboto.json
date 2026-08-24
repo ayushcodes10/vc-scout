@@ -1,0 +1,116 @@
+{
+  "claims": [
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "Inboto is described as an AI agent for email customer support",
+      "claim_id": "ev-77a558555902",
+      "company_id": "inboto",
+      "excerpts": [
+        {
+          "excerpt": "Show HN: Inboto - AI agent for email customer support",
+          "source_id": "src-3d0d569b7e48"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-3d0d569b7e48"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "traction",
+      "caveat": "Very low engagement; not strong evidence of traction or lack thereof beyond this single launch thread",
+      "claim": "The Show HN launch thread received minimal community engagement (2 points, 1 comment)",
+      "claim_id": "ev-9045d06c8b3b",
+      "company_id": "inboto",
+      "excerpts": [
+        {
+          "excerpt": "The thread has 2 points on Hacker News.",
+          "source_id": "src-3d0d569b7e48"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-3d0d569b7e48"
+      ],
+      "verification_status": "community_signal"
+    }
+  ],
+  "company_id": "inboto",
+  "confidence_inputs": {
+    "claims_by_category": {
+      "product": 1,
+      "traction": 1
+    },
+    "claims_by_verification": {
+      "community_signal": 1,
+      "company_claim": 1
+    },
+    "claims_total": 2,
+    "conflicts": 0,
+    "distinct_domains": 1,
+    "inferred_claims": 0,
+    "unknowns": 5
+  },
+  "conflicts": [],
+  "generated_at": "2026-08-24T14:01:43.587956Z",
+  "model": "claude-sonnet-5",
+  "prompt_version": "evidence_v1",
+  "provider": "anthropic",
+  "schema_version": "1.1.0",
+  "source_coverage": {
+    "hn_sources": 1,
+    "pages_supplied": 0,
+    "sources_cited": 1,
+    "sources_supplied": 1,
+    "supplied_chars": 361,
+    "truncated_pages": [],
+    "website_available": false
+  },
+  "sources": [
+    {
+      "domain": "news.ycombinator.com",
+      "hn_num_comments": 1,
+      "hn_object_id": "43503687",
+      "hn_points": 2,
+      "kind": "hn_story",
+      "published_at": "2025-03-28T10:34:38Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-3d0d569b7e48",
+      "title": "Show HN: Inboto – AI agent for email customer support",
+      "url": "https://news.ycombinator.com/item?id=43503687"
+    }
+  ],
+  "unknowns": [
+    {
+      "category": "team",
+      "question": "Who founded or works at Inboto, and what is their background?",
+      "reason": "No website or team information was retrieved in this run"
+    },
+    {
+      "category": "product",
+      "question": "What specific features or capabilities does the Inboto product have beyond the one-liner?",
+      "reason": "Only a short HN submission title was available; no product page or description"
+    },
+    {
+      "category": "market",
+      "question": "What market or customer segment does Inboto target, and how large is that market?",
+      "reason": "No market information supplied"
+    },
+    {
+      "category": "traction",
+      "question": "Does Inboto have any customers, usage metrics, or revenue?",
+      "reason": "No such data appears in the supplied HN thread"
+    },
+    {
+      "category": "risk",
+      "question": "What risks or limitations does Inboto face?",
+      "reason": "No risk-relevant content was present in the supplied source"
+    }
+  ],
+  "warnings": [
+    "No website page could be read for this company. Evidence is missing, which is not the same as evidence of weakness.",
+    "No website content could be retrieved for this company in this run; all evidence derives from a single Hacker News Show HN thread with minimal engagement (2 points, 1 comment)."
+  ]
+}

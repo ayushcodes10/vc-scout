@@ -1,174 +1,95 @@
 {
   "candidates": [
     {
-      "company_id": "deskloop",
-      "discovered_at": "2026-08-24T13:53:35.943072Z",
+      "company_id": "regulance-io",
+      "discovered_at": "2026-08-24T14:00:27.942374Z",
       "discovered_via_query": "AI customer support and back-office automation for small businesses",
       "discovery_rank": {
         "components": {
-          "engagement": 0.7792,
-          "recency": 1.0,
-          "relevance_ai": 1.0,
-          "relevance_buyer": 0.5,
-          "relevance_workflow": 1.0,
-          "variant": 1.0
-        },
-        "formula_version": "2.0.0",
-        "matched": {
-          "ai": [
-            "agent",
-            "agents",
-            "ai"
-          ],
-          "buyer": [
-            "smb"
-          ],
-          "workflow": [
-            "helpdesk",
-            "support"
-          ]
-        },
-        "quality_score": 0.8786,
-        "relevance_class": "direct",
-        "relevance_score": 0.875
-      },
-      "name": "Deskloop",
-      "notes": [
-        "Discovered via the query-show-hn query variant.",
-        "Relevance classified direct (0.88) from matched terms {'ai': ['agent', 'agents', 'ai'], 'buyer': ['smb'], 'workflow': ['helpdesk', 'support']}."
-      ],
-      "one_liner": "AI support agent that resolves SMB helpdesk tickets",
-      "source_ids": [
-        "src-d0943964a75b",
-        "src-6e6b7e6b094d"
-      ],
-      "traction_signals": [
-        {
-          "kind": "hn_points",
-          "label": "third_party",
-          "numeric_value": 64.0,
-          "observed_at": "2026-08-08T00:00:00Z",
-          "source_ids": [
-            "src-d0943964a75b"
-          ],
-          "unit": null,
-          "value": "64"
-        },
-        {
-          "kind": "hn_comments",
-          "label": "third_party",
-          "numeric_value": 31.0,
-          "observed_at": "2026-08-08T00:00:00Z",
-          "source_ids": [
-            "src-d0943964a75b"
-          ],
-          "unit": null,
-          "value": "31"
-        },
-        {
-          "kind": "launch_date",
-          "label": "third_party",
-          "numeric_value": null,
-          "observed_at": "2026-08-08T00:00:00Z",
-          "source_ids": [
-            "src-d0943964a75b"
-          ],
-          "unit": null,
-          "value": "2026-08-08"
-        }
-      ],
-      "website": "https://deskloop.example/"
-    },
-    {
-      "company_id": "stockmind",
-      "discovered_at": "2026-08-24T13:53:35.943072Z",
-      "discovered_via_query": "AI customer support and back-office automation for small businesses",
-      "discovery_rank": {
-        "components": {
-          "engagement": 0.6639,
-          "recency": 0.9992,
+          "engagement": 0.1767,
+          "recency": 0.7067,
           "relevance_ai": 1.0,
           "relevance_buyer": 1.0,
           "relevance_workflow": 0.5,
-          "variant": 1.0
+          "variant": 0.95
         },
         "formula_version": "2.0.0",
         "matched": {
           "ai": [
-            "agent",
-            "agents"
+            "ai",
+            "automation"
           ],
           "buyer": [
-            "retailer",
-            "retailers"
+            "team",
+            "teams"
           ],
           "workflow": [
-            "inventory"
+            "compliance"
           ]
         },
-        "quality_score": 0.8149,
+        "quality_score": 0.4639,
         "relevance_class": "direct",
         "relevance_score": 0.825
       },
-      "name": "Stockmind",
+      "name": "regulance.io",
       "notes": [
-        "Discovered via the query-show-hn query variant.",
-        "Relevance classified direct (0.82) from matched terms {'ai': ['agent', 'agents'], 'buyer': ['retailer', 'retailers'], 'workflow': ['inventory']}."
+        "Discovered via the intent-business-operations query variant.",
+        "Relevance classified direct (0.82) from matched terms {'ai': ['ai', 'automation'], 'buyer': ['team', 'teams'], 'workflow': ['compliance']}."
       ],
-      "one_liner": "Inventory reorder agent for independent retailers",
+      "one_liner": "AI compliance automation for startups and lean teams",
       "source_ids": [
-        "src-c9b46b008788",
-        "src-b9b98fedfc0f"
+        "src-135a7776ef94",
+        "src-1adfaea63aff"
       ],
       "traction_signals": [
         {
           "kind": "hn_points",
           "label": "third_party",
-          "numeric_value": 37.0,
-          "observed_at": "2026-07-25T00:00:00Z",
+          "numeric_value": 2.0,
+          "observed_at": "2026-01-04T04:50:54Z",
           "source_ids": [
-            "src-c9b46b008788"
+            "src-135a7776ef94"
           ],
           "unit": null,
-          "value": "37"
+          "value": "2"
         },
         {
           "kind": "hn_comments",
           "label": "third_party",
-          "numeric_value": 12.0,
-          "observed_at": "2026-07-25T00:00:00Z",
+          "numeric_value": 0.0,
+          "observed_at": "2026-01-04T04:50:54Z",
           "source_ids": [
-            "src-c9b46b008788"
+            "src-135a7776ef94"
           ],
           "unit": null,
-          "value": "12"
+          "value": "0"
         },
         {
           "kind": "launch_date",
           "label": "third_party",
           "numeric_value": null,
-          "observed_at": "2026-07-25T00:00:00Z",
+          "observed_at": "2026-01-04T04:50:54Z",
           "source_ids": [
-            "src-c9b46b008788"
+            "src-135a7776ef94"
           ],
           "unit": null,
-          "value": "2026-07-25"
+          "value": "2026-01-04"
         }
       ],
-      "website": "https://stockmind-io.example/"
+      "website": "https://regulance.io/"
     },
     {
-      "company_id": "ledgerpilot",
-      "discovered_at": "2026-08-24T13:53:35.943072Z",
+      "company_id": "recursive",
+      "discovered_at": "2026-08-24T14:00:27.942374Z",
       "discovered_via_query": "AI customer support and back-office automation for small businesses",
       "discovery_rank": {
         "components": {
-          "engagement": 0.8326,
-          "recency": 1.0,
+          "engagement": 0.2882,
+          "recency": 0.7725,
           "relevance_ai": 1.0,
-          "relevance_buyer": 0.5,
+          "relevance_buyer": 1.0,
           "relevance_workflow": 0.5,
-          "variant": 1.0
+          "variant": 0.5
         },
         "formula_version": "2.0.0",
         "matched": {
@@ -178,260 +99,113 @@
             "ai"
           ],
           "buyer": [
-            "businesses"
+            "businesses",
+            "small businesses"
           ],
           "workflow": [
-            "bookkeeping"
+            "support"
           ]
         },
-        "quality_score": 0.9079,
+        "quality_score": 0.4516,
         "relevance_class": "direct",
-        "relevance_score": 0.7
+        "relevance_score": 0.825
       },
-      "name": "LedgerPilot",
+      "name": "Recursive",
       "notes": [
-        "Discovered via the query-show-hn query variant.",
-        "Relevance classified direct (0.70) from matched terms {'ai': ['agent', 'agents', 'ai'], 'buyer': ['businesses'], 'workflow': ['bookkeeping']}."
+        "Discovered via the query-story query variant.",
+        "Relevance classified direct (0.82) from matched terms {'ai': ['agent', 'agents', 'ai'], 'buyer': ['businesses', 'small businesses'], 'workflow': ['support']}."
       ],
-      "one_liner": "AI bookkeeping agent for trades businesses",
+      "one_liner": "AI support agents for small businesses",
       "source_ids": [
-        "src-2a8a099dbbe3",
-        "src-ef4f326b12eb"
+        "src-5be3b664fe3a",
+        "src-db21a13e62f9"
       ],
       "traction_signals": [
         {
           "kind": "hn_points",
           "label": "third_party",
-          "numeric_value": 88.0,
-          "observed_at": "2026-08-11T00:00:00Z",
+          "numeric_value": 1.0,
+          "observed_at": "2026-02-18T13:58:28Z",
           "source_ids": [
-            "src-2a8a099dbbe3"
+            "src-5be3b664fe3a"
           ],
           "unit": null,
-          "value": "88"
+          "value": "1"
         },
         {
           "kind": "hn_comments",
           "label": "third_party",
-          "numeric_value": 44.0,
-          "observed_at": "2026-08-11T00:00:00Z",
+          "numeric_value": 2.0,
+          "observed_at": "2026-02-18T13:58:28Z",
           "source_ids": [
-            "src-2a8a099dbbe3"
+            "src-5be3b664fe3a"
           ],
           "unit": null,
-          "value": "44"
+          "value": "2"
         },
         {
           "kind": "launch_date",
           "label": "third_party",
           "numeric_value": null,
-          "observed_at": "2026-08-11T00:00:00Z",
+          "observed_at": "2026-02-18T13:58:28Z",
           "source_ids": [
-            "src-2a8a099dbbe3"
+            "src-5be3b664fe3a"
           ],
           "unit": null,
-          "value": "2026-08-11"
+          "value": "2026-02-18"
         }
       ],
-      "website": "https://ledgerpilot.example/"
+      "website": "https://recursive.support/"
     },
     {
-      "company_id": "permitpath",
-      "discovered_at": "2026-08-24T13:53:35.943072Z",
+      "company_id": "drafting-ai",
+      "discovered_at": "2026-08-24T14:00:27.942374Z",
       "discovered_via_query": "AI customer support and back-office automation for small businesses",
       "discovery_rank": {
         "components": {
-          "engagement": 0.8071,
-          "recency": 1.0,
+          "engagement": 0.5672,
+          "recency": 0.1219,
           "relevance_ai": 1.0,
           "relevance_buyer": 1.0,
-          "relevance_workflow": 0.0,
-          "variant": 1.0
+          "relevance_workflow": 0.5,
+          "variant": 0.5
         },
         "formula_version": "2.0.0",
         "matched": {
           "ai": [
-            "agent",
-            "agents"
+            "ai",
+            "automation"
           ],
           "buyer": [
-            "contractor",
-            "contractors"
+            "team",
+            "teams"
           ],
-          "workflow": []
-        },
-        "quality_score": 0.8939,
-        "relevance_class": "direct",
-        "relevance_score": 0.65
-      },
-      "name": "PermitPath",
-      "notes": [
-        "Discovered via the query-show-hn query variant.",
-        "Relevance classified direct (0.65) from matched terms {'ai': ['agent', 'agents'], 'buyer': ['contractor', 'contractors']}."
-      ],
-      "one_liner": "Permit application agent for specialty contractors",
-      "source_ids": [
-        "src-e219d54531bb",
-        "src-f2a858ea779e"
-      ],
-      "traction_signals": [
-        {
-          "kind": "hn_points",
-          "label": "third_party",
-          "numeric_value": 72.0,
-          "observed_at": "2026-08-14T00:00:00Z",
-          "source_ids": [
-            "src-e219d54531bb"
-          ],
-          "unit": null,
-          "value": "72"
-        },
-        {
-          "kind": "hn_comments",
-          "label": "third_party",
-          "numeric_value": 39.0,
-          "observed_at": "2026-08-14T00:00:00Z",
-          "source_ids": [
-            "src-e219d54531bb"
-          ],
-          "unit": null,
-          "value": "39"
-        },
-        {
-          "kind": "launch_date",
-          "label": "third_party",
-          "numeric_value": null,
-          "observed_at": "2026-08-14T00:00:00Z",
-          "source_ids": [
-            "src-e219d54531bb"
-          ],
-          "unit": null,
-          "value": "2026-08-14"
-        }
-      ],
-      "website": "https://permitpath.example/"
-    },
-    {
-      "company_id": "rotamesh",
-      "discovered_at": "2026-08-24T13:53:35.943072Z",
-      "discovered_via_query": "AI customer support and back-office automation for small businesses",
-      "discovery_rank": {
-        "components": {
-          "engagement": 0.7008,
-          "recency": 1.0,
-          "relevance_ai": 1.0,
-          "relevance_buyer": 0.0,
-          "relevance_workflow": 0.5,
-          "variant": 1.0
-        },
-        "formula_version": "2.0.0",
-        "matched": {
-          "ai": [
-            "agent",
-            "agents"
-          ],
-          "buyer": [],
           "workflow": [
-            "scheduling"
+            "ops"
           ]
         },
-        "quality_score": 0.8354,
+        "quality_score": 0.4425,
         "relevance_class": "direct",
-        "relevance_score": 0.575
+        "relevance_score": 0.825
       },
-      "name": "Rotamesh",
+      "name": "Drafting AI",
       "notes": [
-        "Discovered via the query-show-hn query variant.",
-        "Relevance classified direct (0.57) from matched terms {'ai': ['agent', 'agents'], 'workflow': ['scheduling']}."
+        "Discovered via the query-story query variant.",
+        "Relevance classified direct (0.82) from matched terms {'ai': ['ai', 'automation'], 'buyer': ['team', 'teams'], 'workflow': ['ops']}."
       ],
-      "one_liner": "Shift scheduling agent for hospitality operators",
+      "one_liner": "Human-in-the-loop AI automation for ops teams' email",
       "source_ids": [
-        "src-74a241828f50",
-        "src-86f92f5239d6"
-      ],
-      "traction_signals": [
-        {
-          "kind": "hn_points",
-          "label": "third_party",
-          "numeric_value": 41.0,
-          "observed_at": "2026-07-30T00:00:00Z",
-          "source_ids": [
-            "src-74a241828f50"
-          ],
-          "unit": null,
-          "value": "41"
-        },
-        {
-          "kind": "hn_comments",
-          "label": "third_party",
-          "numeric_value": 18.0,
-          "observed_at": "2026-07-30T00:00:00Z",
-          "source_ids": [
-            "src-74a241828f50"
-          ],
-          "unit": null,
-          "value": "18"
-        },
-        {
-          "kind": "launch_date",
-          "label": "third_party",
-          "numeric_value": null,
-          "observed_at": "2026-07-30T00:00:00Z",
-          "source_ids": [
-            "src-74a241828f50"
-          ],
-          "unit": null,
-          "value": "2026-07-30"
-        }
-      ],
-      "website": "https://rotamesh.example/"
-    },
-    {
-      "company_id": "quotecrate",
-      "discovered_at": "2026-08-24T13:53:35.943072Z",
-      "discovered_via_query": "AI customer support and back-office automation for small businesses",
-      "discovery_rank": {
-        "components": {
-          "engagement": 0.6227,
-          "recency": 0.9934,
-          "relevance_ai": 1.0,
-          "relevance_buyer": 0.0,
-          "relevance_workflow": 0.5,
-          "variant": 1.0
-        },
-        "formula_version": "2.0.0",
-        "matched": {
-          "ai": [
-            "agent",
-            "agents"
-          ],
-          "buyer": [],
-          "workflow": [
-            "quotes"
-          ]
-        },
-        "quality_score": 0.7908,
-        "relevance_class": "direct",
-        "relevance_score": 0.575
-      },
-      "name": "Quotecrate",
-      "notes": [
-        "Discovered via the query-show-hn query variant.",
-        "Relevance classified direct (0.57) from matched terms {'ai': ['agent', 'agents'], 'workflow': ['quotes']}."
-      ],
-      "one_liner": "Quote generation agent for building suppliers",
-      "source_ids": [
-        "src-47f50e2d6b90",
-        "src-cd0e987175f1"
+        "src-6b3dd3765ed7",
+        "src-b79092e88686"
       ],
       "traction_signals": [
         {
           "kind": "hn_points",
           "label": "third_party",
           "numeric_value": 29.0,
-          "observed_at": "2026-07-21T00:00:00Z",
+          "observed_at": "2024-11-26T16:23:50Z",
           "source_ids": [
-            "src-47f50e2d6b90"
+            "src-6b3dd3765ed7"
           ],
           "unit": null,
           "value": "29"
@@ -439,40 +213,122 @@
         {
           "kind": "hn_comments",
           "label": "third_party",
-          "numeric_value": 9.0,
-          "observed_at": "2026-07-21T00:00:00Z",
+          "numeric_value": 2.0,
+          "observed_at": "2024-11-26T16:23:50Z",
           "source_ids": [
-            "src-47f50e2d6b90"
+            "src-6b3dd3765ed7"
           ],
           "unit": null,
-          "value": "9"
+          "value": "2"
         },
         {
           "kind": "launch_date",
           "label": "third_party",
           "numeric_value": null,
-          "observed_at": "2026-07-21T00:00:00Z",
+          "observed_at": "2024-11-26T16:23:50Z",
           "source_ids": [
-            "src-47f50e2d6b90"
+            "src-6b3dd3765ed7"
           ],
           "unit": null,
-          "value": "2026-07-21"
+          "value": "2024-11-26"
         }
       ],
-      "website": "https://quotecrate.example/"
+      "website": "https://getdrafting.com/"
     },
     {
-      "company_id": "frontdeskly",
-      "discovered_at": "2026-08-24T13:53:35.943072Z",
+      "company_id": "helphubassistant-pages-dev",
+      "discovered_at": "2026-08-24T14:00:27.942374Z",
       "discovered_via_query": "AI customer support and back-office automation for small businesses",
       "discovery_rank": {
         "components": {
-          "engagement": 0.7256,
-          "recency": 1.0,
+          "engagement": 0.223,
+          "recency": 0.4044,
+          "relevance_ai": 1.0,
+          "relevance_buyer": 1.0,
+          "relevance_workflow": 0.5,
+          "variant": 0.5
+        },
+        "formula_version": "2.0.0",
+        "matched": {
+          "ai": [
+            "ai",
+            "assistant",
+            "automation"
+          ],
+          "buyer": [
+            "business",
+            "businesses",
+            "small business",
+            "small businesses"
+          ],
+          "workflow": [
+            "support"
+          ]
+        },
+        "quality_score": 0.3237,
+        "relevance_class": "direct",
+        "relevance_score": 0.825
+      },
+      "name": "helphubassistant.pages.dev",
+      "notes": [
+        "Discovered via the query-story query variant.",
+        "Relevance classified direct (0.82) from matched terms {'ai': ['ai', 'assistant', 'automation'], 'buyer': ['business', 'businesses', 'small business', 'small businesses'], 'workflow': ['support']}.",
+        "Launch URL https://helphubassistant.pages.dev/blog/ai-chatbots-small-business-benefits points to a subpath; website normalised to the site origin https://helphubassistant.pages.dev/ for enrichment. The launch URL is preserved as a source."
+      ],
+      "one_liner": "Automation of Support for Small Businesses",
+      "source_ids": [
+        "src-be6b8250105e",
+        "src-03075bef0278"
+      ],
+      "traction_signals": [
+        {
+          "kind": "hn_points",
+          "label": "third_party",
+          "numeric_value": 1.0,
+          "observed_at": "2025-06-09T14:38:24Z",
+          "source_ids": [
+            "src-be6b8250105e"
+          ],
+          "unit": null,
+          "value": "1"
+        },
+        {
+          "kind": "hn_comments",
+          "label": "third_party",
+          "numeric_value": 1.0,
+          "observed_at": "2025-06-09T14:38:24Z",
+          "source_ids": [
+            "src-be6b8250105e"
+          ],
+          "unit": null,
+          "value": "1"
+        },
+        {
+          "kind": "launch_date",
+          "label": "third_party",
+          "numeric_value": null,
+          "observed_at": "2025-06-09T14:38:24Z",
+          "source_ids": [
+            "src-be6b8250105e"
+          ],
+          "unit": null,
+          "value": "2025-06-09"
+        }
+      ],
+      "website": "https://helphubassistant.pages.dev/"
+    },
+    {
+      "company_id": "dooza-desk",
+      "discovered_at": "2026-08-24T14:00:27.942374Z",
+      "discovered_via_query": "AI customer support and back-office automation for small businesses",
+      "discovery_rank": {
+        "components": {
+          "engagement": 0.1767,
+          "recency": 0.6634,
           "relevance_ai": 0.5,
           "relevance_buyer": 1.0,
-          "relevance_workflow": 0.0,
-          "variant": 1.0
+          "relevance_workflow": 1.0,
+          "variant": 0.5
         },
         "formula_version": "2.0.0",
         "matched": {
@@ -480,432 +336,1209 @@
             "ai"
           ],
           "buyer": [
-            "clinic",
-            "clinics"
+            "team",
+            "teams"
           ],
-          "workflow": []
+          "workflow": [
+            "customer support",
+            "support"
+          ]
         },
-        "quality_score": 0.8491,
+        "quality_score": 0.363,
         "relevance_class": "direct",
-        "relevance_score": 0.45
+        "relevance_score": 0.8
       },
-      "name": "Frontdeskly",
+      "name": "Dooza Desk",
       "notes": [
-        "Discovered via the query-show-hn query variant.",
-        "Relevance classified direct (0.45) from matched terms {'ai': ['ai'], 'buyer': ['clinic', 'clinics']}."
+        "Discovered via the query-story query variant.",
+        "Relevance classified direct (0.80) from matched terms {'ai': ['ai'], 'buyer': ['team', 'teams'], 'workflow': ['customer support', 'support']}."
       ],
-      "one_liner": "AI receptionist for dental and veterinary clinics",
+      "one_liner": "AI-native customer support for small teams (free pilots)",
       "source_ids": [
-        "src-71899c333fce",
-        "src-beca1a805c44"
+        "src-825b3af6f379",
+        "src-2d1813351a7c"
       ],
       "traction_signals": [
         {
           "kind": "hn_points",
           "label": "third_party",
-          "numeric_value": 46.0,
-          "observed_at": "2026-08-02T00:00:00Z",
+          "numeric_value": 2.0,
+          "observed_at": "2025-12-05T07:31:43Z",
           "source_ids": [
-            "src-71899c333fce"
+            "src-825b3af6f379"
           ],
           "unit": null,
-          "value": "46"
+          "value": "2"
         },
         {
           "kind": "hn_comments",
           "label": "third_party",
-          "numeric_value": 22.0,
-          "observed_at": "2026-08-02T00:00:00Z",
+          "numeric_value": 0.0,
+          "observed_at": "2025-12-05T07:31:43Z",
           "source_ids": [
-            "src-71899c333fce"
+            "src-825b3af6f379"
           ],
           "unit": null,
-          "value": "22"
+          "value": "0"
         },
         {
           "kind": "launch_date",
           "label": "third_party",
           "numeric_value": null,
-          "observed_at": "2026-08-02T00:00:00Z",
+          "observed_at": "2025-12-05T07:31:43Z",
           "source_ids": [
-            "src-71899c333fce"
+            "src-825b3af6f379"
           ],
           "unit": null,
-          "value": "2026-08-02"
+          "value": "2025-12-05"
         }
       ],
-      "website": "https://frontdeskly.example/"
+      "website": "https://www.doozadesk.com/"
     },
     {
-      "company_id": "agentkit-core",
-      "discovered_at": "2026-08-24T13:53:35.943072Z",
+      "company_id": "heydeacon",
+      "discovered_at": "2026-08-24T14:00:27.942374Z",
       "discovered_via_query": "AI customer support and back-office automation for small businesses",
       "discovery_rank": {
         "components": {
-          "engagement": 1.0,
+          "engagement": 0.313,
           "recency": 1.0,
           "relevance_ai": 1.0,
           "relevance_buyer": 0.0,
-          "relevance_workflow": 0.0,
-          "variant": 1.0
+          "relevance_workflow": 1.0,
+          "variant": 0.9
         },
         "formula_version": "2.0.0",
         "matched": {
           "ai": [
             "agent",
-            "agents"
+            "agents",
+            "ai"
           ],
           "buyer": [],
-          "workflow": []
+          "workflow": [
+            "customer support",
+            "support"
+          ]
         },
-        "quality_score": 1.0,
-        "relevance_class": "adjacent",
-        "relevance_score": 0.4
+        "quality_score": 0.6022,
+        "relevance_class": "direct",
+        "relevance_score": 0.75
       },
-      "name": "AgentKit Core",
+      "name": "HeyDeacon",
       "notes": [
-        "Discovered via the query-show-hn query variant.",
-        "Relevance classified adjacent (0.40) from matched terms {'ai': ['agent', 'agents']}."
+        "Discovered via the intent-customer-support query variant.",
+        "Relevance classified direct (0.75) from matched terms {'ai': ['agent', 'agents', 'ai'], 'workflow': ['customer support', 'support']}."
       ],
-      "one_liner": "Open-source runtime for building tool-using agents",
+      "one_liner": "AI customer support agent for SaaS founders",
       "source_ids": [
-        "src-95fbecd39cff",
-        "src-0fc8ced2da30"
+        "src-80acc896eb7e",
+        "src-4820dab83954"
       ],
       "traction_signals": [
         {
           "kind": "hn_points",
           "label": "third_party",
-          "numeric_value": 310.0,
-          "observed_at": "2026-08-09T00:00:00Z",
+          "numeric_value": 4.0,
+          "observed_at": "2026-08-11T18:41:37Z",
           "source_ids": [
-            "src-95fbecd39cff"
+            "src-80acc896eb7e"
           ],
           "unit": null,
-          "value": "310"
+          "value": "4"
         },
         {
           "kind": "hn_comments",
           "label": "third_party",
-          "numeric_value": 96.0,
-          "observed_at": "2026-08-09T00:00:00Z",
+          "numeric_value": 1.0,
+          "observed_at": "2026-08-11T18:41:37Z",
           "source_ids": [
-            "src-95fbecd39cff"
+            "src-80acc896eb7e"
           ],
           "unit": null,
-          "value": "96"
+          "value": "1"
         },
         {
           "kind": "launch_date",
           "label": "third_party",
           "numeric_value": null,
-          "observed_at": "2026-08-09T00:00:00Z",
+          "observed_at": "2026-08-11T18:41:37Z",
           "source_ids": [
-            "src-95fbecd39cff"
+            "src-80acc896eb7e"
           ],
           "unit": null,
-          "value": "2026-08-09"
+          "value": "2026-08-11"
         }
       ],
-      "website": "https://agentkitcore.example/"
+      "website": "https://heydeacon.com/"
     },
     {
-      "company_id": "claimlane",
-      "discovered_at": "2026-08-24T13:53:35.943072Z",
+      "company_id": "mcp-server-for-appointment-booking",
+      "discovered_at": "2026-08-24T14:00:27.942374Z",
       "discovered_via_query": "AI customer support and back-office automation for small businesses",
       "discovery_rank": {
         "components": {
-          "engagement": 0.7561,
+          "engagement": 0.223,
           "recency": 1.0,
-          "relevance_ai": 0.5,
+          "relevance_ai": 1.0,
           "relevance_buyer": 0.0,
-          "relevance_workflow": 0.0,
-          "variant": 1.0
+          "relevance_workflow": 1.0,
+          "variant": 0.9
         },
         "formula_version": "2.0.0",
         "matched": {
           "ai": [
-            "automation"
+            "ai",
+            "assistant"
           ],
           "buyer": [],
-          "workflow": []
+          "workflow": [
+            "booking",
+            "bookings"
+          ]
         },
-        "quality_score": 0.8659,
-        "relevance_class": "adjacent",
-        "relevance_score": 0.2
+        "quality_score": 0.5526,
+        "relevance_class": "direct",
+        "relevance_score": 0.75
       },
-      "name": "Claimlane",
+      "name": "MCP Server for Appointment Booking",
       "notes": [
-        "Discovered via the query-show-hn query variant.",
-        "Relevance classified adjacent (0.20) from matched terms {'ai': ['automation']}."
+        "Discovered via the intent-scheduling query variant.",
+        "Relevance classified direct (0.75) from matched terms {'ai': ['ai', 'assistant'], 'workflow': ['booking', 'bookings']}.",
+        "Launch URL https://blog.makeplans.com/2026/08/15/your-ai-assistant-can-now-manage-your-bookings.html points to a subpath; website normalised to the site origin https://blog.makeplans.com/ for enrichment. The launch URL is preserved as a source."
       ],
-      "one_liner": "Insurance claim intake automation for brokers",
+      "one_liner": null,
       "source_ids": [
-        "src-fd6a8b2ddfdc",
-        "src-756cdb331d0e"
+        "src-5ecfab24a2aa",
+        "src-b6f5813cc83f"
       ],
       "traction_signals": [
         {
           "kind": "hn_points",
           "label": "third_party",
-          "numeric_value": 55.0,
-          "observed_at": "2026-08-05T00:00:00Z",
+          "numeric_value": 1.0,
+          "observed_at": "2026-08-17T05:58:02Z",
           "source_ids": [
-            "src-fd6a8b2ddfdc"
+            "src-5ecfab24a2aa"
           ],
           "unit": null,
-          "value": "55"
+          "value": "1"
         },
         {
           "kind": "hn_comments",
           "label": "third_party",
-          "numeric_value": 27.0,
-          "observed_at": "2026-08-05T00:00:00Z",
+          "numeric_value": 1.0,
+          "observed_at": "2026-08-17T05:58:02Z",
           "source_ids": [
-            "src-fd6a8b2ddfdc"
+            "src-5ecfab24a2aa"
           ],
           "unit": null,
-          "value": "27"
+          "value": "1"
         },
         {
           "kind": "launch_date",
           "label": "third_party",
           "numeric_value": null,
-          "observed_at": "2026-08-05T00:00:00Z",
+          "observed_at": "2026-08-17T05:58:02Z",
           "source_ids": [
-            "src-fd6a8b2ddfdc"
+            "src-5ecfab24a2aa"
           ],
           "unit": null,
-          "value": "2026-08-05"
+          "value": "2026-08-17"
         }
       ],
-      "website": "https://claimlane.example/"
+      "website": "https://blog.makeplans.com/"
+    },
+    {
+      "company_id": "gibsonai-com",
+      "discovered_at": "2026-08-24T14:00:27.942374Z",
+      "discovered_via_query": "AI customer support and back-office automation for small businesses",
+      "discovery_rank": {
+        "components": {
+          "engagement": 0.223,
+          "recency": 0.6,
+          "relevance_ai": 1.0,
+          "relevance_buyer": 0.0,
+          "relevance_workflow": 1.0,
+          "variant": 0.9
+        },
+        "formula_version": "2.0.0",
+        "matched": {
+          "ai": [
+            "agent",
+            "agents",
+            "ai"
+          ],
+          "buyer": [],
+          "workflow": [
+            "customer support",
+            "support"
+          ]
+        },
+        "quality_score": 0.4526,
+        "relevance_class": "direct",
+        "relevance_score": 0.75
+      },
+      "name": "gibsonai.com",
+      "notes": [
+        "Discovered via the intent-customer-support query variant.",
+        "Relevance classified direct (0.75) from matched terms {'ai': ['agent', 'agents', 'ai'], 'workflow': ['customer support', 'support']}.",
+        "Launch URL https://www.gibsonai.com/use-cases/customer-support points to a subpath; website normalised to the site origin https://www.gibsonai.com/ for enrichment. The launch URL is preserved as a source."
+      ],
+      "one_liner": "Customer Support AI Agent with Memory",
+      "source_ids": [
+        "src-1b4c5d7e7c59",
+        "src-c81ed7970c14"
+      ],
+      "traction_signals": [
+        {
+          "kind": "hn_points",
+          "label": "third_party",
+          "numeric_value": 3.0,
+          "observed_at": "2025-10-22T13:24:47Z",
+          "source_ids": [
+            "src-1b4c5d7e7c59"
+          ],
+          "unit": null,
+          "value": "3"
+        },
+        {
+          "kind": "hn_comments",
+          "label": "third_party",
+          "numeric_value": 0.0,
+          "observed_at": "2025-10-22T13:24:47Z",
+          "source_ids": [
+            "src-1b4c5d7e7c59"
+          ],
+          "unit": null,
+          "value": "0"
+        },
+        {
+          "kind": "launch_date",
+          "label": "third_party",
+          "numeric_value": null,
+          "observed_at": "2025-10-22T13:24:47Z",
+          "source_ids": [
+            "src-1b4c5d7e7c59"
+          ],
+          "unit": null,
+          "value": "2025-10-22"
+        }
+      ],
+      "website": "https://www.gibsonai.com/"
+    },
+    {
+      "company_id": "ticketdesk-ai",
+      "discovered_at": "2026-08-24T14:00:27.942374Z",
+      "discovered_via_query": "AI customer support and back-office automation for small businesses",
+      "discovery_rank": {
+        "components": {
+          "engagement": 0.223,
+          "recency": 0.5505,
+          "relevance_ai": 1.0,
+          "relevance_buyer": 0.0,
+          "relevance_workflow": 1.0,
+          "variant": 0.9
+        },
+        "formula_version": "2.0.0",
+        "matched": {
+          "ai": [
+            "agent",
+            "agents",
+            "ai"
+          ],
+          "buyer": [],
+          "workflow": [
+            "customer support",
+            "support"
+          ]
+        },
+        "quality_score": 0.4403,
+        "relevance_class": "direct",
+        "relevance_score": 0.75
+      },
+      "name": "ticketdesk.ai",
+      "notes": [
+        "Discovered via the intent-customer-support query variant.",
+        "Relevance classified direct (0.75) from matched terms {'ai': ['agent', 'agents', 'ai'], 'workflow': ['customer support', 'support']}."
+      ],
+      "one_liner": "AI agents to handle customer support tickets",
+      "source_ids": [
+        "src-5f70b65d63a8",
+        "src-12155aee7a09"
+      ],
+      "traction_signals": [
+        {
+          "kind": "hn_points",
+          "label": "third_party",
+          "numeric_value": 1.0,
+          "observed_at": "2025-09-18T10:43:22Z",
+          "source_ids": [
+            "src-5f70b65d63a8"
+          ],
+          "unit": null,
+          "value": "1"
+        },
+        {
+          "kind": "hn_comments",
+          "label": "third_party",
+          "numeric_value": 1.0,
+          "observed_at": "2025-09-18T10:43:22Z",
+          "source_ids": [
+            "src-5f70b65d63a8"
+          ],
+          "unit": null,
+          "value": "1"
+        },
+        {
+          "kind": "launch_date",
+          "label": "third_party",
+          "numeric_value": null,
+          "observed_at": "2025-09-18T10:43:22Z",
+          "source_ids": [
+            "src-5f70b65d63a8"
+          ],
+          "unit": null,
+          "value": "2025-09-18"
+        }
+      ],
+      "website": "https://ticketdesk.ai/"
+    },
+    {
+      "company_id": "specx",
+      "discovered_at": "2026-08-24T14:00:27.942374Z",
+      "discovered_via_query": "AI customer support and back-office automation for small businesses",
+      "discovery_rank": {
+        "components": {
+          "engagement": 0.1767,
+          "recency": 0.652,
+          "relevance_ai": 1.0,
+          "relevance_buyer": 0.0,
+          "relevance_workflow": 1.0,
+          "variant": 0.9
+        },
+        "formula_version": "2.0.0",
+        "matched": {
+          "ai": [
+            "agent",
+            "agents",
+            "ai",
+            "automation"
+          ],
+          "buyer": [],
+          "workflow": [
+            "workflow",
+            "workflows"
+          ]
+        },
+        "quality_score": 0.4402,
+        "relevance_class": "direct",
+        "relevance_score": 0.75
+      },
+      "name": "SpecX",
+      "notes": [
+        "Discovered via the intent-back-office query variant.",
+        "Relevance classified direct (0.75) from matched terms {'ai': ['agent', 'agents', 'ai', 'automation'], 'workflow': ['workflow', 'workflows']}."
+      ],
+      "one_liner": "Workflow Automation for AI Agents",
+      "source_ids": [
+        "src-92654c54a19b",
+        "src-41874b4c12fe"
+      ],
+      "traction_signals": [
+        {
+          "kind": "hn_points",
+          "label": "third_party",
+          "numeric_value": 2.0,
+          "observed_at": "2025-11-27T11:18:05Z",
+          "source_ids": [
+            "src-92654c54a19b"
+          ],
+          "unit": null,
+          "value": "2"
+        },
+        {
+          "kind": "hn_comments",
+          "label": "third_party",
+          "numeric_value": 0.0,
+          "observed_at": "2025-11-27T11:18:05Z",
+          "source_ids": [
+            "src-92654c54a19b"
+          ],
+          "unit": null,
+          "value": "0"
+        },
+        {
+          "kind": "launch_date",
+          "label": "third_party",
+          "numeric_value": null,
+          "observed_at": "2025-11-27T11:18:05Z",
+          "source_ids": [
+            "src-92654c54a19b"
+          ],
+          "unit": null,
+          "value": "2025-11-27"
+        }
+      ],
+      "website": "https://redoxsoft.com/"
+    },
+    {
+      "company_id": "ai-agents-for-customer-support",
+      "discovered_at": "2026-08-24T14:00:27.942374Z",
+      "discovered_via_query": "AI customer support and back-office automation for small businesses",
+      "discovery_rank": {
+        "components": {
+          "engagement": 0.1115,
+          "recency": 0.6531,
+          "relevance_ai": 1.0,
+          "relevance_buyer": 0.0,
+          "relevance_workflow": 1.0,
+          "variant": 0.9
+        },
+        "formula_version": "2.0.0",
+        "matched": {
+          "ai": [
+            "agent",
+            "agents",
+            "ai"
+          ],
+          "buyer": [],
+          "workflow": [
+            "customer support",
+            "support"
+          ]
+        },
+        "quality_score": 0.4046,
+        "relevance_class": "direct",
+        "relevance_score": 0.75
+      },
+      "name": "AI Agents for Customer Support",
+      "notes": [
+        "Discovered via the intent-customer-support query variant.",
+        "Relevance classified direct (0.75) from matched terms {'ai': ['agent', 'agents', 'ai'], 'workflow': ['customer support', 'support']}.",
+        "Launch URL https://www.sparrowdesk.com/ref=hn points to a subpath; website normalised to the site origin https://www.sparrowdesk.com/ for enrichment. The launch URL is preserved as a source."
+      ],
+      "one_liner": null,
+      "source_ids": [
+        "src-e97665c6220d",
+        "src-69e4f288917d"
+      ],
+      "traction_signals": [
+        {
+          "kind": "hn_points",
+          "label": "third_party",
+          "numeric_value": 1.0,
+          "observed_at": "2025-11-28T05:05:34Z",
+          "source_ids": [
+            "src-e97665c6220d"
+          ],
+          "unit": null,
+          "value": "1"
+        },
+        {
+          "kind": "hn_comments",
+          "label": "third_party",
+          "numeric_value": 0.0,
+          "observed_at": "2025-11-28T05:05:34Z",
+          "source_ids": [
+            "src-e97665c6220d"
+          ],
+          "unit": null,
+          "value": "0"
+        },
+        {
+          "kind": "launch_date",
+          "label": "third_party",
+          "numeric_value": null,
+          "observed_at": "2025-11-28T05:05:34Z",
+          "source_ids": [
+            "src-e97665c6220d"
+          ],
+          "unit": null,
+          "value": "2025-11-28"
+        }
+      ],
+      "website": "https://www.sparrowdesk.com/"
+    },
+    {
+      "company_id": "inboto",
+      "discovered_at": "2026-08-24T14:00:27.942374Z",
+      "discovered_via_query": "AI customer support and back-office automation for small businesses",
+      "discovery_rank": {
+        "components": {
+          "engagement": 0.2589,
+          "recency": 0.2983,
+          "relevance_ai": 1.0,
+          "relevance_buyer": 0.0,
+          "relevance_workflow": 1.0,
+          "variant": 0.9
+        },
+        "formula_version": "2.0.0",
+        "matched": {
+          "ai": [
+            "agent",
+            "agents",
+            "ai"
+          ],
+          "buyer": [],
+          "workflow": [
+            "customer support",
+            "support"
+          ]
+        },
+        "quality_score": 0.397,
+        "relevance_class": "direct",
+        "relevance_score": 0.75
+      },
+      "name": "Inboto",
+      "notes": [
+        "Discovered via the intent-customer-support query variant.",
+        "Relevance classified direct (0.75) from matched terms {'ai': ['agent', 'agents', 'ai'], 'workflow': ['customer support', 'support']}."
+      ],
+      "one_liner": "AI agent for email customer support",
+      "source_ids": [
+        "src-3d0d569b7e48",
+        "src-89eeadc02abf"
+      ],
+      "traction_signals": [
+        {
+          "kind": "hn_points",
+          "label": "third_party",
+          "numeric_value": 2.0,
+          "observed_at": "2025-03-28T10:34:38Z",
+          "source_ids": [
+            "src-3d0d569b7e48"
+          ],
+          "unit": null,
+          "value": "2"
+        },
+        {
+          "kind": "hn_comments",
+          "label": "third_party",
+          "numeric_value": 1.0,
+          "observed_at": "2025-03-28T10:34:38Z",
+          "source_ids": [
+            "src-3d0d569b7e48"
+          ],
+          "unit": null,
+          "value": "1"
+        },
+        {
+          "kind": "launch_date",
+          "label": "third_party",
+          "numeric_value": null,
+          "observed_at": "2025-03-28T10:34:38Z",
+          "source_ids": [
+            "src-3d0d569b7e48"
+          ],
+          "unit": null,
+          "value": "2025-03-28"
+        }
+      ],
+      "website": "https://inboto.com/"
+    },
+    {
+      "company_id": "luca",
+      "discovered_at": "2026-08-24T14:00:27.942374Z",
+      "discovered_via_query": "AI customer support and back-office automation for small businesses",
+      "discovery_rank": {
+        "components": {
+          "engagement": 0.1115,
+          "recency": 0.587,
+          "relevance_ai": 1.0,
+          "relevance_buyer": 0.0,
+          "relevance_workflow": 1.0,
+          "variant": 0.9
+        },
+        "formula_version": "2.0.0",
+        "matched": {
+          "ai": [
+            "agent",
+            "agents",
+            "ai"
+          ],
+          "buyer": [],
+          "workflow": [
+            "accounting",
+            "finance",
+            "workflow",
+            "workflows"
+          ]
+        },
+        "quality_score": 0.3881,
+        "relevance_class": "direct",
+        "relevance_score": 0.75
+      },
+      "name": "Luca",
+      "notes": [
+        "Discovered via the intent-finance-accounting query variant.",
+        "Relevance classified direct (0.75) from matched terms {'ai': ['agent', 'agents', 'ai'], 'workflow': ['accounting', 'finance', 'workflow', 'workflows']}.",
+        "Launch URL https://www.leapfin.com/blog/building-luca-an-ai-agent-for-finance-and-accounting-workflows-that-auditors-actually-trust points to a subpath; website normalised to the site origin https://www.leapfin.com/ for enrichment. The launch URL is preserved as a source."
+      ],
+      "one_liner": "an AI agent for finance and accounting workflows",
+      "source_ids": [
+        "src-555a4df7483f",
+        "src-3074350251b7"
+      ],
+      "traction_signals": [
+        {
+          "kind": "hn_points",
+          "label": "third_party",
+          "numeric_value": 1.0,
+          "observed_at": "2025-10-13T14:47:56Z",
+          "source_ids": [
+            "src-555a4df7483f"
+          ],
+          "unit": null,
+          "value": "1"
+        },
+        {
+          "kind": "hn_comments",
+          "label": "third_party",
+          "numeric_value": 0.0,
+          "observed_at": "2025-10-13T14:47:56Z",
+          "source_ids": [
+            "src-555a4df7483f"
+          ],
+          "unit": null,
+          "value": "0"
+        },
+        {
+          "kind": "launch_date",
+          "label": "third_party",
+          "numeric_value": null,
+          "observed_at": "2025-10-13T14:47:56Z",
+          "source_ids": [
+            "src-555a4df7483f"
+          ],
+          "unit": null,
+          "value": "2025-10-13"
+        }
+      ],
+      "website": "https://www.leapfin.com/"
+    },
+    {
+      "company_id": "supportmatic",
+      "discovered_at": "2026-08-24T14:00:27.942374Z",
+      "discovered_via_query": "AI customer support and back-office automation for small businesses",
+      "discovery_rank": {
+        "components": {
+          "engagement": 0.223,
+          "recency": 0.3039,
+          "relevance_ai": 1.0,
+          "relevance_buyer": 0.0,
+          "relevance_workflow": 1.0,
+          "variant": 0.9
+        },
+        "formula_version": "2.0.0",
+        "matched": {
+          "ai": [
+            "agent",
+            "agents",
+            "ai"
+          ],
+          "buyer": [],
+          "workflow": [
+            "customer support",
+            "support"
+          ]
+        },
+        "quality_score": 0.3786,
+        "relevance_class": "direct",
+        "relevance_score": 0.75
+      },
+      "name": "SupportMatic",
+      "notes": [
+        "Discovered via the intent-customer-support query variant.",
+        "Relevance classified direct (0.75) from matched terms {'ai': ['agent', 'agents', 'ai'], 'workflow': ['customer support', 'support']}."
+      ],
+      "one_liner": "AI agent for email customer support",
+      "source_ids": [
+        "src-b8eef42f465c",
+        "src-56d04835512f"
+      ],
+      "traction_signals": [
+        {
+          "kind": "hn_points",
+          "label": "third_party",
+          "numeric_value": 1.0,
+          "observed_at": "2025-04-01T07:10:45Z",
+          "source_ids": [
+            "src-b8eef42f465c"
+          ],
+          "unit": null,
+          "value": "1"
+        },
+        {
+          "kind": "hn_comments",
+          "label": "third_party",
+          "numeric_value": 1.0,
+          "observed_at": "2025-04-01T07:10:45Z",
+          "source_ids": [
+            "src-b8eef42f465c"
+          ],
+          "unit": null,
+          "value": "1"
+        },
+        {
+          "kind": "launch_date",
+          "label": "third_party",
+          "numeric_value": null,
+          "observed_at": "2025-04-01T07:10:45Z",
+          "source_ids": [
+            "src-b8eef42f465c"
+          ],
+          "unit": null,
+          "value": "2025-04-01"
+        }
+      ],
+      "website": "https://supportmatic.co/"
+    },
+    {
+      "company_id": "n8n-io",
+      "discovered_at": "2026-08-24T14:00:27.942374Z",
+      "discovered_via_query": "AI customer support and back-office automation for small businesses",
+      "discovery_rank": {
+        "components": {
+          "engagement": 0.1115,
+          "recency": 0.4854,
+          "relevance_ai": 1.0,
+          "relevance_buyer": 0.0,
+          "relevance_workflow": 1.0,
+          "variant": 0.9
+        },
+        "formula_version": "2.0.0",
+        "matched": {
+          "ai": [
+            "ai",
+            "automated",
+            "automation"
+          ],
+          "buyer": [],
+          "workflow": [
+            "workflow",
+            "workflows"
+          ]
+        },
+        "quality_score": 0.3627,
+        "relevance_class": "direct",
+        "relevance_score": 0.75
+      },
+      "name": "n8n.io",
+      "notes": [
+        "Discovered via the intent-back-office query variant.",
+        "Relevance classified direct (0.75) from matched terms {'ai': ['ai', 'automated', 'automation'], 'workflow': ['workflow', 'workflows']}.",
+        "Launch URL https://n8n.io/workflows/6734-ai-blog-automation-publish-hourly-seo-articles-to-wordpress-and-twitter-v3 points to a subpath; website normalised to the site origin https://n8n.io/ for enrichment. The launch URL is preserved as a source."
+      ],
+      "one_liner": "I automated blog CPR for dead startup blogs",
+      "source_ids": [
+        "src-da86575f7940",
+        "src-f7780a3698ce"
+      ],
+      "traction_signals": [
+        {
+          "kind": "hn_points",
+          "label": "third_party",
+          "numeric_value": 1.0,
+          "observed_at": "2025-08-04T12:38:19Z",
+          "source_ids": [
+            "src-da86575f7940"
+          ],
+          "unit": null,
+          "value": "1"
+        },
+        {
+          "kind": "hn_comments",
+          "label": "third_party",
+          "numeric_value": 0.0,
+          "observed_at": "2025-08-04T12:38:19Z",
+          "source_ids": [
+            "src-da86575f7940"
+          ],
+          "unit": null,
+          "value": "0"
+        },
+        {
+          "kind": "launch_date",
+          "label": "third_party",
+          "numeric_value": null,
+          "observed_at": "2025-08-04T12:38:19Z",
+          "source_ids": [
+            "src-da86575f7940"
+          ],
+          "unit": null,
+          "value": "2025-08-04"
+        }
+      ],
+      "website": "https://n8n.io/"
     }
   ],
-  "generated_at": "2026-08-24T13:53:35.943072Z",
-  "notes": [
-    "Kept 9 candidates against a requested limit of 10: 1 short. Only 7 directly relevant and 2 adjacent candidates survived the relevance gate. The shortlist was not padded with off-topic results."
-  ],
+  "generated_at": "2026-08-24T14:00:27.942374Z",
+  "notes": [],
   "query": "AI customer support and back-office automation for small businesses",
-  "requested_limit": 10,
-  "run_id": "offline-demo",
+  "requested_limit": 15,
+  "run_id": "ai-smb-ops-demo",
   "schema_version": "1.1.0",
   "sources": [
     {
-      "domain": "agentkitcore.example",
+      "domain": "helphubassistant.pages.dev",
       "hn_num_comments": null,
       "hn_object_id": null,
       "hn_points": null,
       "kind": "company_page",
-      "published_at": "2026-08-09T00:00:00Z",
-      "retrieved_at": "2026-08-24T13:53:35.943072Z",
-      "source_id": "src-0fc8ced2da30",
-      "title": "Show HN: AgentKit Core - Open-source runtime for building tool-using agents",
-      "url": "https://agentkitcore.example/"
+      "published_at": "2025-06-09T14:38:24Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-03075bef0278",
+      "title": "Automation of Support for Small Businesses",
+      "url": "https://helphubassistant.pages.dev/blog/ai-chatbots-small-business-benefits"
+    },
+    {
+      "domain": "ticketdesk.ai",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": "2025-09-18T10:43:22Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-12155aee7a09",
+      "title": "Show HN: AI agents to handle customer support tickets",
+      "url": "https://ticketdesk.ai/"
     },
     {
       "domain": "news.ycombinator.com",
-      "hn_num_comments": 44,
-      "hn_object_id": "9073955",
-      "hn_points": 88,
+      "hn_num_comments": 0,
+      "hn_object_id": "46485049",
+      "hn_points": 2,
       "kind": "hn_story",
-      "published_at": "2026-08-11T00:00:00Z",
-      "retrieved_at": "2026-08-24T13:53:35.943072Z",
-      "source_id": "src-2a8a099dbbe3",
-      "title": "Show HN: LedgerPilot - AI bookkeeping agent for trades businesses",
-      "url": "https://news.ycombinator.com/item?id=9073955"
+      "published_at": "2026-01-04T04:50:54Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-135a7776ef94",
+      "title": "Show HN: AI compliance automation for startups and lean teams",
+      "url": "https://news.ycombinator.com/item?id=46485049"
+    },
+    {
+      "domain": "regulance.io",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": "2026-01-04T04:50:54Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-1adfaea63aff",
+      "title": "Show HN: AI compliance automation for startups and lean teams",
+      "url": "https://regulance.io/"
     },
     {
       "domain": "news.ycombinator.com",
-      "hn_num_comments": 9,
-      "hn_object_id": "9689242",
+      "hn_num_comments": 0,
+      "hn_object_id": "45668780",
+      "hn_points": 3,
+      "kind": "hn_story",
+      "published_at": "2025-10-22T13:24:47Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-1b4c5d7e7c59",
+      "title": "Show HN: Customer Support AI Agent with Memory",
+      "url": "https://news.ycombinator.com/item?id=45668780"
+    },
+    {
+      "domain": "doozadesk.com",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": "2025-12-05T07:31:43Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-2d1813351a7c",
+      "title": "Show HN: Dooza Desk – AI-native customer support for small teams (free pilots)",
+      "url": "https://www.doozadesk.com/"
+    },
+    {
+      "domain": "leapfin.com",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": "2025-10-13T14:47:56Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-3074350251b7",
+      "title": "Show HN: Luca, an AI agent for finance and accounting workflows",
+      "url": "https://www.leapfin.com/blog/building-luca-an-ai-agent-for-finance-and-accounting-workflows-that-auditors-actually-trust"
+    },
+    {
+      "domain": "news.ycombinator.com",
+      "hn_num_comments": 1,
+      "hn_object_id": "43503687",
+      "hn_points": 2,
+      "kind": "hn_story",
+      "published_at": "2025-03-28T10:34:38Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-3d0d569b7e48",
+      "title": "Show HN: Inboto – AI agent for email customer support",
+      "url": "https://news.ycombinator.com/item?id=43503687"
+    },
+    {
+      "domain": "redoxsoft.com",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": "2025-11-27T11:18:05Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-41874b4c12fe",
+      "title": "Show HN: SpecX – Workflow Automation for AI Agents",
+      "url": "https://redoxsoft.com/"
+    },
+    {
+      "domain": "heydeacon.com",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": "2026-08-11T18:41:37Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-4820dab83954",
+      "title": "Show HN: HeyDeacon, AI customer support agent for SaaS founders",
+      "url": "https://heydeacon.com/"
+    },
+    {
+      "domain": "news.ycombinator.com",
+      "hn_num_comments": 0,
+      "hn_object_id": "45568901",
+      "hn_points": 1,
+      "kind": "hn_story",
+      "published_at": "2025-10-13T14:47:56Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-555a4df7483f",
+      "title": "Show HN: Luca, an AI agent for finance and accounting workflows",
+      "url": "https://news.ycombinator.com/item?id=45568901"
+    },
+    {
+      "domain": "supportmatic.co",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": "2025-04-01T07:10:45Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-56d04835512f",
+      "title": "Show HN: SupportMatic – AI agent for email customer support",
+      "url": "https://supportmatic.co/"
+    },
+    {
+      "domain": "news.ycombinator.com",
+      "hn_num_comments": 2,
+      "hn_object_id": "47060956",
+      "hn_points": 1,
+      "kind": "hn_story",
+      "published_at": "2026-02-18T13:58:28Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-5be3b664fe3a",
+      "title": "Show HN: Recursive – AI support agents for small businesses",
+      "url": "https://news.ycombinator.com/item?id=47060956"
+    },
+    {
+      "domain": "news.ycombinator.com",
+      "hn_num_comments": 1,
+      "hn_object_id": "49326992",
+      "hn_points": 1,
+      "kind": "hn_story",
+      "published_at": "2026-08-17T05:58:02Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-5ecfab24a2aa",
+      "title": "Show HN: MCP Server for Appointment Booking",
+      "url": "https://news.ycombinator.com/item?id=49326992"
+    },
+    {
+      "domain": "news.ycombinator.com",
+      "hn_num_comments": 1,
+      "hn_object_id": "45288011",
+      "hn_points": 1,
+      "kind": "hn_story",
+      "published_at": "2025-09-18T10:43:22Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-5f70b65d63a8",
+      "title": "Show HN: AI agents to handle customer support tickets",
+      "url": "https://news.ycombinator.com/item?id=45288011"
+    },
+    {
+      "domain": "sparrowdesk.com",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": "2025-11-28T05:05:34Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-69e4f288917d",
+      "title": "Show HN: AI Agents for Customer Support",
+      "url": "https://www.sparrowdesk.com/ref=hn"
+    },
+    {
+      "domain": "news.ycombinator.com",
+      "hn_num_comments": 2,
+      "hn_object_id": "42247037",
       "hn_points": 29,
       "kind": "hn_story",
-      "published_at": "2026-07-21T00:00:00Z",
-      "retrieved_at": "2026-08-24T13:53:35.943072Z",
-      "source_id": "src-47f50e2d6b90",
-      "title": "Show HN: Quotecrate - Quote generation agent for building suppliers",
-      "url": "https://news.ycombinator.com/item?id=9689242"
-    },
-    {
-      "domain": "deskloop.example",
-      "hn_num_comments": null,
-      "hn_object_id": null,
-      "hn_points": null,
-      "kind": "company_page",
-      "published_at": "2026-08-08T00:00:00Z",
-      "retrieved_at": "2026-08-24T13:53:35.943072Z",
-      "source_id": "src-6e6b7e6b094d",
-      "title": "Show HN: Deskloop - AI support agent that resolves SMB helpdesk tickets",
-      "url": "https://deskloop.example/"
+      "published_at": "2024-11-26T16:23:50Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-6b3dd3765ed7",
+      "title": "Show HN: Drafting AI – Human-in-the-loop AI automation for ops teams' email",
+      "url": "https://news.ycombinator.com/item?id=42247037"
     },
     {
       "domain": "news.ycombinator.com",
-      "hn_num_comments": 22,
-      "hn_object_id": "9290759",
-      "hn_points": 46,
+      "hn_num_comments": 1,
+      "hn_object_id": "49262666",
+      "hn_points": 4,
       "kind": "hn_story",
-      "published_at": "2026-08-02T00:00:00Z",
-      "retrieved_at": "2026-08-24T13:53:35.943072Z",
-      "source_id": "src-71899c333fce",
-      "title": "Show HN: Frontdeskly - AI receptionist for dental and veterinary clinics",
-      "url": "https://news.ycombinator.com/item?id=9290759"
+      "published_at": "2026-08-11T18:41:37Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-80acc896eb7e",
+      "title": "Show HN: HeyDeacon, AI customer support agent for SaaS founders",
+      "url": "https://news.ycombinator.com/item?id=49262666"
     },
     {
       "domain": "news.ycombinator.com",
-      "hn_num_comments": 18,
-      "hn_object_id": "9807567",
-      "hn_points": 41,
+      "hn_num_comments": 0,
+      "hn_object_id": "46157695",
+      "hn_points": 2,
       "kind": "hn_story",
-      "published_at": "2026-07-30T00:00:00Z",
-      "retrieved_at": "2026-08-24T13:53:35.943072Z",
-      "source_id": "src-74a241828f50",
-      "title": "Show HN: Rotamesh - Shift scheduling agent for hospitality operators",
-      "url": "https://news.ycombinator.com/item?id=9807567"
+      "published_at": "2025-12-05T07:31:43Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-825b3af6f379",
+      "title": "Show HN: Dooza Desk – AI-native customer support for small teams (free pilots)",
+      "url": "https://news.ycombinator.com/item?id=46157695"
     },
     {
-      "domain": "claimlane.example",
+      "domain": "inboto.com",
       "hn_num_comments": null,
       "hn_object_id": null,
       "hn_points": null,
       "kind": "company_page",
-      "published_at": "2026-08-05T00:00:00Z",
-      "retrieved_at": "2026-08-24T13:53:35.943072Z",
-      "source_id": "src-756cdb331d0e",
-      "title": "Show HN: Claimlane - Insurance claim intake automation for brokers",
-      "url": "https://claimlane.example/"
-    },
-    {
-      "domain": "rotamesh.example",
-      "hn_num_comments": null,
-      "hn_object_id": null,
-      "hn_points": null,
-      "kind": "company_page",
-      "published_at": "2026-07-30T00:00:00Z",
-      "retrieved_at": "2026-08-24T13:53:35.943072Z",
-      "source_id": "src-86f92f5239d6",
-      "title": "Show HN: Rotamesh - Shift scheduling agent for hospitality operators",
-      "url": "https://rotamesh.example/"
+      "published_at": "2025-03-28T10:34:38Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-89eeadc02abf",
+      "title": "Show HN: Inboto – AI agent for email customer support",
+      "url": "https://inboto.com/"
     },
     {
       "domain": "news.ycombinator.com",
-      "hn_num_comments": 96,
-      "hn_object_id": "9758529",
-      "hn_points": 310,
+      "hn_num_comments": 0,
+      "hn_object_id": "46068181",
+      "hn_points": 2,
       "kind": "hn_story",
-      "published_at": "2026-08-09T00:00:00Z",
-      "retrieved_at": "2026-08-24T13:53:35.943072Z",
-      "source_id": "src-95fbecd39cff",
-      "title": "Show HN: AgentKit Core - Open-source runtime for building tool-using agents",
-      "url": "https://news.ycombinator.com/item?id=9758529"
+      "published_at": "2025-11-27T11:18:05Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-92654c54a19b",
+      "title": "Show HN: SpecX – Workflow Automation for AI Agents",
+      "url": "https://news.ycombinator.com/item?id=46068181"
     },
     {
-      "domain": "stockmind-io.example",
+      "domain": "blog.makeplans.com",
       "hn_num_comments": null,
       "hn_object_id": null,
       "hn_points": null,
       "kind": "company_page",
-      "published_at": "2026-07-25T00:00:00Z",
-      "retrieved_at": "2026-08-24T13:53:35.943072Z",
-      "source_id": "src-b9b98fedfc0f",
-      "title": "Show HN: Stockmind - Inventory reorder agent for independent retailers",
-      "url": "https://stockmind-io.example/"
+      "published_at": "2026-08-17T05:58:02Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-b6f5813cc83f",
+      "title": "Show HN: MCP Server for Appointment Booking",
+      "url": "https://blog.makeplans.com/2026/08/15/your-ai-assistant-can-now-manage-your-bookings.html"
     },
     {
-      "domain": "frontdeskly.example",
+      "domain": "getdrafting.com",
       "hn_num_comments": null,
       "hn_object_id": null,
       "hn_points": null,
       "kind": "company_page",
-      "published_at": "2026-08-02T00:00:00Z",
-      "retrieved_at": "2026-08-24T13:53:35.943072Z",
-      "source_id": "src-beca1a805c44",
-      "title": "Show HN: Frontdeskly - AI receptionist for dental and veterinary clinics",
-      "url": "https://frontdeskly.example/"
+      "published_at": "2024-11-26T16:23:50Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-b79092e88686",
+      "title": "Show HN: Drafting AI – Human-in-the-loop AI automation for ops teams' email",
+      "url": "https://getdrafting.com/"
     },
     {
       "domain": "news.ycombinator.com",
-      "hn_num_comments": 12,
-      "hn_object_id": "9812950",
-      "hn_points": 37,
+      "hn_num_comments": 1,
+      "hn_object_id": "43543736",
+      "hn_points": 1,
       "kind": "hn_story",
-      "published_at": "2026-07-25T00:00:00Z",
-      "retrieved_at": "2026-08-24T13:53:35.943072Z",
-      "source_id": "src-c9b46b008788",
-      "title": "Show HN: Stockmind - Inventory reorder agent for independent retailers",
-      "url": "https://news.ycombinator.com/item?id=9812950"
+      "published_at": "2025-04-01T07:10:45Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-b8eef42f465c",
+      "title": "Show HN: SupportMatic – AI agent for email customer support",
+      "url": "https://news.ycombinator.com/item?id=43543736"
     },
     {
-      "domain": "quotecrate.example",
+      "domain": "news.ycombinator.com",
+      "hn_num_comments": 1,
+      "hn_object_id": "44224956",
+      "hn_points": 1,
+      "kind": "hn_story",
+      "published_at": "2025-06-09T14:38:24Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-be6b8250105e",
+      "title": "Automation of Support for Small Businesses",
+      "url": "https://news.ycombinator.com/item?id=44224956"
+    },
+    {
+      "domain": "gibsonai.com",
       "hn_num_comments": null,
       "hn_object_id": null,
       "hn_points": null,
       "kind": "company_page",
-      "published_at": "2026-07-21T00:00:00Z",
-      "retrieved_at": "2026-08-24T13:53:35.943072Z",
-      "source_id": "src-cd0e987175f1",
-      "title": "Show HN: Quotecrate - Quote generation agent for building suppliers",
-      "url": "https://quotecrate.example/"
+      "published_at": "2025-10-22T13:24:47Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-c81ed7970c14",
+      "title": "Show HN: Customer Support AI Agent with Memory",
+      "url": "https://www.gibsonai.com/use-cases/customer-support"
     },
     {
       "domain": "news.ycombinator.com",
-      "hn_num_comments": 31,
-      "hn_object_id": "9888310",
-      "hn_points": 64,
+      "hn_num_comments": 0,
+      "hn_object_id": "44784983",
+      "hn_points": 1,
       "kind": "hn_story",
-      "published_at": "2026-08-08T00:00:00Z",
-      "retrieved_at": "2026-08-24T13:53:35.943072Z",
-      "source_id": "src-d0943964a75b",
-      "title": "Show HN: Deskloop - AI support agent that resolves SMB helpdesk tickets",
-      "url": "https://news.ycombinator.com/item?id=9888310"
+      "published_at": "2025-08-04T12:38:19Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-da86575f7940",
+      "title": "Show HN: I automated blog CPR for dead startup blogs",
+      "url": "https://news.ycombinator.com/item?id=44784983"
     },
     {
-      "domain": "news.ycombinator.com",
-      "hn_num_comments": 39,
-      "hn_object_id": "9034678",
-      "hn_points": 72,
-      "kind": "hn_story",
-      "published_at": "2026-08-14T00:00:00Z",
-      "retrieved_at": "2026-08-24T13:53:35.943072Z",
-      "source_id": "src-e219d54531bb",
-      "title": "Show HN: PermitPath - Permit application agent for specialty contractors",
-      "url": "https://news.ycombinator.com/item?id=9034678"
-    },
-    {
-      "domain": "ledgerpilot.example",
+      "domain": "recursive.support",
       "hn_num_comments": null,
       "hn_object_id": null,
       "hn_points": null,
       "kind": "company_page",
-      "published_at": "2026-08-11T00:00:00Z",
-      "retrieved_at": "2026-08-24T13:53:35.943072Z",
-      "source_id": "src-ef4f326b12eb",
-      "title": "Show HN: LedgerPilot - AI bookkeeping agent for trades businesses",
-      "url": "https://ledgerpilot.example/"
+      "published_at": "2026-02-18T13:58:28Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-db21a13e62f9",
+      "title": "Show HN: Recursive – AI support agents for small businesses",
+      "url": "https://recursive.support/"
     },
     {
-      "domain": "permitpath.example",
+      "domain": "news.ycombinator.com",
+      "hn_num_comments": 0,
+      "hn_object_id": "46075684",
+      "hn_points": 1,
+      "kind": "hn_story",
+      "published_at": "2025-11-28T05:05:34Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-e97665c6220d",
+      "title": "Show HN: AI Agents for Customer Support",
+      "url": "https://news.ycombinator.com/item?id=46075684"
+    },
+    {
+      "domain": "n8n.io",
       "hn_num_comments": null,
       "hn_object_id": null,
       "hn_points": null,
       "kind": "company_page",
-      "published_at": "2026-08-14T00:00:00Z",
-      "retrieved_at": "2026-08-24T13:53:35.943072Z",
-      "source_id": "src-f2a858ea779e",
-      "title": "Show HN: PermitPath - Permit application agent for specialty contractors",
-      "url": "https://permitpath.example/"
-    },
-    {
-      "domain": "news.ycombinator.com",
-      "hn_num_comments": 27,
-      "hn_object_id": "9101039",
-      "hn_points": 55,
-      "kind": "hn_story",
-      "published_at": "2026-08-05T00:00:00Z",
-      "retrieved_at": "2026-08-24T13:53:35.943072Z",
-      "source_id": "src-fd6a8b2ddfdc",
-      "title": "Show HN: Claimlane - Insurance claim intake automation for brokers",
-      "url": "https://news.ycombinator.com/item?id=9101039"
+      "published_at": "2025-08-04T12:38:19Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-f7780a3698ce",
+      "title": "Show HN: I automated blog CPR for dead startup blogs",
+      "url": "https://n8n.io/workflows/6734-ai-blog-automation-publish-hourly-seo-articles-to-wordpress-and-twitter-v3"
     }
   ]
 }

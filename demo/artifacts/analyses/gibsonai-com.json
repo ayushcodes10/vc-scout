@@ -1,0 +1,231 @@
+{
+  "analysis": {
+    "analysis_warnings": [
+      "No claims could be responsibly extracted for gibsonai.com from the supplied dossier; all conclusions rest on the absence of evidence and recorded unknowns."
+    ],
+    "buyer": null,
+    "company_id": "gibsonai-com",
+    "competitive_observations": [],
+    "confidence_rationale": [
+      "The dossier contains no evidence claims, so nothing about this company was established. This is a statement about the research, not about the company.",
+      "2 identity warning(s) were recorded."
+    ],
+    "corroborated_findings": [],
+    "generated_at": "2026-08-24T14:05:26.796843Z",
+    "identity_warnings": [
+      "Four of five supplied sources describe memorilabs.ai, not gibsonai.com; those sources' content must not be attributed to this candidate.",
+      "The only source referencing gibsonai.com (an HN thread) contains no substantive product, team, or traction detail."
+    ],
+    "market_assessment": {
+      "evidence_claim_ids": [],
+      "text": "No information is available on the market gibsonai.com serves or its size.",
+      "unknown_references": [
+        "unk-aaafd6192b07"
+      ]
+    },
+    "model": "claude-sonnet-5",
+    "model_suggested_recommendation": "pass",
+    "open_questions": [],
+    "plain_language_product": "The dossier provides no reliable evidence of what gibsonai.com's product actually does. The company one-liner suggests a customer support AI agent with memory, but the supplied sources describing a \"company page\" actually describe a different company (memorilabs.ai), and the only source tied to the candidate is a low-engagement Hacker News submission with no product detail.",
+    "product_assessment": {
+      "evidence_claim_ids": [],
+      "text": "No substantive product evidence for gibsonai.com exists in the dossier; the company-page sources supplied actually describe a different company (memorilabs.ai) and cannot be attributed to this candidate.",
+      "unknown_references": [
+        "unk-8006050de59f"
+      ]
+    },
+    "prompt_version": "analysis_v2",
+    "provider": "anthropic",
+    "recommendation_changers": [
+      "Verified product documentation or a working demo confirming what gibsonai.com's product actually does, since current sources are misattributed to a different company",
+      "Evidence of the founding team's background and relevant workflow expertise",
+      "Independently verifiable customer, usage, or revenue data specific to gibsonai.com"
+    ],
+    "research_confidence": {
+      "components": {
+        "category_span": 0.0,
+        "claim_volume": 0.0,
+        "corroboration": 0.0,
+        "independence": 0.0,
+        "source_coverage": 0.0,
+        "website": 1.0
+      },
+      "level": "low",
+      "missing": [
+        "market",
+        "product",
+        "risk",
+        "team",
+        "traction",
+        "all_evidence"
+      ],
+      "reasons": [
+        "The dossier contains no evidence claims, so nothing about this company was established. This is a statement about the research, not about the company.",
+        "2 identity warning(s) were recorded."
+      ],
+      "score": 0.0
+    },
+    "risks": [
+      {
+        "evidence_claim_ids": [],
+        "text": "A major identity mismatch risk exists: four of five supplied sources describe a different company (memorilabs.ai), not gibsonai.com, raising the risk of misattributing that company's claims to this candidate.",
+        "unknown_references": [
+          "unk-8006050de59f"
+        ]
+      }
+    ],
+    "schema_version": "1.1.0",
+    "score_components": [
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "pain_roi",
+        "evidence_claim_ids": [],
+        "maximum": 20,
+        "rationale": "No evidence establishes the workflow, pain point, or ROI potential for gibsonai.com.",
+        "score": 3,
+        "unknown_references": [
+          "unk-8006050de59f"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "wedge",
+        "evidence_claim_ids": [],
+        "maximum": 15,
+        "rationale": "No concrete product, pricing, or integration detail exists for the candidate; supplied company-page content belongs to a different company.",
+        "score": 2,
+        "unknown_references": [
+          "unk-8006050de59f"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "distribution",
+        "evidence_claim_ids": [],
+        "maximum": 15,
+        "rationale": "No go-to-market, channel, or distribution information is available for gibsonai.com.",
+        "score": 2,
+        "unknown_references": [
+          "unk-8006050de59f"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "defensibility",
+        "evidence_claim_ids": [],
+        "maximum": 15,
+        "rationale": "No evidence of proprietary data, integrations, or operational depth for the candidate exists in the dossier.",
+        "score": 2,
+        "unknown_references": [
+          "unk-8006050de59f"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "team",
+        "evidence_claim_ids": [],
+        "maximum": 15,
+        "rationale": "No source names founders or describes their background for gibsonai.com.",
+        "score": 2,
+        "unknown_references": [
+          "unk-8aceb6749d70"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "traction",
+        "evidence_claim_ids": [],
+        "maximum": 10,
+        "rationale": "The only source tied to the candidate is a Hacker News submission with minimal engagement (3 points, 0 comments) and no traction metrics, indicating essentially no observable attention rather than positive traction.",
+        "score": 1,
+        "unknown_references": [
+          "unk-ab49212363cd"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "market_timing",
+        "evidence_claim_ids": [],
+        "maximum": 10,
+        "rationale": "No regulatory, technical, or workflow shift is named in connection with gibsonai.com that would explain timing.",
+        "score": 2,
+        "unknown_references": [
+          "unk-aaafd6192b07"
+        ]
+      }
+    ],
+    "team_assessment": {
+      "evidence_claim_ids": [],
+      "text": "No source provides any information about the founders or team of gibsonai.com.",
+      "unknown_references": [
+        "unk-8aceb6749d70"
+      ]
+    },
+    "thesis_assessment": {
+      "evidence_claim_ids": [],
+      "rationale": "Because no reliable product, team, market or traction evidence exists for gibsonai.com specifically, fit against the thesis (AI-native SMB workflow automation) cannot be determined from this dossier.",
+      "unknown_references": [
+        "unk-8006050de59f",
+        "unk-aaafd6192b07"
+      ],
+      "verdict": "undetermined"
+    },
+    "thesis_version": "thesis_v1",
+    "total_score": 14,
+    "workflow": null
+  },
+  "recommendation": {
+    "band": "pass",
+    "band_label": "0-64",
+    "cap_reason": null,
+    "capped": false,
+    "company_id": "gibsonai-com",
+    "confidence": {
+      "components": {
+        "category_span": 0.0,
+        "claim_volume": 0.0,
+        "corroboration": 0.0,
+        "independence": 0.0,
+        "source_coverage": 0.0,
+        "website": 1.0
+      },
+      "level": "low",
+      "missing": [
+        "market",
+        "product",
+        "risk",
+        "team",
+        "traction",
+        "all_evidence"
+      ],
+      "reasons": [
+        "The dossier contains no evidence claims, so nothing about this company was established. This is a statement about the research, not about the company.",
+        "2 identity warning(s) were recorded."
+      ],
+      "score": 0.0
+    },
+    "decided_at": "2026-08-24T14:05:26.796843Z",
+    "decision": "watch",
+    "guardrails_applied": [
+      "zero_claim_dossier"
+    ],
+    "model_disagreed": true,
+    "model_suggested": "pass",
+    "policy_version": "2.0.0",
+    "rationale": [
+      "Scored 14/100 against the rubric, which falls in the 0-64 band (pass).",
+      "Research confidence is low (0.00).",
+      "No dimension could be assessed from the available evidence: pain_roi, wedge, distribution, defensibility, team, traction, market_timing. The points shown reflect residual uncertainty, not established merit.",
+      "No evidence claims could be extracted for this company, so there is no basis for either a positive or a negative call. Recommending watch on insufficient evidence rather than passing on an absence of information."
+    ],
+    "schema_version": "1.1.0",
+    "total_score": 14
+  }
+}

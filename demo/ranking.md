@@ -1,10 +1,10 @@
-# Investment ranking — offline-demo
+# Investment ranking — ai-smb-ops-demo
 
-9 of 9 candidate(s) in this run were analysed and have a memo.
+15 of 15 candidate(s) in this run were analysed and have a memo.
 
 - **Take a meeting:** 0
-- **Watch:** 0
-- **Pass:** 9
+- **Watch:** 5
+- **Pass:** 10
 
 ## The thesis being applied
 
@@ -39,36 +39,44 @@ The ordering below is **triage order** - which memo to open first - and not a qu
 
 | Rank | Company | Call | Score | Confidence | Thesis fit | Max achievable | Primary rationale | Memo |
 | ---: | --- | --- | ---: | --- | --- | ---: | --- | --- |
-| 1 | AgentKit Core | Pass | 41/100 | medium | Not established by the sources | 82/100 | Scored below the watch band on the evidence available | [AgentKit Core](memos/agentkit-core.md) |
-| 2 | Claimlane | Pass | 41/100 | medium | Not established by the sources | 82/100 | Scored below the watch band on the evidence available | [Claimlane](memos/claimlane.md) |
-| 3 | Deskloop | Pass | 41/100 | medium | Not established by the sources | 82/100 | Scored below the watch band on the evidence available | [Deskloop](memos/deskloop.md) |
-| 4 | Frontdeskly | Pass | 41/100 | medium | Not established by the sources | 82/100 | Scored below the watch band on the evidence available | [Frontdeskly](memos/frontdeskly.md) |
-| 5 | LedgerPilot | Pass | 41/100 | medium | Not established by the sources | 82/100 | Scored below the watch band on the evidence available | [LedgerPilot](memos/ledgerpilot.md) |
-| 6 | PermitPath | Pass | 41/100 | medium | Not established by the sources | 82/100 | Scored below the watch band on the evidence available | [PermitPath](memos/permitpath.md) |
-| 7 | Quotecrate | Pass | 41/100 | medium | Not established by the sources | 82/100 | Scored below the watch band on the evidence available | [Quotecrate](memos/quotecrate.md) |
-| 8 | Rotamesh | Pass | 41/100 | medium | Not established by the sources | 82/100 | Scored below the watch band on the evidence available | [Rotamesh](memos/rotamesh.md) |
-| 9 | Stockmind | Pass | 41/100 | medium | Not established by the sources | 82/100 | Scored below the watch band on the evidence available | [Stockmind](memos/stockmind.md) |
+| 1 | Dooza Desk | Watch | 26/100 | low | Not established by the sources | 50/100 | Insufficient evidence, not a judgement of the company | [Dooza Desk](memos/dooza-desk.md) |
+| 2 | Inboto | Watch | 18/100 | low | Not established by the sources | 50/100 | Insufficient evidence, not a judgement of the company | [Inboto](memos/inboto.md) |
+| 3 | gibsonai.com | Watch | 14/100 | low | Not established by the sources | 48/100 | Insufficient evidence, not a judgement of the company | [gibsonai.com](memos/gibsonai-com.md) |
+| 4 | regulance.io | Watch | 14/100 | low | Not established by the sources | 48/100 | Insufficient evidence, not a judgement of the company | [regulance.io](memos/regulance-io.md) |
+| 5 | SupportMatic | Watch | 10/100 | low | Not established by the sources | 50/100 | Insufficient evidence, not a judgement of the company | [SupportMatic](memos/supportmatic.md) |
+| 6 | AI Agents for Customer Support | Pass | 42/100 | medium | Aligned with the thesis | 68/100 | Scored below the watch band on the evidence available | [AI Agents for Customer Support](memos/ai-agents-for-customer-support.md) |
+| 7 | HeyDeacon | Pass | 39/100 | medium | Adjacent to the thesis | 65/100 | Scored below the watch band on the evidence available | [HeyDeacon](memos/heydeacon.md) |
+| 8 | Luca | Pass | 39/100 | medium | Adjacent to the thesis | 67/100 | Scored below the watch band on the evidence available | [Luca](memos/luca.md) |
+| 9 | Drafting AI | Pass | 35/100 | medium | Adjacent to the thesis | 65/100 | Scored below the watch band on the evidence available | [Drafting AI](memos/drafting-ai.md) |
+| 10 | MCP Server for Appointment Booking | Pass | 34/100 | medium | Adjacent to the thesis | 72/100 | Scored below the watch band on the evidence available | [MCP Server for Appointment Booking](memos/mcp-server-for-appointment-booking.md) |
+| 11 | ticketdesk.ai | Pass | 34/100 | medium | Adjacent to the thesis | 65/100 | Scored below the watch band on the evidence available | [ticketdesk.ai](memos/ticketdesk-ai.md) |
+| 12 | Recursive | Pass | 29/100 | medium | Adjacent to the thesis | 65/100 | Scored below the watch band on the evidence available | [Recursive](memos/recursive.md) |
+| 13 | helphubassistant.pages.dev | Pass | 28/100 | medium | Adjacent to the thesis | 62/100 | Scored below the watch band on the evidence available | [helphubassistant.pages.dev](memos/helphubassistant-pages-dev.md) |
+| 14 | n8n.io | Pass | 28/100 | low | Outside the thesis, on evidence | 66/100 | Evidence places it outside the thesis | [n8n.io](memos/n8n-io.md) |
+| 15 | SpecX | Pass | 21/100 | medium | Not established by the sources | 53/100 | Scored below the watch band on the evidence available | [SpecX](memos/specx.md) |
 
 ## Guardrail overrides
 
-No policy guardrail fired in this run.
+The deterministic policy moved or held a call in the following cases. A guardrail never raises a recommendation.
+
+- **3x** The low score is driven by dimensions the evidence could not reach, so the policy holds at watch rather than reading a research shortfall as a judgement.
+- **2x** No evidence claim could be extracted at all, so there is no basis for a positive or a negative call. The policy holds at watch rather than passing on an absence.
 
 ## Where the model and the policy disagreed
 
 The analysis model's suggestion is recorded for evaluation and never consulted by the policy. It differed from the binding call here:
 
-- **AgentKit Core** - the analysis model suggested watch; the policy decided pass.
-- **Claimlane** - the analysis model suggested watch; the policy decided pass.
-- **Deskloop** - the analysis model suggested watch; the policy decided pass.
-- **Frontdeskly** - the analysis model suggested watch; the policy decided pass.
-- **LedgerPilot** - the analysis model suggested watch; the policy decided pass.
-- **PermitPath** - the analysis model suggested watch; the policy decided pass.
-- **Quotecrate** - the analysis model suggested watch; the policy decided pass.
-- **Rotamesh** - the analysis model suggested watch; the policy decided pass.
-- **Stockmind** - the analysis model suggested watch; the policy decided pass.
+- **Dooza Desk** - the analysis model suggested pass; the policy decided watch.
+- **Inboto** - the analysis model suggested pass; the policy decided watch.
+- **gibsonai.com** - the analysis model suggested pass; the policy decided watch.
+- **regulance.io** - the analysis model suggested pass; the policy decided watch.
+- **SupportMatic** - the analysis model suggested pass; the policy decided watch.
+- **AI Agents for Customer Support** - the analysis model suggested watch; the policy decided pass.
+- **Drafting AI** - the analysis model suggested watch; the policy decided pass.
 
 ## Why no meeting recommendation
 
 - No candidate in this run reached the take-a-meeting band at 80/100.
-- Across 9 analysed candidate(s), the 63 scored dimension slots were assessed as: 36 supported, 0 partially supported, 0 contradicted, 27 not assessable.
+- Across 15 analysed candidate(s), the 105 scored dimension slots were assessed as: 8 supported, 30 partially supported, 4 contradicted, 63 not assessable.
+- For 15 of 15 candidate(s), the assessment statuses recorded capped the achievable total below 80 before any judgement about the company; the highest achievable total in this run was 72/100.
 - That is a statement about the evidence this run could gather, not a conclusion that these companies are uninvestable. No score has been raised to produce a meeting.

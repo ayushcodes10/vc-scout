@@ -1,0 +1,43 @@
+{
+  "company_id": "specx",
+  "failures": [],
+  "generated_at": "2026-08-24T14:00:46.298396Z",
+  "pages": [
+    {
+      "body_truncated": false,
+      "char_count": 103,
+      "company_id": "specx",
+      "content_sha256": "294401f01018fbd9d0e0d2958ce06e4e201b4a00f7e7745b43e48544388d3e75",
+      "content_type": "text/html",
+      "extractor": "bs4-main-content/1",
+      "fetched_at": "2026-08-24T14:01:20.534767Z",
+      "final_url": "https://redoxsoft.com/",
+      "headings": [],
+      "http_status": 200,
+      "role": "homepage",
+      "source_id": "src-41874b4c12fe",
+      "text": "Turn team knowledge and proven processes into AI work your whole team can review, trust, and run again.",
+      "title": "Redoxsoft — Make AI work predictably",
+      "truncated": false,
+      "url": "https://redoxsoft.com/"
+    }
+  ],
+  "schema_version": "1.1.0",
+  "sources": [
+    {
+      "domain": "redoxsoft.com",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T14:01:20.534767Z",
+      "source_id": "src-41874b4c12fe",
+      "title": "Redoxsoft — Make AI work predictably",
+      "url": "https://redoxsoft.com/"
+    }
+  ],
+  "status": "success",
+  "total_chars": 103,
+  "warnings": []
+}

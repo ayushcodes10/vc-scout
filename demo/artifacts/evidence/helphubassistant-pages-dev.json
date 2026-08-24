@@ -1,0 +1,258 @@
+{
+  "claims": [
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "HelpHub Assistant is an AI-powered chatbot marketed for instant 24/7 customer support, requiring no coding to set up.",
+      "claim_id": "ev-86fdb58218dc",
+      "company_id": "helphubassistant-pages-dev",
+      "excerpts": [
+        {
+          "excerpt": "Boost your business with HelpHub Assistant, an AI-powered chatbot for instant 24/7 customer support. Fast setup, no coding, PayPal secure payment, instant access!",
+          "source_id": "src-6ba9ced3d7dd"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-6ba9ced3d7dd"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "The company claims its chatbot integrates with payment platforms including PayPal and Stripe, and supports multiple languages.",
+      "claim_id": "ev-80aedf29ffba",
+      "company_id": "helphubassistant-pages-dev",
+      "excerpts": [
+        {
+          "excerpt": "Integration with PayPal, Stripe, and major payment platforms",
+          "source_id": "src-6ba9ced3d7dd"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-6ba9ced3d7dd"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "product",
+      "caveat": "This is a self-description on the homepage; no independent certification or documentation is provided.",
+      "claim": "The company describes the product as GDPR-compliant.",
+      "claim_id": "ev-a3430255df4b",
+      "company_id": "helphubassistant-pages-dev",
+      "excerpts": [
+        {
+          "excerpt": "Secure, GDPR-compliant chat support solution",
+          "source_id": "src-6ba9ced3d7dd"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-6ba9ced3d7dd"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "The company offers a live demo of the chatbot without registration or payment.",
+      "claim_id": "ev-03ef3ce5394c",
+      "company_id": "helphubassistant-pages-dev",
+      "excerpts": [
+        {
+          "excerpt": "Curious how our chatbot works in real life? Test the HelpHub Assistant AI Chatbot live here! No registration or payment required - just try it out and see how it can help your business.",
+          "source_id": "src-6ba9ced3d7dd"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-6ba9ced3d7dd"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "market",
+      "caveat": "This figure is attributed to an external study but is only presented via the company's own blog, with no link or verification of the cited study.",
+      "claim": "The company's blog cites a 2023 IBM study claiming a 30-40% reduction in customer service costs from AI chatbot deployment.",
+      "claim_id": "ev-9ea0009fb52c",
+      "company_id": "helphubassistant-pages-dev",
+      "excerpts": [
+        {
+          "excerpt": "According to a 2023 IBM study, businesses deploying AI chatbots see an average reduction of 30-40% in customer service costs.",
+          "source_id": "src-03075bef0278"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-03075bef0278"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "market",
+      "caveat": "Source of this statistic is unnamed and unverifiable from the supplied material.",
+      "claim": "The blog cites a claim that 75% of consumers expect responses within five minutes.",
+      "claim_id": "ev-4a1d9843ea9e",
+      "company_id": "helphubassistant-pages-dev",
+      "excerpts": [
+        {
+          "excerpt": "Research shows that 75% of consumers expect answers within five minutes when contacting customer support.",
+          "source_id": "src-03075bef0278"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-03075bef0278"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "traction",
+      "caveat": "No company names, sources, or verification are given; these read as illustrative examples rather than confirmed customers.",
+      "claim": "The blog describes anecdotal/example case studies (a boutique and a repair service) with specific improvement percentages, but these appear to be illustrative examples rather than verified customer case studies.",
+      "claim_id": "ev-eedfbac15fc0",
+      "company_id": "helphubassistant-pages-dev",
+      "excerpts": [
+        {
+          "excerpt": "A small online boutique integrated a chatbot to answer product size questions and recommend items based on user preferences. Within six months, they saw a 25% increase in average order value and a significant drop in support tickets.",
+          "source_id": "src-03075bef0278"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-03075bef0278"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "traction",
+      "caveat": null,
+      "claim": "The company's Hacker News launch post received minimal community engagement.",
+      "claim_id": "ev-bb00ea8badd6",
+      "company_id": "helphubassistant-pages-dev",
+      "excerpts": [
+        {
+          "excerpt": "The thread has 1 points on Hacker News. The thread has 1 comments on Hacker News.",
+          "source_id": "src-be6b8250105e"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-be6b8250105e"
+      ],
+      "verification_status": "community_signal"
+    }
+  ],
+  "company_id": "helphubassistant-pages-dev",
+  "confidence_inputs": {
+    "claims_by_category": {
+      "market": 2,
+      "product": 4,
+      "traction": 2
+    },
+    "claims_by_verification": {
+      "community_signal": 1,
+      "company_claim": 7
+    },
+    "claims_total": 8,
+    "conflicts": 0,
+    "distinct_domains": 2,
+    "inferred_claims": 0,
+    "unknowns": 5
+  },
+  "conflicts": [],
+  "generated_at": "2026-08-24T14:01:43.587956Z",
+  "model": "claude-sonnet-5",
+  "prompt_version": "evidence_v1",
+  "provider": "anthropic",
+  "schema_version": "1.1.0",
+  "source_coverage": {
+    "hn_sources": 1,
+    "pages_supplied": 3,
+    "sources_cited": 3,
+    "sources_supplied": 4,
+    "supplied_chars": 8128,
+    "truncated_pages": [],
+    "website_available": true
+  },
+  "sources": [
+    {
+      "domain": "news.ycombinator.com",
+      "hn_num_comments": 1,
+      "hn_object_id": "44224956",
+      "hn_points": 1,
+      "kind": "hn_story",
+      "published_at": "2025-06-09T14:38:24Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-be6b8250105e",
+      "title": "Automation of Support for Small Businesses",
+      "url": "https://news.ycombinator.com/item?id=44224956"
+    },
+    {
+      "domain": "helphubassistant.pages.dev",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T14:00:59.046110Z",
+      "source_id": "src-6ba9ced3d7dd",
+      "title": "AI Customer Support Chatbot | HelpHub Assistant – Instant 24/7 Support",
+      "url": "https://helphubassistant.pages.dev/"
+    },
+    {
+      "domain": "helphubassistant.pages.dev",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T14:00:59.573902Z",
+      "source_id": "src-03075bef0278",
+      "title": "Top 5 Benefits of Using AI Chatbots for Small Businesses | HelpHub Assistant Blog – Instant 24/7 Support",
+      "url": "https://helphubassistant.pages.dev/blog/ai-chatbots-small-business-benefits"
+    },
+    {
+      "domain": "helphubassistant.pages.dev",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T14:01:00.751346Z",
+      "source_id": "src-6e5897c50d6a",
+      "title": "Blog | HelpHub Assistant Blog – Instant 24/7 Support",
+      "url": "https://helphubassistant.pages.dev/blog"
+    }
+  ],
+  "unknowns": [
+    {
+      "category": "team",
+      "question": "Who founded or works at HelpHub Assistant, and what is their background?",
+      "reason": "No source provides any team or founder information."
+    },
+    {
+      "category": "traction",
+      "question": "Does HelpHub Assistant have any real, named customers or usage metrics?",
+      "reason": "Only illustrative, unnamed examples are given in the blog; no verified customer traction data is supplied."
+    },
+    {
+      "category": "market",
+      "question": "What is the actual market size or competitive landscape for this product?",
+      "reason": "No independent market sizing or competitor analysis is present in the sources."
+    },
+    {
+      "category": "product",
+      "question": "What are the actual pricing tiers or plans for HelpHub Assistant?",
+      "reason": "No pricing page content was supplied despite the homepage mentioning payment integration."
+    },
+    {
+      "category": "risk",
+      "question": "Are the cited statistics (IBM study, 75% consumer expectation) accurate or properly sourced?",
+      "reason": "These are referenced without links or citations, and only appear on the company's own blog."
+    }
+  ],
+  "warnings": []
+}

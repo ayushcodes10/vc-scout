@@ -1,0 +1,107 @@
+{
+  "claims": [
+    {
+      "category": "traction",
+      "caveat": null,
+      "claim": "SupportMatic was shown on Hacker News as a Show HN launch with minimal community engagement (1 point, 1 comment)",
+      "claim_id": "ev-d2ca3da052e9",
+      "company_id": "supportmatic",
+      "excerpts": [
+        {
+          "excerpt": "The thread has 1 points on Hacker News.",
+          "source_id": "src-b8eef42f465c"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-b8eef42f465c"
+      ],
+      "verification_status": "community_signal"
+    }
+  ],
+  "company_id": "supportmatic",
+  "confidence_inputs": {
+    "claims_by_category": {
+      "traction": 1
+    },
+    "claims_by_verification": {
+      "community_signal": 1
+    },
+    "claims_total": 1,
+    "conflicts": 0,
+    "distinct_domains": 1,
+    "inferred_claims": 0,
+    "unknowns": 5
+  },
+  "conflicts": [],
+  "generated_at": "2026-08-24T14:01:43.587956Z",
+  "model": "claude-sonnet-5",
+  "prompt_version": "evidence_v1",
+  "provider": "anthropic",
+  "schema_version": "1.1.0",
+  "source_coverage": {
+    "hn_sources": 1,
+    "pages_supplied": 1,
+    "sources_cited": 1,
+    "sources_supplied": 2,
+    "supplied_chars": 479,
+    "truncated_pages": [],
+    "website_available": true
+  },
+  "sources": [
+    {
+      "domain": "news.ycombinator.com",
+      "hn_num_comments": 1,
+      "hn_object_id": "43543736",
+      "hn_points": 1,
+      "kind": "hn_story",
+      "published_at": "2025-04-01T07:10:45Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-b8eef42f465c",
+      "title": "Show HN: SupportMatic – AI agent for email customer support",
+      "url": "https://news.ycombinator.com/item?id=43543736"
+    },
+    {
+      "domain": "supportmatic.co",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T14:01:37.173593Z",
+      "source_id": "src-56d04835512f",
+      "title": "supportmatic.co",
+      "url": "https://supportmatic.co/"
+    }
+  ],
+  "unknowns": [
+    {
+      "category": "product",
+      "question": "What does SupportMatic's product actually do beyond the one-liner 'AI agent for email customer support'?",
+      "reason": "The company homepage returned no substantive content, only a domain-for-sale placeholder message."
+    },
+    {
+      "category": "team",
+      "question": "Who founded or works at SupportMatic?",
+      "reason": "No source provides team information."
+    },
+    {
+      "category": "market",
+      "question": "What market or customer segment does SupportMatic target?",
+      "reason": "No source describes the market."
+    },
+    {
+      "category": "traction",
+      "question": "Does SupportMatic have any customers, users, or revenue?",
+      "reason": "No source provides traction metrics beyond HN engagement counts."
+    },
+    {
+      "category": "risk",
+      "question": "Is SupportMatic still an active company/product?",
+      "reason": "The homepage content states 'This domain may be for sale,' which may indicate the site is now a parked domain, but this is only evidence about the current state of the domain, not a judgment about the company."
+    }
+  ],
+  "warnings": [
+    "The company homepage (src-56d04835512f) contains no substantive product, team, or market content; it appears to be a parked-domain placeholder page ('This domain may be for sale.'). No claims about product functionality could be extracted from it."
+  ]
+}

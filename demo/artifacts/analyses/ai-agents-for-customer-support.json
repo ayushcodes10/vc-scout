@@ -1,0 +1,265 @@
+{
+  "analysis": {
+    "analysis_warnings": [],
+    "buyer": null,
+    "company_id": "ai-agents-for-customer-support",
+    "competitive_observations": [],
+    "confidence_rationale": [
+      "4 of 4 supplied source(s) were cited by at least one claim.",
+      "9 evidence claim(s) across 2 of 5 categories.",
+      "A page from the company's own website was read.",
+      "8 of 9 claim(s) are company-authored; 1 come from other voices.",
+      "No finding was identified as corroborated by separate sources.",
+      "5 question(s) were left unanswered."
+    ],
+    "corroborated_findings": [],
+    "generated_at": "2026-08-24T14:05:26.796843Z",
+    "identity_warnings": [],
+    "market_assessment": {
+      "evidence_claim_ids": [],
+      "text": "No market sizing or competitive landscape data is present in the dossier; timing rationale (why buildable/buyable now) is also not stated.",
+      "unknown_references": [
+        "unk-8ac379c58e2b"
+      ]
+    },
+    "model": "claude-sonnet-5",
+    "model_suggested_recommendation": "watch",
+    "open_questions": [],
+    "plain_language_product": "An AI support agent (Zoona) that auto-resolves customer support tickets across email, chat, WhatsApp and Slack, trained on existing help docs/notion/website content, with built-in CSAT surveys, tiered per-agent pricing, and SOC2/GDPR compliance claims.",
+    "product_assessment": {
+      "evidence_claim_ids": [
+        "ev-5bf90daec033",
+        "ev-fba86286a9ef",
+        "ev-770dde288acc",
+        "ev-a758488009ee",
+        "ev-4012d5d00a0f",
+        "ev-0b7812b4aea3"
+      ],
+      "text": "SparrowDesk provides an AI agent that reads and auto-resolves support tickets across multiple channels (email, chat, WhatsApp, Slack), trained by pointing it at existing docs/help center/Notion, with CSAT survey automation, tiered per-agent pricing from $16/agent with 14-day trial, and stated SOC2/GDPR compliance.",
+      "unknown_references": []
+    },
+    "prompt_version": "analysis_v2",
+    "provider": "anthropic",
+    "recommendation_changers": [
+      "Independent verification of customer count and usage metrics (e.g., third-party case studies or reviews) beyond the company's own site",
+      "Founder/team background information establishing domain expertise in customer support or AI agent workflows",
+      "Evidence of measurable ROI (time or cost savings) from an independent or corroborated source rather than a single testimonial"
+    ],
+    "research_confidence": {
+      "components": {
+        "category_span": 0.4,
+        "claim_volume": 1.0,
+        "corroboration": 0.0,
+        "independence": 0.1111,
+        "source_coverage": 1.0,
+        "website": 1.0
+      },
+      "level": "medium",
+      "missing": [
+        "market",
+        "product",
+        "risk",
+        "team",
+        "traction"
+      ],
+      "reasons": [
+        "4 of 4 supplied source(s) were cited by at least one claim.",
+        "9 evidence claim(s) across 2 of 5 categories.",
+        "A page from the company's own website was read.",
+        "8 of 9 claim(s) are company-authored; 1 come from other voices.",
+        "No finding was identified as corroborated by separate sources.",
+        "5 question(s) were left unanswered."
+      ],
+      "score": 0.5467
+    },
+    "risks": [
+      {
+        "evidence_claim_ids": [
+          "ev-d2d982d6498b"
+        ],
+        "text": "The headline traction figure ('1,000+ support teams') appears only on the company's own pages with no independent corroboration.",
+        "unknown_references": []
+      },
+      {
+        "evidence_claim_ids": [
+          "ev-563eec55e936"
+        ],
+        "text": "The 67% conversation-handling metric comes from a single unverified customer testimonial and cannot be generalized.",
+        "unknown_references": []
+      },
+      {
+        "evidence_claim_ids": [
+          "ev-35974cb2ad19"
+        ],
+        "text": "The Show HN launch received minimal community engagement (1 point, 0 comments), indicating little external validation or attention.",
+        "unknown_references": []
+      }
+    ],
+    "schema_version": "1.1.0",
+    "score_components": [
+      {
+        "assessment_status": "partially_supported",
+        "caveats": [],
+        "component": "pain_roi",
+        "evidence_claim_ids": [
+          "ev-5bf90daec033",
+          "ev-563eec55e936"
+        ],
+        "maximum": 20,
+        "rationale": "The company clearly targets the recurring, revenue-critical workflow of customer support ticket resolution, and pricing/trial structure suggests measurable engagement is possible. However, ROI/time-savings claims (e.g., 67% conversation handling) are self-reported and unverified.",
+        "score": 10,
+        "unknown_references": []
+      },
+      {
+        "assessment_status": "supported",
+        "caveats": [],
+        "component": "wedge",
+        "evidence_claim_ids": [
+          "ev-5bf90daec033",
+          "ev-fba86286a9ef",
+          "ev-770dde288acc",
+          "ev-4012d5d00a0f"
+        ],
+        "maximum": 15,
+        "rationale": "Concrete product facts are given: specific channels (email, chat, WhatsApp, Slack), training method (pointing at existing docs/Notion/help center), and pricing tiers from $16/agent. This is a narrow, well-defined entry point into an existing support workflow.",
+        "score": 12,
+        "unknown_references": []
+      },
+      {
+        "assessment_status": "partially_supported",
+        "caveats": [],
+        "component": "distribution",
+        "evidence_claim_ids": [
+          "ev-4012d5d00a0f"
+        ],
+        "maximum": 15,
+        "rationale": "Self-serve availability with a free trial and tiered pricing is stated, which is a credible SMB motion, but no channel partnerships, marketing engine, or repeatability evidence beyond the company's own site is present.",
+        "score": 6,
+        "unknown_references": []
+      },
+      {
+        "assessment_status": "partially_supported",
+        "caveats": [],
+        "component": "defensibility",
+        "evidence_claim_ids": [
+          "ev-fba86286a9ef",
+          "ev-a758488009ee",
+          "ev-0b7812b4aea3"
+        ],
+        "maximum": 15,
+        "rationale": "Some operational depth is described (multi-source training, multi-channel support, CSAT feature, compliance certifications), but nothing establishes these as a durable moat versus competitors with similar AI agent access.",
+        "score": 6,
+        "unknown_references": []
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "team",
+        "evidence_claim_ids": [],
+        "maximum": 15,
+        "rationale": "No source provides any founder or team information, so earned insight or shipping ability cannot be assessed at all.",
+        "score": 2,
+        "unknown_references": [
+          "unk-2230ea836ec8"
+        ]
+      },
+      {
+        "assessment_status": "partially_supported",
+        "caveats": [
+          "Traction figures are self-reported and repeated only on company pages; Show HN engagement was minimal, which weakens rather than supports a strong traction case."
+        ],
+        "component": "traction",
+        "evidence_claim_ids": [
+          "ev-d2d982d6498b",
+          "ev-563eec55e936",
+          "ev-35974cb2ad19"
+        ],
+        "maximum": 10,
+        "rationale": "The '1,000+ support teams' and '67% conversations handled' figures are company-stated and unverified; the Show HN launch shows minimal community engagement (1 point, 0 comments), which does not support strong traction and even signals limited outside attention.",
+        "score": 3,
+        "unknown_references": [
+          "unk-c77cf7caf8ae"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "market_timing",
+        "evidence_claim_ids": [],
+        "maximum": 10,
+        "rationale": "No regulatory, technical, or workflow shift is cited as the reason this is buildable/buyable now, and no market sizing data is present.",
+        "score": 3,
+        "unknown_references": [
+          "unk-8ac379c58e2b"
+        ]
+      }
+    ],
+    "team_assessment": {
+      "evidence_claim_ids": [],
+      "text": "No source provides any information on founders or team background; this dimension is entirely unestablished.",
+      "unknown_references": [
+        "unk-2230ea836ec8"
+      ]
+    },
+    "thesis_assessment": {
+      "evidence_claim_ids": [
+        "ev-5bf90daec033",
+        "ev-fba86286a9ef",
+        "ev-770dde288acc"
+      ],
+      "rationale": "The product automates a recurring, revenue-critical SMB workflow (customer support ticket resolution), integrates into existing systems (help center, Notion, docs) as a system-of-record-adjacent entry point, and is AI-native. This fits the thesis reasonably well, though defensibility and measurable 30-day ROI are not independently established.",
+      "unknown_references": [],
+      "verdict": "aligned"
+    },
+    "thesis_version": "thesis_v1",
+    "total_score": 42,
+    "workflow": null
+  },
+  "recommendation": {
+    "band": "pass",
+    "band_label": "0-64",
+    "cap_reason": null,
+    "capped": false,
+    "company_id": "ai-agents-for-customer-support",
+    "confidence": {
+      "components": {
+        "category_span": 0.4,
+        "claim_volume": 1.0,
+        "corroboration": 0.0,
+        "independence": 0.1111,
+        "source_coverage": 1.0,
+        "website": 1.0
+      },
+      "level": "medium",
+      "missing": [
+        "market",
+        "product",
+        "risk",
+        "team",
+        "traction"
+      ],
+      "reasons": [
+        "4 of 4 supplied source(s) were cited by at least one claim.",
+        "9 evidence claim(s) across 2 of 5 categories.",
+        "A page from the company's own website was read.",
+        "8 of 9 claim(s) are company-authored; 1 come from other voices.",
+        "No finding was identified as corroborated by separate sources.",
+        "5 question(s) were left unanswered."
+      ],
+      "score": 0.5467
+    },
+    "decided_at": "2026-08-24T14:05:26.796843Z",
+    "decision": "pass",
+    "guardrails_applied": [],
+    "model_disagreed": true,
+    "model_suggested": "watch",
+    "policy_version": "2.0.0",
+    "rationale": [
+      "Scored 42/100 against the rubric, which falls in the 0-64 band (pass).",
+      "Research confidence is medium (0.55).",
+      "2 dimension(s) could not be assessed from the available evidence: team, market_timing. Only 75 of 100 points were assessable."
+    ],
+    "schema_version": "1.1.0",
+    "total_score": 42
+  }
+}

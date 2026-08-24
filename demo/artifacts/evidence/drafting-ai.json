@@ -1,0 +1,165 @@
+{
+  "claims": [
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "Draftinging AI provides a browser-based, human-in-the-loop workflow tool where lets ops/CX teams define email-triggered workflows where AI drafts actions and a human reviews/completes them",
+      "claim_id": "ev-08a1980d6935",
+      "company_id": "drafting-ai",
+      "excerpts": [
+        {
+          "excerpt": "Workflows have a trigger and an action",
+          "source_id": "src-b79092e88686"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-b79092e88686"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "The product supports incremental/partial automation, starting with AI handling a few workflow steps and handing off to a human, expanding scope over time",
+      "claim_id": "ev-1f5c6dcf1ebd",
+      "company_id": "drafting-ai",
+      "excerpts": [
+        {
+          "excerpt": "With partial automation, we suggest starting to automate a workflow by configuring the AI to do just the first few, well defined steps, then handing off to a person to finish.",
+          "source_id": "src-b79092e88686"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-b79092e88686"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "The AI is trained to use the same tools/UI as a human (browser-based automation), avoiding replatforming as automation scope grows",
+      "claim_id": "ev-4f679ec18706",
+      "company_id": "drafting-ai",
+      "excerpts": [
+        {
+          "excerpt": "Because the AI is being trained to use the same tools as a person, there's no replatforming or rework as you grow it towards full automation.",
+          "source_id": "src-b79092e88686"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-b79092e88686"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "traction",
+      "caveat": null,
+      "claim": "The company's Show HN launch post received 29 points and 2 comments on Hacker News",
+      "claim_id": "ev-7f65ca3b4c95",
+      "company_id": "drafting-ai",
+      "excerpts": [
+        {
+          "excerpt": "Recorded signal - hn_points: 29",
+          "source_id": "src-6b3dd3765ed7"
+        },
+        {
+          "excerpt": "Recorded signal - hn_comments: 2",
+          "source_id": "src-6b3dd3765ed7"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-6b3dd3765ed7"
+      ],
+      "verification_status": "community_signal"
+    }
+  ],
+  "company_id": "drafting-ai",
+  "confidence_inputs": {
+    "claims_by_category": {
+      "product": 3,
+      "traction": 1
+    },
+    "claims_by_verification": {
+      "community_signal": 1,
+      "company_claim": 3
+    },
+    "claims_total": 4,
+    "conflicts": 0,
+    "distinct_domains": 2,
+    "inferred_claims": 0,
+    "unknowns": 5
+  },
+  "conflicts": [],
+  "generated_at": "2026-08-24T14:01:43.587956Z",
+  "model": "claude-sonnet-5",
+  "prompt_version": "evidence_v1",
+  "provider": "anthropic",
+  "schema_version": "1.1.0",
+  "source_coverage": {
+    "hn_sources": 1,
+    "pages_supplied": 1,
+    "sources_cited": 2,
+    "sources_supplied": 2,
+    "supplied_chars": 2064,
+    "truncated_pages": [],
+    "website_available": true
+  },
+  "sources": [
+    {
+      "domain": "news.ycombinator.com",
+      "hn_num_comments": 2,
+      "hn_object_id": "42247037",
+      "hn_points": 29,
+      "kind": "hn_story",
+      "published_at": "2024-11-26T16:23:50Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-6b3dd3765ed7",
+      "title": "Show HN: Drafting AI – Human-in-the-loop AI automation for ops teams' email",
+      "url": "https://news.ycombinator.com/item?id=42247037"
+    },
+    {
+      "domain": "getdrafting.com",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T14:00:58.038315Z",
+      "source_id": "src-b79092e88686",
+      "title": "Drafting AI",
+      "url": "https://getdrafting.com/"
+    }
+  ],
+  "unknowns": [
+    {
+      "category": "team",
+      "question": "Who founded or works at Drafting AI, and what is their background?",
+      "reason": "No source provides team or founder information."
+    },
+    {
+      "category": "traction",
+      "question": "Does Drafting AI have paying customers, revenue, or usage metrics?",
+      "reason": "No source provides customer names, revenue figures, or usage data."
+    },
+    {
+      "category": "market",
+      "question": "What is the size or competitive landscape of the market Drafting AI addresses?",
+      "reason": "No source provides market sizing or competitor information."
+    },
+    {
+      "category": "product",
+      "question": "What specific email/ops platforms does Drafting AI integrate with, and how mature is the product (e.g. beta vs GA)?",
+      "reason": "Website describes general capabilities but no specific integrations or product maturity details are given."
+    },
+    {
+      "category": "risk",
+      "question": "What are the actual failure modes or limitations of the AI in production use?",
+      "reason": "Only marketing language about safety and 'incremental adoption' is given, with no independent verification."
+    }
+  ],
+  "warnings": []
+}

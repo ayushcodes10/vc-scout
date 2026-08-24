@@ -1,0 +1,262 @@
+{
+  "analysis": {
+    "analysis_warnings": [],
+    "buyer": null,
+    "company_id": "mcp-server-for-appointment-booking",
+    "competitive_observations": [],
+    "confidence_rationale": [
+      "3 of 3 supplied source(s) were cited by at least one claim.",
+      "6 evidence claim(s) across 3 of 5 categories.",
+      "A page from the company's own website was read.",
+      "5 of 6 claim(s) are company-authored; 1 come from other voices.",
+      "No finding was identified as corroborated by separate sources.",
+      "5 question(s) were left unanswered."
+    ],
+    "corroborated_findings": [],
+    "generated_at": "2026-08-24T14:05:26.796843Z",
+    "identity_warnings": [],
+    "market_assessment": {
+      "evidence_claim_ids": [],
+      "text": "No market sizing, competitive positioning, or demand evidence is supplied in the dossier.",
+      "unknown_references": [
+        "unk-a50bf0e74f41"
+      ]
+    },
+    "model": "claude-sonnet-5",
+    "model_suggested_recommendation": "pass",
+    "open_questions": [],
+    "plain_language_product": "MakePlans is an existing appointment booking and event registration platform (with API and integrations) that has added an MCP (Model Context Protocol) server, allowing AI assistants like Claude or ChatGPT to check availability, list services, look up customers, and create/cancel bookings on behalf of the business.",
+    "product_assessment": {
+      "evidence_claim_ids": [
+        "ev-eea5a93a8319",
+        "ev-5239f374c0f5",
+        "ev-5d750c046bfa",
+        "ev-de55e15cff59"
+      ],
+      "text": "MakePlans is a broader appointment booking and event registration system with an API and integrations; it has added an open-protocol MCP server that lets AI assistants check availability, list services, look up customers, and create/cancel bookings using the business's own API credentials, as an addition rather than replacement to the existing product.",
+      "unknown_references": [
+        "unk-9392c18e2e2c"
+      ]
+    },
+    "prompt_version": "analysis_v2",
+    "provider": "anthropic",
+    "recommendation_changers": [
+      "Evidence of actual paying customers or usage volume of the MCP server beyond the company's own description",
+      "Independent validation of measurable time or revenue savings from AI-assisted booking management within a defined period",
+      "Information on the founding team's background and execution track record"
+    ],
+    "research_confidence": {
+      "components": {
+        "category_span": 0.6,
+        "claim_volume": 0.75,
+        "corroboration": 0.0,
+        "independence": 0.1667,
+        "source_coverage": 1.0,
+        "website": 1.0
+      },
+      "level": "medium",
+      "missing": [
+        "market",
+        "product",
+        "risk",
+        "team",
+        "traction"
+      ],
+      "reasons": [
+        "3 of 3 supplied source(s) were cited by at least one claim.",
+        "6 evidence claim(s) across 3 of 5 categories.",
+        "A page from the company's own website was read.",
+        "5 of 6 claim(s) are company-authored; 1 come from other voices.",
+        "No finding was identified as corroborated by separate sources.",
+        "5 question(s) were left unanswered."
+      ],
+      "score": 0.545
+    },
+    "risks": [
+      {
+        "evidence_claim_ids": [
+          "ev-ac8efe74bcfc"
+        ],
+        "text": "The only independent traction signal (Show HN) shows minimal engagement (1 point, 1 comment), indicating essentially no external attention detected.",
+        "unknown_references": []
+      },
+      {
+        "evidence_claim_ids": [],
+        "text": "No independent user reports exist about technical limitations, security issues, or failure cases of the MCP server.",
+        "unknown_references": [
+          "unk-777e380b0a13"
+        ]
+      }
+    ],
+    "schema_version": "1.1.0",
+    "score_components": [
+      {
+        "assessment_status": "partially_supported",
+        "caveats": [],
+        "component": "pain_roi",
+        "evidence_claim_ids": [
+          "ev-eea5a93a8319"
+        ],
+        "maximum": 20,
+        "rationale": "Appointment booking is plausibly a recurring, revenue-critical SMB workflow, and the company names the workflow explicitly (availability, bookings, customer lookup). However there is no measurable ROI evidence, timeframe, or independent corroboration of value delivered.",
+        "score": 8,
+        "unknown_references": [
+          "unk-178d526715bf"
+        ]
+      },
+      {
+        "assessment_status": "supported",
+        "caveats": [],
+        "component": "wedge",
+        "evidence_claim_ids": [
+          "ev-eea5a93a8319",
+          "ev-5d750c046bfa",
+          "ev-de55e15cff59"
+        ],
+        "maximum": 15,
+        "rationale": "The company gives concrete, specific facts: the MCP server authenticates with the business's own existing API credentials, sits alongside (not replacing) the existing admin panel/API/integrations, and exposes narrow functions (availability check, booking creation/cancellation, customer lookup). This is a narrow, well-defined entry point into an existing system of record.",
+        "score": 10,
+        "unknown_references": []
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "distribution",
+        "evidence_claim_ids": [],
+        "maximum": 15,
+        "rationale": "No go-to-market motion, channel, self-serve signup, or pricing details are provided beyond the existence of the product and blog post; no evidence establishes how SMBs are acquired.",
+        "score": 3,
+        "unknown_references": [
+          "unk-9392c18e2e2c"
+        ]
+      },
+      {
+        "assessment_status": "contradicted",
+        "caveats": [],
+        "component": "defensibility",
+        "evidence_claim_ids": [
+          "ev-5239f374c0f5"
+        ],
+        "maximum": 15,
+        "rationale": "The company explicitly states it built on an open protocol (MCP) usable by any assistant, explicitly framed as not proprietary (\"We did not build a Claude plugin... any assistant or agent that speaks MCP can use it\"). This is the opposite of a proprietary moat; the advantage as described is an integration convenience, not defensible workflow depth or proprietary data.",
+        "score": 4,
+        "unknown_references": []
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "team",
+        "evidence_claim_ids": [
+          "ev-e4caff570233"
+        ],
+        "maximum": 15,
+        "rationale": "No founders or team members are named; only the company's Norway location is stated, which speaks to nothing about workflow insight or execution ability.",
+        "score": 3,
+        "unknown_references": [
+          "unk-f40627708377"
+        ]
+      },
+      {
+        "assessment_status": "partially_supported",
+        "caveats": [],
+        "component": "traction",
+        "evidence_claim_ids": [
+          "ev-ac8efe74bcfc"
+        ],
+        "maximum": 10,
+        "rationale": "The only independent signal is a Show HN thread with 1 point and 1 comment, indicating minimal external attention rather than meaningful validated traction. No customer counts or revenue are given.",
+        "score": 2,
+        "unknown_references": [
+          "unk-178d526715bf"
+        ]
+      },
+      {
+        "assessment_status": "partially_supported",
+        "caveats": [],
+        "component": "market_timing",
+        "evidence_claim_ids": [
+          "ev-5239f374c0f5"
+        ],
+        "maximum": 10,
+        "rationale": "The rise of MCP as an emerging standard for AI-assistant tool access is implicit in the company's framing (building on the open protocol so any assistant can connect), which is a plausible technical enabler for why this is buildable now, but the dossier does not explicitly name a regulatory or market shift, nor independently corroborate demand.",
+        "score": 4,
+        "unknown_references": [
+          "unk-a50bf0e74f41"
+        ]
+      }
+    ],
+    "team_assessment": {
+      "evidence_claim_ids": [
+        "ev-e4caff570233"
+      ],
+      "text": "No individuals, founders, or their backgrounds are named in the dossier; only the company's location (Norway) is stated.",
+      "unknown_references": [
+        "unk-f40627708377"
+      ]
+    },
+    "thesis_assessment": {
+      "evidence_claim_ids": [
+        "ev-eea5a93a8319",
+        "ev-5d750c046bfa",
+        "ev-de55e15cff59",
+        "ev-ac8efe74bcfc"
+      ],
+      "rationale": "The workflow (appointment booking) is recurring and plausibly revenue-critical for SMBs, and the product integrates into an existing system of record (the business's own MakePlans account) rather than requiring a rewrite, which is aligned with the thesis. However, the evidence is entirely company-sourced with near-zero independent traction, no named team, no ROI, pricing, or market data, and the core innovation is an integration layer built on a widely-available open protocol rather than a demonstrated proprietary workflow moat, so it sits at the edge of, rather than squarely inside, the thesis.",
+      "unknown_references": [
+        "unk-178d526715bf",
+        "unk-a50bf0e74f41"
+      ],
+      "verdict": "adjacent"
+    },
+    "thesis_version": "thesis_v1",
+    "total_score": 34,
+    "workflow": null
+  },
+  "recommendation": {
+    "band": "pass",
+    "band_label": "0-64",
+    "cap_reason": null,
+    "capped": false,
+    "company_id": "mcp-server-for-appointment-booking",
+    "confidence": {
+      "components": {
+        "category_span": 0.6,
+        "claim_volume": 0.75,
+        "corroboration": 0.0,
+        "independence": 0.1667,
+        "source_coverage": 1.0,
+        "website": 1.0
+      },
+      "level": "medium",
+      "missing": [
+        "market",
+        "product",
+        "risk",
+        "team",
+        "traction"
+      ],
+      "reasons": [
+        "3 of 3 supplied source(s) were cited by at least one claim.",
+        "6 evidence claim(s) across 3 of 5 categories.",
+        "A page from the company's own website was read.",
+        "5 of 6 claim(s) are company-authored; 1 come from other voices.",
+        "No finding was identified as corroborated by separate sources.",
+        "5 question(s) were left unanswered."
+      ],
+      "score": 0.545
+    },
+    "decided_at": "2026-08-24T14:05:26.796843Z",
+    "decision": "pass",
+    "guardrails_applied": [],
+    "model_disagreed": false,
+    "model_suggested": "pass",
+    "policy_version": "2.0.0",
+    "rationale": [
+      "Scored 34/100 against the rubric, which falls in the 0-64 band (pass).",
+      "Research confidence is medium (0.55).",
+      "2 dimension(s) could not be assessed from the available evidence: distribution, team. Only 70 of 100 points were assessable."
+    ],
+    "schema_version": "1.1.0",
+    "total_score": 34
+  }
+}

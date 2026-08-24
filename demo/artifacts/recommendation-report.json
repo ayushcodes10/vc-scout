@@ -1,142 +1,221 @@
 {
-  "candidate_count": 9,
-  "candidates_with_meeting_unreachable": 0,
+  "candidate_count": 15,
+  "candidates_with_meeting_unreachable": 15,
   "component_status_counts": {
-    "not_assessable": 27,
-    "supported": 36
+    "contradicted": 4,
+    "not_assessable": 63,
+    "partially_supported": 30,
+    "supported": 8
   },
   "confidence_counts": {
+    "low": 6,
     "medium": 9
   },
   "failures": [],
-  "guardrail_counts": {},
+  "guardrail_counts": {
+    "insufficient_evidence_watch": 3,
+    "zero_claim_dossier": 2
+  },
   "memos": [
     {
-      "company_id": "agentkit-core",
-      "decision": "pass",
-      "maximum_achievable_score": 82,
-      "memo_path": "memos/agentkit-core.md",
-      "sources_referenced": 4,
-      "total_score": 41,
+      "company_id": "dooza-desk",
+      "decision": "watch",
+      "maximum_achievable_score": 50,
+      "memo_path": "memos/dooza-desk.md",
+      "sources_referenced": 2,
+      "total_score": 26,
       "unresolved_sources": 0,
       "warnings": [],
-      "words": 584
+      "words": 771
     },
     {
-      "company_id": "claimlane",
-      "decision": "pass",
-      "maximum_achievable_score": 82,
-      "memo_path": "memos/claimlane.md",
-      "sources_referenced": 4,
-      "total_score": 41,
+      "company_id": "inboto",
+      "decision": "watch",
+      "maximum_achievable_score": 50,
+      "memo_path": "memos/inboto.md",
+      "sources_referenced": 2,
+      "total_score": 18,
       "unresolved_sources": 0,
       "warnings": [],
-      "words": 587
+      "words": 771
     },
     {
-      "company_id": "deskloop",
-      "decision": "pass",
-      "maximum_achievable_score": 82,
-      "memo_path": "memos/deskloop.md",
-      "sources_referenced": 4,
-      "total_score": 41,
+      "company_id": "gibsonai-com",
+      "decision": "watch",
+      "maximum_achievable_score": 48,
+      "memo_path": "memos/gibsonai-com.md",
+      "sources_referenced": 2,
+      "total_score": 14,
       "unresolved_sources": 0,
       "warnings": [],
-      "words": 579
+      "words": 767
     },
     {
-      "company_id": "frontdeskly",
-      "decision": "pass",
-      "maximum_achievable_score": 82,
-      "memo_path": "memos/frontdeskly.md",
-      "sources_referenced": 4,
-      "total_score": 41,
+      "company_id": "regulance-io",
+      "decision": "watch",
+      "maximum_achievable_score": 48,
+      "memo_path": "memos/regulance-io.md",
+      "sources_referenced": 2,
+      "total_score": 14,
       "unresolved_sources": 0,
       "warnings": [],
-      "words": 585
+      "words": 792
     },
     {
-      "company_id": "ledgerpilot",
-      "decision": "pass",
-      "maximum_achievable_score": 82,
-      "memo_path": "memos/ledgerpilot.md",
-      "sources_referenced": 4,
-      "total_score": 41,
+      "company_id": "supportmatic",
+      "decision": "watch",
+      "maximum_achievable_score": 50,
+      "memo_path": "memos/supportmatic.md",
+      "sources_referenced": 2,
+      "total_score": 10,
       "unresolved_sources": 0,
       "warnings": [],
-      "words": 583
+      "words": 773
     },
     {
-      "company_id": "permitpath",
+      "company_id": "ai-agents-for-customer-support",
       "decision": "pass",
-      "maximum_achievable_score": 82,
-      "memo_path": "memos/permitpath.md",
-      "sources_referenced": 4,
-      "total_score": 41,
+      "maximum_achievable_score": 68,
+      "memo_path": "memos/ai-agents-for-customer-support.md",
+      "sources_referenced": 5,
+      "total_score": 42,
       "unresolved_sources": 0,
       "warnings": [],
-      "words": 581
+      "words": 845
     },
     {
-      "company_id": "quotecrate",
+      "company_id": "heydeacon",
       "decision": "pass",
-      "maximum_achievable_score": 82,
-      "memo_path": "memos/quotecrate.md",
-      "sources_referenced": 4,
-      "total_score": 41,
+      "maximum_achievable_score": 65,
+      "memo_path": "memos/heydeacon.md",
+      "sources_referenced": 3,
+      "total_score": 39,
       "unresolved_sources": 0,
       "warnings": [],
-      "words": 579
+      "words": 791
     },
     {
-      "company_id": "rotamesh",
+      "company_id": "luca",
       "decision": "pass",
-      "maximum_achievable_score": 82,
-      "memo_path": "memos/rotamesh.md",
+      "maximum_achievable_score": 67,
+      "memo_path": "memos/luca.md",
       "sources_referenced": 4,
-      "total_score": 41,
+      "total_score": 39,
       "unresolved_sources": 0,
       "warnings": [],
-      "words": 583
+      "words": 783
     },
     {
-      "company_id": "stockmind",
+      "company_id": "drafting-ai",
       "decision": "pass",
-      "maximum_achievable_score": 82,
-      "memo_path": "memos/stockmind.md",
-      "sources_referenced": 4,
-      "total_score": 41,
+      "maximum_achievable_score": 65,
+      "memo_path": "memos/drafting-ai.md",
+      "sources_referenced": 2,
+      "total_score": 35,
       "unresolved_sources": 0,
       "warnings": [],
-      "words": 579
+      "words": 746
+    },
+    {
+      "company_id": "mcp-server-for-appointment-booking",
+      "decision": "pass",
+      "maximum_achievable_score": 72,
+      "memo_path": "memos/mcp-server-for-appointment-booking.md",
+      "sources_referenced": 3,
+      "total_score": 34,
+      "unresolved_sources": 0,
+      "warnings": [],
+      "words": 771
+    },
+    {
+      "company_id": "ticketdesk-ai",
+      "decision": "pass",
+      "maximum_achievable_score": 65,
+      "memo_path": "memos/ticketdesk-ai.md",
+      "sources_referenced": 5,
+      "total_score": 34,
+      "unresolved_sources": 0,
+      "warnings": [],
+      "words": 837
+    },
+    {
+      "company_id": "recursive",
+      "decision": "pass",
+      "maximum_achievable_score": 65,
+      "memo_path": "memos/recursive.md",
+      "sources_referenced": 2,
+      "total_score": 29,
+      "unresolved_sources": 0,
+      "warnings": [],
+      "words": 729
+    },
+    {
+      "company_id": "helphubassistant-pages-dev",
+      "decision": "pass",
+      "maximum_achievable_score": 62,
+      "memo_path": "memos/helphubassistant-pages-dev.md",
+      "sources_referenced": 3,
+      "total_score": 28,
+      "unresolved_sources": 0,
+      "warnings": [],
+      "words": 781
+    },
+    {
+      "company_id": "n8n-io",
+      "decision": "pass",
+      "maximum_achievable_score": 66,
+      "memo_path": "memos/n8n-io.md",
+      "sources_referenced": 5,
+      "total_score": 28,
+      "unresolved_sources": 0,
+      "warnings": [],
+      "words": 877
+    },
+    {
+      "company_id": "specx",
+      "decision": "pass",
+      "maximum_achievable_score": 53,
+      "memo_path": "memos/specx.md",
+      "sources_referenced": 2,
+      "total_score": 21,
+      "unresolved_sources": 0,
+      "warnings": [],
+      "words": 722
     }
   ],
-  "memos_written": 9,
+  "memos_written": 15,
   "missing_source_metadata": 0,
-  "model_policy_disagreements": 9,
+  "model_policy_disagreements": 7,
   "ordered_company_ids": [
-    "agentkit-core",
-    "claimlane",
-    "deskloop",
-    "frontdeskly",
-    "ledgerpilot",
-    "permitpath",
-    "quotecrate",
-    "rotamesh",
-    "stockmind"
+    "dooza-desk",
+    "inboto",
+    "gibsonai-com",
+    "regulance-io",
+    "supportmatic",
+    "ai-agents-for-customer-support",
+    "heydeacon",
+    "luca",
+    "drafting-ai",
+    "mcp-server-for-appointment-booking",
+    "ticketdesk-ai",
+    "recursive",
+    "helphubassistant-pages-dev",
+    "n8n-io",
+    "specx"
   ],
   "ranking_path": "ranking.md",
   "recommendations": {
-    "pass": 9
+    "pass": 10,
+    "watch": 5
   },
-  "referenced_sources": 36,
-  "run_id": "offline-demo",
+  "referenced_sources": 44,
+  "run_id": "ai-smb-ops-demo",
   "schema_version": "1.1.0",
   "score_range": {
-    "max": 41,
-    "min": 41
+    "max": 42,
+    "min": 10
   },
   "template_version": "memo_v1",
-  "upstream_fingerprint": "fp1:02e435e7b8a650cd",
+  "upstream_fingerprint": "fp1:ff6b92bbeb5ae37e",
   "warnings": []
 }

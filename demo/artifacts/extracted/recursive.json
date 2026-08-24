@@ -1,0 +1,45 @@
+{
+  "company_id": "recursive",
+  "failures": [],
+  "generated_at": "2026-08-24T14:00:46.298396Z",
+  "pages": [
+    {
+      "body_truncated": false,
+      "char_count": 531,
+      "company_id": "recursive",
+      "content_sha256": "53babf35df823ef739e2dc20dd7334c67620642d4a033bdb0a3f2a6e74439772",
+      "content_type": "text/html",
+      "extractor": "bs4-main-content/1",
+      "fetched_at": "2026-08-24T14:00:51.302013Z",
+      "final_url": "https://recursive.support/",
+      "headings": [
+        "Recursive answers customer questions so you can get back to work."
+      ],
+      "http_status": 200,
+      "role": "homepage",
+      "source_id": "src-db21a13e62f9",
+      "text": "AI-powered support agents for small businesses. See Recursive in action — ask about pricing, features, and how to get started.\nRecursive answers customer questions so you can get back to work.\nWe turn your existing docs into a tool that answers customer questions 24/7 — from humans in a chat window and from other AI agents programmatically. It says 'I don't know' instead of making things up. We're rolling out access gradually — sign up for early access and we'll reach out as spots open up.\nPlans start at $49/mo, no setup fee.",
+      "title": "Recursive recursive.support",
+      "truncated": false,
+      "url": "https://recursive.support/"
+    }
+  ],
+  "schema_version": "1.1.0",
+  "sources": [
+    {
+      "domain": "recursive.support",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T14:00:51.302013Z",
+      "source_id": "src-db21a13e62f9",
+      "title": "Recursive recursive.support",
+      "url": "https://recursive.support/"
+    }
+  ],
+  "status": "success",
+  "total_chars": 531,
+  "warnings": []
+}

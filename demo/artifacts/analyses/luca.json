@@ -1,0 +1,249 @@
+{
+  "analysis": {
+    "analysis_warnings": [],
+    "buyer": null,
+    "company_id": "luca",
+    "competitive_observations": [],
+    "confidence_rationale": [
+      "4 of 4 supplied source(s) were cited by at least one claim.",
+      "8 evidence claim(s) across 3 of 5 categories.",
+      "A page from the company's own website was read.",
+      "7 of 8 claim(s) are company-authored; 1 come from other voices.",
+      "No finding was identified as corroborated by separate sources.",
+      "5 question(s) were left unanswered."
+    ],
+    "corroborated_findings": [],
+    "generated_at": "2026-08-24T14:05:26.796843Z",
+    "identity_warnings": [],
+    "market_assessment": {
+      "evidence_claim_ids": [
+        "ev-d00d65abd013"
+      ],
+      "text": "No market sizing, competitive landscape, or independent demand data is supplied; the only market-timing signal is the company's own framing of raw LLM unreliability as a compliance risk it built its architecture to solve.",
+      "unknown_references": [
+        "unk-b1558717f084"
+      ]
+    },
+    "model": "claude-sonnet-5",
+    "model_suggested_recommendation": null,
+    "open_questions": [],
+    "plain_language_product": "Luca is an AI agent from Leapfin that lets finance teams query, analyze and report on financial data using natural-language prompts, and build accounting automation workflows (e.g., order-to-cash, revenue recognition), standardizing data from sources like Stripe, Salesforce and NetSuite into a universal accounting schema, with a deterministic execution layer designed to avoid LLM hallucination in financial calculations.",
+    "product_assessment": {
+      "evidence_claim_ids": [
+        "ev-d3d5eb9b9e12",
+        "ev-e47a80dd2dcc",
+        "ev-80aaaeec588f",
+        "ev-b663c663d120"
+      ],
+      "text": "Luca is a company-described AI agent that lets users query and report on financial data via natural language and build accounting automation workflows, using an 'Architect-Builder' architecture combining a probabilistic AI planner with a deterministic execution engine, and standardizing ingested data (Stripe, Salesforce, NetSuite) into a universal accounting schema. The company also states typical implementation takes 4-6 weeks, shrinking to days with Luca.",
+      "unknown_references": []
+    },
+    "prompt_version": "analysis_v2",
+    "provider": "anthropic",
+    "recommendation_changers": [
+      "Independent verification of customer counts, revenue, or usage volumes beyond company-curated testimonials",
+      "Evidence of a defined SMB-focused go-to-market motion or channel, as current customer references suggest larger enterprise-scale transaction volumes",
+      "Founder and team background information to assess earned insight into the accounting workflow"
+    ],
+    "research_confidence": {
+      "components": {
+        "category_span": 0.6,
+        "claim_volume": 1.0,
+        "corroboration": 0.0,
+        "independence": 0.125,
+        "source_coverage": 1.0,
+        "website": 1.0
+      },
+      "level": "medium",
+      "missing": [
+        "market",
+        "risk",
+        "team",
+        "traction"
+      ],
+      "reasons": [
+        "4 of 4 supplied source(s) were cited by at least one claim.",
+        "8 evidence claim(s) across 3 of 5 categories.",
+        "A page from the company's own website was read.",
+        "7 of 8 claim(s) are company-authored; 1 come from other voices.",
+        "No finding was identified as corroborated by separate sources.",
+        "5 question(s) were left unanswered."
+      ],
+      "score": 0.5887
+    },
+    "risks": [],
+    "schema_version": "1.1.0",
+    "score_components": [
+      {
+        "assessment_status": "partially_supported",
+        "caveats": [
+          "Customer testimonials are company-curated and unverified."
+        ],
+        "component": "pain_roi",
+        "evidence_claim_ids": [
+          "ev-63f9fcbe1ba6",
+          "ev-86d5d04e1e54"
+        ],
+        "maximum": 20,
+        "rationale": "Company frames the workflow (order-to-cash accounting, close, rev rec) as its target and cites testimonials with close-time reduction percentages, but these are self-reported customer quotes on the company's own site, not independently verified ROI.",
+        "score": 9,
+        "unknown_references": [
+          "unk-d079fbd2b089"
+        ]
+      },
+      {
+        "assessment_status": "supported",
+        "caveats": [],
+        "component": "wedge",
+        "evidence_claim_ids": [
+          "ev-d3d5eb9b9e12",
+          "ev-80aaaeec588f"
+        ],
+        "maximum": 15,
+        "rationale": "The product's entry point is concrete: natural-language querying and automation workflows on top of standardized financial data ingested from named systems (Stripe, Salesforce, NetSuite), which is a specific, describable wedge rather than a vague claim.",
+        "score": 10,
+        "unknown_references": []
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "distribution",
+        "evidence_claim_ids": [],
+        "maximum": 15,
+        "rationale": "No source describes a go-to-market motion, sales channel, or self-serve availability; only product functionality and implementation timelines are described.",
+        "score": 3,
+        "unknown_references": [
+          "unk-d079fbd2b089"
+        ]
+      },
+      {
+        "assessment_status": "partially_supported",
+        "caveats": [
+          "No independent evidence that this architecture is difficult to replicate."
+        ],
+        "component": "defensibility",
+        "evidence_claim_ids": [
+          "ev-e47a80dd2dcc",
+          "ev-80aaaeec588f"
+        ],
+        "maximum": 15,
+        "rationale": "The company describes concrete architectural depth (Architect-Builder separation, universal accounting schema) that could constitute operational depth beyond model access, but whether this constitutes a durable moat is a judgement only the company makes.",
+        "score": 7,
+        "unknown_references": []
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "team",
+        "evidence_claim_ids": [],
+        "maximum": 15,
+        "rationale": "No founder, leadership, or team background information is present in the dossier.",
+        "score": 3,
+        "unknown_references": [
+          "unk-8de1e44c3b7d",
+          "unk-6e3b51852429"
+        ]
+      },
+      {
+        "assessment_status": "partially_supported",
+        "caveats": [
+          "Show HN engagement was minimal, offering weak independent corroboration."
+        ],
+        "component": "traction",
+        "evidence_claim_ids": [
+          "ev-63f9fcbe1ba6",
+          "ev-86d5d04e1e54",
+          "ev-71c33e4f1906"
+        ],
+        "maximum": 10,
+        "rationale": "Company claims production use processing billions of transactions and customer testimonials with specific volumes, but these are unverified self-reported figures; independent community signal (Show HN) shows minimal engagement (1 point, 0 comments), which does not corroborate strong traction.",
+        "score": 3,
+        "unknown_references": [
+          "unk-d079fbd2b089"
+        ]
+      },
+      {
+        "assessment_status": "partially_supported",
+        "caveats": [],
+        "component": "market_timing",
+        "evidence_claim_ids": [
+          "ev-d00d65abd013"
+        ],
+        "maximum": 10,
+        "rationale": "The company names a concrete technical reason (LLM output variability being unacceptable for compliance/audit contexts) as motivation for its deterministic architecture, which is a plausible timing rationale, but no independent market or regulatory evidence corroborates why now is the moment.",
+        "score": 4,
+        "unknown_references": [
+          "unk-b1558717f084"
+        ]
+      }
+    ],
+    "team_assessment": {
+      "evidence_claim_ids": [],
+      "text": "No source in the dossier identifies the founders, their backgrounds, company size, or founding date; team composition is unestablished.",
+      "unknown_references": [
+        "unk-8de1e44c3b7d",
+        "unk-6e3b51852429"
+      ]
+    },
+    "thesis_assessment": {
+      "evidence_claim_ids": [
+        "ev-86d5d04e1e54",
+        "ev-b663c663d120"
+      ],
+      "rationale": "Luca automates a recurring, revenue-critical finance/accounting workflow (order-to-cash, close, rev rec) for what appears to be larger or higher-transaction-volume customers based on cited testimonials (700K transactions/month, 1.2M orders/yr), which is adjacent to but not clearly an SMB-focused thesis fit; the dossier does not establish SMB buyer profile or 30-day time-to-value beyond company claims of shortened implementation.",
+      "unknown_references": [
+        "unk-d079fbd2b089"
+      ],
+      "verdict": "adjacent"
+    },
+    "thesis_version": "thesis_v1",
+    "total_score": 39,
+    "workflow": null
+  },
+  "recommendation": {
+    "band": "pass",
+    "band_label": "0-64",
+    "cap_reason": null,
+    "capped": false,
+    "company_id": "luca",
+    "confidence": {
+      "components": {
+        "category_span": 0.6,
+        "claim_volume": 1.0,
+        "corroboration": 0.0,
+        "independence": 0.125,
+        "source_coverage": 1.0,
+        "website": 1.0
+      },
+      "level": "medium",
+      "missing": [
+        "market",
+        "risk",
+        "team",
+        "traction"
+      ],
+      "reasons": [
+        "4 of 4 supplied source(s) were cited by at least one claim.",
+        "8 evidence claim(s) across 3 of 5 categories.",
+        "A page from the company's own website was read.",
+        "7 of 8 claim(s) are company-authored; 1 come from other voices.",
+        "No finding was identified as corroborated by separate sources.",
+        "5 question(s) were left unanswered."
+      ],
+      "score": 0.5887
+    },
+    "decided_at": "2026-08-24T14:05:26.796843Z",
+    "decision": "pass",
+    "guardrails_applied": [],
+    "model_disagreed": null,
+    "model_suggested": null,
+    "policy_version": "2.0.0",
+    "rationale": [
+      "Scored 39/100 against the rubric, which falls in the 0-64 band (pass).",
+      "Research confidence is medium (0.59).",
+      "2 dimension(s) could not be assessed from the available evidence: distribution, team. Only 70 of 100 points were assessable."
+    ],
+    "schema_version": "1.1.0",
+    "total_score": 39
+  }
+}

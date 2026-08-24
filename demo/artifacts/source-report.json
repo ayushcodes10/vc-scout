@@ -1,824 +1,3411 @@
 {
   "counts": {
-    "candidates_adjacent": 2,
-    "candidates_direct": 7,
-    "candidates_kept": 9,
-    "eligible_adjacent": 2,
-    "eligible_direct": 7,
-    "hits_fetched": 120,
-    "rejected_duplicate_story": 110,
-    "rejected_irrelevant_topic": 1,
-    "unique_domains": 9,
-    "unique_stories": 10,
-    "usable_product_urls": 10
+    "candidates_adjacent": 0,
+    "candidates_direct": 15,
+    "candidates_kept": 15,
+    "eligible_adjacent": 59,
+    "eligible_direct": 80,
+    "hits_fetched": 495,
+    "rejected_adjacent_share_reached": 59,
+    "rejected_below_limit_cutoff": 65,
+    "rejected_blocked_domain": 71,
+    "rejected_duplicate_domain": 5,
+    "rejected_duplicate_story": 93,
+    "rejected_incumbent_domain": 2,
+    "rejected_irrelevant_topic": 69,
+    "rejected_no_external_url": 116,
+    "unique_domains": 139,
+    "unique_stories": 286,
+    "usable_product_urls": 213
   },
   "discarded": [
     {
+      "detail": "story 42247368 has no external url",
+      "object_id": "42247368",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 43280836 has no external url",
+      "object_id": "43280836",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 43705065 has no external url",
+      "object_id": "43705065",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 43414405 has no external url",
+      "object_id": "43414405",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 43752176 has no external url",
+      "object_id": "43752176",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 41697137 has no external url",
+      "object_id": "41697137",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 42204939 has no external url",
+      "object_id": "42204939",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 46232434 has no external url",
+      "object_id": "46232434",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 44901528 has no external url",
+      "object_id": "44901528",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 41712020 has no external url",
+      "object_id": "41712020",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 46313930 has no external url",
+      "object_id": "46313930",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 45199648 has no external url",
+      "object_id": "45199648",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 41568343 has no external url",
+      "object_id": "41568343",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 44984096 has no external url",
+      "object_id": "44984096",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 46991591 has no external url",
+      "object_id": "46991591",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 43245153 has no external url",
+      "object_id": "43245153",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 44523523 has no external url",
+      "object_id": "44523523",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "45427482",
+      "reason": "blocked_domain",
+      "title": "Launch HN: Airweave (YC X25) – Let agents search any app",
+      "url": "https://github.com/airweave-ai/airweave"
+    },
+    {
+      "detail": "story 43964505 has no external url",
+      "object_id": "43964505",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 42390761 has no external url",
+      "object_id": "42390761",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "45291024",
+      "reason": "blocked_domain",
+      "title": "Launch HN: Cactus (YC S25) – AI inference on smartphones",
+      "url": "https://github.com/cactus-compute/cactus"
+    },
+    {
+      "detail": "story 45877517 has no external url",
+      "object_id": "45877517",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 44237769 has no external url",
+      "object_id": "44237769",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 42174204 has no external url",
+      "object_id": "42174204",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "41648564",
+      "reason": "blocked_domain",
+      "title": "Launch HN: Haystack (YC S24) – Visualize and edit code on an infinite canvas",
+      "url": "https://github.com/haystackeditor/haystack-editor"
+    },
+    {
+      "detail": "story 42451707 has no external url",
+      "object_id": "42451707",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 45250720 has no external url",
+      "object_id": "45250720",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 44962881 has no external url",
+      "object_id": "44962881",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 49024620 has no external url",
+      "object_id": "49024620",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 48387095 has no external url",
+      "object_id": "48387095",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "49376038",
+      "reason": "blocked_domain",
+      "title": "Launch HN: Vendo (YC S26) – Let users build features on top of your product",
+      "url": "https://github.com/runvendo/vendo"
+    },
+    {
+      "detail": "story 44108206 has no external url",
+      "object_id": "44108206",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 48981136 has no external url",
+      "object_id": "48981136",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 44042791 has no external url",
+      "object_id": "44042791",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 44063000 has no external url",
+      "object_id": "44063000",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 43080895 has no external url",
+      "object_id": "43080895",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "41936745",
+      "reason": "blocked_domain",
+      "title": "Launch HN: Skyvern (YC S23) – open-source AI agent for browser automations",
+      "url": "https://github.com/Skyvern-AI/Skyvern"
+    },
+    {
+      "detail": "story 42078536 has no external url",
+      "object_id": "42078536",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 42247368 has no external url",
+      "object_id": "42247368",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "45736923",
+      "reason": "blocked_domain",
+      "title": "Show HN: Open-source SDK to generate UI-based CUA tools or RPA scripts on macOS",
+      "url": "https://github.com/HarishgunaS/sisypho-sdk"
+    },
+    {
+      "detail": "story 43208962 has no external url",
+      "object_id": "43208962",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 45763705 has no external url",
+      "object_id": "45763705",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 43280836 has no external url",
+      "object_id": "43280836",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 46955823 has no external url",
+      "object_id": "46955823",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 43705065 has no external url",
+      "object_id": "43705065",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "49237633",
+      "reason": "blocked_domain",
+      "title": "Show HN: A local-first, modular replacement for your accounting software",
+      "url": "https://github.com/celerp/celerp"
+    },
+    {
+      "detail": "story 47614108 has no external url",
+      "object_id": "47614108",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 43272081 has no external url",
+      "object_id": "43272081",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 42164192 has no external url",
+      "object_id": "42164192",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 41893894 has no external url",
+      "object_id": "41893894",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 45867980 has no external url",
+      "object_id": "45867980",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 46430957 has no external url",
+      "object_id": "46430957",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 44082784 has no external url",
+      "object_id": "44082784",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 43556789 has no external url",
+      "object_id": "43556789",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 43931168 has no external url",
+      "object_id": "43931168",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 46785510 has no external url",
+      "object_id": "46785510",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 47702474 has no external url",
+      "object_id": "47702474",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 46409307 has no external url",
+      "object_id": "46409307",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 45923788 has no external url",
+      "object_id": "45923788",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "44449672",
+      "reason": "duplicate_story",
+      "title": "Show HN: Qrblox – AI Chat with QR Codes",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "45736923",
+      "reason": "duplicate_story",
+      "title": "Show HN: Open-source SDK to generate UI-based CUA tools or RPA scripts on macOS",
+      "url": null
+    },
+    {
+      "detail": "story 47803836 has no external url",
+      "object_id": "47803836",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 44872429 has no external url",
+      "object_id": "44872429",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "41922824",
+      "reason": "duplicate_story",
+      "title": "Show HN: AI chat support for small businesses not ready for Intercom.",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "47060956",
+      "reason": "duplicate_story",
+      "title": "Show HN: Recursive – AI support agents for small businesses",
+      "url": null
+    },
+    {
+      "detail": "story 45867980 has no external url",
+      "object_id": "45867980",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "48936018",
+      "reason": "duplicate_story",
+      "title": "Show HN: A commerce Network built on UCP for agents to discover and Pay",
+      "url": null
+    },
+    {
+      "detail": "story 44047324 has no external url",
+      "object_id": "44047324",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 43208962 has no external url",
+      "object_id": "43208962",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "43918471",
+      "reason": "blocked_domain",
+      "title": "Show HN: DBOS Python 1.0 – Lightweight Durable Workflows Built on Postgres",
+      "url": "https://github.com/dbos-inc/dbos-python"
+    },
+    {
+      "detail": null,
+      "object_id": "48098311",
+      "reason": "blocked_domain",
+      "title": "Show HN: AaaS – to build and deploy business AI agents to messaging apps in NL",
+      "url": "https://github.com/Tem-Degu/streetai-aaas"
+    },
+    {
+      "detail": null,
+      "object_id": "46956517",
+      "reason": "blocked_domain",
+      "title": "Show HN: Business card scanner with frame selection, dedupe, and vCard export",
+      "url": "https://github.com/vassiliylakhonin/bizcard-ai-scanner"
+    },
+    {
+      "detail": "story 43752176 has no external url",
+      "object_id": "43752176",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "44390005",
+      "reason": "blocked_domain",
+      "title": "Show HN: Magnitude – Open-source AI browser automation framework",
+      "url": "https://github.com/magnitudedev/magnitude"
+    },
+    {
+      "detail": null,
+      "object_id": "47780971",
+      "reason": "blocked_domain",
+      "title": "Show HN: Libretto – Making AI browser automations deterministic",
+      "url": "https://github.com/saffron-health/libretto"
+    },
+    {
+      "detail": null,
+      "object_id": "42247037",
+      "reason": "duplicate_story",
+      "title": "Show HN: Drafting AI – Human-in-the-loop AI automation for ops teams' email",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "47236631",
+      "reason": "blocked_domain",
+      "title": "Show HN: Mozilla.ai introduces Clawbolt, an AI Assistant for the trades",
+      "url": "https://github.com/mozilla-ai/clawbolt"
+    },
+    {
+      "detail": null,
+      "object_id": "48307438",
+      "reason": "blocked_domain",
+      "title": "Show HN: Local Coding Agent with LLMs to Delegate Tool Calls to Small AI Models",
+      "url": "https://github.com/district-solutions/open-agent-tools-coder"
+    },
+    {
+      "detail": null,
+      "object_id": "49091292",
+      "reason": "blocked_domain",
+      "title": "Show HN: Magpie, a CLI to Turn Your AI Agent into a Bookkeeper",
+      "url": "https://github.com/kyle-visner/magpie"
+    },
+    {
+      "detail": "story 47594182 has no external url",
+      "object_id": "47594182",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "45249117",
+      "reason": "blocked_domain",
+      "title": "Show HN: Open-source business management tool for small business",
+      "url": "https://github.com/oitcode/samarium"
+    },
+    {
+      "detail": null,
+      "object_id": "44542964",
+      "reason": "blocked_domain",
+      "title": "Show HN: Manage your small business with this simple ERP",
+      "url": "https://github.com/oitcode/samarium"
+    },
+    {
+      "detail": null,
+      "object_id": "46242881",
+      "reason": "duplicate_story",
+      "title": "Show HN: AI Advent Calendar – 25 practical AI tips for small business owners",
+      "url": null
+    },
+    {
+      "detail": "story 43752176 has no external url",
+      "object_id": "43752176",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "44171440",
+      "reason": "duplicate_story",
+      "title": "Show HN: Voice AI is wild now. I vibe coded this email agent in 24 hours",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "46209417",
+      "reason": "duplicate_story",
+      "title": "Show HN: LitContent – AI content designed to match your brand voice",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "44502391",
+      "reason": "blocked_domain",
+      "title": "Show HN: A simple business management tool for small business owners",
+      "url": "https://github.com/oitcode/samarium"
+    },
+    {
+      "detail": "story 45790140 has no external url",
+      "object_id": "45790140",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "49237633",
+      "reason": "duplicate_story",
+      "title": "Show HN: A local-first, modular replacement for your accounting software",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "45100100",
+      "reason": "blocked_domain",
+      "title": "Show HN: Opensyte – Open-Source Hubspot and Zoho Alternative",
+      "url": "https://github.com/Opensyte/opensyte"
+    },
+    {
+      "detail": "story 46955968 has no external url",
+      "object_id": "46955968",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 44872429 has no external url",
+      "object_id": "44872429",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "44449672",
+      "reason": "duplicate_story",
+      "title": "Show HN: Qrblox – AI Chat with QR Codes",
+      "url": null
+    },
+    {
+      "detail": "story 43221364 has no external url",
+      "object_id": "43221364",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "41551771",
+      "reason": "duplicate_story",
+      "title": "Show HN: Launching BookMe – Simplify Your Appointment Scheduling Process",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "43673351",
+      "reason": "duplicate_story",
+      "title": "Show HN: Streamline your business with automation, AI and bookkeeping with ease",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "45736923",
+      "reason": "duplicate_story",
+      "title": "Show HN: Open-source SDK to generate UI-based CUA tools or RPA scripts on macOS",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "44297376",
+      "reason": "duplicate_story",
+      "title": "Show HN: Alquilame.io – Mobile-first rental management tool for small businesses",
+      "url": null
+    },
+    {
+      "detail": "story 47803836 has no external url",
+      "object_id": "47803836",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
       "detail": null,
-      "object_id": "9888310",
+      "object_id": "47803684",
       "reason": "duplicate_story",
-      "title": "Show HN: Deskloop - AI support agent that resolves SMB helpdesk tickets",
+      "title": "Show HN: Soforce – Describe a process, get a free automation plan from our team",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9073955",
+      "object_id": "41922824",
       "reason": "duplicate_story",
-      "title": "Show HN: LedgerPilot - AI bookkeeping agent for trades businesses",
+      "title": "Show HN: AI chat support for small businesses not ready for Intercom.",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9807567",
+      "object_id": "47060956",
       "reason": "duplicate_story",
-      "title": "Show HN: Rotamesh - Shift scheduling agent for hospitality operators",
+      "title": "Show HN: Recursive – AI support agents for small businesses",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9101039",
+      "object_id": "47290021",
       "reason": "duplicate_story",
-      "title": "Show HN: Claimlane - Insurance claim intake automation for brokers",
+      "title": "Show HN: AI video generator for small businesses without video production budget",
       "url": null
     },
     {
-      "detail": null,
-      "object_id": "9812950",
-      "reason": "duplicate_story",
-      "title": "Show HN: Stockmind - Inventory reorder agent for independent retailers",
+      "detail": "story 45867980 has no external url",
+      "object_id": "45867980",
+      "reason": "no_external_url",
+      "title": null,
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9034678",
+      "object_id": "43673351",
       "reason": "duplicate_story",
-      "title": "Show HN: PermitPath - Permit application agent for specialty contractors",
+      "title": "Show HN: Streamline your business with automation, AI and bookkeeping with ease",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9758529",
+      "object_id": "46652246",
       "reason": "duplicate_story",
-      "title": "Show HN: AgentKit Core - Open-source runtime for building tool-using agents",
+      "title": "Show HN: ReliaBuilds – web, mobile, cloud, AI, and security for startups",
       "url": null
     },
     {
-      "detail": null,
-      "object_id": "9290759",
-      "reason": "duplicate_story",
-      "title": "Show HN: Frontdeskly - AI receptionist for dental and veterinary clinics",
+      "detail": "story 47803836 has no external url",
+      "object_id": "47803836",
+      "reason": "no_external_url",
+      "title": null,
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9689242",
+      "object_id": "47803684",
       "reason": "duplicate_story",
-      "title": "Show HN: Quotecrate - Quote generation agent for building suppliers",
+      "title": "Show HN: Soforce – Describe a process, get a free automation plan from our team",
       "url": null
     },
     {
-      "detail": null,
-      "object_id": "9275982",
-      "reason": "duplicate_story",
-      "title": "Show HN: Payrunner - Payroll exception handling for small accountancies",
+      "detail": "story 45867980 has no external url",
+      "object_id": "45867980",
+      "reason": "no_external_url",
+      "title": null,
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9888310",
+      "object_id": "44643037",
       "reason": "duplicate_story",
-      "title": "Show HN: Deskloop - AI support agent that resolves SMB helpdesk tickets",
+      "title": "Show HN: Best AI Tool Finder",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9073955",
+      "object_id": "43918471",
       "reason": "duplicate_story",
-      "title": "Show HN: LedgerPilot - AI bookkeeping agent for trades businesses",
+      "title": "Show HN: DBOS Python 1.0 – Lightweight Durable Workflows Built on Postgres",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9807567",
+      "object_id": "47361508",
       "reason": "duplicate_story",
-      "title": "Show HN: Rotamesh - Shift scheduling agent for hospitality operators",
+      "title": "Show HN: ROI-first AI automation framework for B2B companies",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9101039",
+      "object_id": "42879713",
       "reason": "duplicate_story",
-      "title": "Show HN: Claimlane - Insurance claim intake automation for brokers",
+      "title": "Show HN: Workflow86 - An AI business analyst and automation engineer",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9812950",
+      "object_id": "44390005",
       "reason": "duplicate_story",
-      "title": "Show HN: Stockmind - Inventory reorder agent for independent retailers",
+      "title": "Show HN: Magnitude – Open-source AI browser automation framework",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9034678",
+      "object_id": "47780971",
       "reason": "duplicate_story",
-      "title": "Show HN: PermitPath - Permit application agent for specialty contractors",
+      "title": "Show HN: Libretto – Making AI browser automations deterministic",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9758529",
+      "object_id": "42612237",
       "reason": "duplicate_story",
-      "title": "Show HN: AgentKit Core - Open-source runtime for building tool-using agents",
+      "title": "Show HN: Bin - AI business intelligence analyst that turns data into dashboards",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9290759",
+      "object_id": "42247037",
       "reason": "duplicate_story",
-      "title": "Show HN: Frontdeskly - AI receptionist for dental and veterinary clinics",
+      "title": "Show HN: Drafting AI – Human-in-the-loop AI automation for ops teams' email",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9689242",
+      "object_id": "44916014",
       "reason": "duplicate_story",
-      "title": "Show HN: Quotecrate - Quote generation agent for building suppliers",
+      "title": "Show HN: memes.business – AI memes that are actually funny",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9275982",
+      "object_id": "43953582",
       "reason": "duplicate_story",
-      "title": "Show HN: Payrunner - Payroll exception handling for small accountancies",
+      "title": "Show HN: Save hours after networking events with this AI business card organizer",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9888310",
+      "object_id": "42385837",
       "reason": "duplicate_story",
-      "title": "Show HN: Deskloop - AI support agent that resolves SMB helpdesk tickets",
+      "title": "Show HN: I built an AI business ideas generator by combining existing solutions",
       "url": null
     },
     {
-      "detail": null,
-      "object_id": "9073955",
-      "reason": "duplicate_story",
-      "title": "Show HN: LedgerPilot - AI bookkeeping agent for trades businesses",
+      "detail": "story 47594182 has no external url",
+      "object_id": "47594182",
+      "reason": "no_external_url",
+      "title": null,
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9807567",
-      "reason": "duplicate_story",
-      "title": "Show HN: Rotamesh - Shift scheduling agent for hospitality operators",
+      "object_id": "48999936",
+      "reason": "blocked_domain",
+      "title": "Show HN: Jaybase: Append-only fact store for AI doing business workflows",
+      "url": "https://github.com/kyle-visner/jaybase"
+    },
+    {
+      "detail": "story 43825191 has no external url",
+      "object_id": "43825191",
+      "reason": "no_external_url",
+      "title": null,
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9101039",
-      "reason": "duplicate_story",
-      "title": "Show HN: Claimlane - Insurance claim intake automation for brokers",
-      "url": null
+      "object_id": "41423663",
+      "reason": "blocked_domain",
+      "title": "Show HN: AI-generated Business Ideas Podcast: Daily summary of all discussions",
+      "url": "https://startupideasagent.substack.com/"
     },
     {
       "detail": null,
-      "object_id": "9812950",
-      "reason": "duplicate_story",
-      "title": "Show HN: Stockmind - Inventory reorder agent for independent retailers",
-      "url": null
+      "object_id": "47276757",
+      "reason": "blocked_domain",
+      "title": "Show HN: Codaholiq, AI automations for GitHub repositories",
+      "url": "https://github.com/Njuelle/Codaholiq"
     },
     {
       "detail": null,
-      "object_id": "9034678",
+      "object_id": "48098311",
       "reason": "duplicate_story",
-      "title": "Show HN: PermitPath - Permit application agent for specialty contractors",
+      "title": "Show HN: AaaS – to build and deploy business AI agents to messaging apps in NL",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9758529",
-      "reason": "duplicate_story",
-      "title": "Show HN: AgentKit Core - Open-source runtime for building tool-using agents",
+      "object_id": "46646719",
+      "reason": "blocked_domain",
+      "title": "Show HN: Use-AI: trivially add AI automation to react apps",
+      "url": "https://github.com/meetsmore/use-ai"
+    },
+    {
+      "detail": "story 45760426 has no external url",
+      "object_id": "45760426",
+      "reason": "no_external_url",
+      "title": null,
       "url": null
     },
     {
-      "detail": null,
-      "object_id": "9290759",
-      "reason": "duplicate_story",
-      "title": "Show HN: Frontdeskly - AI receptionist for dental and veterinary clinics",
+      "detail": "story 48047444 has no external url",
+      "object_id": "48047444",
+      "reason": "no_external_url",
+      "title": null,
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9689242",
-      "reason": "duplicate_story",
-      "title": "Show HN: Quotecrate - Quote generation agent for building suppliers",
-      "url": null
+      "object_id": "47294624",
+      "reason": "blocked_domain",
+      "title": "Show HN: Make AI and automation pipelines fail-closed",
+      "url": "https://github.com/OneInX/Manifest-InX-EBS"
     },
     {
       "detail": null,
-      "object_id": "9275982",
+      "object_id": "42549794",
       "reason": "duplicate_story",
-      "title": "Show HN: Payrunner - Payroll exception handling for small accountancies",
+      "title": "Show HN: Survey on AI Agents in Production (324 Respondents)",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9888310",
+      "object_id": "42247037",
       "reason": "duplicate_story",
-      "title": "Show HN: Deskloop - AI support agent that resolves SMB helpdesk tickets",
+      "title": "Show HN: Drafting AI – Human-in-the-loop AI automation for ops teams' email",
       "url": null
     },
     {
-      "detail": null,
-      "object_id": "9073955",
-      "reason": "duplicate_story",
-      "title": "Show HN: LedgerPilot - AI bookkeeping agent for trades businesses",
+      "detail": "story 41618259 has no external url",
+      "object_id": "41618259",
+      "reason": "no_external_url",
+      "title": null,
       "url": null
     },
     {
-      "detail": null,
-      "object_id": "9807567",
-      "reason": "duplicate_story",
-      "title": "Show HN: Rotamesh - Shift scheduling agent for hospitality operators",
+      "detail": "story 43227882 has no external url",
+      "object_id": "43227882",
+      "reason": "no_external_url",
+      "title": null,
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9101039",
+      "object_id": "41912665",
       "reason": "duplicate_story",
-      "title": "Show HN: Claimlane - Insurance claim intake automation for brokers",
+      "title": "Show HN: AI-Powered Support Ticket Analysis",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9812950",
+      "object_id": "45223738",
       "reason": "duplicate_story",
-      "title": "Show HN: Stockmind - Inventory reorder agent for independent retailers",
+      "title": "Show HN: Lumro – AI agents for customer support, sales, and more",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9034678",
-      "reason": "duplicate_story",
-      "title": "Show HN: PermitPath - Permit application agent for specialty contractors",
-      "url": null
+      "object_id": "44448519",
+      "reason": "blocked_domain",
+      "title": "Show HN: Fine-Tuning AI Agents for Customer Support",
+      "url": "https://walidamamou.medium.com/fine-tuning-ai-agents-for-customer-support-0c7fae2f37e6"
     },
     {
       "detail": null,
-      "object_id": "9758529",
-      "reason": "duplicate_story",
-      "title": "Show HN: AgentKit Core - Open-source runtime for building tool-using agents",
-      "url": null
+      "object_id": "44909952",
+      "reason": "blocked_domain",
+      "title": "Show HN: We made AI agents as simple as Laravel controllers",
+      "url": "https://github.com/vizra-ai/vizra-adk"
     },
     {
       "detail": null,
-      "object_id": "9290759",
-      "reason": "duplicate_story",
-      "title": "Show HN: Frontdeskly - AI receptionist for dental and veterinary clinics",
-      "url": null
+      "object_id": "48822750",
+      "reason": "blocked_domain",
+      "title": "Show HN: CLRK, an open-source agent runtime with gVisor and MitM guardrails",
+      "url": "https://github.com/apoxy-dev/clrk"
     },
     {
       "detail": null,
-      "object_id": "9689242",
+      "object_id": "44241210",
       "reason": "duplicate_story",
-      "title": "Show HN: Quotecrate - Quote generation agent for building suppliers",
+      "title": "Show HN: I built desktop AI Automation app with MCP Support",
       "url": null
     },
     {
-      "detail": null,
-      "object_id": "9275982",
-      "reason": "duplicate_story",
-      "title": "Show HN: Payrunner - Payroll exception handling for small accountancies",
+      "detail": "story 48243325 has no external url",
+      "object_id": "48243325",
+      "reason": "no_external_url",
+      "title": null,
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9888310",
-      "reason": "duplicate_story",
-      "title": "Show HN: Deskloop - AI support agent that resolves SMB helpdesk tickets",
-      "url": null
+      "object_id": "44499658",
+      "reason": "blocked_domain",
+      "title": "Show HN: Tansive – AI Agents that won't accidentally restart your prod database",
+      "url": "https://github.com/tansive/tansive"
     },
     {
       "detail": null,
-      "object_id": "9073955",
-      "reason": "duplicate_story",
-      "title": "Show HN: LedgerPilot - AI bookkeeping agent for trades businesses",
-      "url": null
+      "object_id": "47310486",
+      "reason": "blocked_domain",
+      "title": "Show HN: Polpo – Build zero-human companies. Open source",
+      "url": "https://github.com/lumea-labs/polpo"
     },
     {
       "detail": null,
-      "object_id": "9807567",
-      "reason": "duplicate_story",
-      "title": "Show HN: Rotamesh - Shift scheduling agent for hospitality operators",
-      "url": null
+      "object_id": "46291056",
+      "reason": "blocked_domain",
+      "title": "Show HN: Beyond RAG: Introducing Papr Context Intelligence",
+      "url": "https://paprai.substack.com/p/beyond-rag-introducing-papr-context"
     },
     {
       "detail": null,
-      "object_id": "9101039",
-      "reason": "duplicate_story",
-      "title": "Show HN: Claimlane - Insurance claim intake automation for brokers",
+      "object_id": "44504537",
+      "reason": "blocked_domain",
+      "title": "Show HN: Did that MCP Server leak your database?",
+      "url": "https://github.com/tansive/tansive"
+    },
+    {
+      "detail": "story 44628286 has no external url",
+      "object_id": "44628286",
+      "reason": "no_external_url",
+      "title": null,
       "url": null
     },
     {
-      "detail": null,
-      "object_id": "9812950",
-      "reason": "duplicate_story",
-      "title": "Show HN: Stockmind - Inventory reorder agent for independent retailers",
+      "detail": "story 41697137 has no external url",
+      "object_id": "41697137",
+      "reason": "no_external_url",
+      "title": null,
       "url": null
     },
     {
-      "detail": null,
-      "object_id": "9034678",
-      "reason": "duplicate_story",
-      "title": "Show HN: PermitPath - Permit application agent for specialty contractors",
+      "detail": "story 45199648 has no external url",
+      "object_id": "45199648",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 47520448 has no external url",
+      "object_id": "47520448",
+      "reason": "no_external_url",
+      "title": null,
       "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "42214646",
+      "reason": "blocked_domain",
+      "title": "Show HN: AI Makes Calls for You–Appointments, Reservations, Customer Service",
+      "url": "https://apps.apple.com/us/app/assindo/id6737142183"
     },
     {
       "detail": null,
-      "object_id": "9758529",
+      "object_id": "47361508",
       "reason": "duplicate_story",
-      "title": "Show HN: AgentKit Core - Open-source runtime for building tool-using agents",
+      "title": "Show HN: ROI-first AI automation framework for B2B companies",
       "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "47081553",
+      "reason": "blocked_domain",
+      "title": "Show HN: I open-sourced an AI sales CRM – and the \"experience\" problem I learned",
+      "url": "https://github.com/dylanmeyford/radiant-ai-crm-oss"
     },
     {
       "detail": null,
-      "object_id": "9290759",
+      "object_id": "42879713",
       "reason": "duplicate_story",
-      "title": "Show HN: Frontdeskly - AI receptionist for dental and veterinary clinics",
+      "title": "Show HN: Workflow86 - An AI business analyst and automation engineer",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9689242",
-      "reason": "duplicate_story",
-      "title": "Show HN: Quotecrate - Quote generation agent for building suppliers",
+      "object_id": "47077170",
+      "reason": "blocked_domain",
+      "title": "Show HN: BasaltCRM – Open-Source AI-Native CRM (Next.js 16, Prisma, TypeScript)",
+      "url": "https://github.com/BasaltHQ/crm-official/releases/tag/v1.2.0"
+    },
+    {
+      "detail": "story 47296664 has no external url",
+      "object_id": "47296664",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 44818618 has no external url",
+      "object_id": "44818618",
+      "reason": "no_external_url",
+      "title": null,
       "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "47157331",
+      "reason": "blocked_domain",
+      "title": "Show HN: Upjack – Declarative framework for building apps over MCP",
+      "url": "https://github.com/NimbleBrainInc/upjack"
     },
     {
       "detail": null,
-      "object_id": "9275982",
+      "object_id": "44390005",
       "reason": "duplicate_story",
-      "title": "Show HN: Payrunner - Payroll exception handling for small accountancies",
+      "title": "Show HN: Magnitude – Open-source AI browser automation framework",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9888310",
+      "object_id": "47780971",
       "reason": "duplicate_story",
-      "title": "Show HN: Deskloop - AI support agent that resolves SMB helpdesk tickets",
+      "title": "Show HN: Libretto – Making AI browser automations deterministic",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9073955",
+      "object_id": "42247037",
       "reason": "duplicate_story",
-      "title": "Show HN: LedgerPilot - AI bookkeeping agent for trades businesses",
+      "title": "Show HN: Drafting AI – Human-in-the-loop AI automation for ops teams' email",
+      "url": null
+    },
+    {
+      "detail": "story 46785510 has no external url",
+      "object_id": "46785510",
+      "reason": "no_external_url",
+      "title": null,
       "url": null
     },
     {
+      "detail": "story 43825191 has no external url",
+      "object_id": "43825191",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
       "detail": null,
-      "object_id": "9807567",
+      "object_id": "47276757",
       "reason": "duplicate_story",
-      "title": "Show HN: Rotamesh - Shift scheduling agent for hospitality operators",
+      "title": "Show HN: Codaholiq, AI automations for GitHub repositories",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9101039",
+      "object_id": "46646719",
       "reason": "duplicate_story",
-      "title": "Show HN: Claimlane - Insurance claim intake automation for brokers",
+      "title": "Show HN: Use-AI: trivially add AI automation to react apps",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9812950",
+      "object_id": "45805224",
       "reason": "duplicate_story",
-      "title": "Show HN: Stockmind - Inventory reorder agent for independent retailers",
+      "title": "Show HN: LayoffKit – Free visa-aware planner for laid-off workers(AI+automation)",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9034678",
+      "object_id": "44375024",
       "reason": "duplicate_story",
-      "title": "Show HN: PermitPath - Permit application agent for specialty contractors",
+      "title": "Show HN: A \"set-it-and-forget-it\" AI automation for Apple Ads",
+      "url": null
+    },
+    {
+      "detail": "story 44176161 has no external url",
+      "object_id": "44176161",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 48047444 has no external url",
+      "object_id": "48047444",
+      "reason": "no_external_url",
+      "title": null,
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9758529",
+      "object_id": "47294624",
       "reason": "duplicate_story",
-      "title": "Show HN: AgentKit Core - Open-source runtime for building tool-using agents",
+      "title": "Show HN: Make AI and automation pipelines fail-closed",
       "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "47146300",
+      "reason": "blocked_domain",
+      "title": "Show HN: Claude Automation Toolkit – 6 Python scripts for AI task automation",
+      "url": "https://github.com/indoor47/summarize-docs"
     },
     {
       "detail": null,
-      "object_id": "9290759",
+      "object_id": "46196613",
+      "reason": "blocked_domain",
+      "title": "Show HN: AI Lead Generation – A curated list of tools for finding leads",
+      "url": "https://github.com/toofast1/awesome-ai-lead-generation"
+    },
+    {
+      "detail": null,
+      "object_id": "45443095",
+      "reason": "blocked_domain",
+      "title": "Show HN: A Standalone Android AI Automation Agent",
+      "url": "https://github.com/iamvaar-dev/heybro"
+    },
+    {
+      "detail": null,
+      "object_id": "43673351",
       "reason": "duplicate_story",
-      "title": "Show HN: Frontdeskly - AI receptionist for dental and veterinary clinics",
+      "title": "Show HN: Streamline your business with automation, AI and bookkeeping with ease",
+      "url": null
+    },
+    {
+      "detail": "story 43414405 has no external url",
+      "object_id": "43414405",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 44141573 has no external url",
+      "object_id": "44141573",
+      "reason": "no_external_url",
+      "title": null,
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9689242",
-      "reason": "duplicate_story",
-      "title": "Show HN: Quotecrate - Quote generation agent for building suppliers",
+      "object_id": "45947879",
+      "reason": "blocked_domain",
+      "title": "Show HN: The Put Monolith – A Minimal AI-Ingestible Ruleset",
+      "url": "https://github.com/publicusagetax/PUT-Monolith-v2"
+    },
+    {
+      "detail": "story 45867980 has no external url",
+      "object_id": "45867980",
+      "reason": "no_external_url",
+      "title": null,
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9275982",
+      "object_id": "44390005",
       "reason": "duplicate_story",
-      "title": "Show HN: Payrunner - Payroll exception handling for small accountancies",
+      "title": "Show HN: Magnitude – Open-source AI browser automation framework",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9888310",
+      "object_id": "47780971",
       "reason": "duplicate_story",
-      "title": "Show HN: Deskloop - AI support agent that resolves SMB helpdesk tickets",
+      "title": "Show HN: Libretto – Making AI browser automations deterministic",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9073955",
+      "object_id": "42247037",
       "reason": "duplicate_story",
-      "title": "Show HN: LedgerPilot - AI bookkeeping agent for trades businesses",
+      "title": "Show HN: Drafting AI – Human-in-the-loop AI automation for ops teams' email",
       "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "41983409",
+      "reason": "blocked_domain",
+      "title": "Launch HN: Integuru (YC W24) – Reverse-engineer internal APIs using LLMs",
+      "url": "https://github.com/Integuru-AI/Integuru"
+    },
+    {
+      "detail": null,
+      "object_id": "43773563",
+      "reason": "blocked_domain",
+      "title": "Launch HN: Cua (YC X25) – Open-Source Docker Container for Computer-Use Agents",
+      "url": "https://github.com/trycua/cua"
     },
     {
       "detail": null,
-      "object_id": "9807567",
+      "object_id": "44499658",
       "reason": "duplicate_story",
-      "title": "Show HN: Rotamesh - Shift scheduling agent for hospitality operators",
+      "title": "Show HN: Tansive – AI Agents that won't accidentally restart your prod database",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9101039",
-      "reason": "duplicate_story",
-      "title": "Show HN: Claimlane - Insurance claim intake automation for brokers",
+      "object_id": "43717249",
+      "reason": "blocked_domain",
+      "title": "Show HN: Norman MCP – handle accounting and taxes from Claude/Cursor",
+      "url": "https://github.com/norman-finance/norman-mcp-server"
+    },
+    {
+      "detail": "story 43227882 has no external url",
+      "object_id": "43227882",
+      "reason": "no_external_url",
+      "title": null,
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9812950",
+      "object_id": "44504537",
       "reason": "duplicate_story",
-      "title": "Show HN: Stockmind - Inventory reorder agent for independent retailers",
+      "title": "Show HN: Did that MCP Server leak your database?",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9034678",
-      "reason": "duplicate_story",
-      "title": "Show HN: PermitPath - Permit application agent for specialty contractors",
+      "object_id": "46377597",
+      "reason": "blocked_domain",
+      "title": "Show HN: Vibium – Browser automation for AI and humans, by Selenium's creator",
+      "url": "https://github.com/VibiumDev/vibium"
+    },
+    {
+      "detail": null,
+      "object_id": "42867050",
+      "reason": "blocked_domain",
+      "title": "Show HN: Mcp-Agent – Build effective agents with Model Context Protocol",
+      "url": "https://github.com/lastmile-ai/mcp-agent"
+    },
+    {
+      "detail": "story 48387095 has no external url",
+      "object_id": "48387095",
+      "reason": "no_external_url",
+      "title": null,
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9758529",
+      "object_id": "42381712",
       "reason": "duplicate_story",
-      "title": "Show HN: AgentKit Core - Open-source runtime for building tool-using agents",
+      "title": "Show HN: Hyperbrowser – Scalable Browser Infrastructure for AI Apps",
       "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "42503627",
+      "reason": "blocked_domain",
+      "title": "Show HN: MarinaBox: Open-Source Sandbox Infra for AI Agents",
+      "url": "https://github.com/marinabox/marinabox"
     },
     {
       "detail": null,
-      "object_id": "9290759",
+      "object_id": "49237633",
       "reason": "duplicate_story",
-      "title": "Show HN: Frontdeskly - AI receptionist for dental and veterinary clinics",
+      "title": "Show HN: A local-first, modular replacement for your accounting software",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9689242",
+      "object_id": "41936745",
       "reason": "duplicate_story",
-      "title": "Show HN: Quotecrate - Quote generation agent for building suppliers",
+      "title": "Launch HN: Skyvern (YC S23) – open-source AI agent for browser automations",
       "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "47982708",
+      "reason": "blocked_domain",
+      "title": "Show HN: Agent-desktop – Native desktop automation CLI for AI agents",
+      "url": "https://github.com/lahfir/agent-desktop"
     },
     {
       "detail": null,
-      "object_id": "9275982",
+      "object_id": "42879713",
       "reason": "duplicate_story",
-      "title": "Show HN: Payrunner - Payroll exception handling for small accountancies",
+      "title": "Show HN: Workflow86 - An AI business analyst and automation engineer",
       "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "42808043",
+      "reason": "blocked_domain",
+      "title": "Show HN: I Wrote an Open-Source Alternative to OpenAI Operator – For Any LLM",
+      "url": "https://github.com/browser-use/browser-use"
+    },
+    {
+      "detail": null,
+      "object_id": "42635942",
+      "reason": "blocked_domain",
+      "title": "Show HN: Stagehand – an open source browser automation framework powered by AI",
+      "url": "https://github.com/browserbase/stagehand"
+    },
+    {
+      "detail": null,
+      "object_id": "43331582",
+      "reason": "blocked_domain",
+      "title": "Show HN: Factorio Learning Environment – Agents Build Factories",
+      "url": "https://jackhopkins.github.io/factorio-learning-environment/"
     },
     {
       "detail": null,
-      "object_id": "9888310",
+      "object_id": "44390005",
       "reason": "duplicate_story",
-      "title": "Show HN: Deskloop - AI support agent that resolves SMB helpdesk tickets",
+      "title": "Show HN: Magnitude – Open-source AI browser automation framework",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9073955",
+      "object_id": "47780971",
       "reason": "duplicate_story",
-      "title": "Show HN: LedgerPilot - AI bookkeeping agent for trades businesses",
+      "title": "Show HN: Libretto – Making AI browser automations deterministic",
+      "url": null
+    },
+    {
+      "detail": "story 43556789 has no external url",
+      "object_id": "43556789",
+      "reason": "no_external_url",
+      "title": null,
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9807567",
-      "reason": "duplicate_story",
-      "title": "Show HN: Rotamesh - Shift scheduling agent for hospitality operators",
+      "object_id": "47261143",
+      "reason": "blocked_domain",
+      "title": "Show HN: Voice skill for AI agents – sub-200ms latency via native SIP",
+      "url": "https://github.com/nia-agent-cyber/openai-voice-skill"
+    },
+    {
+      "detail": "story 43825191 has no external url",
+      "object_id": "43825191",
+      "reason": "no_external_url",
+      "title": null,
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9101039",
+      "object_id": "47276757",
       "reason": "duplicate_story",
-      "title": "Show HN: Claimlane - Insurance claim intake automation for brokers",
+      "title": "Show HN: Codaholiq, AI automations for GitHub repositories",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9812950",
+      "object_id": "43481809",
       "reason": "duplicate_story",
-      "title": "Show HN: Stockmind - Inventory reorder agent for independent retailers",
+      "title": "Show HN: Slot.ai – Goal-Driven AI Phone Call Agent",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9034678",
+      "object_id": "48098311",
       "reason": "duplicate_story",
-      "title": "Show HN: PermitPath - Permit application agent for specialty contractors",
+      "title": "Show HN: AaaS – to build and deploy business AI agents to messaging apps in NL",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9758529",
+      "object_id": "42674910",
       "reason": "duplicate_story",
-      "title": "Show HN: AgentKit Core - Open-source runtime for building tool-using agents",
+      "title": "Show HN: Lapsula – Simple appointment booking app with WhatsApp integration",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9290759",
+      "object_id": "41983409",
       "reason": "duplicate_story",
-      "title": "Show HN: Frontdeskly - AI receptionist for dental and veterinary clinics",
+      "title": "Launch HN: Integuru (YC W24) – Reverse-engineer internal APIs using LLMs",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9689242",
+      "object_id": "43773563",
       "reason": "duplicate_story",
-      "title": "Show HN: Quotecrate - Quote generation agent for building suppliers",
+      "title": "Launch HN: Cua (YC X25) – Open-Source Docker Container for Computer-Use Agents",
+      "url": null
+    },
+    {
+      "detail": "story 44901528 has no external url",
+      "object_id": "44901528",
+      "reason": "no_external_url",
+      "title": null,
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9275982",
+      "object_id": "45737948",
       "reason": "duplicate_story",
-      "title": "Show HN: Payrunner - Payroll exception handling for small accountancies",
+      "title": "Show HN: Butter – A Behavior Cache for LLMs",
       "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "47160980",
+      "reason": "blocked_domain",
+      "title": "Show HN: OpenSwarm – Multi‑Agent Claude CLI Orchestrator for Linear/GitHub",
+      "url": "https://github.com/Intrect-io/OpenSwarm"
     },
     {
       "detail": null,
-      "object_id": "9888310",
+      "object_id": "45964138",
       "reason": "duplicate_story",
-      "title": "Show HN: Deskloop - AI support agent that resolves SMB helpdesk tickets",
+      "title": "Show HN: Startfa.st – A curated, fast directory of AI, dev, and product tools",
       "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "41579954",
+      "reason": "blocked_domain",
+      "title": "Show HN: An open source Zapier, automations made simple",
+      "url": "https://github.com/lcfyhr/svvarm-public"
     },
     {
       "detail": null,
-      "object_id": "9073955",
+      "object_id": "46652246",
       "reason": "duplicate_story",
-      "title": "Show HN: LedgerPilot - AI bookkeeping agent for trades businesses",
+      "title": "Show HN: ReliaBuilds – web, mobile, cloud, AI, and security for startups",
+      "url": null
+    },
+    {
+      "detail": "story 45740441 has no external url",
+      "object_id": "45740441",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 43361259 has no external url",
+      "object_id": "43361259",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 43227882 has no external url",
+      "object_id": "43227882",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 43499106 has no external url",
+      "object_id": "43499106",
+      "reason": "no_external_url",
+      "title": null,
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9807567",
+      "object_id": "46377597",
       "reason": "duplicate_story",
-      "title": "Show HN: Rotamesh - Shift scheduling agent for hospitality operators",
+      "title": "Show HN: Vibium – Browser automation for AI and humans, by Selenium's creator",
       "url": null
     },
     {
+      "detail": "story 47264741 has no external url",
+      "object_id": "47264741",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
       "detail": null,
-      "object_id": "9101039",
+      "object_id": "47810533",
       "reason": "duplicate_story",
-      "title": "Show HN: Claimlane - Insurance claim intake automation for brokers",
+      "title": "Show HN: AI Subroutines – Run automation scripts inside your browser tab",
       "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "42496918",
+      "reason": "incumbent_domain",
+      "title": "Show HN: rtrvr.ai – AI Web Agent for Automating Workflows and Data Extraction",
+      "url": "https://chromewebstore.google.com/detail/rtrvrai/jldogdgepmcedfdhgnmclgemehfhpomg"
     },
     {
       "detail": null,
-      "object_id": "9812950",
+      "object_id": "42867050",
       "reason": "duplicate_story",
-      "title": "Show HN: Stockmind - Inventory reorder agent for independent retailers",
+      "title": "Show HN: Mcp-Agent – Build effective agents with Model Context Protocol",
+      "url": null
+    },
+    {
+      "detail": "story 48387095 has no external url",
+      "object_id": "48387095",
+      "reason": "no_external_url",
+      "title": null,
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9034678",
+      "object_id": "42381712",
       "reason": "duplicate_story",
-      "title": "Show HN: PermitPath - Permit application agent for specialty contractors",
+      "title": "Show HN: Hyperbrowser – Scalable Browser Infrastructure for AI Apps",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9758529",
+      "object_id": "46368379",
       "reason": "duplicate_story",
-      "title": "Show HN: AgentKit Core - Open-source runtime for building tool-using agents",
+      "title": "Show HN: Kapso – WhatsApp for developers",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9290759",
-      "reason": "duplicate_story",
-      "title": "Show HN: Frontdeskly - AI receptionist for dental and veterinary clinics",
+      "object_id": "47167598",
+      "reason": "blocked_domain",
+      "title": "Show HN: MCP server that checks if your project idea exists",
+      "url": "https://github.com/mnemox-ai/idea-reality-mcp"
+    },
+    {
+      "detail": "story 44729831 has no external url",
+      "object_id": "44729831",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 46244561 has no external url",
+      "object_id": "46244561",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 46232434 has no external url",
+      "object_id": "46232434",
+      "reason": "no_external_url",
+      "title": null,
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9689242",
-      "reason": "duplicate_story",
-      "title": "Show HN: Quotecrate - Quote generation agent for building suppliers",
+      "object_id": "46470115",
+      "reason": "blocked_domain",
+      "title": "Show HN: Open-source AI workflows with read-only auth scopes",
+      "url": "https://github.com/seer-engg/seer"
+    },
+    {
+      "detail": null,
+      "object_id": "43231053",
+      "reason": "blocked_domain",
+      "title": "Show HN: Dockerized VS Code with Goose Coding Agent",
+      "url": "https://github.com/PlatOps-AI/goosecode-server"
+    },
+    {
+      "detail": null,
+      "object_id": "43352549",
+      "reason": "blocked_domain",
+      "title": "Show HN: FlowSpec – A flexible AI workflow schema for automation",
+      "url": "https://github.com/woodyhayday/FlowSpec"
+    },
+    {
+      "detail": "story 42247368 has no external url",
+      "object_id": "42247368",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 43280836 has no external url",
+      "object_id": "43280836",
+      "reason": "no_external_url",
+      "title": null,
       "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "44084770",
+      "reason": "blocked_domain",
+      "title": "Show HN: Manifold is a platform for workflow automation using AI assistants",
+      "url": "https://github.com/intelligencedev/manifold"
+    },
+    {
+      "detail": null,
+      "object_id": "46984332",
+      "reason": "blocked_domain",
+      "title": "Show HN: WinClaw – Windows AI assistant, Office automation, infinite Skills",
+      "url": "https://github.com/itc-ou-shigou/winclaw"
+    },
+    {
+      "detail": null,
+      "object_id": "46059902",
+      "reason": "blocked_domain",
+      "title": "Show HN: Aigit – AI-powered Git CLI for commit messages, branch names, and PRs",
+      "url": "https://github.com/hardiksondagar/aigit"
+    },
+    {
+      "detail": null,
+      "object_id": "46456024",
+      "reason": "incumbent_domain",
+      "title": "Show HN: Vect AI – An execution-focused AI platform for marketing automation",
+      "url": "https://www.google.com/search?q=site%3Avect.pro&oq=&gs_lcrp=EgZjaHJvbWUqCQgAECMYJxjqAjIJCAAQIxgnGOoCMgkIARAjGCcY6gIyCQgCECMYJxjqAjIJCAMQIxgnGOoCMgkIBBAjGCcY6gIyCQgFECMYJxjqAjIJCAYQIxgnGOoCMgkIBxAjGCcY6gLSAQkzNjU0NGowajeoAgiwAgHxBRB8ZJ-bk5La&sourceid=chrome&ie=UTF-8"
+    },
+    {
+      "detail": null,
+      "object_id": "43783900",
+      "reason": "blocked_domain",
+      "title": "Show HN: Generate 100 recipes with images using Tablepilot",
+      "url": "https://github.com/Yiling-J/tablepilot/tree/main/examples/100_recipes"
+    },
+    {
+      "detail": null,
+      "object_id": "47253272",
+      "reason": "blocked_domain",
+      "title": "Show HN: FadNote – Zero-knowledge secret sharing for your CLI and AI workflows",
+      "url": "https://github.com/easyFloyd/fadnote"
     },
     {
       "detail": null,
-      "object_id": "9275982",
+      "object_id": "46652246",
       "reason": "duplicate_story",
-      "title": "Show HN: Payrunner - Payroll exception handling for small accountancies",
+      "title": "Show HN: ReliaBuilds – web, mobile, cloud, AI, and security for startups",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9888310",
+      "object_id": "42879713",
       "reason": "duplicate_story",
-      "title": "Show HN: Deskloop - AI support agent that resolves SMB helpdesk tickets",
+      "title": "Show HN: Workflow86 - An AI business analyst and automation engineer",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9073955",
+      "object_id": "46156978",
       "reason": "duplicate_story",
-      "title": "Show HN: LedgerPilot - AI bookkeeping agent for trades businesses",
+      "title": "Show HN: A Self-Evolving Agentic App Builder (Seeking 300 Beta Testers)",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9807567",
+      "object_id": "43723704",
+      "reason": "blocked_domain",
+      "title": "Show HN: OpenHands' GitHub Action",
+      "url": "https://github.com/marketplace/actions/openhands-ai-action"
+    },
+    {
+      "detail": null,
+      "object_id": "45916420",
+      "reason": "blocked_domain",
+      "title": "Show HN: SnipKey v5.0 – Free Keyboard Extension",
+      "url": "https://apps.apple.com/us/app/snipkey-keyboard-extension/id6480381137"
+    },
+    {
+      "detail": null,
+      "object_id": "47361508",
       "reason": "duplicate_story",
-      "title": "Show HN: Rotamesh - Shift scheduling agent for hospitality operators",
+      "title": "Show HN: ROI-first AI automation framework for B2B companies",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9101039",
+      "object_id": "46368379",
       "reason": "duplicate_story",
-      "title": "Show HN: Claimlane - Insurance claim intake automation for brokers",
+      "title": "Show HN: Kapso – WhatsApp for developers",
       "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "46821303",
+      "reason": "blocked_domain",
+      "title": "Show HN: Gemini Workspace Framework – Sustainable AI-Assisted Development",
+      "url": "https://github.com/thomas-jamet/gemini-workspace-framework"
     },
     {
       "detail": null,
-      "object_id": "9812950",
+      "object_id": "44390005",
       "reason": "duplicate_story",
-      "title": "Show HN: Stockmind - Inventory reorder agent for independent retailers",
+      "title": "Show HN: Magnitude – Open-source AI browser automation framework",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9034678",
+      "object_id": "47780971",
       "reason": "duplicate_story",
-      "title": "Show HN: PermitPath - Permit application agent for specialty contractors",
+      "title": "Show HN: Libretto – Making AI browser automations deterministic",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9758529",
-      "reason": "duplicate_story",
-      "title": "Show HN: AgentKit Core - Open-source runtime for building tool-using agents",
+      "object_id": "45734865",
+      "reason": "blocked_domain",
+      "title": "Show HN: Pipelex – Declarative language for repeatable AI workflows",
+      "url": "https://github.com/Pipelex/pipelex"
+    },
+    {
+      "detail": "story 41357765 has no external url",
+      "object_id": "41357765",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 42204939 has no external url",
+      "object_id": "42204939",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 44237769 has no external url",
+      "object_id": "44237769",
+      "reason": "no_external_url",
+      "title": null,
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9290759",
+      "object_id": "42247037",
       "reason": "duplicate_story",
-      "title": "Show HN: Frontdeskly - AI receptionist for dental and veterinary clinics",
+      "title": "Show HN: Drafting AI – Human-in-the-loop AI automation for ops teams' email",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9689242",
+      "object_id": "49084371",
       "reason": "duplicate_story",
-      "title": "Show HN: Quotecrate - Quote generation agent for building suppliers",
+      "title": "Show HN: Tines 3B – safe workflow automation for when everyone builds software",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9275982",
+      "object_id": "43918471",
       "reason": "duplicate_story",
-      "title": "Show HN: Payrunner - Payroll exception handling for small accountancies",
+      "title": "Show HN: DBOS Python 1.0 – Lightweight Durable Workflows Built on Postgres",
+      "url": null
+    },
+    {
+      "detail": "story 46244561 has no external url",
+      "object_id": "46244561",
+      "reason": "no_external_url",
+      "title": null,
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9888310",
+      "object_id": "44390005",
       "reason": "duplicate_story",
-      "title": "Show HN: Deskloop - AI support agent that resolves SMB helpdesk tickets",
+      "title": "Show HN: Magnitude – Open-source AI browser automation framework",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9073955",
+      "object_id": "47780971",
       "reason": "duplicate_story",
-      "title": "Show HN: LedgerPilot - AI bookkeeping agent for trades businesses",
+      "title": "Show HN: Libretto – Making AI browser automations deterministic",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9807567",
+      "object_id": "42247037",
       "reason": "duplicate_story",
-      "title": "Show HN: Rotamesh - Shift scheduling agent for hospitality operators",
+      "title": "Show HN: Drafting AI – Human-in-the-loop AI automation for ops teams' email",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9101039",
-      "reason": "duplicate_story",
-      "title": "Show HN: Claimlane - Insurance claim intake automation for brokers",
+      "object_id": "49200345",
+      "reason": "blocked_domain",
+      "title": "Show HN: Kifly – Expose your ecommerce store to AI agents via MCP [video]",
+      "url": "https://www.youtube.com/watch?v=6gfn03LKRus"
+    },
+    {
+      "detail": "story 47006753 has no external url",
+      "object_id": "47006753",
+      "reason": "no_external_url",
+      "title": null,
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9812950",
+      "object_id": "41983409",
       "reason": "duplicate_story",
-      "title": "Show HN: Stockmind - Inventory reorder agent for independent retailers",
+      "title": "Launch HN: Integuru (YC W24) – Reverse-engineer internal APIs using LLMs",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9034678",
+      "object_id": "43773563",
       "reason": "duplicate_story",
-      "title": "Show HN: PermitPath - Permit application agent for specialty contractors",
+      "title": "Launch HN: Cua (YC X25) – Open-Source Docker Container for Computer-Use Agents",
       "url": null
     },
     {
+      "detail": "story 41618259 has no external url",
+      "object_id": "41618259",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
       "detail": null,
-      "object_id": "9758529",
-      "reason": "duplicate_story",
-      "title": "Show HN: AgentKit Core - Open-source runtime for building tool-using agents",
+      "object_id": "41432666",
+      "reason": "blocked_domain",
+      "title": "Show HN: I build a chrome extension to try on clothes before buying",
+      "url": "https://github.com/shyjal/visual-try-on"
+    },
+    {
+      "detail": null,
+      "object_id": "49274936",
+      "reason": "blocked_domain",
+      "title": "Show HN: Pane – An open-source browser that turns your work into living websites",
+      "url": "https://github.com/abhishek-verma/Pane"
+    },
+    {
+      "detail": "story 47211106 has no external url",
+      "object_id": "47211106",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 43871499 has no external url",
+      "object_id": "43871499",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 46299624 has no external url",
+      "object_id": "46299624",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 43361259 has no external url",
+      "object_id": "43361259",
+      "reason": "no_external_url",
+      "title": null,
+      "url": null
+    },
+    {
+      "detail": "story 47137306 has no external url",
+      "object_id": "47137306",
+      "reason": "no_external_url",
+      "title": null,
       "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "48644519",
+      "reason": "blocked_domain",
+      "title": "Show HN: Open-source tool for reverse engineering ChatGPT queries about brands",
+      "url": "https://github.com/syntropicsignal-ai/ai-visibility-audit"
     },
     {
       "detail": null,
-      "object_id": "9290759",
+      "object_id": "46800362",
       "reason": "duplicate_story",
-      "title": "Show HN: Frontdeskly - AI receptionist for dental and veterinary clinics",
+      "title": "Show HN: Alprina – Find your next investor through AI-matched intros",
       "url": null
     },
     {
       "detail": null,
-      "object_id": "9689242",
+      "object_id": "46394552",
+      "reason": "blocked_domain",
+      "title": "Show HN: StegCore – a decision boundary for AI systems (truth ≠ permission)",
+      "url": "https://github.com/StegVerse-Labs/StegCore"
+    },
+    {
+      "detail": null,
+      "object_id": "44878862",
       "reason": "duplicate_story",
-      "title": "Show HN: Quotecrate - Quote generation agent for building suppliers",
+      "title": "Show HN: Humanmark verifies your users are human using hardware attestation",
+      "url": null
+    },
+    {
+      "detail": "story 43196395 has no external url",
+      "object_id": "43196395",
+      "reason": "no_external_url",
+      "title": null,
       "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "41850073",
+      "reason": "blocked_domain",
+      "title": "Show HN: In-store AI interface for Clothing retail",
+      "url": "https://www.instagram.com/newkaico/reel/DBElpaZvOmW/"
     },
     {
       "detail": null,
-      "object_id": "9275982",
+      "object_id": "46377597",
       "reason": "duplicate_story",
-      "title": "Show HN: Payrunner - Payroll exception handling for small accountancies",
+      "title": "Show HN: Vibium – Browser automation for AI and humans, by Selenium's creator",
       "url": null
     },
     {
       "detail": "no AI-automation signal in the title, one-liner or URL",
-      "object_id": "9275982",
+      "object_id": "48267829",
       "reason": "irrelevant_topic",
-      "title": "Show HN: Payrunner - Payroll exception handling for small accountancies",
-      "url": "https://payrunner-app.example/"
+      "title": "Launch HN: Chert (YC P26) – Twilio for iMessage",
+      "url": "https://www.trychert.com/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "48847562",
+      "reason": "irrelevant_topic",
+      "title": "Launch HN: Context.dev (YC S26) – API to get structured data from any website",
+      "url": "https://www.context.dev/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "44297376",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: Alquilame.io – Mobile-first rental management tool for small businesses",
+      "url": "https://alquilame.io/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "42025641",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: Launched UdyamQR, Create Custom Webpages, QR Codes for Small Businesses",
+      "url": "https://udyamqr.com/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "41995427",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: Routing24 – Free route optimization in the browser",
+      "url": "https://routing24.com/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "42872283",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: A Tool to Automatically Convert Shopify Products into Facebook Posts",
+      "url": "https://pulseposty.com/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "44966353",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: I built a tool to convert WhatsApp chats to PDF",
+      "url": "https://chattopdf.app/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "41551771",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: Launching BookMe – Simplify Your Appointment Scheduling Process",
+      "url": "https://bookme.pricoder.com/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "44571042",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: Fertit – Open-Source Newsletter Manager with Optional Hosted Service",
+      "url": "https://www.fertit.com/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "41956078",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: Create Commercial Jingles",
+      "url": "https://sendfame.com/commercial-jingles"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "43149154",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: I Built a Free Appointment Scheduler for Small Businesses",
+      "url": "https://adviplanner.com/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "47642311",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: Becoming a broker for small online businesses",
+      "url": "https://weensy.xyz/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "45887007",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: Venturu – Zillow for the market of local businesses",
+      "url": "https://www.venturu.com/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "42470254",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: Get e-signatures & pay per signed doc",
+      "url": "https://signwith.co/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "43454097",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: ScottFish – A simple GA4 analytics dashboard built out of frustration",
+      "url": "https://www.scottfish.com/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "45534790",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: Indiebooks – Free bookkeeping that auto-fills CRA/IRS tax forms",
+      "url": "https://indiebooks.io/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "47399667",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: ChatSpark – Live chat widget for solo operators",
+      "url": "https://www.chatspark.dev/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "44144492",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: Phended – Defensive Cybersecurity Education for Non-Tech Folks",
+      "url": "https://www.phended.com/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "46645693",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: US Bank Statement Converter to Excel Ready for LLMs",
+      "url": "https://usstatementconverter.com/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "44645666",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: Invoicebloom.io – Professional Invoicing and CRM",
+      "url": "https://invoicebloom.io/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "45743834",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: Creative.exe – Super creative ideas for small businesses",
+      "url": "https://creative-exe.base44.app/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "45385464",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: A free WordPress plugin for adding a WhatsApp chat button",
+      "url": "https://wordpress.org/plugins/watso-basic-chat"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "44795245",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: We built this to save creators time, looking for early users (free)",
+      "url": "https://mc-web-feedme.framer.website/feedme"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "42744650",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: Build BioLinks, Portfolios, and Menus with an Easy-to-Use Website",
+      "url": "http://creativity.thelightis.com/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "44071720",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: Create Your Business Website and Store in Minutes",
+      "url": "https://cruxbee.com/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "43773630",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: A simple interactive ROI calculator that visualizes investment returns",
+      "url": "https://viewroi.com/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "42674910",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: Lapsula – Simple appointment booking app with WhatsApp integration",
+      "url": "https://www.lapsula.com/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "42442080",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: CheckoutLink – Turn your Instagram posts into a Storefront",
+      "url": "https://checkoutlink.io/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "47122804",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: Balance Buckets – Savings Buckets for Small, One-Owner Businesses",
+      "url": "https://buckets.joelryan.com/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "46973553",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: A Distribution Framework for founders who can build but can't sell",
+      "url": "https://beyondfolder.com/distribution"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "43399588",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: I made a virtual chatbot that makes real decisions",
+      "url": "https://retalk.bot/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "44499532",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: UserSupport – Free LiveChat and Voice Assist for the Web",
+      "url": "https://usersupport.ai/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "48474188",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: A tool to analyze and manage sosreports",
+      "url": "https://sos-vault.com/login"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "46207177",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: I built a system to collect feedback more like force it",
+      "url": "https://www.msgmorph.com/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "44023963",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: B2Brilliant – From discovery to campaign in minutes, not months",
+      "url": "https://www.b2brilliant.app/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "43818683",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: Indie Compass – A CRM built for Reddit lead gen and outreach",
+      "url": "https://www.indiecompass.app/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "44126991",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: Sales chatbot for SaaS inbound leads",
+      "url": "https://dyle.ai/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "45429816",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: IG Email Finder – Find Verified Instagram Emails for Outreach",
+      "url": "https://www.igemailfinder.com/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "47335431",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: I built an ISP infrastructure emulator from scratch with a custom vBNG",
+      "url": "https://aether.saphal.me/dashboard/default"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "45737948",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: Butter – A Behavior Cache for LLMs",
+      "url": "https://www.butter.dev/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "49251803",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: SecondState – what if Hebbia started with raw ERP data?",
+      "url": "https://trysecondstate.com/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "45891748",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: WorkBill – Modern Alternative to QuickBooks",
+      "url": "https://demo.workbill.co/inbox"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "46368379",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: Kapso – WhatsApp for developers",
+      "url": "https://kapso.ai/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "42256125",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: Double-entry accounting based personal finance app",
+      "url": "https://getpaper.money/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "43460489",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: Subledger.app – A Modern Accounting Ledger",
+      "url": "https://subledger.app/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "47909874",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: Thelawin – Generate EU e-invoices from JSON",
+      "url": "https://thelawin.dev/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "42184362",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: Fireproof – local-first database with Git-like encrypted sync",
+      "url": "https://fireproof.storage/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "46826682",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: Pencild – A CRM for tattoo artists and studios",
+      "url": "https://www.pencild.co/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "48773458",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: Lips Up – Preview lip filler on your own face",
+      "url": "https://lipsup.app/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "46994580",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: Softalon – All-in-one salon booking and scheduling software",
+      "url": "https://www.softalon.com/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "45563345",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: A Hub for Techproblems and Pain Points",
+      "url": "https://realpainpoints.com/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "44878862",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: Humanmark verifies your users are human using hardware attestation",
+      "url": "https://humanmark.dev/demo"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "43503546",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: WebPilot – \"Cursor\" for the Browser",
+      "url": "https://getwebpilot.app/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "47813386",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: InGaming, front end MVP for casino brands",
+      "url": "https://www.ingaming.dev/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "46774598",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: Free image-to-JSON converter (extract structured data from images)",
+      "url": "https://imageat.com/image-to-json-convertor"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "42659205",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: My first platform - \"Codify\" – A different take on GPT's",
+      "url": "https://codify.digital/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "45889703",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: Reframe Labs – We Build, Scale and Grow Your Startup",
+      "url": "https://www.reframelabs.co/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "43680147",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: DevExp (dx) – cohesive CLI platform for indie developers",
+      "url": "https://devexp.pro/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "45260968",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: I'm Building an Alternative to Shopify",
+      "url": "https://www.searchagora.com/build-store"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "42441895",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: Search engine that helps Shopify stores sell more",
+      "url": "https://merchant.searchagora.com/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "46272997",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: Building an OS for self-improving ecommerce stores",
+      "url": "https://shopos.ai/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "42145419",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: OnAir – create link, receive calls",
+      "url": "https://onair.io/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "42524848",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: I made a web app to bring children's drawings to life",
+      "url": "https://doodledreams.cc/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "41393005",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: A discovery-focused search engine for Hacker News",
+      "url": "https://hn.trieve.ai/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "46667519",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: Kling.to – Self-hosted email marketing with full data ownership",
+      "url": "https://kling.to/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "46801971",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: Spar – Built a tool to help improve store conversion rates",
+      "url": "https://spar.cuped.ai/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "48356655",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: One-click open-source ecommerce starter (Magento), drive it with Claude",
+      "url": "https://ecommerce-ai-starter.graycore.io/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "44161867",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: EasyFAQ – How I saved 5 hrs/week, improved SEO and boosted conversions",
+      "url": "https://easyfaq.io/"
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "42878353",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: I scraped 10M Shopify products to build an API",
+      "url": "https://developer.searchagora.com/"
+    },
+    {
+      "detail": "domain chatleh.com already represented by story 43581236",
+      "object_id": "43321239",
+      "reason": "duplicate_domain",
+      "title": "Show HN: Chatleh – AI Customer Support for Professional Services",
+      "url": "https://chatleh.com/"
+    },
+    {
+      "detail": "domain chatgpt.com already represented by story 44231950",
+      "object_id": "44153854",
+      "reason": "duplicate_domain",
+      "title": "Show HN: I made a Custom GPT to master business automation",
+      "url": "https://chatgpt.com/g/g-683cc317abb08191bca3da9b36e9f008-master-business-automation-tools-mba-gpt"
+    },
+    {
+      "detail": "domain heyalice.app already represented by story 44241210",
+      "object_id": "43502732",
+      "reason": "duplicate_domain",
+      "title": "Show HN: AI Automation App that connects to your API and back-end",
+      "url": "https://heyalice.app/"
+    },
+    {
+      "detail": "domain zenithchat.co already represented by story 41856423",
+      "object_id": "41635867",
+      "reason": "duplicate_domain",
+      "title": "Show HN: We built an AI chatbot for automating Instagram DMs",
+      "url": "https://zenithchat.co/"
+    },
+    {
+      "detail": "domain zenithchat.co already represented by story 41856423",
+      "object_id": "41647317",
+      "reason": "duplicate_domain",
+      "title": "Show HN: Instagram Messages Automation",
+      "url": "https://zenithchat.co/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "44080405",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: I made a cheaper alternative to customer support AI agents",
+      "url": "https://sadiqagent.com/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "45223738",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: Lumro – AI agents for customer support, sales, and more",
+      "url": "https://www.lumro.co/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "41856172",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: AI agent for first line customer support",
+      "url": "https://narrot.org/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "42879713",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: Workflow86 - An AI business analyst and automation engineer",
+      "url": "https://www.workflow86.com/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "43673351",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: Streamline your business with automation, AI and bookkeeping with ease",
+      "url": "https://pairbox.ai/home"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "42106866",
+      "reason": "below_limit_cutoff",
+      "title": "AI Automation for the Individual and the Back Office",
+      "url": "https://ensembleai.io/blog/individual-business-automation"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "43581236",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: Chatleh – AI Customer Support for SMBs",
+      "url": "https://chatleh.com/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "42096018",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: AI Customer Support for SaaS Companies",
+      "url": "https://zupport.ai/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "49394827",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: OzBrain, a shared brain for knowledge between agents and your team",
+      "url": "https://ozbrain.com/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "47151598",
+      "reason": "below_limit_cutoff",
+      "title": "Launch HN: TeamOut (YC W22) – AI agent for planning company retreats",
+      "url": "https://app.teamout.com/ai"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "43347964",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: Embed restaurant/grocery ordering into your App/AI agent",
+      "url": "https://sdk.mealme.ai/store?api=demoenvironment"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "47926267",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: Rocketship, AI app builder that comes with an AI sales team",
+      "url": "https://deployrocketship.com/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "41922824",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: AI chat support for small businesses not ready for Intercom.",
+      "url": "https://www.obihelper.com/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "44017758",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: I built an AI sales agent that writes and sends cold emails for you",
+      "url": "https://elevatesells.com/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "49293875",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: Agents that run your finances",
+      "url": "https://blaze.money/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "46946742",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: Sales Agent Benchmark – SWE-Bench for sales AI agents (open source)",
+      "url": "https://sales-agent-benchmarks.fly.dev/benchmark"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "44661747",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: Zams – Build AI agents that automate sales work",
+      "url": "https://www.zams.com/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "44241210",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: I built desktop AI Automation app with MCP Support",
+      "url": "https://heyalice.app/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "46875635",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: Helply – AI support agents with guaranteed results",
+      "url": "https://helply.com/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "43995527",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: I built an AI customer service agent that learn from conversations",
+      "url": "https://www.kitoai.com/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "49084371",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: Tines 3B – safe workflow automation for when everyone builds software",
+      "url": "https://www.tines.com/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "43139138",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: I Built a Visual Workflow Automation Platform – FlowRipple",
+      "url": "https://flowripple.com/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "48067343",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: Automation ROI calculator for repetitive admin workflows",
+      "url": "https://tinyopsstudio.com/automation-roi-calculator"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "46120519",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: Nexroo – From automation workflows to real products",
+      "url": "https://nexroo.ai/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "45913070",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: DoDidDone – Voice AI that calls customer support on your behalf",
+      "url": "https://dodiddone.it.com/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "47827928",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: Auxx.ai – Customer Support CRM (Mix of Attio and N8n)",
+      "url": "https://auxx.ai/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "44836418",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: AI Workflows and Custom AI Consulting",
+      "url": "https://app.zeroinbox.ai/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "45732847",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: Early-Stage MVP – AI-Powered Customer Support Solutions",
+      "url": "https://afec48d1-2eb5-490b-a1d8-f3b483aa87dc-00-3om0kaugaka9.kirk.replit.dev/landing/972ca3fc-0657-48a7-ac47-6874017b75fb"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "43180871",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: AI That Reads Docs and Drafts Customer Support Emails",
+      "url": "https://contextgram.com/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "43706061",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: Leadbeam – AI-Powered Field Sales Platform for Reps on the Move",
+      "url": "https://www.leadbeam.ai/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "42449162",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: AI Leads Enhancement Tool",
+      "url": "https://www.cora-intelligence.com/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "47704011",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: Mantyx – Agentic business automation platform",
+      "url": "https://mantyx.io/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "47361508",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: ROI-first AI automation framework for B2B companies",
+      "url": "https://roihacking.ai/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "43501453",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: Business AI Agents Targeting Level 5 AGI",
+      "url": "https://bika.ai/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "46242881",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: AI Advent Calendar – 25 practical AI tips for small business owners",
+      "url": "https://advent.abasis.ai/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "47803684",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: Soforce – Describe a process, get a free automation plan from our team",
+      "url": "https://app.soforce.ai/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "47290021",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: AI video generator for small businesses without video production budget",
+      "url": "https://seedanceflow.ai/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "43012600",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: AI Tax Professional for small businesses",
+      "url": "https://pudno.com/app"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "41933510",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: A financial management tool for small businesses with AI at its core",
+      "url": "https://www.compassapp.ai/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "47210833",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: Nopp – AI-generated interactive sales microwebsites",
+      "url": "https://notpptx.com/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "43462136",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: Zarathustra – AI-powered sales research in 60 seconds",
+      "url": "https://www.zarathustra.network/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "44144524",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: LaminarFlow – AI-native, open-source finance platform for startups",
+      "url": "https://www.lamflo.xyz/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "45231382",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: We Built AI Sales Chatbot for SaaS Websites",
+      "url": "https://www.getfluxyai.com/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "45626955",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: AI sales co-pilot, coaches reps in real-time during calls",
+      "url": "https://www.meetgoran.com/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "43520439",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: AI sales engineer",
+      "url": "https://demo.tryshado.com/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "47212707",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: YourFinanceWORKS – Open-source financial management with AI",
+      "url": "https://www.yourfinanceworks.com/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "47119694",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: CleverBalance – Automated Bank Reconciliation",
+      "url": "https://cleverbalance.ai/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "44910474",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: Scryer – AI Ecommerce Analyst for Shopify",
+      "url": "https://scryerapp.io/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "43469266",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: AI Revolutionizes E-Commerce Marketing: Meet PhotoG by Aid Lab",
+      "url": "https://photog.art/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "43942300",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: Amotions AI – emotionally intelligent real-time AI sales teammate",
+      "url": "https://www.amotionsinc.com/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "43576271",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: I built TheBizness.ai to show which marketing channels drive revenue",
+      "url": "https://thebizness.ai/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "43169582",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: I'm building SalesNode to automate cold outreach for devs",
+      "url": "https://www.salesnode.tech/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "41912665",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: AI-Powered Support Ticket Analysis",
+      "url": "https://www.owlify.org/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "42612237",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: Bin - AI business intelligence analyst that turns data into dashboards",
+      "url": "https://bi.new/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "47485178",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: Free AI Business Plan Generator",
+      "url": "https://launchkit-5g9.pages.dev/tools/business-plan-generator"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "44916014",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: memes.business – AI memes that are actually funny",
+      "url": "https://www.memes.business/login"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "46414480",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: I built an AI fashion photographer to help small e-commerce businesses",
+      "url": "https://www.vestiai.com.br/en"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "43953582",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: Save hours after networking events with this AI business card organizer",
+      "url": "https://www.cardviz.com/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "47574289",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: Made v1 of a roadmap for AI Business Transformation",
+      "url": "https://onemillionlines.com/demo/ai-business-roadmap"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "42385837",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: I built an AI business ideas generator by combining existing solutions",
+      "url": "https://www.onlift.co/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "47658846",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: Free AI Business Name Generator with Domain Screening",
+      "url": "https://noetron.ai/namegen"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "44231950",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: I Created a Business Automation Mastery Custom GPT",
+      "url": "https://chatgpt.com/g/g-683cc317abb08191bca3da9b36e9f008-master-business-automation-tools-mba-gpt"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "44313413",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: PlanMoney AI Business Plan Generator",
+      "url": "https://www.planmoney.online/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "44004573",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: AI Business Advisor finds a way out of any startup/business challenge",
+      "url": "http://3.90.67.73:8501/"
+    },
+    {
+      "detail": "ranked below the top 15 directly relevant candidates",
+      "object_id": "42106651",
+      "reason": "below_limit_cutoff",
+      "title": "Show HN: Trustty Reporter – An AI – First Business Intelligence Platform",
+      "url": "https://www.trusttyreporter.com/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "47663147",
+      "reason": "adjacent_share_reached",
+      "title": "Launch HN: Freestyle – Sandboxes for Coding Agents",
+      "url": "https://www.freestyle.sh/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "47720418",
+      "reason": "adjacent_share_reached",
+      "title": "Launch HN: Twill.ai (YC S25) – Delegate to cloud agents, get back PRs",
+      "url": "https://twill.ai/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "47810533",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: AI Subroutines – Run automation scripts inside your browser tab",
+      "url": "https://www.rtrvr.ai/blog/ai-subroutines-zero-token-deterministic-automation"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "44733892",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: An AI agent that learns your product and guides your users",
+      "url": "https://frigade.ai/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "48578130",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: Righthand – Autonomous AI assistants with skills, goals, and a CLI",
+      "url": "https://www.rigthhand.ai/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "47403882",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: Handrive – Free P2P file transfer with 40 MCP tools for AI automation",
+      "url": "https://handrive.ai/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "42077796",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: Intelligent Browser for Web Automation Powered by AI",
+      "url": "https://www.airtop.ai/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "47120884",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: WinClaw – An AI agent for Windows that anyone can use",
+      "url": "https://docs.winclaw.cc/en/blog/windows-use-winclaw"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "46122882",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: I built an open-source Rust/TS AI agent runtime with a Next.js-style DX",
+      "url": "https://docs.trysoma.ai/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "48936018",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: A commerce Network built on UCP for agents to discover and Pay",
+      "url": "https://kifly.ai/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "48758932",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: SophMate – AI Copilot for WordPress/WooCommerce",
+      "url": "https://sophmate.ai/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "46105655",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: 3 yrs later, my JS sandbox has 11M users and an AI agent",
+      "url": "https://playcode.io/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "44171440",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: Voice AI is wild now. I vibe coded this email agent in 24 hours",
+      "url": "https://www.morningcommute.app/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "46521900",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: Hostbento.com – MCP server to host websites designed in AI assistants",
+      "url": "https://hostbento.com/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "45656655",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: MailAI – Personal AI agents in secure sandboxes for email automation",
+      "url": "https://www.mailai.live/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "45805224",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: LayoffKit – Free visa-aware planner for laid-off workers(AI+automation)",
+      "url": "https://layoffkit.com/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "44636200",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: Turn any domain into an ai agents’ inbox",
+      "url": "https://inbound.new/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "46649876",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: MobAI – AI-first mobile automation for iOS and Android",
+      "url": "https://mobai.run/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "43481809",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: Slot.ai – Goal-Driven AI Phone Call Agent",
+      "url": "https://slotai.app/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "45762450",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: AI Prompt Automation Extension for ChatGPT, Gemini, Claude, AI Studio",
+      "url": "https://winbuzzer.com/2025/10/21/release-prompt-station-brings-prompt-management-and-automation-to-the-next-level-xcxwbn"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "44375024",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: A \"set-it-and-forget-it\" AI automation for Apple Ads",
+      "url": "https://adcider.com/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "45276256",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: CodeWords – Build automations by chatting with AI",
+      "url": "https://www.agemo.ai/codewords"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "42579471",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: Buybase – Ecom for your AI agent",
+      "url": "https://www.buybase.ai/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "43779845",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: OutreachGuy – AI Twitter Automation with Realistic Personas",
+      "url": "https://outreachguy.ai/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "41640186",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: Agentic AI coding tool that's easy to use, transparent and customizable",
+      "url": "https://oppydev.ai/download"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "42549794",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: Survey on AI Agents in Production (324 Respondents)",
+      "url": "https://yougot.us/posts/2024-12-28-AI-Agents-Survey-Results"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "48445171",
+      "reason": "adjacent_share_reached",
+      "title": "Launch HN: Intuned (YC S22) – Build and run reliable browser automations as code",
+      "url": "https://intunedhq.com/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "49246057",
+      "reason": "adjacent_share_reached",
+      "title": "Launch HN: Stoa Markets (YC S26) – A Marketplace for GPUs and AI Servers",
+      "url": "https://www.stoaexchange.com/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "48661083",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: eBook to audiobook narration with realistic AI voices",
+      "url": "https://ebookaloud.com/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "48055702",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: Disputron – AI small claims court for petty disputes",
+      "url": "https://disputron.ai/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "42381712",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: Hyperbrowser – Scalable Browser Infrastructure for AI Apps",
+      "url": "https://www.hyperbrowser.ai/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "46394626",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: An authority gate for AI-generated customer communication",
+      "url": "https://authority.bhaviavelayudhan.com/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "45452178",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: AI that reviews legal contracts in 12 minutes instead of 2 hours",
+      "url": "https://legaldeepai.netlify.app/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "46156978",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: A Self-Evolving Agentic App Builder (Seeking 300 Beta Testers)",
+      "url": "https://howone.ai/?invite=CD0AP6"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "46180687",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: Tikpal- Your AI Voice Partner – Focus, Flow, Forge",
+      "url": "https://tikpal.ai/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "48093977",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: Studis – Turn product photos into social media ads with AI",
+      "url": "https://studis.io/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "45964138",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: Startfa.st – A curated, fast directory of AI, dev, and product tools",
+      "url": "https://startfa.st/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "46957655",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: Hire a 24/7 AI Employee for $5k/Year",
+      "url": "https://www.hangryfeed.com/ai-employees"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "47112610",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: FounderSDR – AI cold email outreach for B2B SaaS founders ($299/mo)",
+      "url": "https://founder-sdr.surge.sh/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "46652246",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: ReliaBuilds – web, mobile, cloud, AI, and security for startups",
+      "url": "https://www.reliabuilds.com/en"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "47274065",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: I made a tool that automates B2B outreach with a 1B+ contact database",
+      "url": "https://thegro.ai/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "45802673",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: Vayno – AI Email Sequence Generator from Any Landing Page",
+      "url": "https://vaynoai.lovable.app/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "46882027",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: Chitram – Open-source image hosting with automatic AI tagging",
+      "url": "https://chitram.io/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "44602862",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: I created a resource to find the best AI apps for Real Estate",
+      "url": "https://www.propertyaitools.com/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "46800362",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: Alprina – Find your next investor through AI-matched intros",
+      "url": "https://www.alprina.com/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "44786400",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: I made a platform to create Telephone Voice AI Agencies",
+      "url": "https://www.telezen-ai.com/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "42362793",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: Toivo – A Smarter Assistant",
+      "url": "https://toivo.ai/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "44643037",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: Best AI Tool Finder",
+      "url": "https://bestaitoolfinder.com/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "42372102",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: Deploy AI code scripts and run them by asking on Slack (YC F24)",
+      "url": "https://recaseai.com/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "47259830",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: Mirra – AI turns ideas into social media carousels and videos",
+      "url": "https://www.mirra.my/ko"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "42013530",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: Aux Machina – AI photo generator without complex prompting",
+      "url": "https://www.auxmachina.com/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "41856423",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: We built an AI chatbot for automating Instagram DMs",
+      "url": "https://zenithchat.co/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "44186796",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: Getyourbrandvoice.com – Discover and analyze your brand's unique voice",
+      "url": "https://www.dondo.com/ai/brand-voice"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "43677075",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: AI Instagram Analyzer",
+      "url": "https://gramlyzer.com/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "46209417",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: LitContent – AI content designed to match your brand voice",
+      "url": "https://litcontent.com/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "42138859",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: Revolutionizing AI Access in India: LogicBallsAI × Two.ai",
+      "url": "https://logicballs.com/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "44449672",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: Qrblox – AI Chat with QR Codes",
+      "url": "https://qrblox.com/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "41971676",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: Parseflow – Automate data extraction from documents",
+      "url": "https://www.parseflow.io/"
+    },
+    {
+      "detail": "adjacent candidates are held to 30% of a 15-place shortlist while 80 direct candidates are available",
+      "object_id": "44081150",
+      "reason": "adjacent_share_reached",
+      "title": "Show HN: KBAI – Build Hybrid AI with Deterministic Reasoning",
+      "url": "https://www.usekbai.com/"
     }
   ],
   "failures": [],
   "formula_version": "2.0.0",
-  "generated_at": "2026-08-24T13:53:35.943072Z",
+  "generated_at": "2026-08-24T14:00:27.942374Z",
   "minimum_relevance": 0.2,
-  "notes": [
-    "Kept 9 candidates against a requested limit of 10: 1 short. Only 7 directly relevant and 2 adjacent candidates survived the relevance gate. The shortlist was not padded with off-topic results."
-  ],
+  "notes": [],
   "ordering_policy": "lexicographic: (1) relevance class, direct before adjacent; (2) relevance score; (3) composite quality score over engagement, recency and query variant quality. Engagement can only order candidates that are already equal on class and relevance score.",
   "query": "AI customer support and back-office automation for small businesses",
   "relevance_after_selection": {
-    "adjacent": 2,
-    "direct": 7,
+    "adjacent": 0,
+    "direct": 15,
     "irrelevant": 0
   },
   "relevance_before_selection": {
-    "adjacent": 2,
-    "direct": 7,
-    "irrelevant": 1
+    "adjacent": 62,
+    "direct": 82,
+    "irrelevant": 69
   },
-  "requested_limit": 10,
-  "run_id": "offline-demo",
+  "requested_limit": 15,
+  "run_id": "ai-smb-ops-demo",
   "schema_version": "1.1.0",
-  "shortfall": 1,
+  "shortfall": 0,
   "variants": [
     {
       "endpoint": "search",
       "error": null,
-      "hits_returned": 10,
+      "hits_returned": 0,
       "label": "query-show-hn",
       "pages_fetched": 1,
       "query": "AI customer support and back-office automation for small businesses",
@@ -831,7 +3418,7 @@
     {
       "endpoint": "search",
       "error": null,
-      "hits_returned": 10,
+      "hits_returned": 45,
       "label": "query-launch-hn",
       "pages_fetched": 1,
       "query": "AI customer support and back-office automation for small businesses",
@@ -844,7 +3431,7 @@
     {
       "endpoint": "search",
       "error": null,
-      "hits_returned": 10,
+      "hits_returned": 45,
       "label": "query-story",
       "pages_fetched": 1,
       "query": "AI customer support and back-office automation for small businesses",
@@ -857,7 +3444,7 @@
     {
       "endpoint": "search",
       "error": null,
-      "hits_returned": 10,
+      "hits_returned": 45,
       "label": "intent-smb",
       "pages_fetched": 1,
       "query": "AI automation SMB small business",
@@ -870,7 +3457,7 @@
     {
       "endpoint": "search",
       "error": null,
-      "hits_returned": 10,
+      "hits_returned": 45,
       "label": "intent-small-business",
       "pages_fetched": 1,
       "query": "AI automation small business owners",
@@ -883,7 +3470,7 @@
     {
       "endpoint": "search",
       "error": null,
-      "hits_returned": 10,
+      "hits_returned": 45,
       "label": "intent-business-operations",
       "pages_fetched": 1,
       "query": "AI automation business operations",
@@ -896,7 +3483,7 @@
     {
       "endpoint": "search",
       "error": null,
-      "hits_returned": 10,
+      "hits_returned": 45,
       "label": "intent-customer-support",
       "pages_fetched": 1,
       "query": "AI automation customer support service helpdesk",
@@ -909,7 +3496,7 @@
     {
       "endpoint": "search",
       "error": null,
-      "hits_returned": 10,
+      "hits_returned": 45,
       "label": "intent-sales",
       "pages_fetched": 1,
       "query": "AI automation sales CRM leads outreach",
@@ -922,7 +3509,7 @@
     {
       "endpoint": "search",
       "error": null,
-      "hits_returned": 10,
+      "hits_returned": 45,
       "label": "intent-finance-accounting",
       "pages_fetched": 1,
       "query": "AI automation finance accounting bookkeeping invoicing",
@@ -935,7 +3522,7 @@
     {
       "endpoint": "search",
       "error": null,
-      "hits_returned": 10,
+      "hits_returned": 45,
       "label": "intent-scheduling",
       "pages_fetched": 1,
       "query": "AI automation scheduling booking dispatch appointments",
@@ -948,7 +3535,7 @@
     {
       "endpoint": "search",
       "error": null,
-      "hits_returned": 10,
+      "hits_returned": 45,
       "label": "intent-back-office",
       "pages_fetched": 1,
       "query": "AI automation back office admin workflow paperwork",
@@ -961,7 +3548,7 @@
     {
       "endpoint": "search",
       "error": null,
-      "hits_returned": 10,
+      "hits_returned": 45,
       "label": "intent-ecommerce-retail",
       "pages_fetched": 1,
       "query": "AI automation ecommerce retail store inventory orders",

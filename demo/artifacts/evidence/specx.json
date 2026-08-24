@@ -1,0 +1,143 @@
+{
+  "claims": [
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "The company's homepage describes a product that turns team knowledge and proven processes into AI work that can be reviewed, trusted, and run again by a team",
+      "claim_id": "ev-cc771a69fcd7",
+      "company_id": "specx",
+      "excerpts": [
+        {
+          "excerpt": "Turn team knowledge and proven processes into AI work your whole team can review, trust, and run again.",
+          "source_id": "src-41874b4c12fe"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-41874b4c12fe"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "traction",
+      "caveat": null,
+      "claim": "SpecX was shown on Hacker News as a 'Show HN' post with minimal community engagement (2 points, 0 comments)",
+      "claim_id": "ev-2515ed2f03c3",
+      "company_id": "specx",
+      "excerpts": [
+        {
+          "excerpt": "The thread has 2 points on Hacker News. The thread has 0 comments on Hacker News.",
+          "source_id": "src-92654c54a19b"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-92654c54a19b"
+      ],
+      "verification_status": "community_signal"
+    },
+    {
+      "category": "traction",
+      "caveat": null,
+      "claim": "The Show HN launch occurred on 2025-11-27",
+      "claim_id": "ev-d30b0a945cde",
+      "company_id": "specx",
+      "excerpts": [
+        {
+          "excerpt": "The thread was posted on 2025-11-27.",
+          "source_id": "src-92654c54a19b"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-92654c54a19b"
+      ],
+      "verification_status": "community_signal"
+    }
+  ],
+  "company_id": "specx",
+  "confidence_inputs": {
+    "claims_by_category": {
+      "product": 1,
+      "traction": 2
+    },
+    "claims_by_verification": {
+      "community_signal": 2,
+      "company_claim": 1
+    },
+    "claims_total": 3,
+    "conflicts": 0,
+    "distinct_domains": 2,
+    "inferred_claims": 0,
+    "unknowns": 5
+  },
+  "conflicts": [],
+  "generated_at": "2026-08-24T14:01:43.587956Z",
+  "model": "claude-sonnet-5",
+  "prompt_version": "evidence_v1",
+  "provider": "anthropic",
+  "schema_version": "1.1.0",
+  "source_coverage": {
+    "hn_sources": 1,
+    "pages_supplied": 1,
+    "sources_cited": 2,
+    "sources_supplied": 2,
+    "supplied_chars": 459,
+    "truncated_pages": [],
+    "website_available": true
+  },
+  "sources": [
+    {
+      "domain": "news.ycombinator.com",
+      "hn_num_comments": 0,
+      "hn_object_id": "46068181",
+      "hn_points": 2,
+      "kind": "hn_story",
+      "published_at": "2025-11-27T11:18:05Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-92654c54a19b",
+      "title": "Show HN: SpecX – Workflow Automation for AI Agents",
+      "url": "https://news.ycombinator.com/item?id=46068181"
+    },
+    {
+      "domain": "redoxsoft.com",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T14:01:20.534767Z",
+      "source_id": "src-41874b4c12fe",
+      "title": "Redoxsoft — Make AI work predictably",
+      "url": "https://redoxsoft.com/"
+    }
+  ],
+  "unknowns": [
+    {
+      "category": "team",
+      "question": "Who founded or works at SpecX / Redoxsoft?",
+      "reason": "No source provides team or founder information."
+    },
+    {
+      "category": "market",
+      "question": "What market size or target customer segment does SpecX address?",
+      "reason": "No source provides market sizing or customer segment details."
+    },
+    {
+      "category": "traction",
+      "question": "Does SpecX have any users, customers, or revenue?",
+      "reason": "No source provides usage, customer, or financial metrics."
+    },
+    {
+      "category": "product",
+      "question": "What specific features or technical mechanisms does SpecX use for workflow automation of AI agents?",
+      "reason": "The homepage text is a single tagline without further product detail."
+    },
+    {
+      "category": "risk",
+      "question": "What are the known limitations or risks of the product?",
+      "reason": "No source discusses risks or limitations explicitly."
+    }
+  ],
+  "warnings": []
+}

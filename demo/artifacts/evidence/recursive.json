@@ -1,0 +1,202 @@
+{
+  "claims": [
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "Recursive offers AI-powered support agents that answer customer questions using a business's existing documentation, available via chat and programmatically to other AI agents.",
+      "claim_id": "ev-038349c254eb",
+      "company_id": "recursive",
+      "excerpts": [
+        {
+          "excerpt": "We turn your existing docs into a tool that answers customer questions 24/7 - from humans in a chat window and from other AI agents programmatically.",
+          "source_id": "src-db21a13e62f9"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-db21a13e62f9"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "The product is designed to avoid hallucination by responding 'I don't know' rather than fabricating answers.",
+      "claim_id": "ev-bb159546f78a",
+      "company_id": "recursive",
+      "excerpts": [
+        {
+          "excerpt": "It says 'I don't know' instead of making things up.",
+          "source_id": "src-db21a13e62f9"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-db21a13e62f9"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "market",
+      "caveat": null,
+      "claim": "Recursive targets small businesses as its customer base.",
+      "claim_id": "ev-82673a814de9",
+      "company_id": "recursive",
+      "excerpts": [
+        {
+          "excerpt": "AI-powered support agents for small businesses.",
+          "source_id": "src-db21a13e62f9"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-db21a13e62f9"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "traction",
+      "caveat": "Suggests limited or no live customer base yet.",
+      "claim": "Recursive is not yet generally available; it is rolling out access gradually via an early access signup.",
+      "claim_id": "ev-b45a6085ebf4",
+      "company_id": "recursive",
+      "excerpts": [
+        {
+          "excerpt": "We're rolling out access gradually - sign up for early access and we'll reach out as spots open up.",
+          "source_id": "src-db21a13e62f9"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-db21a13e62f9"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "Plans start at $49/month with no setup fee.",
+      "claim_id": "ev-25b09686c6eb",
+      "company_id": "recursive",
+      "excerpts": [
+        {
+          "excerpt": "Plans start at $49/mo, no setup fee.",
+          "source_id": "src-db21a13e62f9"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-db21a13e62f9"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "traction",
+      "caveat": "Very low engagement; not strong evidence of market interest.",
+      "claim": "The company's Show HN launch received minimal community engagement (1 point, 2 comments).",
+      "claim_id": "ev-3eb322a0ac89",
+      "company_id": "recursive",
+      "excerpts": [
+        {
+          "excerpt": "Recorded signal - hn_points: 1",
+          "source_id": "src-5be3b664fe3a"
+        },
+        {
+          "excerpt": "Recorded signal - hn_comments: 2",
+          "source_id": "src-5be3b664fe3a"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-5be3b664fe3a"
+      ],
+      "verification_status": "community_signal"
+    }
+  ],
+  "company_id": "recursive",
+  "confidence_inputs": {
+    "claims_by_category": {
+      "market": 1,
+      "product": 3,
+      "traction": 2
+    },
+    "claims_by_verification": {
+      "community_signal": 1,
+      "company_claim": 5
+    },
+    "claims_total": 6,
+    "conflicts": 0,
+    "distinct_domains": 2,
+    "inferred_claims": 0,
+    "unknowns": 5
+  },
+  "conflicts": [],
+  "generated_at": "2026-08-24T14:01:43.587956Z",
+  "model": "claude-sonnet-5",
+  "prompt_version": "evidence_v1",
+  "provider": "anthropic",
+  "schema_version": "1.1.0",
+  "source_coverage": {
+    "hn_sources": 1,
+    "pages_supplied": 1,
+    "sources_cited": 2,
+    "sources_supplied": 2,
+    "supplied_chars": 901,
+    "truncated_pages": [],
+    "website_available": true
+  },
+  "sources": [
+    {
+      "domain": "news.ycombinator.com",
+      "hn_num_comments": 2,
+      "hn_object_id": "47060956",
+      "hn_points": 1,
+      "kind": "hn_story",
+      "published_at": "2026-02-18T13:58:28Z",
+      "retrieved_at": "2026-08-24T14:00:27.942374Z",
+      "source_id": "src-5be3b664fe3a",
+      "title": "Show HN: Recursive – AI support agents for small businesses",
+      "url": "https://news.ycombinator.com/item?id=47060956"
+    },
+    {
+      "domain": "recursive.support",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T14:00:51.302013Z",
+      "source_id": "src-db21a13e62f9",
+      "title": "Recursive recursive.support",
+      "url": "https://recursive.support/"
+    }
+  ],
+  "unknowns": [
+    {
+      "category": "team",
+      "question": "Who are the founders or team members of Recursive, and what is their background?",
+      "reason": "No source provides team or founder information."
+    },
+    {
+      "category": "traction",
+      "question": "Does Recursive have any paying customers, users, or revenue?",
+      "reason": "Sources only mention early access signup, not actual usage or customers."
+    },
+    {
+      "category": "market",
+      "question": "What is the size of the target market or competitive landscape for AI support agents for small businesses?",
+      "reason": "No market sizing or competitor data provided."
+    },
+    {
+      "category": "product",
+      "question": "What specific features, integrations, or technical architecture does Recursive use beyond the general description?",
+      "reason": "Homepage text is high-level marketing copy without technical detail."
+    },
+    {
+      "category": "risk",
+      "question": "What are the company's funding status, investors, or financial runway?",
+      "reason": "No financial or funding information is present in the sources."
+    }
+  ],
+  "warnings": []
+}

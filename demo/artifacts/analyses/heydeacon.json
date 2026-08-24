@@ -1,0 +1,275 @@
+{
+  "analysis": {
+    "analysis_warnings": [],
+    "buyer": null,
+    "company_id": "heydeacon",
+    "competitive_observations": [
+      {
+        "evidence_claim_ids": [
+          "ev-9bebd1ba671d"
+        ],
+        "text": "The company explicitly names Fin and Decagon as competitors it differentiates itself from."
+      }
+    ],
+    "confidence_rationale": [
+      "3 of 3 supplied source(s) were cited by at least one claim.",
+      "9 evidence claim(s) across 3 of 5 categories.",
+      "A page from the company's own website was read.",
+      "8 of 9 claim(s) are company-authored; 1 come from other voices.",
+      "No finding was identified as corroborated by separate sources.",
+      "4 question(s) were left unanswered."
+    ],
+    "corroborated_findings": [],
+    "generated_at": "2026-08-24T14:05:26.796843Z",
+    "identity_warnings": [],
+    "market_assessment": {
+      "evidence_claim_ids": [
+        "ev-9bebd1ba671d"
+      ],
+      "text": "The company positions itself against other AI customer support tools such as Fin and Decagon, targeting SaaS founders, but no market sizing or demand data is present.",
+      "unknown_references": [
+        "unk-18354cf42f88"
+      ]
+    },
+    "model": "claude-sonnet-5",
+    "model_suggested_recommendation": "pass",
+    "open_questions": [],
+    "plain_language_product": "HeyDeacon (Deacon) is an AI customer support agent for SaaS founders: it answers user questions, onboards users, and surfaces feedback/knowledge gaps by ingesting documentation, website content and how-to videos. It installs via a one-line script, scores its own answers for validity against the knowledge base, and captures visitor details/escalates when it cannot answer. Pricing is usage-based with a free tier and Starter ($40/mo)/Growth ($120/mo) paid tiers.",
+    "product_assessment": {
+      "evidence_claim_ids": [
+        "ev-3dbb75bf0879",
+        "ev-a936055a1417",
+        "ev-663464aa6314",
+        "ev-c28762ea7c0c",
+        "ev-7699225de008"
+      ],
+      "text": "Deacon is an AI support agent that ingests docs/URLs/videos, installs via one line of script, answers customer questions, scores its own answers against the knowledge base rather than guessing, and escalates unanswered questions by capturing visitor details for a human reply. Pricing is usage-based with a free tier and two paid tiers ($40/$120 per month).",
+      "unknown_references": []
+    },
+    "prompt_version": "analysis_v2",
+    "provider": "anthropic",
+    "recommendation_changers": [
+      "Verified, named customer case studies with measurable before/after support metrics (e.g., resolution time, revenue impact) beyond homepage testimonials",
+      "Founder background and team composition evidence showing domain expertise in customer support or SaaS operations",
+      "Evidence of a repeatable distribution channel or paid customer count beyond a single low-engagement Show HN post"
+    ],
+    "research_confidence": {
+      "components": {
+        "category_span": 0.6,
+        "claim_volume": 1.0,
+        "corroboration": 0.0,
+        "independence": 0.1111,
+        "source_coverage": 1.0,
+        "website": 1.0
+      },
+      "level": "medium",
+      "missing": [
+        "market",
+        "risk",
+        "team",
+        "traction"
+      ],
+      "reasons": [
+        "3 of 3 supplied source(s) were cited by at least one claim.",
+        "9 evidence claim(s) across 3 of 5 categories.",
+        "A page from the company's own website was read.",
+        "8 of 9 claim(s) are company-authored; 1 come from other voices.",
+        "No finding was identified as corroborated by separate sources.",
+        "4 question(s) were left unanswered."
+      ],
+      "score": 0.5967
+    },
+    "risks": [
+      {
+        "evidence_claim_ids": [
+          "ev-47327a47fab7",
+          "ev-4c2d2662ee37"
+        ],
+        "text": "Traction claims (NPS/revenue/conversion improvements, a switch from Intercom/Fin) rest solely on unattributed, undated homepage testimonials with no independent verification.",
+        "unknown_references": [
+          "unk-fb31f01aebf3"
+        ]
+      },
+      {
+        "evidence_claim_ids": [
+          "ev-4a2b327abd49"
+        ],
+        "text": "The Show HN launch received minimal community engagement (4 points, 1 comment), indicating limited external attention so far.",
+        "unknown_references": []
+      },
+      {
+        "evidence_claim_ids": [],
+        "text": "No information exists on funding or financial runway.",
+        "unknown_references": [
+          "unk-5b35ca8c5fc4"
+        ]
+      }
+    ],
+    "schema_version": "1.1.0",
+    "score_components": [
+      {
+        "assessment_status": "partially_supported",
+        "caveats": [],
+        "component": "pain_roi",
+        "evidence_claim_ids": [
+          "ev-3dbb75bf0879",
+          "ev-4c2d2662ee37"
+        ],
+        "maximum": 20,
+        "rationale": "The company clearly frames the workflow (customer support/onboarding for SaaS) and claims cost/time savings and revenue impact via testimonials, but these are self-reported, unattributed, and unverifiable, so only the weaker claim of targeting a real workflow is supported.",
+        "score": 9,
+        "unknown_references": []
+      },
+      {
+        "assessment_status": "supported",
+        "caveats": [],
+        "component": "wedge",
+        "evidence_claim_ids": [
+          "ev-a936055a1417",
+          "ev-663464aa6314",
+          "ev-7699225de008",
+          "ev-c28762ea7c0c"
+        ],
+        "maximum": 15,
+        "rationale": "Concrete facts are given: one-line script install, knowledge base built from docs/URLs/videos, self-scored answers, escalation with visitor detail capture, and specific pricing tiers. This is a narrow, well-defined entry point into an existing support workflow.",
+        "score": 11,
+        "unknown_references": []
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "distribution",
+        "evidence_claim_ids": [
+          "ev-c28762ea7c0c"
+        ],
+        "maximum": 15,
+        "rationale": "No explicit go-to-market motion, channel, or self-serve signup process is described beyond product installation; only a pricing page and a Show HN post are evidenced, giving little insight into repeatable distribution.",
+        "score": 4,
+        "unknown_references": []
+      },
+      {
+        "assessment_status": "partially_supported",
+        "caveats": [],
+        "component": "defensibility",
+        "evidence_claim_ids": [
+          "ev-663464aa6314",
+          "ev-9bebd1ba671d"
+        ],
+        "maximum": 15,
+        "rationale": "The product has some operational depth (self-scoring against knowledge base, escalation flow) that could compound with proprietary workflow data, but the sources do not establish this constitutes a durable moat versus other AI support tools like Fin/Decagon.",
+        "score": 5,
+        "unknown_references": []
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "team",
+        "evidence_claim_ids": [],
+        "maximum": 15,
+        "rationale": "No founder or team background information is present in the dossier.",
+        "score": 3,
+        "unknown_references": [
+          "unk-6ebe61e0221f"
+        ]
+      },
+      {
+        "assessment_status": "partially_supported",
+        "caveats": [],
+        "component": "traction",
+        "evidence_claim_ids": [
+          "ev-47327a47fab7",
+          "ev-4c2d2662ee37",
+          "ev-4a2b327abd49"
+        ],
+        "maximum": 10,
+        "rationale": "Traction evidence is limited to unattributed homepage testimonials (customer switch, NPS/revenue claims) and a Show HN post with minimal engagement (4 points, 1 comment), both of which indicate low external validation and low community attention so far.",
+        "score": 3,
+        "unknown_references": [
+          "unk-fb31f01aebf3"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "market_timing",
+        "evidence_claim_ids": [
+          "ev-9bebd1ba671d"
+        ],
+        "maximum": 10,
+        "rationale": "No regulatory, technical, or workflow shift is named to explain why this is buyable now versus previously; only a competitive positioning statement against Fin and Decagon is given.",
+        "score": 4,
+        "unknown_references": [
+          "unk-18354cf42f88"
+        ]
+      }
+    ],
+    "team_assessment": {
+      "evidence_claim_ids": [],
+      "text": "No source provides any information on HeyDeacon's founders, employees, or their backgrounds, so team composition and earned insight cannot be assessed.",
+      "unknown_references": [
+        "unk-6ebe61e0221f"
+      ]
+    },
+    "thesis_assessment": {
+      "evidence_claim_ids": [
+        "ev-3dbb75bf0879",
+        "ev-c28762ea7c0c",
+        "ev-4c2d2662ee37"
+      ],
+      "rationale": "Customer support is a recurring, potentially revenue-relevant workflow, and Deacon lands inside the support/onboarding surface with a narrow technical wedge (script install, doc ingestion). However, the thesis emphasizes revenue-critical, high-frequency SMB workflows with proprietary workflow-data defensibility; here the buyer is SaaS founders (a narrower, more technical segment than typical SMB) and the evidence for measurable ROI is limited to unattributed testimonials. This places it adjacent to, rather than squarely inside, the thesis.",
+      "unknown_references": [
+        "unk-18354cf42f88"
+      ],
+      "verdict": "adjacent"
+    },
+    "thesis_version": "thesis_v1",
+    "total_score": 39,
+    "workflow": null
+  },
+  "recommendation": {
+    "band": "pass",
+    "band_label": "0-64",
+    "cap_reason": null,
+    "capped": false,
+    "company_id": "heydeacon",
+    "confidence": {
+      "components": {
+        "category_span": 0.6,
+        "claim_volume": 1.0,
+        "corroboration": 0.0,
+        "independence": 0.1111,
+        "source_coverage": 1.0,
+        "website": 1.0
+      },
+      "level": "medium",
+      "missing": [
+        "market",
+        "risk",
+        "team",
+        "traction"
+      ],
+      "reasons": [
+        "3 of 3 supplied source(s) were cited by at least one claim.",
+        "9 evidence claim(s) across 3 of 5 categories.",
+        "A page from the company's own website was read.",
+        "8 of 9 claim(s) are company-authored; 1 come from other voices.",
+        "No finding was identified as corroborated by separate sources.",
+        "4 question(s) were left unanswered."
+      ],
+      "score": 0.5967
+    },
+    "decided_at": "2026-08-24T14:05:26.796843Z",
+    "decision": "pass",
+    "guardrails_applied": [],
+    "model_disagreed": false,
+    "model_suggested": "pass",
+    "policy_version": "2.0.0",
+    "rationale": [
+      "Scored 39/100 against the rubric, which falls in the 0-64 band (pass).",
+      "Research confidence is medium (0.60).",
+      "3 dimension(s) could not be assessed from the available evidence: distribution, team, market_timing. Only 60 of 100 points were assessable."
+    ],
+    "schema_version": "1.1.0",
+    "total_score": 39
+  }
+}
