@@ -29,6 +29,11 @@ from vc_scout.net.hn import HnAlgoliaClient, HnError
 from vc_scout.net.http import SafeFetcher
 from vc_scout.policy import POLICY_VERSION, TAKE_A_MEETING_AT, WATCH_AT
 from vc_scout.rubric import RUBRIC, RUBRIC_VERSION
+from vc_scout.stages.analysis import (
+    AnalysisStageOutcome,
+    UnknownCandidateError,
+    run_analysis,
+)
 from vc_scout.stages.enrich import MAX_EXTRA_PAGES, EnrichOutcome, run_enrich
 from vc_scout.stages.evidence import EvidenceStageOutcome, run_evidence
 from vc_scout.stages.source import DEFAULT_WINDOW_DAYS, SourceOutcome, run_source
@@ -257,19 +262,18 @@ def analyze(
     model: str | None = typer.Option(
         None, "--model", help=f"Model identifier. Defaults to ${MODEL_ENV} or {DEFAULT_MODEL}."
     ),
+    company_id: str | None = typer.Option(
+        None,
+        "--company-id",
+        help="Analyse only this candidate, leaving every other analysis untouched.",
+    ),
     effort: str = typer.Option(DEFAULT_EFFORT, "--effort", help="Model effort level."),
     max_tokens: int = typer.Option(DEFAULT_MAX_TOKENS, "--max-tokens", min=1024),
-    force: bool = typer.Option(False, "--force", help="Overwrite existing evidence output."),
+    force: bool = typer.Option(
+        False, "--force", help="Overwrite existing evidence or analysis output."
+    ),
 ) -> None:
     """Extract evidence, score against the rubric and apply the recommendation policy."""
-    if not evidence_only:
-        _placeholder(
-            "analyze",
-            "stages 5-6",
-            "score the rubric and apply the deterministic policy. Evidence extraction is "
-            "available now via --evidence-only",
-        )
-
     try:
         store = RunStore(run_id, runs_root=runs_root)
     except StoreError as exc:
@@ -285,15 +289,39 @@ def analyze(
         )
         raise typer.Exit(code=1)
 
-    existing = store.evidence_company_ids()
-    if (existing or store.evidence_report_path().exists()) and not force:
-        typer.secho(
-            f"vc-scout analyze: run {run_id!r} already has evidence output "
-            f"({len(existing)} dossier(s)). Pass --force to re-extract.",
-            fg=typer.colors.YELLOW,
-            err=True,
-        )
-        raise typer.Exit(code=1)
+    if evidence_only:
+        existing = store.evidence_company_ids()
+        if (existing or store.evidence_report_path().exists()) and not force:
+            typer.secho(
+                f"vc-scout analyze: run {run_id!r} already has evidence output "
+                f"({len(existing)} dossier(s)). Pass --force to re-extract.",
+                fg=typer.colors.YELLOW,
+                err=True,
+            )
+            raise typer.Exit(code=1)
+    else:
+        if not store.evidence_company_ids():
+            typer.secho(
+                f"vc-scout analyze: run {run_id!r} has no evidence dossiers. Run "
+                "`vc-scout analyze --evidence-only` first.",
+                fg=typer.colors.RED,
+                err=True,
+            )
+            raise typer.Exit(code=1)
+        analysed = store.analysis_company_ids()
+        if company_id is not None:
+            # Only this candidate's analysis would be replaced, so only it gates the guard.
+            analysed = [cid for cid in analysed if cid == company_id]
+        if (
+            analysed or (company_id is None and store.analysis_report_path().exists())
+        ) and not force:
+            typer.secho(
+                f"vc-scout analyze: run {run_id!r} already has analysis output "
+                f"({len(analysed)} analysis file(s)). Pass --force to re-analyse.",
+                fg=typer.colors.YELLOW,
+                err=True,
+            )
+            raise typer.Exit(code=1)
 
     resolved_model = model or os.environ.get(MODEL_ENV) or DEFAULT_MODEL
     llm: LlmProvider
@@ -317,17 +345,23 @@ def analyze(
         )
         raise typer.Exit(code=1)
 
-    outcome = run_evidence(
-        store=store,
-        provider=llm,
-        config=ModelConfig(
-            model=resolved_model,
-            max_tokens=max_tokens,
-            effort=effort,
-            timeout_seconds=DEFAULT_TIMEOUT_SECONDS,
-        ),
+    config = ModelConfig(
+        model=resolved_model,
+        max_tokens=max_tokens,
+        effort=effort,
+        timeout_seconds=DEFAULT_TIMEOUT_SECONDS,
     )
-    _report_evidence(outcome)
+    if evidence_only:
+        _report_evidence(run_evidence(store=store, provider=llm, config=config))
+        return
+
+    try:
+        outcome = run_analysis(store=store, provider=llm, config=config, only_company_id=company_id)
+    except UnknownCandidateError as exc:
+        # Raised before any provider call, so a mistyped id never costs a request.
+        typer.secho(f"vc-scout analyze: {exc}", fg=typer.colors.RED, err=True)
+        raise typer.Exit(code=1) from exc
+    _report_analysis(outcome)
 
 
 def _report_evidence(outcome: EvidenceStageOutcome) -> None:
@@ -366,7 +400,16 @@ def _report_evidence(outcome: EvidenceStageOutcome) -> None:
         )
 
     typer.echo("")
-    typer.echo(f"Wrote evidence/, llm/ and {outcome.report_path}")
+    written = counts.get("succeeded", 0)
+    if written:
+        typer.echo(f"Wrote {written} dossier(s) to evidence/, llm/ and {outcome.report_path}")
+    else:
+        typer.secho(
+            f"No dossiers were produced. Wrote llm/ attempt artifacts and "
+            f"{outcome.report_path}, which records why each candidate failed.",
+            fg=typer.colors.RED,
+            err=True,
+        )
 
 
 @app.command()
@@ -451,3 +494,82 @@ def main() -> None:
 
 if __name__ == "__main__":  # pragma: no cover
     main()
+
+
+def _report_analysis(outcome: AnalysisStageOutcome) -> None:
+    """Print the scored shortlist and the policy's calls. Thin evidence is not a failure."""
+    report = outcome.report
+    counts = report.counts
+
+    if report.filtered_to:
+        typer.secho(
+            f"Filtered run: only {report.filtered_to!r} was analysed. Every other "
+            "candidate's analysis was left untouched.",
+            fg=typer.colors.YELLOW,
+        )
+    typer.echo(
+        f"Analysed {counts.get('succeeded', 0)} of {counts.get('candidates', 0)} candidate(s) "
+        f"using {report.provider}/{report.model} ({report.prompt_version}, "
+        f"{report.thesis_version}, policy {report.policy_version})."
+    )
+    typer.echo(
+        "Recommendations: "
+        + "  ".join(f"{name}={total}" for name, total in sorted(report.recommendations.items()))
+        + f"   retried: {counts.get('retried', 0)}"
+        + f"   model/policy disagreements: {counts.get('model_policy_disagreements', 0)}"
+    )
+    typer.echo(
+        f"Tokens in/out: {counts.get('input_tokens', 0):,}/{counts.get('output_tokens', 0):,}"
+    )
+    for category, total in sorted(report.failures_by_category.items()):
+        typer.echo(f"  failed {total:>4}  {category}")
+    for guardrail, total in sorted(report.guardrails.items()):
+        typer.echo(f"  guardrail {total:>3}  {guardrail}")
+
+    typer.echo("")
+    for row in sorted(report.candidates, key=lambda r: (-(r.total_score or -1), r.company_id)):
+        if not row.succeeded:
+            reason = row.error_category.value if row.error_category else "unknown"
+            typer.secho(f"  ! {row.company_id:<26} no analysis ({reason})", fg=typer.colors.YELLOW)
+            continue
+        suggestion = row.model_suggested.value if row.model_suggested else "-"
+        flag = "*" if row.model_disagreed else " "
+        # `max` is the highest total this analysis could have reached under its own
+        # statuses; a trailing dash marks a candidate for which the meeting band was
+        # arithmetically out of reach on this evidence.
+        reach = "" if row.meeting_reachable_by_statuses else " -"
+        typer.echo(
+            f"  {flag} {row.company_id:<26} {row.total_score:>3}/100  "
+            f"{(row.decision.value if row.decision else '?'):<15} "
+            f"conf={(row.confidence_level.value if row.confidence_level else '?'):<6} "
+            f"na={row.not_assessable} max={row.maximum_achievable_score or 0:>3}{reach}"
+            f"  model={suggestion}"
+        )
+    if counts.get("model_policy_disagreements"):
+        typer.echo("\n  * the model suggested a different recommendation from the policy")
+    unreachable = [
+        row
+        for row in report.candidates
+        if row.succeeded and row.meeting_reachable_by_statuses is False
+    ]
+    if unreachable:
+        typer.secho(
+            f"  - the take-a-meeting band was unreachable for {len(unreachable)} of "
+            f"{counts.get('succeeded', 0)} analysed candidate(s): under their recorded "
+            "assessment statuses, the rubric ceilings cap the achievable total below 80.",
+            fg=typer.colors.YELLOW,
+        )
+
+    typer.echo("")
+    written = counts.get("succeeded", 0)
+    # Name only what was actually produced. A run that analysed nothing must not report
+    # having written analyses.
+    if written:
+        typer.echo(f"Wrote {written} analysis file(s) to analyses/, llm/ and {outcome.report_path}")
+    else:
+        typer.secho(
+            f"No analyses were produced. Wrote llm/ attempt artifacts and "
+            f"{outcome.report_path}, which records why each candidate failed.",
+            fg=typer.colors.RED,
+            err=True,
+        )

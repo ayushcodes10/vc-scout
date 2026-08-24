@@ -47,13 +47,19 @@ class RecommendationResult(ArtifactModel):
     confidence: ResearchConfidence
     policy_version: str
 
+    band: Recommendation | None = None
     band_label: str | None = None
     capped: bool = False
     cap_reason: str | None = None
     rationale: list[str] = Field(default_factory=list)
+    #: Every policy guardrail that fired, in the order it was applied.
+    guardrails_applied: list[str] = Field(default_factory=list)
 
     #: What the analysis model would have recommended. Advisory, recorded for evaluation.
     model_suggested: Recommendation | None = None
+    #: Whether the model's suggestion and the binding decision differ. Recorded so the two
+    #: can be compared across runs without re-deriving either.
+    model_disagreed: bool | None = None
     decided_at: datetime | None = None
 
     @property

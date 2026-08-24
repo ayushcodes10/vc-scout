@@ -505,3 +505,291 @@ nothing is written.
 
 **Cost.** Prompt-level defence is advisory and cannot be proven. What is provable, and
 tested, is that an invented claim cannot reach an artifact.
+
+---
+
+## D29 - The score measures the evidence-backed case, not the company
+
+**Decision.** Every scored dimension carries an `assessment_status`, and the status caps the
+score: `supported` may use the full range, `partially_supported` 70% of the maximum,
+`not_assessable` 50%, `contradicted` the full range with an explanation of the contrary
+evidence. Ceilings are floored, never rounded up.
+
+**Why.** A model asked to score a company it knows little about will produce a confident
+number anyway. Tying the ceiling to the evidence status means a well-written narrative on
+thin material cannot earn points the sources do not carry - and, equally, that a gap does
+not force a zero. `not_assessable` is deliberately *not* pinned to zero or to the midpoint:
+a dimension with one weak company claim and a dimension with nothing at all are different,
+and the model has to say which it is and why.
+
+**Cost.** Two companies with the same total are not directly comparable unless you also
+read how much was assessable, which is why `scored_out_of` is reported alongside. And a
+genuinely excellent company with a thin web presence scores low here. That is the intended
+reading - the score is about the case, and the confidence figure says how much was found.
+
+## D30 - Research confidence is computed, and its formula is fixed
+
+**Decision.** Confidence is computed from countable coverage facts after the model answers.
+The model is never asked for a confidence figure, and the schema does not contain one.
+
+    source_coverage = cited sources / supplied sources
+    claim_volume    = min(claims / 8, 1)
+    category_span   = distinct evidence categories / 5
+    corroboration   = min(corroborated findings / 3, 1)
+    website         = 1 if a website page was read, else 0
+    independence    = share of claims that are not company_claim
+
+    score = 0.15*source_coverage + 0.20*claim_volume + 0.20*category_span
+          + 0.15*corroboration  + 0.15*website      + 0.15*independence
+
+    penalties = min(0.25 * identity_warnings, 0.25)
+              + min(0.05 * conflicts,         0.10)
+              + min(0.01 * unknowns,          0.10)
+
+    confidence = clamp(score - penalties, 0.0, 1.0)
+
+Thresholds: **high >= 0.65**, **medium >= 0.40**, **low** below that. A dossier with no
+claims scores **0.0** outright.
+
+**Why.** Self-reported confidence tracks fluency, not evidence. Every input here is
+something the pipeline observed about its own research. The penalties are bounded so no
+single factor can dominate, and unknowns are penalised only gently - recording what you do
+not know is honest behaviour and should not be punished like a contradiction.
+
+**Cost.** The weights are a judgment call with no ground truth behind them. They are
+versioned, surfaced in every artifact, and documented here so a reader can disagree with
+them explicitly rather than discovering them by inference.
+
+## D31 - The independently_supported label earns nothing on its own
+
+**Decision.** Confidence counts only the findings the analysis explicitly records under
+`corroborated_findings`, each naming a fact and the claims behind it. The
+`independently_supported` verification status on an evidence claim contributes nothing by
+itself, to either the score or the confidence.
+
+**Why.** The label is mechanical - two cited sources - and the first live evidence run
+produced one where the two sources supported *different halves of a compound statement*
+(a blog post's existence, and that a Hacker News thread existed). That is not the same fact
+corroborated by two voices. A validator cannot tell the difference without semantic
+reasoning, so corroboration has to be asserted about a named fact and can then be read back
+and checked by a person.
+
+**Cost.** A genuinely corroborated finding that the model forgets to record earns no
+confidence credit. Under-crediting is the safer error here.
+
+## D32 - Guardrails, not thresholds, decide a meeting
+
+**Decision.** The score band is the starting point, and then:
+
+1. `take_a_meeting` additionally requires at least medium confidence, an identifiable
+   product, an identifiable buyer, no unresolved identity warning, and evidence reaching at
+   least four scoring dimensions.
+2. A `pass` band with more than three unassessable dimensions, low confidence and no
+   evidenced thesis mismatch becomes `watch` for insufficient evidence.
+3. A zero-claim dossier becomes `watch` with an insufficient-evidence rationale.
+4. An unresolved cross-domain identity mismatch caps the recommendation at `watch`.
+5. A missing website never, on its own, forces a pass.
+6. An evidenced thesis mismatch may still produce `pass`, even at low confidence.
+
+Every guardrail that fires is recorded by name in the artifact, alongside the band it moved
+from, the model's suggestion and whether the two disagreed.
+
+**Why.** A number alone cannot distinguish "we looked and it is weak" from "we could not
+look". Guardrail 2 is the one that matters most: without it, an unreachable website and a
+sparse dossier would read as a considered rejection.
+
+**Honest limitation.** Guardrail 1's four-dimension requirement is defence in depth rather
+than the active mechanism: with only three evidenced dimensions the status ceilings cap the
+achievable total at 74, below the meeting band, so it cannot fire through the normal path.
+It is retained because it makes the requirement explicit and would catch a future change to
+the ceilings. A test pins that arithmetic rather than asserting it from memory.
+
+**Cost.** Six interacting rules are harder to reason about than one threshold. They are
+applied in a fixed order, each is named in the output, and each has its own test.
+
+## D33 - Analysis reads evidence, never raw pages
+
+**Decision.** The analysis stage reads `candidates.json`, the evidence dossiers and the
+evidence report. Raw pages, raw Hacker News responses and the web are all unreachable from
+it.
+
+**Why.** By this point the pipeline has already decided what counts as evidence, and every
+claim has been verified against the page it came from. Letting analysis reach back to raw
+text would create a second, unvalidated path to a claim and quietly undo the excerpt
+verification the previous stage exists to provide.
+
+**Cost.** Anything the evidence stage failed to extract is invisible to analysis, so an
+extraction miss becomes an analysis gap. That is the correct failure direction - it shows up
+as `not_assessable` with a recorded unknown rather than as an unsourced assertion.
+
+---
+
+## D34 - DISPROVEN: the enum-with-null hypothesis
+
+**Superseded by D37. This decision recorded a hypothesis that a later controlled live run
+disproved. It is kept, marked, rather than deleted, because the reasoning that produced it
+is part of the record.**
+
+After the first live Stage 5 run failed with HTTP 400 `invalid_request_error` for all
+fifteen candidates, a schema diff found exactly one construct the analysis tool used that
+the evidence tool did not: an `enum` containing `null`, at
+`model_suggested_recommendation`. That was recorded as the probable cause, explicitly
+flagged at the time as "a strong inference from persisted evidence, not a proven cause",
+because the provider had discarded the API's own error message.
+
+**It was wrong.** With the message restored (D35), the next controlled run returned:
+
+> The compiled grammar is too large, which would cause performance issues. Simplify your
+> tool schemas or reduce the number of strict tools.
+
+The rejection was about the *size* of the compiled grammar, not about any single construct.
+The null-bearing enum was a coincidence of the diff, not the cause.
+
+The change that decision made - a plain string enum, left out of `required` - is retained
+under D37, because it is smaller and no worse. But it was not the fix, and it did not make
+the first live attempt succeed.
+
+**What the episode is worth keeping for:** a diff that leaves exactly one difference is
+suggestive, not conclusive, and the honest label at the time ("inference, not proven cause")
+was the right one. D35 is what turned the second attempt into a diagnosis instead of another
+guess.
+
+## D35 - Provider errors record the API's own message
+
+**Decision.** An HTTP error detail now carries the provider's `error.message` alongside the
+type, whitespace-collapsed, truncated to 400 characters and scrubbed of key-shaped text.
+
+**Why.** The previous version recorded only the status and error type, on the reasoning that
+a response body can echo request content. That reasoning was wrong in one important way: the
+request content is already persisted in the request artifact beside it, so the message
+discloses nothing new - while its absence made a deterministic HTTP 400 undiagnosable from
+the artifacts, which is exactly the situation the persistence exists for.
+
+**Cost.** Error details are longer. The scrub is defensive only; the API does not echo
+credentials.
+
+## D36 - Provider failures are classified, and run-level ones stop the run
+
+**Decision.** `LlmError` carries `run_level`. The Anthropic provider sets it for HTTP 400,
+401, 403 and 404, and for a missing credential. When a stage sees a run-level failure it
+stops issuing requests; the remaining candidates are recorded as not attempted, with the
+reason, and any artifact left from an earlier run is cleared for them too.
+
+Three classes, three behaviours:
+
+| Class | Examples | Behaviour |
+| --- | --- | --- |
+| Run-level | 400 bad schema, 401/403 credential, 404 unknown model, missing key | Stop the run; record every remaining candidate as not attempted |
+| Transient | 408, 409, 429, 5xx, timeouts, connection faults | Retry once within the candidate |
+| Candidate-specific | 413 request too large, malformed response, validation failures | Fail that candidate, continue the run |
+
+**Why.** The failed run made fifteen identical doomed requests. Every one was rejected for a
+property of the run, not of the company, and none could have succeeded. On a live provider
+that is wasted latency and, for some error classes, wasted spend.
+
+**Why not fail fast on everything.** A 413 is about one oversized dossier and says nothing
+about the next candidate; a 429 is about timing. Collapsing those into a run-level stop would
+lose fourteen good analyses to one unlucky one.
+
+**Cost.** A genuine per-candidate 400 - if the API ever returned one for a single company's
+content rather than for the schema - would now stop the run. That is the safer direction:
+stopping is recoverable and visible, whereas fifteen identical rejections look like fifteen
+separate problems.
+
+---
+
+## D37 - A compact provider schema, separate from the analysis contract
+
+**Established root cause.** The controlled live run returned::
+
+    HTTP 400 invalid_request_error: The compiled grammar is too large, which would cause
+    performance issues. Simplify your tool schemas or reduce the number of strict tools.
+
+**Decision.** The provider-facing schema is now a deliberately small artifact whose only job
+is to compile into a decoding grammar. The analysis contract is unchanged and lives where it
+always did, in `analysis_validation.py` and the models.
+
+Four simplifications, in order of effect:
+
+| Change | Before | After |
+| --- | --- | --- |
+| One shape for every grounded statement, tagged by `kind` | 6 distinct object definitions | 1 |
+| All descriptions removed - they duplicate the versioned prompt | 2,086 chars | 0 |
+| `maximum` dropped; the rubric supplies it | model echoed a constant | validator fills it |
+| `thesis_assessment` flattened to `thesis_fit` + a `thesis` section | 1 extra object | 0 |
+
+Serialized size fell from **6,034 to 1,829 bytes**, distinct object shapes from **9 to 3** -
+below the evidence tool, which the API has compiled successfully in a live run.
+
+**What did not change.** Exactly one forced strict tool. `strict: true` still set,
+`tool_choice` still pinned, parallel tool use still disabled. No free-form JSON, no prose
+parsing, no splitting a candidate across calls. Every vocabulary is still enum-constrained
+in the schema: the seven dimensions, the four assessment statuses, the three
+recommendations, the four thesis verdicts and the seven section kinds.
+
+**What moved to local validation** - all of it already enforced there, none of it newly
+invented: the seven exact components each appearing once, the configured rubric maxima, the
+assessment-status ceilings, the recomputed total, evidence and unknown reference integrity,
+grounding of every section and risk, the requirement that a competitor be named only from a
+claim, the market-size scrubber, and the two-or-three recommendation changers.
+
+**Cost.** The model now writes a flatter shape than a reader of the persisted analysis would
+expect - `sections` with a `kind` rather than named fields, and `text` rather than `fact` on
+a corroborated finding. The prompt explains it and the validator maps it back, but there is
+one more translation step between what the model emits and what is stored.
+
+**Guarding it.** A budget test measures the serialized schema and fails above 2,400 bytes or
+four object shapes, with a message saying to move the rule into the validator rather than
+raise the number. Raising it should be a deliberate decision re-verified against the API.
+
+## D38 - Single-candidate runs
+
+**Decision.** `analyze --company-id <id>` analyses one candidate. Every other analysis is
+left exactly as it was - not re-run and not deleted - the report records `filtered_to`, and
+an unknown ID raises before any provider call.
+
+**Why.** Verifying a schema change against the live API cost fifteen requests the first time
+and one the second, only because fail-fast happened to catch it. A filter makes "one paid
+request, then look" the normal way to verify, rather than something that depends on the
+failure mode being convenient.
+
+**Cost.** A filtered report is a partial record of the run, which is why it is marked. The
+overwrite guard is also narrowed to the named candidate, so analysing a fresh candidate is
+not blocked by other candidates' existing analyses.
+
+## D39 - A run owns its attempt files
+
+**Decision.** Before a candidate is processed, that candidate's persisted attempt files for
+that stage are deleted. After a run, the attempt files on disk are exactly the attempts the
+report records - no more, no fewer. Cleanup is per candidate and per stage: it validates the
+company ID, stays inside the run directory, and never touches a dossier, an analysis, an
+extracted page or a source artifact.
+
+**Why.** A run that needed two attempts left `attempt2` files behind; the next run needed
+one, wrote `attempt1`, and the stale pair survived. Disk then recorded failures for
+candidates the report says succeeded on the first try. The audit script written to check the
+live run read those files and reported a false failure - the defect misled its own reviewer,
+which is the strongest argument that "leave old artifacts alone" is the wrong default here.
+
+**Cost.** A run can no longer be used to inspect the previous run's failed attempts for the
+same candidate; that history has to come from the previous run's report, or from a separate
+run id. Given that the alternative is a directory that silently contradicts the report, that
+is the better trade.
+
+## D40 - The report says when the meeting band was out of reach
+
+**Decision.** Each analysis outcome carries `maximum_achievable_score` and
+`meeting_reachable_by_statuses`, computed from the recorded assessment statuses and the
+rubric ceilings. They are report metadata only: derived after scoring, never inputs to the
+score, the confidence or the recommendation.
+
+**Why.** In the live run no component was ever graded `supported`, so the ceilings alone held
+every achievable total under 80 - the take-a-meeting band was unreachable for all 15
+candidates before any judgement about the companies. A reader seeing fifteen `pass` calls
+would reasonably conclude fifteen weak companies. The honest reading is that the evidence was
+thin, and the report should say which of the two it is rather than leave it to be
+reconstructed from the ceiling table.
+
+**Cost.** Two more fields to keep coherent with the scores, and a headroom number that is
+easy to misread as a prediction of what the company could score with better evidence. It is
+not: it is the ceiling implied by the statuses actually recorded on this evidence.

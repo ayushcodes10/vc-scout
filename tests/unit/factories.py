@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from vc_scout.models.analysis import ScoreComponent, StartupAnalysis
 from vc_scout.models.enums import (
     EvidenceCategory,
     InferenceStatus,
@@ -11,7 +10,6 @@ from vc_scout.models.enums import (
 )
 from vc_scout.models.evidence import EvidenceClaim, EvidenceDossier, SupportingExcerpt
 from vc_scout.models.source import SourceReference
-from vc_scout.rubric import RUBRIC
 
 COMPANY_ID = "acme-ops"
 
@@ -41,42 +39,3 @@ def claim(
 def dossier() -> EvidenceDossier:
     src = source()
     return EvidenceDossier(company_id=COMPANY_ID, claims=[claim(src)], sources=[src])
-
-
-def analysis_scoring(points: int, **fields: object) -> StartupAnalysis:
-    """An analysis totalling ``points``, spread over dimensions in rubric order.
-
-    Every component it scores cites one evidence ID, so the resulting analysis is valid
-    without the test having to spell out seven components.
-    """
-    remaining = points
-    components: list[ScoreComponent] = []
-    for spec in RUBRIC:
-        awarded = min(spec.max_points, remaining)
-        remaining -= awarded
-        if awarded > 0:
-            components.append(
-                ScoreComponent.scored(
-                    spec.key, awarded, evidence_ids=["ev-000000000001"], rationale="fixture"
-                )
-            )
-    if remaining:
-        raise ValueError(f"cannot distribute {points} points across the rubric")
-    return StartupAnalysis.build(company_id=COMPANY_ID, components=components, **fields)
-
-
-def analysis_full_coverage(fraction: float, **fields: object) -> StartupAnalysis:
-    """An analysis where every dimension is scored, at ``fraction`` of its maximum.
-
-    Lets a test vary the total score while holding evidence coverage fixed.
-    """
-    components = [
-        ScoreComponent.scored(
-            spec.key,
-            max(1, round(spec.max_points * fraction)),
-            evidence_ids=["ev-000000000001"],
-            rationale="fixture",
-        )
-        for spec in RUBRIC
-    ]
-    return StartupAnalysis.build(company_id=COMPANY_ID, components=components, **fields)

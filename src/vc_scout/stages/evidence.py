@@ -77,6 +77,8 @@ class _CandidateRun:
     dossier: EvidenceDossier | None = None
     error_category: LlmErrorCategory | None = None
     error_detail: str | None = None
+    #: Set when the provider reported a failure of the run rather than of this candidate.
+    abort_run: bool = False
 
 
 def _clip(text: str, limit: int) -> tuple[str, bool]:
@@ -398,6 +400,9 @@ def _extract_for_candidate(
                 validation_errors=[exc.detail],
             )
             run.error_category, run.error_detail = exc.category, exc.detail
+            if exc.run_level:
+                run.abort_run = True
+                break
             if not exc.retryable or attempt == MAX_ATTEMPTS:
                 break
             continue
@@ -502,7 +507,37 @@ def run_evidence(
     totals: Counter[str] = Counter()
     categories: Counter[str] = Counter()
 
+    aborted: LlmError | None = None
     for candidate in candidate_set.candidates:
+        if aborted is not None:
+            # The run already failed for a reason unrelated to this candidate. Record it,
+            # clear any dossier left from an earlier run, and send no further request.
+            outcomes.append(
+                EvidenceOutcome(
+                    company_id=candidate.company_id,
+                    succeeded=False,
+                    error_category=aborted.category,
+                    error_detail=(
+                        "not attempted: the run stopped after a run-level provider failure "
+                        f"({aborted.detail})"
+                    ),
+                )
+            )
+            store.delete_evidence(candidate.company_id)
+            totals["stale_attempts_removed"] += store.delete_llm_attempts(
+                candidate.company_id, stage="evidence"
+            )
+            totals["candidates"] += 1
+            totals["not_attempted"] += 1
+            categories[aborted.category.value] += 1
+            continue
+
+        # Clear this candidate's previous attempt files first, so what remains on disk
+        # afterwards is exactly the attempts this run makes.
+        totals["stale_attempts_removed"] += store.delete_llm_attempts(
+            candidate.company_id, stage="evidence"
+        )
+
         bundle = _load_bundle(store, candidate.company_id)
         sources = build_sources(
             candidate,
@@ -527,6 +562,14 @@ def run_evidence(
             run = _CandidateRun(candidate=candidate)
             run.error_category = LlmErrorCategory.PERMANENT_FAILURE
             run.error_detail = f"unexpected {type(exc).__name__} while extracting evidence"
+
+        if run.abort_run and run.error_category is not None:
+            aborted = LlmError(
+                run.error_category,
+                run.error_detail or "the provider rejected the request",
+                run_level=True,
+            )
+            totals["run_aborted"] += 1
 
         if run.dossier is not None:
             store.write_evidence(run.dossier)

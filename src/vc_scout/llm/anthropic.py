@@ -17,6 +17,7 @@ never returned, never logged and never written to an artifact.
 from __future__ import annotations
 
 import os
+import re
 import time
 from typing import Any
 
@@ -34,6 +35,19 @@ API_KEY_ENV = "ANTHROPIC_API_KEY"
 #: Retryable per the API's own error taxonomy. Everything else is a request defect and
 #: retrying it only spends money.
 _RETRYABLE_STATUS = frozenset({408, 409, 429, 500, 502, 503, 529})
+
+#: Deterministic failures of the *run*, not of one candidate: a malformed request or
+#: schema (400), a bad or unauthorised credential (401/403), an unknown model or endpoint
+#: (404). Every remaining request would fail identically, so the stage stops rather than
+#: repeating the same rejection once per company.
+_RUN_LEVEL_STATUS = frozenset({400, 401, 403, 404})
+
+#: How much of the provider's own error message to keep. Enough to name the offending
+#: field, bounded so a long echo cannot become a second copy of the request.
+_ERROR_MESSAGE_CHARS = 400
+
+#: Defensive only - the API does not echo credentials.
+_REDACT_KEY = re.compile(r"sk-[A-Za-z0-9_\-]{8,}")
 
 
 class AnthropicProvider:
@@ -65,6 +79,7 @@ class AnthropicProvider:
             raise LlmError(
                 LlmErrorCategory.MISSING_API_KEY,
                 f"{self.api_key_env} is not set in the environment",
+                run_level=True,
             )
         return key
 
@@ -152,12 +167,14 @@ class AnthropicProvider:
                 retryable=True,
             )
         if response.status_code >= 400:
+            kind, message = _error_summary(response)
             raise LlmError(
                 LlmErrorCategory.PROVIDER_HTTP_ERROR,
-                # The status and error type only. A response body can echo request content.
-                f"provider returned HTTP {response.status_code} ({_error_type(response)})",
+                f"provider returned HTTP {response.status_code} ({kind})"
+                + (f": {message}" if message else ""),
                 status=response.status_code,
                 retryable=response.status_code in _RETRYABLE_STATUS,
+                run_level=response.status_code in _RUN_LEVEL_STATUS,
             )
 
         try:
@@ -197,15 +214,34 @@ class AnthropicProvider:
         self.close()
 
 
-def _error_type(response: httpx.Response) -> str:
-    """The API's own error type string, if the body carries one."""
+def _error_summary(response: httpx.Response) -> tuple[str, str]:
+    """The API's error type and a bounded, sanitised message.
+
+    The message is what names the offending field on a rejected request. An earlier version
+    recorded only the type, on the reasoning that a response body can echo request content -
+    which left a deterministic HTTP 400 undiagnosable from the persisted artifacts. It is
+    kept now because the request content is already persisted alongside it, so the message
+    discloses nothing new, and because without it a schema rejection cannot be located.
+
+    It is truncated, whitespace-collapsed, and scrubbed of anything key-shaped as a
+    belt-and-braces measure; the API does not echo credentials.
+    """
     try:
         payload = response.json()
     except ValueError:
-        return "unparseable body"
-    if isinstance(payload, dict) and isinstance(payload.get("error"), dict):
-        return str(payload["error"].get("type") or "unknown")
-    return "unknown"
+        return "unparseable body", ""
+    if not isinstance(payload, dict) or not isinstance(payload.get("error"), dict):
+        return "unknown", ""
+
+    error = payload["error"]
+    kind = str(error.get("type") or "unknown")
+    raw = error.get("message")
+    if not isinstance(raw, str) or not raw.strip():
+        return kind, ""
+    message = _REDACT_KEY.sub("[redacted]", " ".join(raw.split()))
+    if len(message) > _ERROR_MESSAGE_CHARS:
+        message = message[:_ERROR_MESSAGE_CHARS] + "..."
+    return kind, message
 
 
 def _as_int(value: object) -> int:

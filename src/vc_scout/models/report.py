@@ -13,12 +13,20 @@ from datetime import datetime
 from pydantic import Field
 
 from vc_scout.models.base import ArtifactModel, RecordModel
-from vc_scout.models.enums import EnrichmentStatus, LlmErrorCategory
+from vc_scout.models.enums import (
+    ConfidenceLevel,
+    EnrichmentStatus,
+    LlmErrorCategory,
+    Recommendation,
+)
 from vc_scout.models.page import PageFailure
 
 __all__ = [
     "CandidateEnrichment",
     "DiscardedHit",
+    "AnalysisAttempt",
+    "AnalysisOutcome",
+    "AnalysisReport",
     "EnrichmentReport",
     "EvidenceAttempt",
     "EvidenceOutcome",
@@ -164,6 +172,80 @@ class EvidenceReport(ArtifactModel):
     model: str | None = None
     candidates: list[EvidenceOutcome] = Field(default_factory=list)
     counts: dict[str, int] = Field(default_factory=dict)
+    failures_by_category: dict[str, int] = Field(default_factory=dict)
+    limits: dict[str, int] = Field(default_factory=dict)
+    notes: list[str] = Field(default_factory=list)
+
+
+class AnalysisAttempt(RecordModel):
+    """One analysis provider call, successful or not."""
+
+    attempt: int = Field(ge=1)
+    succeeded: bool
+    provider: str
+    model: str | None = None
+    request_id: str | None = None
+    stop_reason: str | None = None
+    input_tokens: int = 0
+    output_tokens: int = 0
+    latency_seconds: float = 0.0
+    error_category: LlmErrorCategory | None = None
+    validation_errors: list[str] = Field(default_factory=list)
+
+
+class AnalysisOutcome(RecordModel):
+    """What analysis produced for one candidate."""
+
+    company_id: str
+    succeeded: bool
+    attempts: list[AnalysisAttempt] = Field(default_factory=list)
+    total_score: int | None = None
+    band: Recommendation | None = None
+    decision: Recommendation | None = None
+    model_suggested: Recommendation | None = None
+    model_disagreed: bool | None = None
+    guardrails_applied: list[str] = Field(default_factory=list)
+    confidence_level: ConfidenceLevel | None = None
+    confidence_score: float | None = None
+    not_assessable: int = 0
+    #: The highest total this analysis could have reached under its own assessment
+    #: statuses, from the rubric ceilings. Report metadata only - it never affects the
+    #: score, the confidence or the recommendation.
+    maximum_achievable_score: int | None = None
+    #: Whether that headroom reaches the take-a-meeting band at all. False means the band
+    #: was arithmetically unreachable for this candidate on this evidence.
+    meeting_reachable_by_statuses: bool | None = None
+    identity_warnings: int = 0
+    evidence_claims: int = 0
+    error_category: LlmErrorCategory | None = None
+    error_detail: str | None = None
+
+
+class AnalysisReport(ArtifactModel):
+    """The persisted ``analysis-report.json`` document.
+
+    Every candidate appears, including those whose analysis failed twice. A company is never
+    dropped from the run for being hard to analyse.
+    """
+
+    run_id: str
+    generated_at: datetime | None = None
+    thesis_version: str | None = None
+    thesis_sha256: str | None = None
+    prompt_version: str | None = None
+    prompt_sha256: str | None = None
+    output_schema_version: str | None = None
+    policy_version: str | None = None
+    rubric_version: str | None = None
+    provider: str | None = None
+    model: str | None = None
+    #: Set when the run was restricted to one candidate, so a partial report can never
+    #: be mistaken for a full one.
+    filtered_to: str | None = None
+    candidates: list[AnalysisOutcome] = Field(default_factory=list)
+    counts: dict[str, int] = Field(default_factory=dict)
+    recommendations: dict[str, int] = Field(default_factory=dict)
+    guardrails: dict[str, int] = Field(default_factory=dict)
     failures_by_category: dict[str, int] = Field(default_factory=dict)
     limits: dict[str, int] = Field(default_factory=dict)
     notes: list[str] = Field(default_factory=list)

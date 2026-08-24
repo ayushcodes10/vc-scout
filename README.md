@@ -9,8 +9,9 @@ claim cites an evidence ID, every evidence claim cites a source URL, the final
 recommendation is made by deterministic policy rather than by a model, and a whole run
 replays from persisted artifacts with no network and no API key.
 
-> **Status: in progress.** Stages 1-4 (foundation, domain contracts, discovery, website
-> enrichment and source-grounded evidence extraction) are implemented.
+> **Status: in progress.** Stages 1-5 (foundation, domain contracts, discovery, website
+> enrichment, evidence extraction, scoring and the recommendation policy) are
+> implemented. Memos and the static UI are not yet built.
 > The pipeline commands are declared but not yet implemented - they report which stage
 > owns them and exit non-zero. See `docs/PLAN.md` for the full plan and stage order.
 
@@ -45,7 +46,7 @@ uv run vc-scout run \
 | `source` | Discover candidates from Hacker News | available |
 | `enrich` | Fetch and extract public company pages | available |
 | `analyze --evidence-only` | Extract source-grounded evidence | available |
-| `analyze` | Score and apply the recommendation policy | planned (stages 5-6) |
+| `analyze` | Score and apply the recommendation policy | available |
 | `render` | Write Markdown memos and the ranking | planned (stage 7) |
 | `build-site` | Generate the static report | planned (stage 8) |
 | `serve` | Serve a generated report locally | planned (stage 8) |
@@ -207,6 +208,61 @@ bounded source content supplied, the prompt version and hash, the structured pay
 validation result and errors, token usage, stop reason and latency. **No credential,
 header, cookie or absolute path is ever written** — asserted by a test that greps every
 artifact. A stored response can be re-validated without calling the provider.
+
+## Analysis, scoring and the recommendation
+
+`vc-scout analyze` reads the evidence dossiers - and **only** the dossiers. Raw pages, raw
+Hacker News responses and the web are unreachable from this stage: what counts as evidence
+was already decided and verified upstream.
+
+**What the model does:** the narrative, a per-dimension assessment against the rubric, a
+thesis-fit verdict, risks, open questions, and an *advisory* recommendation.
+
+**What the model does not do:** the total (recomputed in Python from its own components),
+the research confidence (computed from coverage facts), or the binding recommendation
+(made by deterministic policy). Its suggestion is recorded and compared, never obeyed.
+
+### Assessment status caps the score
+
+The score measures **the strength of the evidence-backed investment case**, not the
+company's objective worth. Every dimension carries a status, and the status caps it:
+
+| Status | Score ceiling | Meaning |
+| --- | --- | --- |
+| `supported` | 100% of maximum | The evidence backs this |
+| `partially_supported` | 70% | Some evidence, not enough |
+| `contradicted` | 100% | The evidence shows a problem — and must say what |
+| `not_assessable` | 50% | Nothing was found. **Not** a finding against the company |
+
+`not_assessable` is deliberately neither forced to zero nor to the midpoint — the model
+must choose and explain how the score reflects the uncertainty. `scored_out_of` reports how
+many points were assessable, so a low total can be read correctly.
+
+### Research confidence
+
+Computed deterministically after the model answers, from six coverage components with
+bounded penalties for identity warnings, conflicts and unknowns. **A zero-claim dossier
+scores 0.0.** The full formula and its thresholds are in D30 of `docs/DECISIONS.md` and are
+reproduced in `vc_scout.policy.compute_confidence`.
+
+The `independently_supported` label earns nothing on its own — only findings the analysis
+explicitly names as corroborated count (D31).
+
+### Recommendation guardrails
+
+Bands are `80-100` take a meeting, `65-79` watch, `0-64` pass. Then:
+
+- a meeting also needs **medium confidence, an identifiable product and buyer, no identity
+  warning, and evidence in four dimensions**;
+- a pass band with **more than three unassessable dimensions and low confidence** becomes
+  *watch for insufficient evidence* — unless the evidence positively shows a thesis
+  mismatch, which may still pass;
+- a **zero-claim dossier** becomes watch, never a fabricated score narrative;
+- an **unresolved cross-domain identity mismatch** caps at watch;
+- a **missing website never forces a pass** on its own.
+
+Every guardrail that fires is named in the artifact, next to the band it moved from, the
+model's suggestion, and whether the two disagreed.
 
 ## Investment thesis
 

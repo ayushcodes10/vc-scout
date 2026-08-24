@@ -9,7 +9,7 @@ run ID cannot escape it.
 from __future__ import annotations
 
 from pathlib import Path
-from typing import TypeVar
+from typing import ClassVar, TypeVar
 
 from pydantic import BaseModel
 
@@ -19,7 +19,12 @@ from vc_scout.models.evidence import EvidenceDossier
 from vc_scout.models.manifest import RunManifest
 from vc_scout.models.page import PageBundle
 from vc_scout.models.recommendation import RecommendationResult
-from vc_scout.models.report import EnrichmentReport, EvidenceReport, SourceReport
+from vc_scout.models.report import (
+    AnalysisReport,
+    EnrichmentReport,
+    EvidenceReport,
+    SourceReport,
+)
 from vc_scout.util.ids import digest, is_valid_company_id, is_valid_run_id, slugify
 from vc_scout.util.jsonio import read_json, write_json
 
@@ -82,6 +87,15 @@ class RunStore:
 
     def evidence_report_path(self) -> Path:
         return self.resolve("evidence-report.json")
+
+    def analysis_report_path(self) -> Path:
+        return self.resolve("analysis-report.json")
+
+    def analysis_request_path(self, company_id: str, *, attempt: int) -> Path:
+        return self._llm_path("analysis-requests", company_id, attempt)
+
+    def analysis_response_path(self, company_id: str, *, attempt: int) -> Path:
+        return self._llm_path("analysis-responses", company_id, attempt)
 
     def llm_request_path(self, company_id: str, *, attempt: int) -> Path:
         """Stable filename for one persisted evidence request."""
@@ -203,6 +217,66 @@ class RunStore:
             return False
         path.unlink()
         return True
+
+    def write_analysis_report(self, report: AnalysisReport) -> Path:
+        return self.write_model(self.analysis_report_path(), report)
+
+    def read_analysis_report(self) -> AnalysisReport:
+        return self.read_model(self.analysis_report_path(), AnalysisReport)
+
+    def delete_analysis(self, company_id: str) -> bool:
+        """Remove one candidate's analysis, if it has one. Returns whether a file was removed.
+
+        The same narrow contract as :meth:`delete_evidence`: one validated,
+        company-specific path inside this run, and nothing else. A failed candidate must not
+        be represented by an analysis from an earlier run.
+        """
+        path = self.analysis_path(company_id)
+        if not path.is_file():
+            return False
+        path.unlink()
+        return True
+
+    #: The persisted attempt directories for each stage that makes provider calls.
+    _ATTEMPT_DIRS: ClassVar[dict[str, tuple[str, str]]] = {
+        "evidence": ("evidence-requests", "evidence-responses"),
+        "analysis": ("analysis-requests", "analysis-responses"),
+    }
+
+    def delete_llm_attempts(self, company_id: str, *, stage: str) -> int:
+        """Remove one candidate's persisted attempt files for ``stage``.
+
+        Called before a candidate is processed, so that what remains afterwards is exactly
+        the attempts this run made. Without it a re-run needing fewer attempts than its
+        predecessor leaves the surplus behind, and a reviewer reading ``llm/`` sees failures
+        for candidates the report says succeeded first time.
+
+        Deliberately narrow: the company ID is validated, both directories are resolved
+        inside this run, and only ``<company_id>-attempt*.json`` is matched. It cannot reach
+        another candidate's files, and it never touches dossiers, analyses, extracted pages
+        or source artifacts.
+        """
+        if stage not in self._ATTEMPT_DIRS:
+            raise StoreError(f"unknown stage {stage!r}")
+        if not is_valid_company_id(company_id):
+            raise StoreError(f"invalid company id {company_id!r}")
+
+        removed = 0
+        for kind in self._ATTEMPT_DIRS[stage]:
+            directory = self.resolve("llm", kind)
+            if not directory.is_dir():
+                continue
+            for path in sorted(directory.glob(f"{company_id}-attempt*.json")):
+                path.unlink()
+                removed += 1
+        return removed
+
+    def analysis_company_ids(self) -> list[str]:
+        """Company IDs that already have a persisted analysis, in stable order."""
+        directory = self.resolve("analyses")
+        if not directory.is_dir():
+            return []
+        return sorted(path.stem for path in directory.glob("*.json"))
 
     def evidence_company_ids(self) -> list[str]:
         """Company IDs that already have a persisted dossier, in stable order."""

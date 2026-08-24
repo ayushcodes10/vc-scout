@@ -236,16 +236,199 @@ def test_http_errors_are_categorised_by_retryability(
     assert exc.value.status == status
 
 
-def test_an_error_detail_never_echoes_the_response_body(api_key: None) -> None:
-    """An API error body can quote request content; only status and type are surfaced."""
+def test_an_error_detail_carries_the_providers_own_message(api_key: None) -> None:
+    """The message is what names the offending field on a rejected request.
+
+    An earlier version recorded only the error type, which left a deterministic HTTP 400
+    undiagnosable from the persisted artifacts.
+    """
     body = httpx.Response(
         400,
-        json={"error": {"type": "invalid_request_error", "message": "secret-ish request echo"}},
+        json={
+            "error": {
+                "type": "invalid_request_error",
+                "message": "tools.0.custom.input_schema: enum values must not contain null",
+            }
+        },
     )
     with pytest.raises(LlmError) as exc:
         provider(body).complete_json(request())
-    assert "secret-ish request echo" not in exc.value.detail
     assert "invalid_request_error" in exc.value.detail
+    assert "input_schema" in exc.value.detail
+    assert "must not contain null" in exc.value.detail
+
+
+def test_an_error_message_is_bounded_and_whitespace_collapsed(api_key: None) -> None:
+    body = httpx.Response(
+        400, json={"error": {"type": "invalid_request_error", "message": "x  \n y " * 500}}
+    )
+    with pytest.raises(LlmError) as exc:
+        provider(body).complete_json(request())
+    assert len(exc.value.detail) < 600
+    assert exc.value.detail.endswith("...")
+    assert "\n" not in exc.value.detail
+
+
+def test_an_error_message_is_scrubbed_of_key_shaped_text(api_key: None) -> None:
+    """Defensive only - the API does not echo credentials."""
+    body = httpx.Response(
+        400,
+        json={"error": {"type": "authentication_error", "message": f"bad key {FAKE_KEY}"}},
+    )
+    with pytest.raises(LlmError) as exc:
+        provider(body).complete_json(request())
+    assert FAKE_KEY not in exc.value.detail
+    assert "[redacted]" in exc.value.detail
+
+
+def test_a_missing_error_message_leaves_just_the_type(api_key: None) -> None:
+    body = httpx.Response(400, json={"error": {"type": "invalid_request_error"}})
+    with pytest.raises(LlmError) as exc:
+        provider(body).complete_json(request())
+    assert exc.value.detail == "provider returned HTTP 400 (invalid_request_error)"
+
+
+# -- run-level versus candidate-level failures -------------------------------
+
+
+@pytest.mark.parametrize("status", [400, 401, 403, 404])
+def test_deterministic_request_failures_are_run_level(api_key: None, status: int) -> None:
+    """A rejected schema, a bad credential or an unknown model fails every request alike."""
+    body = httpx.Response(status, json={"error": {"type": "invalid_request_error"}})
+    with pytest.raises(LlmError) as exc:
+        provider(body).complete_json(request())
+    assert exc.value.run_level is True
+    assert exc.value.retryable is False
+
+
+@pytest.mark.parametrize("status", [429, 500, 503, 529])
+def test_transient_failures_are_retryable_and_not_run_level(api_key: None, status: int) -> None:
+    body = httpx.Response(status, json={"error": {"type": "overloaded_error"}})
+    with pytest.raises(LlmError) as exc:
+        provider(body).complete_json(request())
+    assert exc.value.run_level is False
+    assert exc.value.retryable is True
+
+
+def test_a_request_too_large_is_candidate_specific_not_run_level(api_key: None) -> None:
+    """One oversized dossier says nothing about the next candidate."""
+    body = httpx.Response(413, json={"error": {"type": "request_too_large"}})
+    with pytest.raises(LlmError) as exc:
+        provider(body).complete_json(request())
+    assert exc.value.run_level is False
+
+
+def test_a_missing_credential_is_run_level(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    with pytest.raises(LlmError) as exc:
+        provider(tool_response()).complete_json(request())
+    assert exc.value.run_level is True
+
+
+def test_timeouts_and_connection_faults_are_not_run_level(api_key: None) -> None:
+    def timeout(req: httpx.Request) -> httpx.Response:
+        raise httpx.ReadTimeout("too slow", request=req)
+
+    with pytest.raises(LlmError) as exc:
+        provider(timeout).complete_json(request())
+    assert exc.value.run_level is False
+    assert exc.value.retryable is True
+
+
+# -- the schema this tool actually sends -------------------------------------
+
+
+def test_the_analysis_schema_carries_no_enum_containing_null() -> None:
+    """The exact construct the first live Stage 5 run was rejected for."""
+    import json as _json
+
+    from vc_scout.llm.analysis_schema import ANALYSIS_SCHEMA
+
+    def enums(node):
+        found = []
+        if isinstance(node, dict):
+            for key, value in node.items():
+                if key == "enum":
+                    found.append(value)
+                found += enums(value)
+        elif isinstance(node, list):
+            for item in node:
+                found += enums(item)
+        return found
+
+    assert all(None not in values for values in enums(ANALYSIS_SCHEMA))
+    # ["string", "null"] is fine - the evidence tool used it in a completed live run.
+    # It was the enum containing null that was novel.
+    assert '"enum"' in _json.dumps(ANALYSIS_SCHEMA), "the vocabularies are still constrained"
+
+
+def test_the_analysis_schema_uses_only_constructs_the_evidence_schema_proved() -> None:
+    """The evidence tool completed a live run; keep the analysis tool inside that surface."""
+    from vc_scout.llm.analysis_schema import ANALYSIS_SCHEMA
+    from vc_scout.llm.schema import EVIDENCE_SCHEMA
+
+    keywords = frozenset(
+        {
+            "minimum",
+            "maximum",
+            "minLength",
+            "maxLength",
+            "minItems",
+            "maxItems",
+            "pattern",
+            "format",
+            "$ref",
+            "$defs",
+            "allOf",
+            "anyOf",
+            "oneOf",
+            "not",
+        }
+    )
+
+    def constructs(node, out=None, *, in_properties=False):
+        """Constructs used, ignoring keys that are property *names* rather than keywords.
+
+        The analysis schema has a property literally called "maximum"; without this the
+        walker would report a numeric constraint that is not there.
+        """
+        out = out if out is not None else set()
+        if isinstance(node, dict):
+            for key, value in node.items():
+                if not in_properties:
+                    if key == "type" and isinstance(value, list):
+                        out.add(f"union{sorted(value)}")
+                    elif key == "enum":
+                        out.add("enum_with_null" if any(v is None for v in value) else "enum")
+                    elif key in keywords:
+                        out.add(f"keyword:{key}")
+                constructs(value, out, in_properties=(key == "properties"))
+        elif isinstance(node, list):
+            for item in node:
+                constructs(item, out)
+        return out
+
+    novel = constructs(ANALYSIS_SCHEMA) - constructs(EVIDENCE_SCHEMA)
+    assert novel == set(), f"analysis schema introduces unproven constructs: {novel}"
+
+
+def test_every_object_in_the_analysis_schema_forbids_extra_properties() -> None:
+    from vc_scout.llm.analysis_schema import ANALYSIS_SCHEMA
+
+    def objects(node, path="$"):
+        found = []
+        if isinstance(node, dict):
+            if node.get("type") == "object":
+                found.append((path, node.get("additionalProperties")))
+            for key, value in node.items():
+                found += objects(value, f"{path}.{key}")
+        elif isinstance(node, list):
+            for index, item in enumerate(node):
+                found += objects(item, f"{path}[{index}]")
+        return found
+
+    for path, value in objects(ANALYSIS_SCHEMA):
+        assert value is False, f"{path} does not set additionalProperties: false"
 
 
 def test_a_timeout_is_its_own_retryable_category(api_key: None) -> None:

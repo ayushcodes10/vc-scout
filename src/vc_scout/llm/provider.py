@@ -35,12 +35,17 @@ class LlmError(Exception):
         *,
         status: int | None = None,
         retryable: bool = False,
+        run_level: bool = False,
     ) -> None:
         super().__init__(detail)
         self.category = category
         self.detail = detail
         self.status = status
         self.retryable = retryable
+        #: True when the failure is a property of the run rather than of one candidate -
+        #: a rejected schema, a bad credential, an unknown model. Every subsequent request
+        #: would fail identically, so the stage stops instead of repeating it per company.
+        self.run_level = run_level
 
 
 @dataclass(frozen=True, slots=True)

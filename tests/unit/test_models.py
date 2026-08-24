@@ -10,17 +10,26 @@ from __future__ import annotations
 import pytest
 from pydantic import ValidationError
 
-from tests.unit import factories
-from vc_scout.models.analysis import AnalysisSection, RiskItem, ScoreComponent, StartupAnalysis
+from tests.unit import analysis_fixtures, factories
+from vc_scout.models.analysis import (
+    AnalysisSection,
+    CompetitiveObservation,
+    RiskItem,
+    ScoreComponent,
+    StartupAnalysis,
+    ThesisAssessment,
+    ceiling_for,
+)
 from vc_scout.models.candidate import Candidate, CandidateSet
 from vc_scout.models.enums import (
+    AssessmentStatus,
     ClaimLabel,
-    ComponentStatus,
     EvidenceCategory,
     InferenceStatus,
     Recommendation,
     RubricDimension,
     SourceKind,
+    ThesisFit,
     TractionKind,
     VerificationStatus,
 )
@@ -32,6 +41,7 @@ from vc_scout.models.evidence import (
     SupportingExcerpt,
 )
 from vc_scout.models.source import SourceReference, TractionSignal, is_safe_url
+from vc_scout.rubric import max_points_for
 
 # -- sources -----------------------------------------------------------------
 
@@ -238,97 +248,149 @@ def test_a_conflict_must_cite_sources_the_dossier_carries() -> None:
 # -- scoring -----------------------------------------------------------------
 
 
-def test_score_component_respects_its_configured_maximum() -> None:
-    with pytest.raises(ValidationError, match="configured maximum"):
-        ScoreComponent.scored(RubricDimension.TRACTION, 11, evidence_ids=["ev-000000000001"])
+def _component(dimension: RubricDimension, **overrides: object) -> ScoreComponent:
+    payload: dict[str, object] = {
+        "component": dimension,
+        "score": 1,
+        "maximum": max_points_for(dimension),
+        "assessment_status": AssessmentStatus.SUPPORTED,
+        "rationale": "a rationale",
+        "evidence_claim_ids": ["ev-000000000001"],
+    }
+    payload.update(overrides)
+    return ScoreComponent(**payload)  # type: ignore[arg-type]
 
 
-def test_score_component_cannot_declare_a_foreign_maximum() -> None:
+def test_a_component_cannot_exceed_its_configured_maximum() -> None:
+    with pytest.raises(ValidationError, match="against a maximum"):
+        _component(RubricDimension.TRACTION, score=11)
+
+
+def test_a_component_cannot_declare_a_foreign_maximum() -> None:
     with pytest.raises(ValidationError, match="rubric configures"):
-        ScoreComponent(
-            dimension=RubricDimension.TEAM,
-            max_points=99,
-            status=ComponentStatus.SCORED,
-            points=1,
-            evidence_ids=["ev-000000000001"],
+        _component(RubricDimension.TEAM, maximum=99)
+
+
+@pytest.mark.parametrize(
+    ("dimension", "status", "ceiling"),
+    [
+        (RubricDimension.PAIN_ROI, AssessmentStatus.SUPPORTED, 20),
+        (RubricDimension.PAIN_ROI, AssessmentStatus.PARTIALLY_SUPPORTED, 14),
+        (RubricDimension.PAIN_ROI, AssessmentStatus.NOT_ASSESSABLE, 10),
+        (RubricDimension.TEAM, AssessmentStatus.PARTIALLY_SUPPORTED, 10),
+        (RubricDimension.TEAM, AssessmentStatus.NOT_ASSESSABLE, 7),
+        (RubricDimension.TRACTION, AssessmentStatus.PARTIALLY_SUPPORTED, 7),
+        (RubricDimension.TRACTION, AssessmentStatus.NOT_ASSESSABLE, 5),
+        (RubricDimension.MARKET_TIMING, AssessmentStatus.CONTRADICTED, 10),
+    ],
+)
+def test_status_ceilings_are_floored_not_rounded_up(
+    dimension: RubricDimension, status: AssessmentStatus, ceiling: int
+) -> None:
+    assert ceiling_for(dimension, status) == ceiling
+    assert _component(dimension, score=ceiling, assessment_status=status).score == ceiling
+    # When the ceiling equals the dimension's maximum the maximum check fires first, so
+    # either rejection message is correct.
+    with pytest.raises(ValidationError, match="may score at most|against a maximum"):
+        _component(dimension, score=ceiling + 1, assessment_status=status)
+
+
+def test_a_not_assessable_component_needs_no_evidence_and_is_not_forced_to_zero() -> None:
+    """Absence of evidence caps the score; it does not zero it or condemn the company."""
+    component = _component(
+        RubricDimension.TEAM,
+        score=4,
+        assessment_status=AssessmentStatus.NOT_ASSESSABLE,
+        evidence_claim_ids=[],
+        unknown_references=["unk-000000000001"],
+    )
+    assert component.score == 4
+    assert component.has_evidence is False
+
+
+def test_a_supported_component_must_cite_evidence() -> None:
+    with pytest.raises(ValidationError, match="must cite at least one evidence claim"):
+        _component(RubricDimension.TEAM, evidence_claim_ids=[])
+
+
+def test_a_contradicted_component_must_cite_the_contrary_evidence() -> None:
+    with pytest.raises(ValidationError, match="must cite the contrary evidence"):
+        _component(
+            RubricDimension.TEAM,
+            assessment_status=AssessmentStatus.CONTRADICTED,
+            evidence_claim_ids=[],
         )
 
 
-def test_unknown_component_carries_no_points_and_no_penalty_claim() -> None:
-    component = ScoreComponent.unknown(RubricDimension.TEAM, rationale="no founder page found")
-    assert component.points is None
-    assert component.effective_points == 0
-    assert component.status is ComponentStatus.UNKNOWN
-
-
-def test_scored_component_must_cite_evidence() -> None:
-    with pytest.raises(ValidationError, match="must cite at least one evidence_id"):
-        ScoreComponent.scored(RubricDimension.TEAM, 5, evidence_ids=[])
-
-
 def test_total_score_must_equal_the_component_sum() -> None:
-    analysis = factories.analysis_scoring(40)
-    tampered = analysis.model_dump(mode="json") | {"total_score": 95}
+    subject = analysis_fixtures.analysis(analysis_fixtures.dossier(), total=40)
+    tampered = subject.model_dump(mode="json") | {"total_score": 95}
     with pytest.raises(ValidationError, match="does not equal the component sum"):
         StartupAnalysis.model_validate(tampered)
 
 
-def test_build_fills_missing_dimensions_as_unknown() -> None:
-    analysis = StartupAnalysis.build(
-        company_id=factories.COMPANY_ID,
-        components=[
-            ScoreComponent.scored(RubricDimension.PAIN_ROI, 12, evidence_ids=["ev-000000000001"])
-        ],
-    )
-    assert analysis.total_score == 12
-    assert analysis.scored_out_of == 20
-    assert len(analysis.components) == 7
-    assert len(analysis.unknown_dimensions()) == 6
-
-
-def test_analysis_rejects_a_missing_dimension() -> None:
-    analysis = factories.analysis_scoring(20)
-    truncated = analysis.model_dump(mode="json")
-    truncated["components"] = truncated["components"][:3]
-    truncated["total_score"] = sum(c["points"] or 0 for c in truncated["components"])
-    truncated["scored_out_of"] = sum(
-        c["max_points"] for c in truncated["components"] if c["status"] == "scored"
-    )
+def test_an_analysis_must_carry_all_seven_dimensions_exactly_once() -> None:
+    subject = analysis_fixtures.analysis(analysis_fixtures.dossier(), total=40)
+    payload = subject.model_dump(mode="json")
+    payload["score_components"] = payload["score_components"][:5]
+    payload["total_score"] = sum(c["score"] for c in payload["score_components"])
     with pytest.raises(ValidationError, match="missing rubric dimensions"):
-        StartupAnalysis.model_validate(truncated)
+        StartupAnalysis.model_validate(payload)
 
 
-def test_suggested_recommendation_is_stored_but_optional() -> None:
-    assert factories.analysis_scoring(50).suggested_recommendation is None
-    suggested = factories.analysis_scoring(
-        50, suggested_recommendation=Recommendation.TAKE_A_MEETING
+def test_scored_out_of_reports_what_was_actually_assessable() -> None:
+    subject = analysis_fixtures.analysis(
+        analysis_fixtures.dossier(), total=40, unassessable=(RubricDimension.TEAM,)
     )
-    assert suggested.suggested_recommendation is Recommendation.TAKE_A_MEETING
+    assert subject.scored_out_of == 100 - max_points_for(RubricDimension.TEAM)
 
 
-def test_supported_narrative_must_cite_evidence() -> None:
-    with pytest.raises(ValidationError, match="must cite at least one evidence_id"):
-        AnalysisSection(text="Two ex-Stripe engineers.", evidence_ids=[])
-    assert AnalysisSection(text="No team information was found.", unsupported=True)
+def test_the_model_suggestion_is_stored_but_optional() -> None:
+    bundle = analysis_fixtures.dossier()
+    assert analysis_fixtures.analysis(bundle).model_suggested_recommendation is None
+    suggested = analysis_fixtures.analysis(bundle, suggested=Recommendation.TAKE_A_MEETING)
+    assert suggested.model_suggested_recommendation is Recommendation.TAKE_A_MEETING
 
 
-def test_supported_risk_must_cite_evidence() -> None:
-    with pytest.raises(ValidationError, match="must cite at least one evidence_id"):
-        RiskItem(text="Pricing undercuts incumbents.", evidence_ids=[])
-    assert RiskItem(text="No pricing page was published.", unsupported=True)
+def test_an_analysis_section_must_be_anchored_to_evidence_or_an_unknown() -> None:
+    with pytest.raises(ValidationError, match="must cite evidence claim IDs"):
+        AnalysisSection(text="An unsourced assertion.")
+    assert AnalysisSection(text="Reasoning from a gap.", unknown_references=["unk-1"])
 
 
-def test_what_would_change_is_two_or_three_items() -> None:
-    with pytest.raises(ValidationError, match="two or three items"):
-        factories.analysis_scoring(50, what_would_change=["only one"])
-    assert factories.analysis_scoring(50, what_would_change=["a", "b"])
+def test_a_risk_must_be_anchored_to_evidence_or_an_unknown() -> None:
+    with pytest.raises(ValidationError, match="must cite evidence claim IDs"):
+        RiskItem(text="An unsourced worry.")
+    assert RiskItem(text="No pricing was published.", unknown_references=["unk-1"])
+
+
+def test_a_competitive_observation_must_cite_evidence() -> None:
+    with pytest.raises(ValidationError):
+        CompetitiveObservation(text="They compete with everyone.", evidence_claim_ids=[])
+
+
+def test_a_thesis_mismatch_must_cite_evidence_but_undetermined_need_not() -> None:
+    with pytest.raises(ValidationError, match="must cite evidence"):
+        ThesisAssessment(verdict=ThesisFit.MISMATCH, rationale="It is infrastructure.")
+    assert ThesisAssessment(verdict=ThesisFit.UNDETERMINED, rationale="Nothing establishes fit.")
+
+
+@pytest.mark.parametrize("count", [0, 1, 4])
+def test_recommendation_changers_must_number_two_or_three(count: int) -> None:
+    with pytest.raises(ValidationError, match="recommendation_changers must list"):
+        analysis_fixtures.analysis(analysis_fixtures.dossier(), changers=count)
+
+
+@pytest.mark.parametrize("count", [2, 3])
+def test_two_or_three_recommendation_changers_are_accepted(count: int) -> None:
+    assert analysis_fixtures.analysis(analysis_fixtures.dossier(), changers=count)
 
 
 # -- extra keys --------------------------------------------------------------
 
 
 def test_unexpected_keys_are_rejected_rather_than_dropped() -> None:
-    payload = factories.analysis_scoring(50).model_dump(mode="json")
+    payload = analysis_fixtures.analysis(analysis_fixtures.dossier()).model_dump(mode="json")
     payload["recommendation"] = "take_a_meeting"
     with pytest.raises(ValidationError):
         StartupAnalysis.model_validate(payload)

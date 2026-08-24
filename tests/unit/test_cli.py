@@ -302,12 +302,13 @@ def fixture_llm(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setattr(cli, "FakeProvider", FakeProvider)
 
 
-def test_analyze_without_evidence_only_is_still_unimplemented(tmp_path: Path) -> None:
+def test_analyze_requires_evidence_before_it_will_score(tmp_path: Path) -> None:
+    evidence_run(tmp_path)
     result = runner.invoke(
         app, ["analyze", "--run-id", "source-test", "--runs-root", str(tmp_path)]
     )
-    assert result.exit_code == NOT_IMPLEMENTED_EXIT
-    assert "not implemented yet" in result.output
+    assert result.exit_code == 1
+    assert "no evidence dossiers" in result.output
     assert "--evidence-only" in result.output
 
 
@@ -396,3 +397,190 @@ def test_analyze_rejects_an_unknown_provider(tmp_path: Path) -> None:
     )
     assert result.exit_code == 1
     assert "unknown provider" in result.output
+
+
+# -- analyze (scoring mode) --------------------------------------------------
+
+
+def scored_run(tmp_path: Path):
+    """A run with candidates and evidence dossiers, ready to analyse."""
+    from tests.unit.analysis_fixtures import analysis_payload, dossier, seed_run
+
+    store = RunStore("source-test", runs_root=tmp_path)
+    bundle = dossier(claims=6)
+    seed_run(store, [bundle])
+    return store, bundle, analysis_payload(bundle)
+
+
+def test_analyze_scores_and_recommends(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
+    from vc_scout.llm.fake import FakeProvider
+
+    store, _, payload = scored_run(tmp_path)
+    monkeypatch.setattr(cli, "FakeProvider", lambda: FakeProvider([payload]))
+
+    result = runner.invoke(
+        app,
+        [
+            "analyze",
+            "--run-id",
+            "source-test",
+            "--runs-root",
+            str(tmp_path),
+            "--provider",
+            "fake",
+            "--effort",
+            "low",
+        ],
+    )
+    assert result.exit_code == 0, result.output
+    assert "Analysed 1 of 1 candidate" in result.output
+    assert "Recommendations:" in result.output
+    assert "analysis-report.json" in result.output
+
+    assert store.analysis_report_path().exists()
+    assert store.analysis_company_ids() == ["acme-ops"]
+    assert list(store.resolve("llm", "analysis-requests").glob("*.json"))
+    assert list(store.resolve("llm", "analysis-responses").glob("*.json"))
+
+
+def test_analyze_requires_force_before_overwriting_an_analysis(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    from vc_scout.llm.fake import FakeProvider
+
+    _, _, payload = scored_run(tmp_path)
+    monkeypatch.setattr(cli, "FakeProvider", lambda: FakeProvider([payload, dict(payload)]))
+    args = [
+        "analyze",
+        "--run-id",
+        "source-test",
+        "--runs-root",
+        str(tmp_path),
+        "--provider",
+        "fake",
+    ]
+    assert runner.invoke(app, args).exit_code == 0
+
+    repeat = runner.invoke(app, args)
+    assert repeat.exit_code == 1
+    assert "--force" in repeat.output
+    assert runner.invoke(app, [*args, "--force"]).exit_code == 0
+
+
+def test_evidence_only_mode_is_unaffected_by_the_scoring_mode(
+    fixture_llm: None, tmp_path: Path
+) -> None:
+    """The existing --evidence-only behaviour must remain unchanged."""
+    evidence_run(tmp_path)
+    result = runner.invoke(
+        app,
+        [
+            "analyze",
+            "--run-id",
+            "source-test",
+            "--runs-root",
+            str(tmp_path),
+            "--evidence-only",
+            "--provider",
+            "fake",
+        ],
+    )
+    assert result.exit_code == 0, result.output
+    assert "Extracted evidence for" in result.output
+    assert not (tmp_path / "source-test" / "analysis-report.json").exists()
+
+
+def test_analyze_accepts_a_single_company_id(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    from tests.unit.analysis_fixtures import dossier
+    from tests.unit.analysis_fixtures import seed_run as seed_analysis
+    from vc_scout.llm.fake import FakeProvider
+
+    store = RunStore("source-test", runs_root=tmp_path)
+    seed_analysis(
+        store, [dossier(company_id="co-00", claims=4), dossier(company_id="co-01", claims=4)]
+    )
+    monkeypatch.setattr(cli, "FakeProvider", FakeProvider)
+
+    result = runner.invoke(
+        app,
+        [
+            "analyze",
+            "--run-id",
+            "source-test",
+            "--runs-root",
+            str(tmp_path),
+            "--provider",
+            "fake",
+            "--company-id",
+            "co-01",
+        ],
+    )
+    assert result.exit_code == 0, result.output
+    assert "Filtered run: only 'co-01' was analysed" in result.output
+    assert store.analysis_company_ids() == ["co-01"]
+
+
+def test_analyze_rejects_an_unknown_company_id_before_any_call(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    from tests.unit.analysis_fixtures import dossier
+    from tests.unit.analysis_fixtures import seed_run as seed_analysis
+    from vc_scout.llm.fake import FakeProvider
+
+    store = RunStore("source-test", runs_root=tmp_path)
+    seed_analysis(store, [dossier(company_id="co-00", claims=4)])
+    provider = FakeProvider()
+    monkeypatch.setattr(cli, "FakeProvider", lambda: provider)
+
+    result = runner.invoke(
+        app,
+        [
+            "analyze",
+            "--run-id",
+            "source-test",
+            "--runs-root",
+            str(tmp_path),
+            "--provider",
+            "fake",
+            "--company-id",
+            "not-a-candidate",
+        ],
+    )
+    assert result.exit_code == 1
+    assert "has no candidate 'not-a-candidate'" in result.output
+    assert "co-00" in result.output
+    assert provider.call_count == 0
+    assert not store.analysis_report_path().exists()
+
+
+def test_a_filtered_rerun_does_not_need_force_for_other_candidates(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    """Analysing a fresh candidate must not be blocked by other candidates' analyses."""
+    from tests.unit.analysis_fixtures import dossier
+    from tests.unit.analysis_fixtures import seed_run as seed_analysis
+    from vc_scout.llm.fake import FakeProvider
+
+    store = RunStore("source-test", runs_root=tmp_path)
+    seed_analysis(
+        store, [dossier(company_id="co-00", claims=4), dossier(company_id="co-01", claims=4)]
+    )
+    monkeypatch.setattr(cli, "FakeProvider", FakeProvider)
+    base = [
+        "analyze",
+        "--run-id",
+        "source-test",
+        "--runs-root",
+        str(tmp_path),
+        "--provider",
+        "fake",
+    ]
+
+    assert runner.invoke(app, [*base, "--company-id", "co-00"]).exit_code == 0
+    # co-01 has no analysis yet, so no --force is required.
+    assert runner.invoke(app, [*base, "--company-id", "co-01"]).exit_code == 0
+    # co-00 does, so re-running it does.
+    assert runner.invoke(app, [*base, "--company-id", "co-00"]).exit_code == 1
+    assert runner.invoke(app, [*base, "--company-id", "co-00", "--force"]).exit_code == 0

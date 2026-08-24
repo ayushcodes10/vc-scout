@@ -8,6 +8,7 @@ from __future__ import annotations
 from enum import StrEnum
 
 __all__ = [
+    "AssessmentStatus",
     "ClaimLabel",
     "EvidenceCategory",
     "ComponentStatus",
@@ -18,6 +19,7 @@ __all__ = [
     "FetchFailure",
     "PageRole",
     "Recommendation",
+    "ThesisFit",
     "RelevanceClass",
     "RubricDimension",
     "SourceKind",
@@ -118,6 +120,32 @@ class ClaimLabel(StrEnum):
     INFERENCE = "inference"
 
 
+class AssessmentStatus(StrEnum):
+    """How well the supplied evidence supports a scored dimension.
+
+    This is a statement about the *evidence*, not about the company. ``not_assessable``
+    means nothing was found, which is not the same as finding something bad - that is
+    ``contradicted``.
+    """
+
+    SUPPORTED = "supported"
+    PARTIALLY_SUPPORTED = "partially_supported"
+    CONTRADICTED = "contradicted"
+    NOT_ASSESSABLE = "not_assessable"
+
+
+class ThesisFit(StrEnum):
+    """Whether the evidence places the company inside the firm's thesis."""
+
+    ALIGNED = "aligned"
+    ADJACENT = "adjacent"
+    #: The evidence positively shows the company is outside the thesis - developer
+    #: infrastructure, a personal project, an enterprise platform. Not the same as
+    #: an absence of evidence.
+    MISMATCH = "mismatch"
+    UNDETERMINED = "undetermined"
+
+
 class EvidenceCategory(StrEnum):
     """What an evidence claim is about. Deliberately coarser than the scoring rubric:
     extraction should not be shaped by how the claim will later be scored."""
@@ -156,12 +184,16 @@ class LlmErrorCategory(StrEnum):
     """Why an evidence extraction attempt failed. Recorded per attempt and per candidate."""
 
     MISSING_API_KEY = "missing_api_key"
+    MISSING_EVIDENCE = "missing_evidence"
     PROVIDER_TIMEOUT = "provider_timeout"
     PROVIDER_HTTP_ERROR = "provider_http_error"
     PROVIDER_RATE_LIMITED = "provider_rate_limited"
     MALFORMED_RESPONSE = "malformed_response"
     SCHEMA_VALIDATION_FAILED = "schema_validation_failed"
     UNKNOWN_SOURCE_REFERENCE = "unknown_source_reference"
+    UNKNOWN_EVIDENCE_REFERENCE = "unknown_evidence_reference"
+    INVALID_SCORE = "invalid_score"
+    INVALID_RECOMMENDATION = "invalid_recommendation"
     EXCERPT_NOT_FOUND = "excerpt_not_found"
     PERMANENT_FAILURE = "permanent_failure"
 

@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-from tests.unit import factories
+from tests.unit import analysis_fixtures, factories
 from vc_scout.models.candidate import Candidate, CandidateSet
 from vc_scout.models.enums import ConfidenceLevel, StageName, StageStatus
 from vc_scout.models.manifest import RunManifest, StageRecord
@@ -57,24 +57,47 @@ def test_evidence_round_trip(store: RunStore) -> None:
 
 
 def test_analysis_and_recommendation_are_separate_keys(store: RunStore) -> None:
-    analysis = factories.analysis_scoring(70)
-    recommendation = decide(analysis, ResearchConfidence(level=ConfidenceLevel.HIGH, score=0.9))
-    path = store.write_analysis(analysis, recommendation)
+    bundle = analysis_fixtures.dossier()
+    subject = analysis_fixtures.analysis(bundle, total=70)
+    recommendation = decide(
+        subject, bundle, ResearchConfidence(level=ConfidenceLevel.HIGH, score=0.9)
+    )
+    path = store.write_analysis(subject, recommendation)
 
     payload = path.read_text(encoding="utf-8")
     assert '"analysis"' in payload
     assert '"recommendation"' in payload
 
-    read_analysis, read_recommendation = store.read_analysis(analysis.company_id)
-    assert read_analysis == analysis
+    read_analysis, read_recommendation = store.read_analysis(subject.company_id)
+    assert read_analysis == subject
     assert read_recommendation == recommendation
 
 
 def test_analysis_may_be_persisted_before_the_policy_runs(store: RunStore) -> None:
-    analysis = factories.analysis_scoring(30)
-    store.write_analysis(analysis)
-    _, recommendation = store.read_analysis(analysis.company_id)
+    subject = analysis_fixtures.analysis(analysis_fixtures.dossier(), total=30)
+    store.write_analysis(subject)
+    _, recommendation = store.read_analysis(subject.company_id)
     assert recommendation is None
+
+
+def test_a_failed_candidate_does_not_retain_a_stale_analysis(store: RunStore) -> None:
+    """The same narrow cleanup contract as the evidence stage."""
+    subject = analysis_fixtures.analysis(analysis_fixtures.dossier(), total=30)
+    store.write_analysis(subject)
+    assert store.analysis_company_ids() == [subject.company_id]
+
+    assert store.delete_analysis(subject.company_id) is True
+    assert store.analysis_company_ids() == []
+    # Idempotent when nothing is there.
+    assert store.delete_analysis(subject.company_id) is False
+
+
+@pytest.mark.parametrize("unsafe", ["../escape", "..", "Has Space", "a/../../b"])
+def test_delete_analysis_is_confined_to_a_validated_company_path(
+    store: RunStore, unsafe: str
+) -> None:
+    with pytest.raises(StoreError):
+        store.delete_analysis(unsafe)
 
 
 def test_reading_a_missing_artifact_names_it(store: RunStore) -> None:
@@ -112,7 +135,7 @@ def test_manifest_round_trips_and_accumulates_stages(store: RunStore) -> None:
 def test_company_ids_lists_analysed_companies_in_stable_order(store: RunStore) -> None:
     assert store.company_ids() == []
     for company_id in ("zeta-co", "acme-ops"):
-        store.write_analysis(
-            factories.analysis_scoring(10).model_copy(update={"company_id": company_id})
-        )
+        bundle = analysis_fixtures.dossier(company_id=company_id)
+        store.write_analysis(analysis_fixtures.analysis(bundle, total=10))
     assert store.company_ids() == ["acme-ops", "zeta-co"]
+    assert store.analysis_company_ids() == ["acme-ops", "zeta-co"]

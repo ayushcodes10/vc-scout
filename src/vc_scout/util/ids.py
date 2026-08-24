@@ -28,6 +28,7 @@ __all__ = [
     "registrable_domain",
     "slugify",
     "source_id_for",
+    "unknown_id_for",
 ]
 
 _ID_HEX_LEN = 12
@@ -165,3 +166,14 @@ def is_valid_company_id(value: str) -> bool:
 
 def is_valid_run_id(value: str) -> bool:
     return bool(RUN_ID_PATTERN.match(value))
+
+
+def unknown_id_for(company_id: str, question: str) -> str:
+    """Stable ID for a recorded unknown.
+
+    Unknowns are persisted without identifiers, so analysis derives one from the question
+    text when it hands the dossier to the model. Content-derived, like every other ID here,
+    so the same unknown always carries the same reference and a reference cannot be
+    invented.
+    """
+    return f"unk-{digest(company_id, ' '.join(question.split()))}"

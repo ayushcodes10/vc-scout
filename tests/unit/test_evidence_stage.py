@@ -586,3 +586,27 @@ def test_delete_evidence_is_confined_to_a_validated_company_path(store: RunStore
     assert store.evidence_path("acme-ops").exists()
     assert store.delete_evidence("acme-ops") is True
     assert store.delete_evidence("acme-ops") is False
+
+
+def test_a_run_level_failure_stops_the_evidence_run_after_one_request(
+    store: RunStore,
+) -> None:
+    """The evidence stage shares the loop, and shared the defect."""
+    seed_run(store, extra_candidates=4)
+    provider = FakeProvider(
+        handler=lambda _r: LlmError(
+            LlmErrorCategory.PROVIDER_HTTP_ERROR,
+            "provider returned HTTP 400 (invalid_request_error): bad schema",
+            status=400,
+            retryable=False,
+            run_level=True,
+        )
+    )
+    outcome = extract(store, provider)
+
+    assert provider.call_count == 1
+    assert outcome.report.counts["candidates"] == 5
+    assert outcome.report.counts["not_attempted"] == 4
+    assert len(outcome.report.candidates) == 5
+    assert all(not row.succeeded for row in outcome.report.candidates)
+    assert store.evidence_company_ids() == []
