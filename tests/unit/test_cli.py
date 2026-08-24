@@ -24,6 +24,7 @@ REQUIRED_COMMANDS = [
     "analyze",
     "recommend",
     "render",
+    "build-ui",
     "build-site",
     "serve",
     "run",
@@ -49,7 +50,6 @@ def test_each_command_has_its_own_help(command: str) -> None:
 @pytest.mark.parametrize(
     ("command", "args"),
     [
-        ("build-site", ["--run-id", "demo"]),
         ("serve", ["--run-id", "demo"]),
         ("run", ["--query", "q", "--run-id", "demo"]),
         ("demo", []),
@@ -700,3 +700,86 @@ def test_render_still_works_as_a_deprecated_alias(tmp_path: Path) -> None:
     assert result.exit_code == 0, result.output
     assert "this command is now `vc-scout recommend`" in result.output
     assert "Rendered 3 of 3 candidate memo(s)" in result.output
+
+
+# -- build-ui ----------------------------------------------------------------
+
+
+def _seed_for_ui(tmp_path: Path) -> RunStore:
+    from tests.unit.memo_fixtures import bundles, mismatch_analysis, seed_rendered_run
+    from vc_scout.stages.recommend import run_recommend
+
+    store = RunStore("source-test", runs_root=tmp_path)
+    seeds = bundles(3)
+    seed_rendered_run(store, [(bundle, mismatch_analysis(bundle)) for bundle in seeds])
+    run_recommend(store=store)
+    return store
+
+
+def test_build_ui_generates_the_site_and_prints_the_preview_command(tmp_path: Path) -> None:
+    store = _seed_for_ui(tmp_path)
+    result = runner.invoke(
+        app, ["build-ui", "--run-id", "source-test", "--runs-root", str(tmp_path)]
+    )
+
+    assert result.exit_code == 0, result.output
+    assert "Generated 4 page(s) for 3 candidate(s)" in result.output
+    assert "python3 -m http.server 8000 --directory" in result.output
+    assert (store.site_dir / "index.html").is_file()
+    assert (store.site_dir / "companies" / "co-00.html").is_file()
+
+
+def test_build_ui_needs_no_provider_and_no_api_key(tmp_path: Path) -> None:
+    _seed_for_ui(tmp_path)
+    help_text = runner.invoke(app, ["build-ui", "--help"]).output
+    assert "--provider" not in help_text
+    assert "--model" not in help_text
+    assert "API_KEY" not in help_text
+
+    result = runner.invoke(
+        app, ["build-ui", "--run-id", "source-test", "--runs-root", str(tmp_path)]
+    )
+    assert result.exit_code == 0, result.output
+
+
+def test_build_ui_refuses_to_overwrite_an_existing_site_without_force(tmp_path: Path) -> None:
+    _seed_for_ui(tmp_path)
+    first = runner.invoke(
+        app, ["build-ui", "--run-id", "source-test", "--runs-root", str(tmp_path)]
+    )
+    assert first.exit_code == 0
+
+    second = runner.invoke(
+        app, ["build-ui", "--run-id", "source-test", "--runs-root", str(tmp_path)]
+    )
+    assert second.exit_code == 1
+    assert "already has a generated site" in second.output
+    assert "--force" in second.output
+
+    forced = runner.invoke(
+        app,
+        ["build-ui", "--run-id", "source-test", "--runs-root", str(tmp_path), "--force"],
+    )
+    assert forced.exit_code == 0, forced.output
+
+
+def test_build_ui_requires_the_markdown_stage_first(tmp_path: Path) -> None:
+    result = runner.invoke(app, ["build-ui", "--run-id", "missing", "--runs-root", str(tmp_path)])
+    assert result.exit_code == 1
+    assert "candidates.json" in result.output
+
+
+def test_build_ui_rejects_an_unusable_run_id(tmp_path: Path) -> None:
+    result = runner.invoke(app, ["build-ui", "--run-id", "../escape", "--runs-root", str(tmp_path)])
+    assert result.exit_code == 1
+    assert "invalid run id" in result.output
+
+
+def test_build_site_still_works_as_a_deprecated_alias(tmp_path: Path) -> None:
+    _seed_for_ui(tmp_path)
+    result = runner.invoke(
+        app, ["build-site", "--run-id", "source-test", "--runs-root", str(tmp_path)]
+    )
+    assert result.exit_code == 0, result.output
+    assert "this command is now `vc-scout build-ui`" in result.output
+    assert "Generated 4 page(s)" in result.output

@@ -1,0 +1,557 @@
+/* VC Scout - static research site.
+ *
+ * One stylesheet, system fonts only, no imports and no remote assets: the site has to
+ * work from a directory served by python3 -m http.server, offline, forever.
+ *
+ * Recommendation is never carried by colour alone. Every badge pairs its colour with a
+ * text label and a shape marker, so the call survives greyscale printing and colour
+ * vision deficiency.
+ */
+
+:root {
+  --bg: #faf8f4;
+  --surface: #ffffff;
+  --surface-sunken: #f4f1ea;
+  --ink: #16181a;
+  --ink-soft: #3d434b;
+  --muted: #5f6570;
+  --border: #e3ddd2;
+  --border-strong: #cfc7b8;
+
+  --meeting: #1f4d3a;
+  --meeting-tint: #e9f0ec;
+  --watch: #7d5a12;
+  --watch-tint: #f9f1de;
+  --pass: #8a4232;
+  --pass-tint: #f7ebe7;
+
+  --focus: #1f4d3a;
+  --radius: 8px;
+  --shadow: 0 1px 2px rgba(22, 24, 26, 0.04), 0 1px 8px rgba(22, 24, 26, 0.04);
+  --measure: 1240px;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  overflow-wrap: break-word;
+}
+
+.wrap {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+a { color: var(--meeting); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { text-decoration-thickness: 2px; }
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+h1, h2, h3 { line-height: 1.25; letter-spacing: -0.011em; margin: 0 0 0.5rem; }
+h1 { font-size: 1.75rem; }
+h2 { font-size: 1.2rem; }
+h3 { font-size: 1rem; }
+p { margin: 0 0 0.75rem; }
+
+.muted { color: var(--muted); }
+.small { font-size: 0.85rem; }
+.mono { font-variant-numeric: tabular-nums; }
+
+/* ---------------------------------------------------------------- header */
+
+.site-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.site-header__inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 32px;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-block: 14px;
+}
+
+.wordmark { font-size: 1.35rem; font-weight: 640; letter-spacing: -0.02em; margin: 0; }
+.tagline { color: var(--muted); font-size: 0.95rem; margin: 2px 0 0; }
+
+.header-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  align-items: center;
+  font-size: 0.88rem;
+}
+
+.run-id {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  background: var(--surface-sunken);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 2px 10px;
+}
+
+main { padding-block: 20px 64px; }
+section { margin-bottom: 26px; }
+
+/* A quiet label above a block, not a competing headline. */
+.section-label {
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 8px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------- summary */
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(112px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.summary__cell { background: var(--surface); padding: 9px 14px; }
+.summary__label {
+  font-size: 0.72rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0;
+}
+.summary__value {
+  font-size: 1.2rem;
+  font-weight: 620;
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ----------------------------------------------------------------- panel */
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  box-shadow: var(--shadow);
+}
+
+.panel--accent { border-left: 3px solid var(--meeting); }
+.panel--note { background: var(--surface-sunken); box-shadow: none; }
+
+/* Native <details>: collapsed by default, keyboard accessible, no JavaScript. */
+.disclosure {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 10px;
+}
+.disclosure > summary {
+  cursor: pointer;
+  padding: 11px 16px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  list-style-position: inside;
+}
+.disclosure > summary:hover { background: var(--surface-sunken); }
+.disclosure[open] > summary { border-bottom: 1px solid var(--border); }
+.disclosure__body { padding: 14px 16px 16px; }
+
+.thesis-quote {
+  margin: 0 0 14px;
+  padding-left: 16px;
+  border-left: 2px solid var(--border-strong);
+  font-size: 1.02rem;
+  color: var(--ink-soft);
+  max-width: 72ch;
+}
+
+.rule-list { margin: 0; padding-left: 20px; color: var(--ink-soft); }
+.rule-list li { margin-bottom: 4px; }
+.note-inline { margin-top: 12px; max-width: 80ch; }
+
+/* -------------------------------------------------------------- controls */
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  align-items: end;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 12px 14px;
+}
+
+.field--grow { flex: 2 1 240px; }
+.controls .field { flex: 1 1 132px; }
+.field--action { flex: 0 0 auto; align-self: end; }
+
+.field { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.field label { font-size: 0.78rem; font-weight: 600; color: var(--ink-soft); }
+
+input[type="search"],
+select,
+button {
+  font: inherit;
+  color: inherit;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  padding: 8px 10px;
+  min-height: 40px;
+  width: 100%;
+}
+
+button {
+  cursor: pointer;
+  font-weight: 560;
+  background: var(--surface-sunken);
+}
+
+/* Reset is a way back, not a call to action. */
+.button--secondary {
+  min-height: 36px;
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+button:hover { border-color: var(--ink-soft); }
+
+.result-count { margin: 8px 0 10px; font-size: 0.85rem; color: var(--muted); }
+
+/* --------------------------------------------------------------- badges */
+
+.badge {
+  display: inline-flex;
+  max-width: 100%;
+  align-items: baseline;
+  gap: 6px;
+  border-radius: 999px;
+  padding: 2px 11px;
+  font-size: 0.82rem;
+  font-weight: 620;
+  border: 1px solid currentColor;
+  white-space: nowrap;
+}
+/* The glyph is the point: the call is legible without colour. */
+.badge::before { font-size: 0.9em; }
+.badge--take-a-meeting { color: var(--meeting); background: var(--meeting-tint); }
+.badge--take-a-meeting::before { content: "\25B2"; }
+.badge--watch { color: var(--watch); background: var(--watch-tint); }
+.badge--watch::before { content: "\25CF"; }
+.badge--pass { color: var(--pass); background: var(--pass-tint); }
+.badge--pass::before { content: "\25AC"; }
+
+.chip {
+  display: inline-block;
+  border: 1px solid var(--border-strong);
+  border-radius: 4px;
+  padding: 1px 7px;
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+  background: var(--surface-sunken);
+  white-space: nowrap;
+}
+.chip--flag { border-color: var(--watch); color: var(--watch); background: var(--watch-tint); }
+/* One flag per line: the column is narrow, and two chips side by side would clip. */
+/* One flag per line in the narrow desktop column; inline on a card, where a
+   full-width chip would read as a button. */
+@media (min-width: 861px) {
+  #vcs-table td:nth-child(8) .chip {
+    display: block;
+    margin-top: 3px;
+    text-align: center;
+    padding: 0 2px;
+    font-size: 0.7rem;
+  }
+}
+#vcs-table td:nth-child(8) .chip { margin-top: 3px; }
+
+/* Thesis fit, max achievable and the flags are context, not the decision. */
+#vcs-table .secondary { color: var(--muted); font-size: 0.85rem; }
+#vcs-table .secondary .cell-note { margin-top: 0; line-height: 1.35; }
+
+/* Line clamping keeps a row scannable. The full text is on the company page, and the
+   fallback below (max-height plus overflow) keeps the cell bounded in a browser without
+   -webkit-line-clamp rather than letting a paragraph run. */
+.clamp-2, .clamp-1 { overflow: hidden; margin: 0; }
+.clamp-2 { max-height: 3.2em; }
+.clamp-1 { max-height: 1.6em; }
+@supports (-webkit-line-clamp: 2) {
+  .clamp-2, .clamp-1 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    max-height: none;
+  }
+  .clamp-2 { -webkit-line-clamp: 2; }
+  .clamp-1 { -webkit-line-clamp: 1; }
+}
+
+.meta-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.dot { color: var(--border-strong); }
+
+/* ----------------------------------------------------------------- bars */
+
+.bar {
+  /* Must be a block: as an inline span the height is ignored and the fill inside it
+     stretches to the line box, which turns a 6px bar into a column. */
+  display: block;
+  position: relative;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--surface-sunken);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  min-width: 72px;
+}
+.bar__fill { display: block; height: 100%; background: var(--meeting); }
+.bar__fill--watch { background: var(--watch); }
+.bar__fill--pass { background: var(--pass); }
+
+/* Widths are classes, not inline styles: the CSP carries no unsafe-inline. */
+.bar__w0 { width: 0%; }
+.bar__w5 { width: 5%; }
+.bar__w10 { width: 10%; }
+.bar__w15 { width: 15%; }
+.bar__w20 { width: 20%; }
+.bar__w25 { width: 25%; }
+.bar__w30 { width: 30%; }
+.bar__w35 { width: 35%; }
+.bar__w40 { width: 40%; }
+.bar__w45 { width: 45%; }
+.bar__w50 { width: 50%; }
+.bar__w55 { width: 55%; }
+.bar__w60 { width: 60%; }
+.bar__w65 { width: 65%; }
+.bar__w70 { width: 70%; }
+.bar__w75 { width: 75%; }
+.bar__w80 { width: 80%; }
+.bar__w85 { width: 85%; }
+.bar__w90 { width: 90%; }
+.bar__w95 { width: 95%; }
+.bar__w100 { width: 100%; }
+
+.score-cell { display: flex; flex-direction: column; gap: 4px; min-width: 90px; }
+.decision-figures .bar { width: 130px; margin-top: 6px; }
+.score-value { font-variant-numeric: tabular-nums; font-weight: 620; }
+
+/* ---------------------------------------------------------------- table */
+
+.table-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow-x: auto;
+}
+
+table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+caption { text-align: left; padding: 14px 18px 0; color: var(--muted); font-size: 0.85rem; }
+
+th, td { text-align: left; padding: 10px 12px; vertical-align: top; }
+thead th {
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border-strong);
+  /* Never split a header word: "CONFI / DENC / E" is not a column heading. */
+  overflow-wrap: normal;
+}
+tbody tr { border-bottom: 1px solid var(--border); }
+tbody tr:last-child { border-bottom: 0; }
+tbody tr:hover { background: #fcfbf8; }
+
+/* The product description is the column a partner actually reads, so it gets the room.
+   Everything else is a short label or a number. Percentages need a fixed layout: with
+   auto layout the browser sizes columns from their content and ignores the hint. */
+@media (min-width: 861px) {
+  #vcs-table { table-layout: fixed; }
+  #vcs-table th:nth-child(1) { width: 4%; }
+  #vcs-table th:nth-child(2) { width: 15%; }
+  #vcs-table th:nth-child(3) { width: 12%; }
+  #vcs-table th:nth-child(4) { width: 10%; }
+  #vcs-table th:nth-child(5) { width: 9%; }
+  #vcs-table th:nth-child(6) { width: 11%; }
+  #vcs-table th:nth-child(7) { width: 26%; }
+  #vcs-table th:nth-child(8) { width: 13%; }
+}
+
+.company-name { font-weight: 620; }
+.cell-note { color: var(--muted); font-size: 0.8rem; margin: 3px 0 0; }
+.rank { color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.external::after { content: " \2197"; font-size: 0.85em; }
+
+/* ----------------------------------------------------------- detail page */
+
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  align-items: center;
+  padding-block: 14px;
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.crumbs__spacer { flex: 1 1 auto; }
+.crumbs--inner { border: 0; padding-block: 0; }
+
+.decision-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 40px;
+  padding: 16px 20px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.decision-figures { display: flex; flex-wrap: wrap; gap: 24px 36px; }
+.figure__label {
+  font-size: 0.72rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0;
+}
+.figure__value { font-size: 1.35rem; font-weight: 620; margin: 0; font-variant-numeric: tabular-nums; }
+.figure__value--text { font-size: 1rem; font-weight: 560; }
+
+.call-sentence { font-size: 1.05rem; max-width: 78ch; margin: 10px 0 4px; }
+
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 26px; margin: 0; }
+.facts div { min-width: 0; }
+.facts dt { font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.facts dd { margin: 2px 0 0; }
+
+.stack { list-style: none; margin: 0; padding: 0; }
+.stack > li { padding: 10px 0; border-bottom: 1px solid var(--border); }
+.stack > li:last-child { border-bottom: 0; }
+
+.markers { color: var(--muted); font-size: 0.8rem; white-space: nowrap; }
+.open-question {
+  font-style: italic;
+  color: var(--watch);
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.sources { list-style: none; margin: 0; padding: 0; counter-reset: none; }
+.sources > li { padding: 12px 0; border-bottom: 1px solid var(--border); }
+.sources > li:last-child { border-bottom: 0; }
+.source-marker { font-weight: 640; margin-right: 6px; }
+.source-url { font-size: 0.85rem; word-break: break-all; }
+.excerpt {
+  margin: 6px 0 0;
+  padding-left: 12px;
+  border-left: 2px solid var(--border-strong);
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  padding-block: 20px 40px;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* ------------------------------------------------------------ responsive */
+
+@media (max-width: 860px) {
+  .wrap { padding: 0 16px; }
+  .table-wrap { border: 0; background: none; box-shadow: none; overflow-x: visible; }
+  table, thead, tbody, tr, td { display: block; width: 100%; }
+  /* A table-caption box inside a display:block table collapses to the widest cell,
+     which wraps the sentence into a column two words wide. */
+  caption { display: block; padding-inline: 0; }
+  /* The header row is redundant once each cell carries its own label. */
+  thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  tbody tr {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 14px;
+    padding: 6px 4px;
+  }
+  td { padding: 8px 14px; border: 0; }
+  td::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .decision-figures { gap: 16px 24px; }
+}
+
+@media (max-width: 420px) {
+  h1 { font-size: 1.45rem; }
+  .summary { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------------------------------------------------------------- print */
+
+@media print {
+  :root { --bg: #ffffff; --surface: #ffffff; --shadow: none; }
+  body { font-size: 11pt; }
+  .crumbs, .site-footer, .controls, .no-print { display: none !important; }
+  .panel, .table-wrap { border: 1px solid #999; box-shadow: none; break-inside: avoid; }
+  section { break-inside: avoid; margin-bottom: 18px; }
+  h2 { break-after: avoid; }
+  a { text-decoration: none; color: #000; }
+  /* A printed memo has to keep its citations usable. */
+  .source-url::after { content: ""; }
+  .bar { border: 1px solid #666; }
+  .bar__fill { background: #444 !important; }
+}

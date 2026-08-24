@@ -9,12 +9,11 @@ claim cites an evidence ID, every evidence claim cites a source URL, the final
 recommendation is made by deterministic policy rather than by a model, and a whole run
 replays from persisted artifacts with no network and no API key.
 
-> **Status: in progress.** Stages 1-6 (foundation, domain contracts, discovery, website
-> enrichment, evidence extraction, scoring and the recommendation policy, and the
-> Markdown memos and ranking) are implemented. The static HTML report is not yet built.
-> `build-site`, `serve`, `run` and `demo` are declared but not yet implemented - they
-> report which stage owns them and exit non-zero. See `docs/PLAN.md` for the full plan
-> and stage order.
+> **Status: in progress.** Stages 1-7 (foundation, domain contracts, discovery, website
+> enrichment, evidence extraction, scoring and the recommendation policy, the Markdown
+> memos and ranking, and the static site) are implemented. `serve`, `run` and `demo` are
+> declared but not yet implemented - they report which stage owns them and exit non-zero.
+> See `docs/PLAN.md` for the full plan and stage order.
 
 ## Quick start
 
@@ -50,7 +49,8 @@ uv run vc-scout run \
 | `analyze` | Score and apply the recommendation policy | available |
 | `recommend` | Write partner-ready memos and the ranking | available |
 | `render` | Deprecated alias for `recommend` | available |
-| `build-site` | Generate the static report | planned (stage 8) |
+| `build-ui` | Generate the static research site | available |
+| `build-site` | Deprecated alias for `build-ui` | available |
 | `serve` | Serve a generated report locally | planned (stage 8) |
 | `run` | Full pipeline end to end | planned (stage 9) |
 | `demo` | Rebuild the committed offline demo run | planned (stage 9) |
@@ -321,6 +321,53 @@ queue**, not a quality ranking, and the document says so: a watch that exists on
 the research came up short is not a claim that the company is better than one that was
 passed on evidence. When no candidate reaches the meeting band, the ranking explains why
 from the run's own counts rather than talking a candidate up to fill it.
+
+## The static site
+
+`vc-scout build-ui` turns the same artifacts into a read-only site: a portfolio page and
+one page per company. No provider call, no API key, no network, no build step, and no
+runtime dependency of any kind - two files of hand-written CSS and JavaScript sit beside
+the HTML and nothing else is fetched.
+
+```bash
+uv run vc-scout build-ui --run-id source-test
+uv run vc-scout build-ui --run-id source-test --force   # rebuild over an existing site
+
+# preview it
+python3 -m http.server 8000 --directory outputs/runs/source-test/site
+# then open http://127.0.0.1:8000/
+```
+
+```
+outputs/runs/source-test/site/
+├── index.html                     # the portfolio: summary, thesis, filters, table
+├── companies/<company_id>.html    # one page per company
+├── assets/styles.css              # one stylesheet, system fonts, no imports
+├── assets/app.js                  # search, filter, sort. No framework, no network
+└── ui-report.json                 # what was generated, and what could not be
+```
+
+The portfolio page carries the run summary, the thesis and thresholds, live search and
+filters (recommendation, confidence, thesis fit) with sorting, and a table that becomes
+stacked cards on a phone. Every row links to a company page carrying the decision header,
+the snapshot, *why this call* with the policy's rationale verbatim, the seven-dimension
+scorecard, the investment view, risks and open questions, what would change the call, the
+numbered sources, and a provenance panel. Company pages print cleanly.
+
+**Security posture.** Every page declares
+`default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'`.
+Jinja autoescaping is on and no untrusted string is ever marked safe. Every `href` is
+validated - absolute `http`/`https` only, or a relative path this generator built - so a
+`javascript:` or `data:` URL cannot become a link. There are no inline event handlers, no
+inline styles, no remote images, no external scripts, stylesheets or fonts. The embedded
+filter data is escaped so that no value can close the `<script>` element it sits in, and
+the JavaScript writes only through `textContent`.
+
+**Accessibility.** One `<h1>` per page and no skipped heading levels, labelled form
+controls, scoped table headers, visible focus rings, external links marked with an icon and
+`rel="noopener noreferrer nofollow"`, `prefers-reduced-motion` respected, no horizontal
+overflow at 375px, and a recommendation that is never carried by colour alone - each badge
+pairs its colour with the word and a distinct glyph.
 
 ## Investment thesis
 

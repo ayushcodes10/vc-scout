@@ -26,7 +26,9 @@ from vc_scout.rubric import RUBRIC
 
 __all__ = [
     "CallKind",
+    "GUARDRAIL_CHIPS",
     "SHORT_RATIONALE",
+    "call_label",
     "DECISION_LABELS",
     "GUARDRAIL_LABELS",
     "call_kind",
@@ -199,3 +201,42 @@ SHORT_RATIONALE: dict[CallKind, str] = {
     CallKind.GUARDRAIL_CAPPED_WATCH: "Score reached a higher band; a guardrail held it at watch",
     CallKind.BANDED_WATCH: "Inside the watch band on score alone",
 }
+
+
+#: The same guardrails as a table chip. A chip has room for a reason, not a sentence, and
+#: "Guardrail" on its own tells a reader nothing they can act on.
+GUARDRAIL_CHIPS: dict[str, str] = {
+    Guardrail.ZERO_CLAIM_DOSSIER: "No usable evidence",
+    Guardrail.INSUFFICIENT_EVIDENCE: "Evidence shortfall",
+    Guardrail.IDENTITY_MISMATCH_CAP: "Identity unconfirmed",
+    Guardrail.MEETING_NEEDS_CONFIDENCE: "Confidence too low",
+    Guardrail.MEETING_NEEDS_PRODUCT: "No product identified",
+    Guardrail.MEETING_NEEDS_BUYER: "No buyer identified",
+    Guardrail.MEETING_NEEDS_BREADTH: "Evidence too narrow",
+}
+
+#: What a badge says beyond the decision word. A bare "Watch" is ambiguous when every watch
+#: in a run is an evidence shortfall - the reader cannot tell "promising but unproven" from
+#: "we found nothing". The qualifier is display only: the persisted decision is unchanged,
+#: and the policy never sees this.
+_WATCH_QUALIFIERS: dict[str, str] = {
+    Guardrail.ZERO_CLAIM_DOSSIER: "no usable evidence",
+    Guardrail.INSUFFICIENT_EVIDENCE: "needs research",
+}
+
+
+def call_label(kind: CallKind, recommendation: RecommendationResult) -> tuple[str, str | None]:
+    """The decision word, and the qualifier that disambiguates it.
+
+    Returns ``(decision, qualifier | None)``. The caller decides how to join them; the
+    split exists so a template can style the qualifier as secondary.
+    """
+    decision = DECISION_LABELS[recommendation.decision]
+    if recommendation.decision is Recommendation.WATCH:
+        for guardrail in recommendation.guardrails_applied:
+            if qualifier := _WATCH_QUALIFIERS.get(guardrail):
+                return decision, qualifier
+        return decision, None
+    if kind is CallKind.THESIS_MISMATCH_PASS:
+        return decision, "outside thesis"
+    return decision, None

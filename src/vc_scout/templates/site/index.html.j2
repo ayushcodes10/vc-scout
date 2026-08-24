@@ -1,0 +1,202 @@
+{% extends "site/_base.html.j2" %}
+{#-
+  The portfolio page.
+
+  Order is deliberate: a partner opens this to triage, so the pipeline comes before the
+  reference material. The thesis and the no-meeting explanation are still on the page, in
+  native <details> disclosures - collapsed, keyboard accessible, and working with
+  JavaScript disabled.
+
+  Every row is server-rendered; assets/app.js only shows, hides and reorders them.
+-#}
+{% set stylesheet = "assets/styles.css" %}
+{% block title %}Portfolio — {{ view.run_id }} — VC Scout{% endblock %}
+
+{% block chrome %}
+<header class="site-header">
+<div class="wrap site-header__inner">
+<div>
+<h1 class="wordmark">VC Scout</h1>
+<p class="tagline">Evidence-grounded startup triage</p>
+</div>
+<div class="header-meta">
+<span class="muted small">Run <span class="run-id">{{ view.run_id }}</span></span>
+<a href="{{ view.ranking_href }}">Export ranking</a>
+</div>
+</div>
+</header>
+{% endblock %}
+
+{% block main %}
+<section aria-labelledby="summary-heading">
+<h2 id="summary-heading" class="section-label">Run summary</h2>
+<div class="summary">
+{% for fact in view.summary %}
+<div class="summary__cell">
+<p class="summary__label">{{ fact.label }}</p>
+<p class="summary__value">{{ fact.value }}</p>
+</div>
+{% endfor %}
+</div>
+</section>
+
+<section aria-labelledby="pipeline-heading">
+<h2 id="pipeline-heading" class="section-label">Pipeline</h2>
+<form class="controls" id="vcs-controls" hidden>
+<div class="field field--grow">
+<label for="vcs-search">Search</label>
+<input type="search" id="vcs-search" name="q" autocomplete="off" placeholder="Company or product">
+</div>
+<div class="field">
+<label for="vcs-call">Recommendation</label>
+<select id="vcs-call" name="call">
+<option value="">All</option>
+<option value="take-a-meeting">Take a meeting</option>
+<option value="watch">Watch</option>
+<option value="pass">Pass</option>
+</select>
+</div>
+<div class="field">
+<label for="vcs-confidence">Confidence</label>
+<select id="vcs-confidence" name="confidence">
+<option value="">All</option>
+<option value="high">High</option>
+<option value="medium">Medium</option>
+<option value="low">Low</option>
+</select>
+</div>
+<div class="field">
+<label for="vcs-fit">Thesis fit</label>
+<select id="vcs-fit" name="fit">
+<option value="">All</option>
+<option value="aligned">Aligned</option>
+<option value="adjacent">Adjacent</option>
+<option value="outside">Outside the thesis</option>
+<option value="not">Not established</option>
+</select>
+</div>
+<div class="field">
+<label for="vcs-sort">Sort by</label>
+<select id="vcs-sort" name="sort">
+<option value="workflow">Workflow priority</option>
+<option value="score">Score</option>
+<option value="confidence">Confidence</option>
+<option value="name">Company name</option>
+</select>
+</div>
+<div class="field field--action">
+<button type="button" id="vcs-reset" class="button--secondary">Reset</button>
+</div>
+</form>
+<p class="result-count" id="vcs-count" role="status">Showing all {{ view.rows | length }} analysed candidates. Triage order: recommendation, then score, then confidence, then name.</p>
+<p class="result-count" id="vcs-empty" hidden>No candidate matches these filters.</p>
+
+<div class="table-wrap">
+<table id="vcs-table">
+<caption class="visually-hidden">Analysed candidates in triage order. This is not a quality ranking.</caption>
+<thead>
+<tr>
+<th scope="col">#</th>
+<th scope="col">Company</th>
+<th scope="col">Call</th>
+<th scope="col">Score</th>
+<th scope="col">Confidence</th>
+<th scope="col">Thesis fit</th>
+<th scope="col">Product, buyer and workflow</th>
+<th scope="col">Context</th>
+</tr>
+</thead>
+<tbody>
+{% for row in view.rows %}
+<tr data-company="{{ row.company_id }}">
+<td data-label="Rank" class="rank">{{ row.rank }}</td>
+<td data-label="Company">
+<a class="company-name" href="{{ row.detail_href }}">{{ row.name }}</a>
+<p class="cell-note">
+<a href="{{ row.detail_href }}">View analysis</a>
+{% if row.website %}
+<span class="dot">·</span> <a class="external" href="{{ row.website }}" rel="noopener noreferrer nofollow">Website</a>
+{% endif %}
+</p>
+</td>
+<td data-label="Call">
+<span class="badge badge--{{ row.decision_slug }}">{{ row.decision }}</span>
+{% if row.call_qualifier %}
+<p class="cell-note">{{ row.call_qualifier }}</p>
+{% endif %}
+</td>
+<td data-label="Score">
+<span class="score-cell">
+<span class="score-value">{{ row.score }}<span class="muted">/100</span></span>
+<span class="bar"><span class="bar__fill bar__fill--{{ row.decision_slug }} bar__w{{ row.score_width }}"></span></span>
+</span>
+</td>
+<td data-label="Confidence">{{ row.confidence }}</td>
+<td data-label="Thesis fit" class="secondary">{{ row.thesis_fit }}</td>
+<td data-label="Product, buyer and workflow">
+<p class="clamp-2">{{ row.product }}</p>
+<p class="cell-note clamp-1"><span class="meta-label">Buyer</span> {{ row.buyer }}</p>
+<p class="cell-note clamp-1"><span class="meta-label">Workflow</span> {{ row.workflow }}</p>
+</td>
+<td data-label="Context" class="secondary">
+<p class="cell-note">Max {{ row.maximum_achievable }}/100</p>
+{% if not row.meeting_reachable %}
+<p class="cell-note">Meeting out of reach</p>
+{% endif %}
+{% for flag in row.flags %}
+<span class="chip chip--flag">{{ flag }}</span>
+{% endfor %}
+</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</section>
+
+{% if view.missing %}
+<section aria-labelledby="missing-heading">
+<div class="panel panel--note">
+<h2 id="missing-heading">Candidates without a company page</h2>
+<ul class="rule-list">
+{% for line in view.missing %}
+<li>{{ line }}</li>
+{% endfor %}
+</ul>
+</div>
+</section>
+{% endif %}
+
+<section aria-labelledby="reference-heading">
+<h2 id="reference-heading" class="section-label">Reference</h2>
+<details class="disclosure">
+<summary>Investment thesis, rubric and thresholds <span class="chip">{{ view.thesis_version }}</span></summary>
+<div class="disclosure__body">
+<blockquote class="thesis-quote">{{ view.thesis }}</blockquote>
+<ul class="rule-list small">
+{% for line in view.thresholds %}
+<li>{{ line }}</li>
+{% endfor %}
+</ul>
+<p class="small muted note-inline">{{ view.evidence_note }}</p>
+</div>
+</details>
+{% if view.no_meeting %}
+<details class="disclosure">
+<summary>Why no company was recommended for a meeting</summary>
+<div class="disclosure__body">
+<ul class="rule-list">
+{% for line in view.no_meeting %}
+<li>{{ line }}</li>
+{% endfor %}
+</ul>
+</div>
+</details>
+{% endif %}
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script type="application/json" id="vcs-filter-data">{{ view.filter_data }}</script>
+<script src="assets/app.js" defer></script>
+{% endblock %}

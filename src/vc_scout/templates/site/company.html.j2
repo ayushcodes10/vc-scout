@@ -1,0 +1,266 @@
+{% extends "site/_base.html.j2" %}
+{#-
+  One company page. Prints cleanly: the stylesheet's print block drops the navigation and
+  the footer and keeps the citations, so a partner can take a memo into a meeting.
+-#}
+{% set stylesheet = "../assets/styles.css" %}
+{% block title %}{{ view.name }} — {{ view.decision }} — VC Scout{% endblock %}
+
+{% block chrome %}
+<nav class="crumbs" aria-label="Company navigation">
+<div class="wrap crumbs crumbs--inner">
+<a href="../index.html">&#8592; Portfolio</a>
+{% if view.previous and view.previous.href %}
+<a href="{{ view.previous.href }}" rel="prev">&#8592; {{ view.previous.label }}</a>
+{% endif %}
+{% if view.next and view.next.href %}
+<a href="{{ view.next.href }}" rel="next">{{ view.next.label }} &#8594;</a>
+{% endif %}
+<span class="crumbs__spacer"></span>
+<a href="{{ view.memo_href }}">Markdown memo</a>
+{% if view.website %}
+<a class="external" href="{{ view.website }}" rel="noopener noreferrer nofollow">Company website</a>
+{% else %}
+<span class="muted">No website recorded</span>
+{% endif %}
+</div>
+</nav>
+{% endblock %}
+
+{% block main %}
+<article>
+<header class="panel decision-head">
+<div>
+<p class="rank small muted">Workflow position {{ view.rank }}</p>
+<h1>{{ view.name }}</h1>
+<p class="call-sentence">{{ view.call_sentence }}</p>
+<p class="small muted">{{ view.reading }}</p>
+</div>
+<div class="decision-figures">
+<div>
+<p class="figure__label">Call</p>
+<p class="figure__value"><span class="badge badge--{{ view.decision_slug }}">{{ view.decision }}</span></p>
+</div>
+<div>
+<p class="figure__label">Score</p>
+<p class="figure__value">{{ view.score }}<span class="muted">/{{ view.maximum_score }}</span></p>
+<span class="bar"><span class="bar__fill bar__fill--{{ view.decision_slug }} bar__w{{ view.score_width }}"></span></span>
+</div>
+<div>
+<p class="figure__label">Confidence</p>
+<p class="figure__value">{{ view.confidence }}</p>
+<p class="small muted">{{ view.confidence_score }} of 1.00</p>
+</div>
+<div>
+<p class="figure__label">Thesis fit</p>
+<p class="figure__value figure__value--text">{{ view.thesis_fit }}</p>
+</div>
+</div>
+</header>
+
+{% if view.disagreement %}
+<p class="panel panel--note small">{{ view.disagreement }}</p>
+{% endif %}
+
+<section aria-labelledby="snapshot-heading">
+<h2 id="snapshot-heading">Snapshot</h2>
+<dl class="facts panel">
+{% for fact in view.snapshot %}
+<div>
+<dt>{{ fact.label }}</dt>
+<dd>{{ fact.value }}</dd>
+{% if fact.detail %}<dd class="small muted">{{ fact.detail }}</dd>{% endif %}
+</div>
+{% endfor %}
+</dl>
+</section>
+
+<section aria-labelledby="why-heading">
+<h2 id="why-heading">Why this call</h2>
+<div class="panel">
+<ul class="stack">
+{% for line in view.rationale %}
+<li>{{ line }}</li>
+{% endfor %}
+{% for line in view.guardrails %}
+<li><strong>Guardrail applied.</strong> {{ line }}</li>
+{% endfor %}
+<li><strong>Thesis fit.</strong> {{ view.thesis_line.text }}
+{% if view.thesis_line.markers %}<span class="markers">{% for marker in view.thesis_line.markers %}[{{ marker }}] {% endfor %}</span>{% endif %}
+{% if view.thesis_line.open_question %}<span class="open-question">Open question</span>{% endif %}
+</li>
+</ul>
+</div>
+</section>
+
+<section aria-labelledby="scorecard-heading">
+<h2 id="scorecard-heading">Scorecard</h2>
+<div class="table-wrap">
+<table>
+<caption>An assessment status caps what a dimension may score, so a low number can mean thin evidence rather than a weak answer.</caption>
+<thead>
+<tr>
+<th scope="col">Dimension</th>
+<th scope="col">Score</th>
+<th scope="col">Assessment</th>
+<th scope="col">Rationale</th>
+<th scope="col">Evidence</th>
+</tr>
+</thead>
+<tbody>
+{% for row in view.score_rows %}
+<tr>
+<th scope="row" data-label="Dimension">{{ row.dimension }}</th>
+<td data-label="Score">
+<span class="score-cell">
+<span class="score-value">{{ row.score }}<span class="muted">/{{ row.maximum }}</span></span>
+<span class="bar"><span class="bar__fill bar__fill--{{ view.decision_slug }} bar__w{{ row.width }}"></span></span>
+</span>
+</td>
+<td data-label="Assessment">{{ row.status }}</td>
+<td data-label="Rationale">{{ row.rationale }}</td>
+<td data-label="Evidence">
+{% if row.markers %}<span class="markers">{% for marker in row.markers %}[{{ marker }}] {% endfor %}</span>
+{% elif row.open_question %}<span class="open-question">Open question</span>
+{% else %}<span class="muted">&#8212;</span>{% endif %}
+</td>
+</tr>
+{% endfor %}
+<tr>
+<th scope="row" data-label="Dimension">Total</th>
+<td data-label="Score"><span class="score-value">{{ view.score }}<span class="muted">/{{ view.maximum_score }}</span></span></td>
+<td data-label="Assessment">Maximum achievable {{ view.maximum_achievable }}/{{ view.maximum_score }}</td>
+<td data-label="Rationale">{% if view.meeting_reachable %}The take-a-meeting band was reachable on this evidence.{% else %}The take-a-meeting band was out of reach on this evidence.{% endif %}</td>
+<td data-label="Evidence"><span class="muted">&#8212;</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section aria-labelledby="view-heading">
+<h2 id="view-heading">Investment view</h2>
+<div class="panel">
+{% for title, statement in view.sections %}
+<h3>{{ title }}</h3>
+<p>{{ statement.text }}
+{% if statement.markers %}<span class="markers">{% for marker in statement.markers %}[{{ marker }}] {% endfor %}</span>{% endif %}
+{% if statement.open_question %}<span class="open-question">Open question</span>{% endif %}
+</p>
+{% endfor %}
+{% if view.competitive %}
+<h3>Competition</h3>
+<ul class="stack">
+{% for statement in view.competitive %}
+<li>{{ statement.text }} <span class="markers">{% for marker in statement.markers %}[{{ marker }}] {% endfor %}</span></li>
+{% endfor %}
+</ul>
+{% endif %}
+</div>
+</section>
+
+<section aria-labelledby="risks-heading">
+<h2 id="risks-heading">Risks, conflicts and open questions</h2>
+<div class="panel">
+{% if view.risks %}
+<h3>Risks</h3>
+<ul class="stack">
+{% for statement in view.risks %}
+<li>{{ statement.text }}
+{% if statement.markers %}<span class="markers">{% for marker in statement.markers %}[{{ marker }}] {% endfor %}</span>{% endif %}
+{% if statement.open_question %}<span class="open-question">Open question</span>{% endif %}
+</li>
+{% endfor %}
+</ul>
+{% endif %}
+{% if view.conflicts %}
+<h3>Sources that disagree</h3>
+<ul class="stack">
+{% for statement in view.conflicts %}
+<li>{{ statement.text }} <span class="markers">{% for marker in statement.markers %}[{{ marker }}] {% endfor %}</span></li>
+{% endfor %}
+</ul>
+{% endif %}
+{% if view.open_questions %}
+<h3>Open questions</h3>
+<p class="small muted">These are gaps in the research. None of them is a finding about the company.</p>
+<ul class="stack">
+{% for statement in view.open_questions %}
+<li>{{ statement.text }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+{% if view.identity_warnings %}
+<h3>Identity warnings</h3>
+<p class="small muted">The supplied sources may not describe this company. This caps the recommendation until the candidate&#39;s identity is confirmed.</p>
+<ul class="stack">
+{% for warning in view.identity_warnings %}
+<li>{{ warning }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+{% if view.analysis_warnings %}
+<h3>Analysis warnings</h3>
+<ul class="stack">
+{% for warning in view.analysis_warnings %}
+<li>{{ warning }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+{% if not view.risks and not view.conflicts and not view.open_questions and not view.identity_warnings and not view.analysis_warnings %}
+<p class="muted">Nothing was recorded here.</p>
+{% endif %}
+</div>
+</section>
+
+<section aria-labelledby="changers-heading">
+<h2 id="changers-heading">What would change our mind</h2>
+<div class="panel">
+<ul class="stack">
+{% for changer in view.changers %}
+<li>{{ changer }}</li>
+{% endfor %}
+</ul>
+</div>
+</section>
+
+<section aria-labelledby="sources-heading">
+<h2 id="sources-heading">Sources</h2>
+<div class="panel">
+{% if view.sources %}
+<ul class="sources">
+{% for source in view.sources %}
+<li>
+<span class="source-marker">[{{ source.marker }}]</span>{{ source.title }}
+<p class="cell-note">{{ source.role }} · observed {{ source.observed }}</p>
+<p class="source-url">
+{% if source.url %}<a class="external" href="{{ source.url }}" rel="noopener noreferrer nofollow">{{ source.url_text }}</a>
+{% else %}{{ source.url_text }}{% endif %}
+</p>
+{% if source.excerpt %}<p class="excerpt">{{ source.excerpt }}</p>{% endif %}
+</li>
+{% endfor %}
+</ul>
+{% else %}
+<p class="muted">No source is cited above: no evidence claim could be extracted for this company.</p>
+{% endif %}
+</div>
+</section>
+
+<section aria-labelledby="provenance-heading">
+<h2 id="provenance-heading">How this page was produced</h2>
+<div class="panel panel--note">
+<dl class="facts">
+{% for fact in view.provenance %}
+<div>
+<dt>{{ fact.label }}</dt>
+<dd>{{ fact.value }}</dd>
+{% if fact.detail %}<dd class="small muted">{{ fact.detail }}</dd>{% endif %}
+</div>
+{% endfor %}
+</dl>
+<p class="small">The analysis model proposed per-dimension scores, narrative and an advisory suggestion. The total was recomputed in Python, the research confidence was computed from coverage facts, and the recommendation above was made by the deterministic policy from those two plus its guardrails. The model&#39;s suggestion is recorded and compared, never obeyed.</p>
+</div>
+</section>
+</article>
+{% endblock %}

@@ -866,3 +866,57 @@ misreading this pipeline is built to prevent.
 
 **Cost.** A reader who only scans the table still sees watch above pass. The prose above it,
 the per-row primary rationale, and the memos themselves all carry the distinction.
+
+## D45 - The site is generated HTML with no build step and no dependency
+
+**Decision.** The static site is Jinja2 templates plus one hand-written stylesheet and one
+small vanilla script, copied verbatim beside the generated pages. No bundler, no framework,
+no CDN, no web font, no remote image. Every page declares
+`default-src 'none'` with `style-src`/`script-src`/`img-src`/`font-src` limited to `'self'`.
+
+**Why.** The deliverable is a directory a partner can open with
+`python3 -m http.server` and read offline, and that a reviewer can diff. A build step makes
+the artifact depend on a toolchain that has to be installed and pinned; a CDN makes it
+depend on a network and on somebody else's uptime. Both trade away the property that
+matters most here - that the site is a rendering of committed artifacts and nothing else.
+
+**Cost.** The CSS and JS are maintained by hand, and there is no component model to reuse
+across the two templates. At this size that is cheaper than the alternative; a third page
+type would be the point to reconsider.
+
+## D46 - Escaping runs the opposite way from the memo renderer
+
+**Decision.** The site's Jinja environment has autoescape **on** and its view models carry
+raw text, which is the mirror image of the Markdown renderer, where escaping is applied in
+Python before a value reaches a template. Exactly one value in the site is marked safe: the
+JSON block the filters read, escaped by a dedicated function that turns `<`, `>`, `&`,
+U+2028 and U+2029 into unicode escapes.
+
+**Why.** HTML has a correct, context-aware escaper built into Jinja, and Markdown does not.
+Using each format's own mechanism is safer than inventing a second one. The JSON block is
+the exception because HTML escaping there would be *wrong*, not merely unnecessary: a
+browser does not decode entities inside a `<script>` element, so an autoescaped `&quot;`
+would corrupt the data rather than protect it. What is marked safe is a serialiser's output
+under a stricter escape, not an untrusted string.
+
+**Cost.** Two renderers now hold two opposite escaping rules, which is a real thing to
+remember. Both are stated at the top of their modules, and the shared view-independent
+pieces - the call wording, the guardrail labels, the source index, the ranking comparator -
+are imported rather than duplicated, so the parts that could silently disagree do not.
+
+## D47 - JavaScript may reorder the page; it may never write it
+
+**Decision.** Every row is server-rendered. The script toggles the `hidden` attribute,
+reorders existing nodes, and writes exactly one string - the result count - through
+`textContent`. No markup-assigning property appears in the file, and there is no `fetch`,
+no `XMLHttpRequest` and no dynamic import. The page is complete and correct with JavaScript
+disabled; the filter form is hidden until the script enables it.
+
+**Why.** Any renderer that builds markup from data has to escape correctly on every path,
+forever, and one missed path is an injection. Not building markup at all removes the class
+of bug rather than defending against it. It also means the filters degrade to a full,
+correct table instead of an empty one.
+
+**Cost.** Filtering is limited to what can be expressed by hiding and reordering rows that
+already exist - no server-side paging, no infinite scroll, no result highlighting. For
+fifteen candidates, and for a static artifact, that is the whole requirement.

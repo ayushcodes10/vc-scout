@@ -42,6 +42,8 @@ from vc_scout.stages.recommend import (
     run_recommend,
 )
 from vc_scout.stages.source import DEFAULT_WINDOW_DAYS, SourceOutcome, run_source
+from vc_scout.stages.ui import MissingArtifactError as UiArtifactError
+from vc_scout.stages.ui import UiStageOutcome, run_build_ui
 from vc_scout.store import RunStore, StoreError
 
 __all__ = ["app", "main"]
@@ -530,14 +532,81 @@ def _report_recommend(outcome: RecommendStageOutcome) -> None:
     )
 
 
-@app.command("build-site")
-def build_site(run_id: str = _RUN_ID, runs_root: Path = _RUNS_ROOT) -> None:
-    """Generate the static read-only research site."""
-    _placeholder(
-        "build-site",
-        "stage 8",
-        "generate site/index.html, site/companies/ and site/methodology.html",
+@app.command("build-ui")
+def build_ui(
+    run_id: str = _RUN_ID,
+    runs_root: Path = _RUNS_ROOT,
+    force: bool = typer.Option(False, "--force", help="Replace an existing generated site."),
+) -> None:
+    """Generate the static read-only research site from the stored artifacts.
+
+    Offline and deterministic: no provider is selected, no API key is required, and the
+    same artifacts always produce the same bytes.
+    """
+    try:
+        store = RunStore(run_id, runs_root=runs_root)
+    except StoreError as exc:
+        typer.secho(f"vc-scout build-ui: {exc}", fg=typer.colors.RED, err=True)
+        raise typer.Exit(code=1) from exc
+
+    if store.site_dir.exists() and any(store.site_dir.iterdir()) and not force:
+        typer.secho(
+            f"vc-scout build-ui: run {run_id!r} already has a generated site at "
+            f"{store.relative(store.site_dir)}/. Pass --force to rebuild it.",
+            fg=typer.colors.YELLOW,
+            err=True,
+        )
+        raise typer.Exit(code=1)
+
+    try:
+        outcome = run_build_ui(store=store, force=force)
+    except UiArtifactError as exc:
+        typer.secho(f"vc-scout build-ui: {exc}", fg=typer.colors.RED, err=True)
+        raise typer.Exit(code=1) from exc
+    _report_build_ui(outcome, store)
+
+
+def _report_build_ui(outcome: UiStageOutcome, store: RunStore) -> None:
+    """Print what was generated and how to look at it."""
+    report = outcome.report
+
+    typer.echo(
+        f"Generated {report.pages_written} page(s) for {report.candidate_count} candidate(s) "
+        f"using template {report.template_version}."
     )
+    typer.echo(
+        "Recommendations: "
+        + "  ".join(f"{name}={total}" for name, total in sorted(report.recommendations.items()))
+        + "   confidence: "
+        + "  ".join(f"{name}={total}" for name, total in sorted(report.confidence_counts.items()))
+        + f"   sources cited: {report.sources_cited}"
+    )
+    for path in report.removed_paths:
+        typer.secho(f"  - removed stale page {path}", fg=typer.colors.YELLOW)
+    for warning in report.warnings:
+        typer.secho(f"  ! {warning}", fg=typer.colors.YELLOW)
+    for failure in report.failures:
+        typer.secho(f"  ! {failure.company_id}: {failure.reason}", fg=typer.colors.YELLOW, err=True)
+
+    typer.echo("")
+    typer.echo(f"Wrote {outcome.site_dir}/ ({outcome.index_path}, {outcome.report_path})")
+    typer.echo("Preview it with:")
+    typer.echo(f"  python3 -m http.server 8000 --directory {store.site_dir}")
+
+
+@app.command("build-site")
+def build_site(
+    run_id: str = _RUN_ID,
+    runs_root: Path = _RUNS_ROOT,
+    force: bool = typer.Option(False, "--force", help="Replace an existing generated site."),
+) -> None:
+    """Deprecated alias for `build-ui`, kept because the delivered CLI declared it."""
+    typer.secho(
+        "vc-scout build-site: this command is now `vc-scout build-ui`. Running it.",
+        fg=typer.colors.YELLOW,
+        err=True,
+    )
+    build_ui(run_id=run_id, runs_root=runs_root, force=force)
 
 
 @app.command()

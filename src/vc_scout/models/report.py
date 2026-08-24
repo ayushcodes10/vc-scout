@@ -12,6 +12,7 @@ from datetime import datetime
 
 from pydantic import Field
 
+from vc_scout import SCHEMA_VERSION
 from vc_scout.models.base import ArtifactModel, RecordModel
 from vc_scout.models.enums import (
     ConfidenceLevel,
@@ -33,6 +34,8 @@ __all__ = [
     "EvidenceReport",
     "MemoFailure",
     "MemoOutcome",
+    "PageFailureRecord",
+    "UiReport",
     "RecommendationReport",
     "SourceReport",
     "VariantResult",
@@ -316,3 +319,35 @@ class RecommendationReport(ArtifactModel):
     memos: list[MemoOutcome] = Field(default_factory=list)
     warnings: list[str] = Field(default_factory=list)
     failures: list[MemoFailure] = Field(default_factory=list)
+
+
+class PageFailureRecord(RecordModel):
+    """One page the site generator could not produce, and why."""
+
+    company_id: str
+    reason: str
+    detail: str | None = None
+
+
+class UiReport(RecordModel):
+    """The persisted ``site/ui-report.json`` document.
+
+    Carries no timestamp, for the same reason the memos do not: the site is a rendering of
+    artifacts, so an identical run must produce identical bytes and a rebuild is a check
+    rather than a new result.
+    """
+
+    schema_version: str = SCHEMA_VERSION
+    run_id: str
+    template_version: str
+    candidate_count: int = Field(ge=0)
+    pages_written: int = Field(ge=0)
+    company_pages: list[str] = Field(default_factory=list)
+    output_paths: list[str] = Field(default_factory=list)
+    removed_paths: list[str] = Field(default_factory=list)
+    recommendations: dict[str, int] = Field(default_factory=dict)
+    confidence_counts: dict[str, int] = Field(default_factory=dict)
+    component_status_counts: dict[str, int] = Field(default_factory=dict)
+    sources_cited: int = Field(default=0, ge=0)
+    warnings: list[str] = Field(default_factory=list)
+    failures: list[PageFailureRecord] = Field(default_factory=list)
