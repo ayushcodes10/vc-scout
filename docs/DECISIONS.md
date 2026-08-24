@@ -920,3 +920,42 @@ correct table instead of an empty one.
 **Cost.** Filtering is limited to what can be expressed by hiding and reordering rows that
 already exist - no server-side paging, no infinite scroll, no result highlighting. For
 fifteen candidates, and for a static artifact, that is the whole requirement.
+
+## D48 - Provenance caps what a source can conclude, not whether it can conclude
+
+**Decision.** `assessment_status` answers how directly the cited evidence supports the
+conclusion being drawn. A company-authored source may support `supported` for concrete
+facts about what the product is - what it does, who buys it, what it integrates with, what
+it costs, who works there. It may not support a *result*, an *advantage* or a *scale* -
+savings, ROI, moats, adoption, customer counts, revenue, market size - without another
+voice. The line is a versioned table, `assessment_v1`, rendered into the user message
+beside the rubric.
+
+**Why.** The audited live run graded zero of 105 component slots `supported`, which capped
+every candidate's achievable total at 63 and made the take-a-meeting band unreachable
+before any judgement about the companies. `analysis_v1` had read "company-authored" as
+"cannot support anything", collapsing four separate mechanisms - assessment status,
+verification status, research confidence and the recommendation guardrails - into one blunt
+prohibition. Each of those already does its own job; using provenance a second time inside
+the status was double-counting.
+
+**Cost.** The correction can overshoot: a model told that company sources may carry
+concrete facts might treat fluent marketing copy as concrete. Two mechanical rules catch
+the decidable half - a result figure on the company's word alone, and a rating over a
+recorded conflict with no caveat. The rest is prompt guidance and a reader. Offline, the
+change lifts the run's highest achievable total from 63 to 100 but its highest *estimated*
+total only to 63, which is the point: it removes a structural block without inflating a
+score.
+
+## D49 - The policy table is rendered, not restated
+
+**Decision.** The source-to-assessment table lives in `assessment_policy.py` and is
+rendered into the user message at request time. The prompt file explains how to read it and
+gives worked examples; it does not repeat the table.
+
+**Why.** The same rule is enforced by the validator and instructed by the prompt. Two
+copies of a rule drift, and the drift is silent - the model would be told one thing while
+being judged by another, and the only symptom would be unexplained retries.
+
+**Cost.** The prompt file is no longer self-contained: reading it does not show the whole
+instruction. The recorded request artifact does, which is what an auditor actually reads.

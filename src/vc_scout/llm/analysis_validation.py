@@ -29,6 +29,7 @@ from typing import Any
 
 from pydantic import ValidationError
 
+from vc_scout.assessment_policy import GUARDED_QUANTITATIVE, quantitative_outcome_terms
 from vc_scout.llm.analysis_schema import SECTION_KINDS, SINGULAR_KINDS, SectionKind
 from vc_scout.models.analysis import (
     MAX_RECOMMENDATION_CHANGERS,
@@ -47,14 +48,16 @@ from vc_scout.models.enums import (
     Recommendation,
     RubricDimension,
     ThesisFit,
+    VerificationStatus,
 )
-from vc_scout.models.evidence import EvidenceDossier
+from vc_scout.models.evidence import EvidenceClaim, EvidenceDossier
 from vc_scout.rubric import RUBRIC, max_points_for
 from vc_scout.util.ids import unknown_id_for
 
 __all__ = [
     "AnalysisValidationError",
     "DossierIndex",
+    "SupportEvidence",
     "ValidatedAnalysis",
     "find_unsupported_market_numbers",
     "index_dossier",
@@ -111,6 +114,75 @@ def index_dossier(dossier: EvidenceDossier) -> DossierIndex:
         ),
         corpus=corpus,
     )
+
+
+@dataclass(frozen=True, slots=True)
+class SupportEvidence:
+    """What a dossier can say about a `supported` rating, mechanically.
+
+    Three facts, and nothing that requires reading meaning: whether every cited claim is
+    the company talking about itself, whether any cited claim draws on a source the dossier
+    records a conflict over, and which claims were cited at all.
+    """
+
+    company_authored_only: bool
+    touches_conflict: bool
+    cited: tuple[EvidenceClaim, ...]
+
+
+def support_evidence(dossier: EvidenceDossier, claim_ids: list[str]) -> SupportEvidence:
+    """Assemble the provenance facts behind one component's citations."""
+    index = dossier.claim_index()
+    cited = tuple(index[claim_id] for claim_id in claim_ids if claim_id in index)
+    conflicted = {source_id for conflict in dossier.conflicts for source_id in conflict.source_ids}
+    return SupportEvidence(
+        company_authored_only=bool(cited)
+        and all(claim.verification_status is VerificationStatus.COMPANY_CLAIM for claim in cited),
+        touches_conflict=any(
+            source_id in conflicted for claim in cited for source_id in claim.source_ids
+        ),
+        cited=cited,
+    )
+
+
+def check_supported_rating(
+    dimension: RubricDimension,
+    *,
+    rationale: str,
+    caveats: list[str],
+    evidence: SupportEvidence,
+) -> list[str]:
+    """Reasons this dimension may not be rated `supported`, if any.
+
+    Only the mechanically decidable ones. Whether a rationale genuinely follows from its
+    evidence is a judgement, and a keyword heuristic that pretended otherwise would
+    manufacture more false confidence than it prevented. What *is* decidable:
+
+    1. a performance, scale or market figure asserted with nothing but the company's own
+       word behind it - the claim is evidence of the claim, not of the result;
+    2. a rating that rests on a source the dossier records a conflict over, with no caveat
+       acknowledging it.
+
+    Note what is deliberately absent: provenance alone never blocks `supported`, and the
+    ``independently_supported`` label never grants it. Both were the point of the change.
+    """
+    reasons: list[str] = []
+    if (
+        dimension in GUARDED_QUANTITATIVE
+        and evidence.company_authored_only
+        and (offenders := quantitative_outcome_terms(rationale))
+    ):
+        reasons.append(
+            f"asserts {' and '.join(offenders)} on company-authored evidence alone; "
+            "a self-reported result is at most partially_supported until another "
+            "voice corroborates it"
+        )
+    if evidence.touches_conflict and not caveats:
+        reasons.append(
+            "rests on a source the dossier records a conflict over; keep it contradicted, "
+            "or record the conflict in caveats"
+        )
+    return reasons
 
 
 class AnalysisValidationError(Exception):
@@ -258,7 +330,9 @@ def _section(
         return None
 
 
-def _score_components(raw: Any, index: DossierIndex, errors: list[str]) -> list[ScoreComponent]:
+def _score_components(
+    raw: Any, index: DossierIndex, dossier: EvidenceDossier, errors: list[str]
+) -> list[ScoreComponent]:
     if not isinstance(raw, list):
         errors.append("score_components: must be an array")
         return []
@@ -329,6 +403,22 @@ def _score_components(raw: Any, index: DossierIndex, errors: list[str]) -> list[
             errors=errors,
         )
         caveats = [c.strip() for c in item.get("caveats", []) if isinstance(c, str) and c.strip()]
+
+        if status is AssessmentStatus.SUPPORTED and (
+            reasons := check_supported_rating(
+                dimension,
+                rationale=rationale,
+                caveats=caveats,
+                evidence=support_evidence(dossier, claims),
+            )
+        ):
+            errors.append(
+                f"{label}: {dimension.value} may not be supported - "
+                + "; ".join(reasons)
+                + ". Lower the assessment status, or cite evidence that carries it."
+            )
+            continue
+
         try:
             components.append(
                 ScoreComponent(
@@ -378,7 +468,7 @@ def validate_analysis(payload: dict[str, Any], *, dossier: EvidenceDossier) -> V
     prod = one(SectionKind.PRODUCT)
     market = one(SectionKind.MARKET)
     thesis = _thesis(payload.get("thesis_fit"), grouped[SectionKind.THESIS], index, errors)
-    components = _score_components(payload.get("score_components"), index, errors)
+    components = _score_components(payload.get("score_components"), index, dossier, errors)
     risks = _risks(grouped[SectionKind.RISK], index, errors)
     competitive = _competitive(grouped[SectionKind.COMPETITOR], index, errors)
     corroborated = _corroborated(grouped[SectionKind.CORROBORATED], index, errors)

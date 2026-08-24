@@ -22,6 +22,7 @@ from collections import Counter
 from dataclasses import dataclass, field
 from datetime import UTC, datetime
 
+from vc_scout.assessment_policy import render_policy
 from vc_scout.llm.analysis_schema import (
     ANALYSIS_SCHEMA,
     ANALYSIS_SCHEMA_VERSION,
@@ -55,7 +56,7 @@ __all__ = [
     "run_analysis",
 ]
 
-ANALYSIS_PROMPT_VERSION = "analysis_v1"
+ANALYSIS_PROMPT_VERSION = "analysis_v2"
 
 #: One retry, never more.
 MAX_ATTEMPTS = 2
@@ -111,6 +112,10 @@ def render_dossier_payload(
             f"- {spec.key.value}: {spec.max_points} - {spec.title}. {spec.description}"
             for spec in RUBRIC
         ),
+        "",
+        # Rendered from the code table rather than written into the prompt file, so the
+        # rule the model is given and the rule the validator enforces cannot drift.
+        *render_policy(),
         "",
         "## Candidate",
         f"company_id: {candidate.company_id}",
