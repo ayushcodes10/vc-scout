@@ -46,6 +46,7 @@ def bundle_with(
     *,
     verification: VerificationStatus = VerificationStatus.COMPANY_CLAIM,
     conflicted: bool = False,
+    category: EvidenceCategory = EvidenceCategory.PRODUCT,
 ):  # type: ignore[no-untyped-def]
     """A dossier whose first claim is exactly the one a case is about."""
     base = dossier(claims=1, conflicts=0, unknowns=3)
@@ -53,7 +54,7 @@ def bundle_with(
     other = base.sources[1]
     claim = EvidenceClaim.create(
         company_id=COMPANY,
-        category=EvidenceCategory.PRODUCT,
+        category=category,
         claim=claim_text,
         excerpts=[
             SupportingExcerpt(source_id=home.source_id, excerpt=claim_text[:200]),
@@ -361,31 +362,38 @@ def test_corroboration_is_what_lifts_the_quantitative_cap_not_the_label_alone() 
 
 
 def test_a_rating_over_a_recorded_conflict_may_not_be_supported_silently() -> None:
-    bundle = bundle_with("The homepage says hundreds of teams use the product.", conflicted=True)
+    """A traction conflict blocks a supported *traction* rating that cites the dispute."""
+    bundle = bundle_with(
+        "The homepage says hundreds of teams use the product.",
+        category=EvidenceCategory.TRACTION,
+        conflicted=True,
+    )
     message = rejects(
         bundle,
-        RubricDimension.DISTRIBUTION,
+        RubricDimension.TRACTION,
         status="supported",
         rationale="Adoption across many teams is documented on the company's own pages.",
-        score=10,
+        score=6,
     )
-    assert "records a conflict" in message
+    assert "conflict" in message
     assert "contradicted" in message
 
 
 def test_the_same_conflicted_rating_is_accepted_once_it_is_caveated() -> None:
-    bundle = bundle_with("The homepage says hundreds of teams use the product.", conflicted=True)
+    bundle = bundle_with(
+        "The homepage says hundreds of teams use the product.",
+        category=EvidenceCategory.TRACTION,
+        conflicted=True,
+    )
     result = rate(
         bundle,
-        RubricDimension.DISTRIBUTION,
+        RubricDimension.TRACTION,
         status="supported",
-        rationale="Self-serve availability is documented on the company's own pages.",
+        rationale="Self-reported adoption, recorded as stated.",
         caveats=["The dossier records a conflict about customer scale across two pages."],
-        score=10,
+        score=6,
     )
-    component = next(
-        c for c in result.score_components if c.component is RubricDimension.DISTRIBUTION
-    )
+    component = next(c for c in result.score_components if c.component is RubricDimension.TRACTION)
     assert component.caveats
 
 

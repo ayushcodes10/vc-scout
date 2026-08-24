@@ -44,6 +44,7 @@ from vc_scout.models.analysis import (
 )
 from vc_scout.models.enums import (
     AssessmentStatus,
+    EvidenceCategory,
     LlmErrorCategory,
     Recommendation,
     RubricDimension,
@@ -58,6 +59,7 @@ __all__ = [
     "AnalysisValidationError",
     "DossierIndex",
     "SupportEvidence",
+    "disputed_claim_ids",
     "ValidatedAnalysis",
     "find_unsupported_market_numbers",
     "index_dossier",
@@ -120,28 +122,74 @@ def index_dossier(dossier: EvidenceDossier) -> DossierIndex:
 class SupportEvidence:
     """What a dossier can say about a `supported` rating, mechanically.
 
-    Three facts, and nothing that requires reading meaning: whether every cited claim is
-    the company talking about itself, whether any cited claim draws on a source the dossier
-    records a conflict over, and which claims were cited at all.
+    Facts only, and nothing that requires reading meaning: whether every cited claim is the
+    company talking about itself, which of the cited claims are ones a recorded conflict
+    actually disputes, and which rubric dimensions a conflict's subject implicates.
     """
 
     company_authored_only: bool
-    touches_conflict: bool
     cited: tuple[EvidenceClaim, ...]
+    #: Cited claims that a recorded conflict disputes. Being *on a page* a conflict mentions
+    #: is not enough - the claim has to be one of the ones in dispute.
+    conflicting_claim_ids: tuple[str, ...] = ()
+    #: Dimensions whose own subject is what a conflict is about.
+    conflicted_dimensions: frozenset[RubricDimension] = frozenset()
+
+
+#: Which rubric dimension a conflict of a given evidence category is *about*.
+#:
+#: Only the two identities are listed, and that is the whole point of this table. A
+#: conflict over customer counts is a traction conflict, so it bears on the traction
+#: dimension whatever the component happens to cite. It does not bear on the product wedge,
+#: the team or distribution merely because the disputed sentence sat on the same page as an
+#: undisputed one.
+#:
+#: The other categories - product, market, risk - are left out deliberately. A conflict
+#: there blocks a `supported` rating through claim overlap instead: if the component cites
+#: the disputed claim it is caught precisely, and if it does not, it is resting on evidence
+#: nothing in the dossier disputes.
+_CONFLICT_DIMENSIONS: dict[EvidenceCategory, frozenset[RubricDimension]] = {
+    EvidenceCategory.TRACTION: frozenset({RubricDimension.TRACTION}),
+    EvidenceCategory.TEAM: frozenset({RubricDimension.TEAM}),
+}
+
+
+def disputed_claim_ids(dossier: EvidenceDossier) -> frozenset[str]:
+    """The claims a recorded conflict actually disputes.
+
+    A conflict names a category and the sources that disagree. The claims in dispute are
+    the ones that carry that category *and* draw on one of those sources - which is the
+    mechanical way to say "this claim states the fact under dispute" without reading the
+    text of either.
+
+    A conflict over customer counts therefore marks the two customer-count claims, and not
+    the product description that happens to live on the same homepage.
+    """
+    disputed: set[str] = set()
+    for conflict in dossier.conflicts:
+        sources = set(conflict.source_ids)
+        for claim in dossier.claims:
+            if claim.category is conflict.category and sources & set(claim.source_ids):
+                disputed.add(claim.claim_id)
+    return frozenset(disputed)
 
 
 def support_evidence(dossier: EvidenceDossier, claim_ids: list[str]) -> SupportEvidence:
     """Assemble the provenance facts behind one component's citations."""
     index = dossier.claim_index()
     cited = tuple(index[claim_id] for claim_id in claim_ids if claim_id in index)
-    conflicted = {source_id for conflict in dossier.conflicts for source_id in conflict.source_ids}
+    disputed = disputed_claim_ids(dossier)
+    implicated: set[RubricDimension] = set()
+    for conflict in dossier.conflicts:
+        implicated |= _CONFLICT_DIMENSIONS.get(conflict.category, frozenset())
     return SupportEvidence(
         company_authored_only=bool(cited)
         and all(claim.verification_status is VerificationStatus.COMPANY_CLAIM for claim in cited),
-        touches_conflict=any(
-            source_id in conflicted for claim in cited for source_id in claim.source_ids
-        ),
         cited=cited,
+        conflicting_claim_ids=tuple(
+            claim.claim_id for claim in cited if claim.claim_id in disputed
+        ),
+        conflicted_dimensions=frozenset(implicated),
     )
 
 
@@ -160,8 +208,14 @@ def check_supported_rating(
 
     1. a performance, scale or market figure asserted with nothing but the company's own
        word behind it - the claim is evidence of the claim, not of the result;
-    2. a rating that rests on a source the dossier records a conflict over, with no caveat
-       acknowledging it.
+    2. a rating over a dispute the dossier records - either because the component cites a
+       claim the conflict disputes, or because the conflict is about the very thing this
+       dimension assesses - with no caveat acknowledging it.
+
+    Note what this second rule is *not*: sharing a source with a conflict. A company
+    homepage carrying both a product description and a disputed customer count would
+    otherwise contaminate every dimension citing that page, which is a false positive that
+    blocked a legitimate `supported` product wedge on a live run.
 
     Note what is deliberately absent: provenance alone never blocks `supported`, and the
     ``independently_supported`` label never grants it. Both were the point of the change.
@@ -177,11 +231,20 @@ def check_supported_rating(
             "a self-reported result is at most partially_supported until another "
             "voice corroborates it"
         )
-    if evidence.touches_conflict and not caveats:
-        reasons.append(
-            "rests on a source the dossier records a conflict over; keep it contradicted, "
-            "or record the conflict in caveats"
-        )
+    if not caveats:
+        if evidence.conflicting_claim_ids:
+            reasons.append(
+                "cites "
+                + ", ".join(evidence.conflicting_claim_ids)
+                + ", which the dossier records a conflict over; keep it contradicted, or "
+                "record the conflict in this component's caveats"
+            )
+        elif dimension in evidence.conflicted_dimensions:
+            reasons.append(
+                f"the dossier records a conflict about {dimension.value}, which is what "
+                "this dimension assesses; keep it contradicted, or record the conflict in "
+                "this component's caveats"
+            )
     return reasons
 
 

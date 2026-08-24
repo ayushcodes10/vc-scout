@@ -1044,3 +1044,27 @@ show.
 **Cost.** Recovery is a second code path over the analysis stage, and a report can now
 carry attempts from more than one round - which is more to read, and is the point: the
 report still shows what the first pass actually cost.
+
+## D54 - A conflict blocks the dimension it is about, not every dimension near it
+
+**Decision.** A recorded conflict refuses a `supported` rating in two cases: the component
+cites a claim the conflict *disputes*, or the conflict is about the very subject that
+dimension assesses (a traction conflict and the traction dimension). Sharing a source with
+a conflict is not one of them. A claim is "disputed" when it carries the conflict's own
+category and draws on one of the sources the conflict names - mechanical, and no keyword
+matching.
+
+**Why.** Ticketdesk's homepage carries a product description *and* a customer-count boast;
+its features page carries both again with a different count. The dossier correctly recorded
+a traction conflict over those two pages. The validator then refused a `supported` product
+wedge - twice, across two attempts - because the wedge cited product claims that happened to
+live on the same pages. The conflict says nothing about what the product does.
+
+Source-level blocking treats a page as one indivisible assertion. Pages are not that: a
+single marketing page routinely states a dozen unrelated things, and one of them being
+disputed says nothing about the others.
+
+**Cost.** The rule now depends on the evidence stage categorising a conflict correctly. A
+conflict filed under the wrong category would block the wrong dimension, or none. That is
+the right place for the dependency - the extraction stage is where the dispute is actually
+read - and the category is visible in the dossier, the memo and the site.
