@@ -32,3 +32,8 @@ logs/
 # read memos and browse the site without an API key or network access.
 outputs/runs/*
 !outputs/runs/demo/
+
+# The reviewer-ready export is meant to be committed: it is what someone reads before
+# running anything. `vc-scout export-demo` writes it, and it contains no raw page bodies,
+# no credentials and no absolute paths.
+!demo/

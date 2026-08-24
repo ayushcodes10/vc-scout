@@ -1,0 +1,142 @@
+{
+  "candidate_count": 9,
+  "candidates_with_meeting_unreachable": 0,
+  "component_status_counts": {
+    "not_assessable": 27,
+    "supported": 36
+  },
+  "confidence_counts": {
+    "medium": 9
+  },
+  "failures": [],
+  "guardrail_counts": {},
+  "memos": [
+    {
+      "company_id": "agentkit-core",
+      "decision": "pass",
+      "maximum_achievable_score": 82,
+      "memo_path": "memos/agentkit-core.md",
+      "sources_referenced": 4,
+      "total_score": 41,
+      "unresolved_sources": 0,
+      "warnings": [],
+      "words": 584
+    },
+    {
+      "company_id": "claimlane",
+      "decision": "pass",
+      "maximum_achievable_score": 82,
+      "memo_path": "memos/claimlane.md",
+      "sources_referenced": 4,
+      "total_score": 41,
+      "unresolved_sources": 0,
+      "warnings": [],
+      "words": 587
+    },
+    {
+      "company_id": "deskloop",
+      "decision": "pass",
+      "maximum_achievable_score": 82,
+      "memo_path": "memos/deskloop.md",
+      "sources_referenced": 4,
+      "total_score": 41,
+      "unresolved_sources": 0,
+      "warnings": [],
+      "words": 579
+    },
+    {
+      "company_id": "frontdeskly",
+      "decision": "pass",
+      "maximum_achievable_score": 82,
+      "memo_path": "memos/frontdeskly.md",
+      "sources_referenced": 4,
+      "total_score": 41,
+      "unresolved_sources": 0,
+      "warnings": [],
+      "words": 585
+    },
+    {
+      "company_id": "ledgerpilot",
+      "decision": "pass",
+      "maximum_achievable_score": 82,
+      "memo_path": "memos/ledgerpilot.md",
+      "sources_referenced": 4,
+      "total_score": 41,
+      "unresolved_sources": 0,
+      "warnings": [],
+      "words": 583
+    },
+    {
+      "company_id": "permitpath",
+      "decision": "pass",
+      "maximum_achievable_score": 82,
+      "memo_path": "memos/permitpath.md",
+      "sources_referenced": 4,
+      "total_score": 41,
+      "unresolved_sources": 0,
+      "warnings": [],
+      "words": 581
+    },
+    {
+      "company_id": "quotecrate",
+      "decision": "pass",
+      "maximum_achievable_score": 82,
+      "memo_path": "memos/quotecrate.md",
+      "sources_referenced": 4,
+      "total_score": 41,
+      "unresolved_sources": 0,
+      "warnings": [],
+      "words": 579
+    },
+    {
+      "company_id": "rotamesh",
+      "decision": "pass",
+      "maximum_achievable_score": 82,
+      "memo_path": "memos/rotamesh.md",
+      "sources_referenced": 4,
+      "total_score": 41,
+      "unresolved_sources": 0,
+      "warnings": [],
+      "words": 583
+    },
+    {
+      "company_id": "stockmind",
+      "decision": "pass",
+      "maximum_achievable_score": 82,
+      "memo_path": "memos/stockmind.md",
+      "sources_referenced": 4,
+      "total_score": 41,
+      "unresolved_sources": 0,
+      "warnings": [],
+      "words": 579
+    }
+  ],
+  "memos_written": 9,
+  "missing_source_metadata": 0,
+  "model_policy_disagreements": 9,
+  "ordered_company_ids": [
+    "agentkit-core",
+    "claimlane",
+    "deskloop",
+    "frontdeskly",
+    "ledgerpilot",
+    "permitpath",
+    "quotecrate",
+    "rotamesh",
+    "stockmind"
+  ],
+  "ranking_path": "ranking.md",
+  "recommendations": {
+    "pass": 9
+  },
+  "referenced_sources": 36,
+  "run_id": "offline-demo",
+  "schema_version": "1.1.0",
+  "score_range": {
+    "max": 41,
+    "min": 41
+  },
+  "template_version": "memo_v1",
+  "upstream_fingerprint": "fp1:02e435e7b8a650cd",
+  "warnings": []
+}

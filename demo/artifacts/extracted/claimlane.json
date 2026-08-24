@@ -1,0 +1,110 @@
+{
+  "company_id": "claimlane",
+  "failures": [],
+  "generated_at": "2026-08-24T13:53:35.953075Z",
+  "pages": [
+    {
+      "body_truncated": false,
+      "char_count": 398,
+      "company_id": "claimlane",
+      "content_sha256": "7c296843794a0ca5db0686a1320aab1541abc7ca15066e4a22de7fb0ead00aef",
+      "content_type": "text/html",
+      "extractor": "bs4-main-content/1",
+      "fetched_at": "2026-08-24T13:53:35.979576Z",
+      "final_url": "https://claimlane.example/",
+      "headings": [
+        "What Claimlane does",
+        "The workflow"
+      ],
+      "http_status": 200,
+      "role": "homepage",
+      "source_id": "src-756cdb331d0e",
+      "text": "What Claimlane does\nClaimlane takes first-notice-of-loss emails and attachments from small insurance brokers, extracts the structured claim, checks it against the policy schedule and opens the claim in Applied Epic.\nThe workflow\nClaimlane works inside the first notice of loss intake that the business already runs every week. Nothing about the existing process has to change first.\nPricing · About",
+      "title": "Claimlane - Insurance claim intake automation for brokers",
+      "truncated": false,
+      "url": "https://claimlane.example/"
+    },
+    {
+      "body_truncated": false,
+      "char_count": 147,
+      "company_id": "claimlane",
+      "content_sha256": "4609917ca700822fbb02c95890ab2d655a54d72df98f997227702278d95bc5fb",
+      "content_type": "text/html",
+      "extractor": "bs4-main-content/1",
+      "fetched_at": "2026-08-24T13:53:35.980758Z",
+      "final_url": "https://claimlane.example/pricing",
+      "headings": [
+        "Pricing"
+      ],
+      "http_status": 200,
+      "role": "pricing",
+      "source_id": "src-e0d71de4dda4",
+      "text": "Pricing\nClaimlane is priced per claim processed, starting at 3 dollars per claim.\nEvery plan includes a 14 day trial. No card is required to start.",
+      "title": "Pricing - Claimlane",
+      "truncated": false,
+      "url": "https://claimlane.example/pricing"
+    },
+    {
+      "body_truncated": false,
+      "char_count": 243,
+      "company_id": "claimlane",
+      "content_sha256": "c3eb1e23c0557e667ade057196ef2965f34e273ecb6a3691e8c526993e8a4d21",
+      "content_type": "text/html",
+      "extractor": "bs4-main-content/1",
+      "fetched_at": "2026-08-24T13:53:35.981526Z",
+      "final_url": "https://claimlane.example/about",
+      "headings": [
+        "About Claimlane"
+      ],
+      "http_status": 200,
+      "role": "about",
+      "source_id": "src-faa13972d8f5",
+      "text": "About Claimlane\nClaimlane was founded in 2025 by two engineers who previously built internal tools for operations teams. The team is four people.\nClaimlane is self-serve: a business can sign up and connect its systems without talking to sales.",
+      "title": "About Claimlane",
+      "truncated": false,
+      "url": "https://claimlane.example/about"
+    }
+  ],
+  "schema_version": "1.1.0",
+  "sources": [
+    {
+      "domain": "claimlane.example",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T13:53:35.979576Z",
+      "source_id": "src-756cdb331d0e",
+      "title": "Claimlane - Insurance claim intake automation for brokers",
+      "url": "https://claimlane.example/"
+    },
+    {
+      "domain": "claimlane.example",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T13:53:35.980758Z",
+      "source_id": "src-e0d71de4dda4",
+      "title": "Pricing - Claimlane",
+      "url": "https://claimlane.example/pricing"
+    },
+    {
+      "domain": "claimlane.example",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T13:53:35.981526Z",
+      "source_id": "src-faa13972d8f5",
+      "title": "About Claimlane",
+      "url": "https://claimlane.example/about"
+    }
+  ],
+  "status": "success",
+  "total_chars": 788,
+  "warnings": []
+}

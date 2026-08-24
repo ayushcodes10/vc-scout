@@ -1,0 +1,166 @@
+{
+  "claims": [
+    {
+      "category": "traction",
+      "caveat": null,
+      "claim": "The supplied (not a website page) states: The thread has 9 comments on Hacker News.",
+      "claim_id": "ev-70f10b70c982",
+      "company_id": "quotecrate",
+      "excerpts": [
+        {
+          "excerpt": "The thread has 9 comments on Hacker News.",
+          "source_id": "src-47f50e2d6b90"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-47f50e2d6b90"
+      ],
+      "verification_status": "community_signal"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "The supplied homepage states: What Quotecrate does Quotecrate turns a builder's request for pricing into a priced quotation using the supplier's own rate card and stock position, then emails it back within minutes.",
+      "claim_id": "ev-776a19787b5f",
+      "company_id": "quotecrate",
+      "excerpts": [
+        {
+          "excerpt": "What Quotecrate does Quotecrate turns a builder's request for pricing into a priced quotation using the supplier's own rate card and stock position, then emails it back within minutes.",
+          "source_id": "src-cd0e987175f1"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-cd0e987175f1"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "The supplied pricing states: Pricing Quotecrate is 249 dollars per branch per month.",
+      "claim_id": "ev-daa965e1e5e8",
+      "company_id": "quotecrate",
+      "excerpts": [
+        {
+          "excerpt": "Pricing Quotecrate is 249 dollars per branch per month.",
+          "source_id": "src-c53aa4da483e"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-c53aa4da483e"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "team",
+      "caveat": null,
+      "claim": "The supplied about states: About Quotecrate Quotecrate was founded in 2025 by two engineers who previously built internal tools for operations teams.",
+      "claim_id": "ev-509cabaf57ba",
+      "company_id": "quotecrate",
+      "excerpts": [
+        {
+          "excerpt": "About Quotecrate Quotecrate was founded in 2025 by two engineers who previously built internal tools for operations teams.",
+          "source_id": "src-a0a98ca99308"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-a0a98ca99308"
+      ],
+      "verification_status": "company_claim"
+    }
+  ],
+  "company_id": "quotecrate",
+  "confidence_inputs": {
+    "claims_by_category": {
+      "product": 2,
+      "team": 1,
+      "traction": 1
+    },
+    "claims_by_verification": {
+      "community_signal": 1,
+      "company_claim": 3
+    },
+    "claims_total": 4,
+    "conflicts": 0,
+    "distinct_domains": 2,
+    "inferred_claims": 0,
+    "unknowns": 1
+  },
+  "conflicts": [],
+  "generated_at": "2026-08-24T13:53:35.983713Z",
+  "model": "fake-model-1",
+  "prompt_version": "evidence_v1",
+  "provider": "fake",
+  "schema_version": "1.1.0",
+  "source_coverage": {
+    "hn_sources": 1,
+    "pages_supplied": 3,
+    "sources_cited": 4,
+    "sources_supplied": 4,
+    "supplied_chars": 1116,
+    "truncated_pages": [],
+    "website_available": true
+  },
+  "sources": [
+    {
+      "domain": "news.ycombinator.com",
+      "hn_num_comments": 9,
+      "hn_object_id": "9689242",
+      "hn_points": 29,
+      "kind": "hn_story",
+      "published_at": "2026-07-21T00:00:00Z",
+      "retrieved_at": "2026-08-24T13:53:35.943072Z",
+      "source_id": "src-47f50e2d6b90",
+      "title": "Show HN: Quotecrate - Quote generation agent for building suppliers",
+      "url": "https://news.ycombinator.com/item?id=9689242"
+    },
+    {
+      "domain": "quotecrate.example",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T13:53:35.970490Z",
+      "source_id": "src-cd0e987175f1",
+      "title": "Quotecrate - Quote generation agent for building suppliers",
+      "url": "https://quotecrate.example/"
+    },
+    {
+      "domain": "quotecrate.example",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T13:53:35.971913Z",
+      "source_id": "src-c53aa4da483e",
+      "title": "Pricing - Quotecrate",
+      "url": "https://quotecrate.example/pricing"
+    },
+    {
+      "domain": "quotecrate.example",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T13:53:35.972644Z",
+      "source_id": "src-a0a98ca99308",
+      "title": "About Quotecrate",
+      "url": "https://quotecrate.example/about"
+    }
+  ],
+  "unknowns": [
+    {
+      "category": "market",
+      "question": "How large is the buyer population this product addresses?",
+      "reason": null
+    }
+  ],
+  "warnings": []
+}

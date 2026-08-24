@@ -1,0 +1,121 @@
+{
+  "candidates": [
+    {
+      "chars_extracted": 908,
+      "company_id": "deskloop",
+      "failures": [],
+      "pages_attempted": 3,
+      "pages_deduplicated": 0,
+      "pages_extracted": 3,
+      "status": "success",
+      "website": "https://deskloop.example/"
+    },
+    {
+      "chars_extracted": 754,
+      "company_id": "stockmind",
+      "failures": [],
+      "pages_attempted": 3,
+      "pages_deduplicated": 0,
+      "pages_extracted": 3,
+      "status": "success",
+      "website": "https://stockmind-io.example/"
+    },
+    {
+      "chars_extracted": 877,
+      "company_id": "ledgerpilot",
+      "failures": [],
+      "pages_attempted": 3,
+      "pages_deduplicated": 0,
+      "pages_extracted": 3,
+      "status": "success",
+      "website": "https://ledgerpilot.example/"
+    },
+    {
+      "chars_extracted": 816,
+      "company_id": "permitpath",
+      "failures": [],
+      "pages_attempted": 3,
+      "pages_deduplicated": 0,
+      "pages_extracted": 3,
+      "status": "success",
+      "website": "https://permitpath.example/"
+    },
+    {
+      "chars_extracted": 796,
+      "company_id": "rotamesh",
+      "failures": [],
+      "pages_attempted": 3,
+      "pages_deduplicated": 0,
+      "pages_extracted": 3,
+      "status": "success",
+      "website": "https://rotamesh.example/"
+    },
+    {
+      "chars_extracted": 729,
+      "company_id": "quotecrate",
+      "failures": [],
+      "pages_attempted": 3,
+      "pages_deduplicated": 0,
+      "pages_extracted": 3,
+      "status": "success",
+      "website": "https://quotecrate.example/"
+    },
+    {
+      "chars_extracted": 808,
+      "company_id": "frontdeskly",
+      "failures": [],
+      "pages_attempted": 3,
+      "pages_deduplicated": 0,
+      "pages_extracted": 3,
+      "status": "success",
+      "website": "https://frontdeskly.example/"
+    },
+    {
+      "chars_extracted": 801,
+      "company_id": "agentkit-core",
+      "failures": [],
+      "pages_attempted": 3,
+      "pages_deduplicated": 0,
+      "pages_extracted": 3,
+      "status": "success",
+      "website": "https://agentkitcore.example/"
+    },
+    {
+      "chars_extracted": 788,
+      "company_id": "claimlane",
+      "failures": [],
+      "pages_attempted": 3,
+      "pages_deduplicated": 0,
+      "pages_extracted": 3,
+      "status": "success",
+      "website": "https://claimlane.example/"
+    }
+  ],
+  "counts": {
+    "candidates": 9,
+    "chars_extracted": 7277,
+    "failed": 0,
+    "pages_attempted": 27,
+    "pages_deduplicated": 0,
+    "pages_extracted": 27,
+    "pages_failed": 0,
+    "partial": 0,
+    "success": 9
+  },
+  "failures_by_category": {},
+  "generated_at": "2026-08-24T13:53:35.953075Z",
+  "limits": {
+    "connect_timeout_seconds": 5,
+    "max_extra_pages": 3,
+    "max_redirects": 3,
+    "max_response_bytes": 2000000,
+    "max_text_chars": 20000,
+    "read_timeout_seconds": 15
+  },
+  "notes": [
+    "Candidates with no readable pages are retained. Enrichment records what could be read; it does not judge whether a company is worth reading."
+  ],
+  "run_id": "offline-demo",
+  "schema_version": "1.1.0",
+  "upstream_fingerprint": "fp1:efe1485e2bb03fb4"
+}

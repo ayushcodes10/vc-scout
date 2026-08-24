@@ -24,6 +24,7 @@ from vc_scout.models.report import (
     EnrichmentReport,
     EvidenceReport,
     RecommendationReport,
+    RunReport,
     SourceReport,
 )
 from vc_scout.util.ids import digest, is_valid_company_id, is_valid_run_id, slugify
@@ -151,6 +152,9 @@ class RunStore:
 
     def recommendation_report_path(self) -> Path:
         return self.resolve("recommendation-report.json")
+
+    def run_report_path(self) -> Path:
+        return self.resolve("run-report.json")
 
     def manifest_path(self) -> Path:
         return self.resolve("run-manifest.json")
@@ -366,6 +370,12 @@ class RunStore:
 
     def read_recommendation_report(self) -> RecommendationReport:
         return self.read_model(self.recommendation_report_path(), RecommendationReport)
+
+    def write_run_report(self, report: RunReport) -> Path:
+        return self.write_model(self.run_report_path(), report)
+
+    def read_run_report(self) -> RunReport:
+        return self.read_model(self.run_report_path(), RunReport)
 
     def write_manifest(self, manifest: RunManifest) -> Path:
         return self.write_model(self.manifest_path(), manifest)

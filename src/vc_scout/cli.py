@@ -8,7 +8,9 @@ owns them, and exit non-zero. They do not pretend to have done work.
 from __future__ import annotations
 
 import os
+from collections.abc import Callable
 from pathlib import Path
+from typing import NoReturn
 
 import typer
 
@@ -22,11 +24,15 @@ from vc_scout.config import (
     DEFAULT_TIMEOUT_SECONDS,
     MODEL_ENV,
 )
+from vc_scout.demo_fixtures import DEMO_QUERY, demo_client, demo_fetcher
 from vc_scout.llm.anthropic import AnthropicProvider
 from vc_scout.llm.fake import FakeProvider
 from vc_scout.llm.provider import LlmProvider, ModelConfig
+from vc_scout.models.enums import PipelineStage, PipelineStageStatus
+from vc_scout.models.report import StageRun
 from vc_scout.net.hn import HnAlgoliaClient, HnError
 from vc_scout.net.http import SafeFetcher
+from vc_scout.pipeline import STAGE_ORDER, PipelineAbortedError, PipelineResult, Plan, run_pipeline
 from vc_scout.policy import POLICY_VERSION, TAKE_A_MEETING_AT, WATCH_AT
 from vc_scout.rubric import RUBRIC, RUBRIC_VERSION
 from vc_scout.stages.analysis import (
@@ -36,6 +42,7 @@ from vc_scout.stages.analysis import (
 )
 from vc_scout.stages.enrich import MAX_EXTRA_PAGES, EnrichOutcome, run_enrich
 from vc_scout.stages.evidence import EvidenceStageOutcome, run_evidence
+from vc_scout.stages.export import ExportError, export_demo
 from vc_scout.stages.recommend import (
     MissingArtifactError,
     RecommendStageOutcome,
@@ -58,12 +65,34 @@ app = typer.Typer(
 _RUN_ID = typer.Option(
     ..., "--run-id", help="Identifier for this run, used as the output directory."
 )
+#: Module-level singletons: Typer reads a call's result as the default, and ruff refuses a
+#: call inside an argument default. Defining them once here satisfies both.
+_FORCE_STAGE = typer.Option(
+    [],
+    "--force-stage",
+    help=(
+        "Rerun this stage and everything downstream of it. Repeatable. One of: "
+        + ", ".join(stage.value for stage in PipelineStage)
+    ),
+)
+_DESTINATION = typer.Option(
+    Path("demo"), "--destination", help="Directory to write. Intended to be committed."
+)
+
 _RUNS_ROOT = typer.Option(
     Path("outputs/runs"), "--runs-root", help="Root directory holding all runs."
 )
 
 #: Exit code used by a command that is declared but not yet implemented.
 NOT_IMPLEMENTED_EXIT = 2
+
+#: The `run` command shortlists inside this band. Fewer than ten is not a pipeline worth
+#: reviewing; more than twenty is a cost decision that should be made deliberately.
+MIN_RUN_LIMIT = 10
+MAX_RUN_LIMIT = 20
+
+#: The offline demo's shortlist size, bounded by the committed fixture corpus.
+DEMO_LIMIT = 10
 
 
 def _placeholder(command: str, stage: str, does: str) -> None:
@@ -623,29 +652,319 @@ def serve(
 @app.command()
 def run(
     query: str = typer.Option(..., "--query", help="Thesis-relevant search query."),
-    limit: int = typer.Option(DEFAULT_LIMIT, "--limit", min=1, help="Maximum candidates to keep."),
     run_id: str = _RUN_ID,
+    limit: int = typer.Option(
+        DEFAULT_LIMIT,
+        "--limit",
+        min=MIN_RUN_LIMIT,
+        max=MAX_RUN_LIMIT,
+        help=f"Candidates to shortlist, {MIN_RUN_LIMIT}-{MAX_RUN_LIMIT}.",
+    ),
+    provider: str = typer.Option(
+        "anthropic", "--provider", help="LLM provider: anthropic, or fake for offline replay."
+    ),
+    model: str | None = typer.Option(
+        None, "--model", help=f"Model identifier. Defaults to ${MODEL_ENV} or {DEFAULT_MODEL}."
+    ),
+    effort: str = typer.Option(DEFAULT_EFFORT, "--effort", help="Model effort level."),
     runs_root: Path = _RUNS_ROOT,
-    provider: str | None = typer.Option(None, "--provider", help="LLM provider to use."),
-    model: str | None = typer.Option(None, "--model", help="Model identifier."),
-    strict: bool = typer.Option(False, "--strict", help="Fail the run if any company fails."),
+    max_extra_pages: int = typer.Option(
+        MAX_EXTRA_PAGES,
+        "--max-extra-pages",
+        min=0,
+        max=MAX_EXTRA_PAGES,
+        help="Internal pages fetched per company, beyond the homepage.",
+    ),
+    max_tokens: int = typer.Option(DEFAULT_MAX_TOKENS, "--max-tokens", min=1024),
+    force_stage: list[str] = _FORCE_STAGE,
+    stop_after: str | None = typer.Option(
+        None,
+        "--stop-after",
+        help="Stop once this stage finishes. Useful for debugging and walkthroughs.",
+    ),
 ) -> None:
-    """Run the full pipeline end to end."""
-    _placeholder("run", "stage 9", "execute source through build-site in one pass")
+    """Run the whole pipeline: source, enrich, extract evidence, analyse, write up, publish.
+
+    Stages whose artifacts are already current are resumed rather than repeated, so running
+    this twice on a finished run makes no network and no provider call. Pass --force-stage
+    to rebuild one stage and everything derived from it.
+    """
+    plan, store = _plan_run(
+        query=query,
+        limit=limit,
+        run_id=run_id,
+        runs_root=runs_root,
+        provider=provider,
+        model=model,
+        effort=effort,
+        max_extra_pages=max_extra_pages,
+        max_tokens=max_tokens,
+        force_stage=force_stage,
+        stop_after=stop_after,
+    )
+    llm = _provider_for(provider, command="run")
+    _execute_pipeline(store=store, plan=plan, llm=llm)
 
 
 @app.command()
 def demo(
-    run_id: str = typer.Option("demo", "--run-id", help="Run directory to write."),
+    run_id: str = typer.Option("offline-demo", "--run-id", help="Run directory to write."),
     runs_root: Path = _RUNS_ROOT,
-    force: bool = typer.Option(False, "--force", help="Overwrite an existing demo run."),
+    force: bool = typer.Option(False, "--force", help="Rebuild every stage from scratch."),
 ) -> None:
-    """Reproduce the committed demo run offline, with no API key."""
-    _placeholder(
-        "demo",
-        "stage 9",
-        "rebuild the committed demo run from fixtures using the deterministic fake provider",
+    """Run the whole pipeline offline against committed fixtures, with no API key.
+
+    Same orchestrator, same stages, same HTTP and Algolia clients - only the transport
+    underneath them serves committed files instead of the internet, and the provider is the
+    deterministic fake. It produces real memos and a real site.
+    """
+    try:
+        store = RunStore(run_id, runs_root=runs_root)
+    except StoreError as exc:
+        typer.secho(f"vc-scout demo: {exc}", fg=typer.colors.RED, err=True)
+        raise typer.Exit(code=1) from exc
+
+    plan = Plan(
+        query=DEMO_QUERY,
+        limit=DEMO_LIMIT,
+        provider_name="fake",
+        model="fake-model-1",
+        effort=DEFAULT_EFFORT,
+        forced=frozenset(STAGE_ORDER) if force else frozenset(),
     )
+    typer.echo(
+        f"Offline demo: {DEMO_LIMIT} candidates from committed fixtures, deterministic "
+        "provider, no credential required."
+    )
+    _execute_pipeline(
+        store=store,
+        plan=plan,
+        llm=FakeProvider(),
+        client_factory=demo_client,
+        fetcher_factory=demo_fetcher,
+    )
+
+
+@app.command("export-demo")
+def export_demo_command(
+    run_id: str = _RUN_ID,
+    runs_root: Path = _RUNS_ROOT,
+    destination: Path = _DESTINATION,
+    force: bool = typer.Option(False, "--force", help="Replace an existing export."),
+) -> None:
+    """Assemble a reviewer-ready demo/ directory from a completed run.
+
+    Offline. Copies the site, the memos, the ranking, every validated artifact and one AI
+    call end to end. No raw HTML, no credentials, no absolute paths - the export refuses to
+    write rather than ship any of them.
+    """
+    try:
+        store = RunStore(run_id, runs_root=runs_root)
+    except StoreError as exc:
+        typer.secho(f"vc-scout export-demo: {exc}", fg=typer.colors.RED, err=True)
+        raise typer.Exit(code=1) from exc
+
+    try:
+        result = export_demo(store=store, destination=destination, force=force)
+    except (ExportError, StoreError) as exc:
+        typer.secho(f"vc-scout export-demo: {exc}", fg=typer.colors.RED, err=True)
+        raise typer.Exit(code=1) from exc
+
+    typer.echo(
+        f"Exported {len(result.files)} file(s) to {destination}/: "
+        f"{result.memos} memo(s), {result.company_pages} company page(s)."
+    )
+    if result.trace_company_id:
+        typer.echo(f"AI trace: {result.trace_company_id} (highest-ranked successful analysis).")
+    else:
+        typer.secho(
+            "No AI trace: this run produced no successful analysis.",
+            fg=typer.colors.YELLOW,
+        )
+    typer.echo("")
+    typer.echo("Preview it with:")
+    typer.echo(f"  python3 -m http.server 8000 --directory {destination}/site")
+
+
+def _plan_run(
+    *,
+    query: str,
+    limit: int,
+    run_id: str,
+    runs_root: Path,
+    provider: str,
+    model: str | None,
+    effort: str,
+    max_extra_pages: int,
+    max_tokens: int,
+    force_stage: list[str],
+    stop_after: str | None,
+) -> tuple[Plan, RunStore]:
+    """Validate every option before a run directory is created or a call is made.
+
+    A mistyped stage name must not cost a directory, let alone a request.
+    """
+    if not query.strip():
+        _fail("run", "--query must not be empty.")
+    try:
+        forced = frozenset(PipelineStage(name) for name in force_stage)
+    except ValueError:
+        _fail(
+            "run",
+            f"--force-stage must be one of: {', '.join(s.value for s in STAGE_ORDER)}.",
+        )
+    try:
+        stop = PipelineStage(stop_after) if stop_after else None
+    except ValueError:
+        _fail(
+            "run",
+            f"--stop-after must be one of: {', '.join(s.value for s in STAGE_ORDER)}.",
+        )
+    if provider not in ("anthropic", "fake"):
+        _fail("run", f"unknown provider {provider!r}. Use anthropic or fake.")
+
+    try:
+        store = RunStore(run_id, runs_root=runs_root)
+    except StoreError as exc:
+        _fail("run", str(exc))
+
+    plan = Plan(
+        query=query.strip(),
+        limit=limit,
+        provider_name=provider,
+        model=model or os.environ.get(MODEL_ENV) or DEFAULT_MODEL,
+        effort=effort,
+        max_extra_pages=max_extra_pages,
+        max_tokens=max_tokens,
+        forced=forced,
+        stop_after=stop,
+    )
+    return plan, store
+
+
+def _fail(command: str, message: str) -> NoReturn:
+    typer.secho(f"vc-scout {command}: {message}", fg=typer.colors.RED, err=True)
+    raise typer.Exit(code=1)
+
+
+def _provider_for(provider: str, *, command: str) -> LlmProvider:
+    """Build the provider, refusing early if it cannot possibly work."""
+    if provider == "fake":
+        return FakeProvider()
+    llm = AnthropicProvider()
+    if not llm.api_key_present:
+        _fail(
+            command,
+            f"{API_KEY_ENV} is not set. Export it, or use --provider fake for an offline run.",
+        )
+    return llm
+
+
+def _execute_pipeline(
+    *,
+    store: RunStore,
+    plan: Plan,
+    llm: LlmProvider,
+    client_factory: Callable[[], HnAlgoliaClient] = HnAlgoliaClient,
+    fetcher_factory: Callable[[], SafeFetcher] = SafeFetcher,
+) -> None:
+    """Run the pipeline, printing a stage timeline as it goes."""
+    typer.echo(
+        f"Run {store.run_id!r}: {plan.provider_name}/{plan.model} (effort {plan.effort}), "
+        f"limit {plan.limit}."
+    )
+    if plan.forced:
+        typer.echo(
+            "Forcing: "
+            + ", ".join(sorted(stage.value for stage in plan.forced))
+            + " (and everything downstream)"
+        )
+    typer.echo("")
+
+    def announce(record: StageRun) -> None:
+        mark = {
+            PipelineStageStatus.COMPLETED: "ok  ",
+            PipelineStageStatus.PARTIAL: "part",
+            PipelineStageStatus.FAILED: "FAIL",
+            PipelineStageStatus.SKIPPED: "skip",
+        }[record.status]
+        colour = (
+            typer.colors.RED
+            if record.status is PipelineStageStatus.FAILED
+            else typer.colors.YELLOW
+            if record.status is PipelineStageStatus.PARTIAL
+            else None
+        )
+        how = "resumed" if record.resumed else "ran    "
+        typer.secho(
+            f"  [{mark}] {record.stage.value:<10} {how} {record.duration_seconds:>6.2f}s  "
+            f"{record.decision or ''}",
+            fg=colour,
+        )
+
+    try:
+        result = run_pipeline(
+            store=store,
+            plan=plan,
+            provider=llm,
+            client_factory=client_factory,
+            fetcher_factory=fetcher_factory,
+            on_stage=announce,
+        )
+    except PipelineAbortedError as exc:
+        typer.secho(f"\nvc-scout run: {exc}", fg=typer.colors.RED, err=True)
+        raise typer.Exit(code=1) from exc
+
+    _report_run(result, store)
+
+
+def _report_run(result: PipelineResult, store: RunStore) -> None:
+    """The final handoff: what exists now, and how to look at it."""
+    report = result.report
+    typer.echo("")
+    typer.echo(
+        f"Finished in {report.duration_seconds:.1f}s. "
+        f"{report.candidate_flow.get('source_out', 0)} candidate(s) discovered."
+    )
+    if report.recommendations:
+        typer.echo(
+            "Recommendations: "
+            + "  ".join(f"{name}={total}" for name, total in sorted(report.recommendations.items()))
+        )
+    if report.token_usage:
+        typer.echo(
+            "Tokens: "
+            + "  ".join(f"{name}={total:,}" for name, total in sorted(report.token_usage.items()))
+        )
+    for name, total in sorted(report.failure_summary.items()):
+        typer.secho(f"  {total:>3}  {name}", fg=typer.colors.YELLOW)
+
+    typer.echo("")
+    if report.ranking_path:
+        typer.echo(f"Ranking: {store.relative(store.ranking_path())}")
+    if report.memos_path:
+        typer.echo(f"Memos:   {store.relative(store.resolve('memos'))}/")
+    if report.site_path:
+        typer.echo(f"Site:    {store.relative(store.site_dir)}/")
+    typer.echo(f"Report:  {result.report_path}")
+
+    if report.site_path:
+        typer.echo("")
+        typer.echo("Preview the site with:")
+        typer.echo(f"  python3 -m http.server 8000 --directory {store.site_dir}")
+
+    failed = [
+        record.stage.value
+        for record in report.stages
+        if record.status is PipelineStageStatus.FAILED
+    ]
+    if failed:
+        typer.secho(
+            f"\nStage(s) that failed: {', '.join(failed)}. See {result.report_path}.",
+            fg=typer.colors.RED,
+            err=True,
+        )
+        raise typer.Exit(code=2)
 
 
 @app.command()

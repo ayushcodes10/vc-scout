@@ -1,0 +1,110 @@
+{
+  "company_id": "deskloop",
+  "failures": [],
+  "generated_at": "2026-08-24T13:53:35.953075Z",
+  "pages": [
+    {
+      "body_truncated": false,
+      "char_count": 432,
+      "company_id": "deskloop",
+      "content_sha256": "04a12fd41174789987280466cc3df6f7bc24229596f3537634bc8821b23b10c5",
+      "content_type": "text/html",
+      "extractor": "bs4-main-content/1",
+      "fetched_at": "2026-08-24T13:53:35.953598Z",
+      "final_url": "https://deskloop.example/",
+      "headings": [
+        "What Deskloop does",
+        "The workflow"
+      ],
+      "http_status": 200,
+      "role": "homepage",
+      "source_id": "src-6e6b7e6b094d",
+      "text": "What Deskloop does\nDeskloop answers customer support tickets for small businesses. It reads a company's existing help centre and past tickets, drafts a reply, and closes the ticket when the answer is already documented. It installs on Zendesk and Front.\nThe workflow\nDeskloop works inside the customer support tickets that the business already runs every week. Nothing about the existing process has to change first.\nPricing · About",
+      "title": "Deskloop - AI support agent that resolves SMB helpdesk tickets",
+      "truncated": false,
+      "url": "https://deskloop.example/"
+    },
+    {
+      "body_truncated": false,
+      "char_count": 236,
+      "company_id": "deskloop",
+      "content_sha256": "725f2dc327934c7b7710e9f8c085713bd3a58109985b91d029374602158bd3b3",
+      "content_type": "text/html",
+      "extractor": "bs4-main-content/1",
+      "fetched_at": "2026-08-24T13:53:35.954909Z",
+      "final_url": "https://deskloop.example/pricing",
+      "headings": [
+        "Pricing"
+      ],
+      "http_status": 200,
+      "role": "pricing",
+      "source_id": "src-9626c5827eea",
+      "text": "Pricing\nDeskloop is billed per resolved ticket. The Starter plan is 49 dollars a month for 500 resolutions and the Team plan is 199 dollars a month for 3,000 resolutions.\nEvery plan includes a 14 day trial. No card is required to start.",
+      "title": "Pricing - Deskloop",
+      "truncated": false,
+      "url": "https://deskloop.example/pricing"
+    },
+    {
+      "body_truncated": false,
+      "char_count": 240,
+      "company_id": "deskloop",
+      "content_sha256": "a9cd0e786e59ef9a49dea641e2e1e1a264fe379b55210f8d4f027ea0a4576b51",
+      "content_type": "text/html",
+      "extractor": "bs4-main-content/1",
+      "fetched_at": "2026-08-24T13:53:35.955623Z",
+      "final_url": "https://deskloop.example/about",
+      "headings": [
+        "About Deskloop"
+      ],
+      "http_status": 200,
+      "role": "about",
+      "source_id": "src-5188b2e571c7",
+      "text": "About Deskloop\nDeskloop was founded in 2025 by two engineers who previously built internal tools for operations teams. The team is four people.\nDeskloop is self-serve: a business can sign up and connect its systems without talking to sales.",
+      "title": "About Deskloop",
+      "truncated": false,
+      "url": "https://deskloop.example/about"
+    }
+  ],
+  "schema_version": "1.1.0",
+  "sources": [
+    {
+      "domain": "deskloop.example",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T13:53:35.955623Z",
+      "source_id": "src-5188b2e571c7",
+      "title": "About Deskloop",
+      "url": "https://deskloop.example/about"
+    },
+    {
+      "domain": "deskloop.example",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T13:53:35.953598Z",
+      "source_id": "src-6e6b7e6b094d",
+      "title": "Deskloop - AI support agent that resolves SMB helpdesk tickets",
+      "url": "https://deskloop.example/"
+    },
+    {
+      "domain": "deskloop.example",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T13:53:35.954909Z",
+      "source_id": "src-9626c5827eea",
+      "title": "Pricing - Deskloop",
+      "url": "https://deskloop.example/pricing"
+    }
+  ],
+  "status": "success",
+  "total_chars": 908,
+  "warnings": []
+}

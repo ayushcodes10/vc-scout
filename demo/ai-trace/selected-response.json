@@ -1,0 +1,152 @@
+{
+  "attempt": 1,
+  "company_id": "agentkit-core",
+  "input_tokens": 1539,
+  "latency_seconds": 0.0,
+  "model": "fake-model-1",
+  "output_tokens": 64,
+  "provider": "fake",
+  "request_id": "fake-req-017",
+  "stop_reason": "tool_use",
+  "structured_content": {
+    "analysis_warnings": [],
+    "buyer": "Derived from the supplied evidence.",
+    "identity_warnings": [],
+    "model_suggested_recommendation": "watch",
+    "open_questions": [],
+    "plain_language_product": "An offline derived description based only on the supplied evidence.",
+    "recommendation_changers": [
+      "Verified evidence of paying customers and retention.",
+      "Founder background and prior experience in this workflow."
+    ],
+    "score_components": [
+      {
+        "assessment_status": "supported",
+        "caveats": [],
+        "component": "pain_roi",
+        "evidence_claim_ids": [
+          "ev-863c88dea71a"
+        ],
+        "rationale": "Derived offline from the supplied dossier. The score reflects what the cited evidence establishes and the uncertainty that remains.",
+        "score": 10,
+        "unknown_references": []
+      },
+      {
+        "assessment_status": "supported",
+        "caveats": [],
+        "component": "wedge",
+        "evidence_claim_ids": [
+          "ev-978a5f63e1e3"
+        ],
+        "rationale": "Derived offline from the supplied dossier. The score reflects what the cited evidence establishes and the uncertainty that remains.",
+        "score": 8,
+        "unknown_references": []
+      },
+      {
+        "assessment_status": "supported",
+        "caveats": [],
+        "component": "distribution",
+        "evidence_claim_ids": [
+          "ev-9907b8670a45"
+        ],
+        "rationale": "Derived offline from the supplied dossier. The score reflects what the cited evidence establishes and the uncertainty that remains.",
+        "score": 8,
+        "unknown_references": []
+      },
+      {
+        "assessment_status": "supported",
+        "caveats": [],
+        "component": "defensibility",
+        "evidence_claim_ids": [
+          "ev-c684282e7be8"
+        ],
+        "rationale": "Derived offline from the supplied dossier. The score reflects what the cited evidence establishes and the uncertainty that remains.",
+        "score": 8,
+        "unknown_references": []
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "team",
+        "evidence_claim_ids": [],
+        "rationale": "The supplied dossier does not establish this dimension, so it is recorded as unassessed rather than scored against the company.",
+        "score": 3,
+        "unknown_references": [
+          "unk-9bc6732c4602"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "traction",
+        "evidence_claim_ids": [],
+        "rationale": "The supplied dossier does not establish this dimension, so it is recorded as unassessed rather than scored against the company.",
+        "score": 2,
+        "unknown_references": [
+          "unk-9bc6732c4602"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "market_timing",
+        "evidence_claim_ids": [],
+        "rationale": "The supplied dossier does not establish this dimension, so it is recorded as unassessed rather than scored against the company.",
+        "score": 2,
+        "unknown_references": [
+          "unk-9bc6732c4602"
+        ]
+      }
+    ],
+    "sections": [
+      {
+        "evidence_claim_ids": [
+          "ev-863c88dea71a"
+        ],
+        "kind": "team",
+        "text": "Offline derived assessment based only on the supplied evidence.",
+        "unknown_references": []
+      },
+      {
+        "evidence_claim_ids": [
+          "ev-863c88dea71a"
+        ],
+        "kind": "product",
+        "text": "Offline derived assessment based only on the supplied evidence.",
+        "unknown_references": []
+      },
+      {
+        "evidence_claim_ids": [
+          "ev-863c88dea71a"
+        ],
+        "kind": "market",
+        "text": "Offline derived assessment based only on the supplied evidence.",
+        "unknown_references": []
+      },
+      {
+        "evidence_claim_ids": [
+          "ev-863c88dea71a"
+        ],
+        "kind": "thesis",
+        "text": "This offline response does not assess thesis fit; the verdict is left undetermined.",
+        "unknown_references": []
+      },
+      {
+        "evidence_claim_ids": [],
+        "kind": "risk",
+        "text": "The supplied dossier leaves recorded questions unanswered.",
+        "unknown_references": [
+          "unk-9bc6732c4602"
+        ]
+      }
+    ],
+    "thesis_fit": "undetermined",
+    "workflow": "Derived from the supplied evidence."
+  },
+  "timestamp": "2026-08-24T13:53:35.996945+00:00",
+  "validation": {
+    "error_category": null,
+    "errors": [],
+    "valid": true
+  }
+}

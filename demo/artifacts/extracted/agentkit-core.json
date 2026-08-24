@@ -1,0 +1,110 @@
+{
+  "company_id": "agentkit-core",
+  "failures": [],
+  "generated_at": "2026-08-24T13:53:35.953075Z",
+  "pages": [
+    {
+      "body_truncated": false,
+      "char_count": 391,
+      "company_id": "agentkit-core",
+      "content_sha256": "39be1e82f80e41a0b42b86a9426186d53970b451cdbe1da546e39cb8ac1bb24e",
+      "content_type": "text/html",
+      "extractor": "bs4-main-content/1",
+      "fetched_at": "2026-08-24T13:53:35.976755Z",
+      "final_url": "https://agentkitcore.example/",
+      "headings": [
+        "What AgentKit Core does",
+        "The workflow"
+      ],
+      "http_status": 200,
+      "role": "homepage",
+      "source_id": "src-0fc8ced2da30",
+      "text": "What AgentKit Core does\nAgentKit Core is an open-source runtime for building tool-using agents. It provides a scheduler, a tool registry and a trace viewer. It is a developer library, not an end-user application.\nThe workflow\nAgentKit Core works inside the agent orchestration that the business already runs every week. Nothing about the existing process has to change first.\nPricing · About",
+      "title": "AgentKit Core - Open-source runtime for building tool-using agents",
+      "truncated": false,
+      "url": "https://agentkitcore.example/"
+    },
+    {
+      "body_truncated": false,
+      "char_count": 155,
+      "company_id": "agentkit-core",
+      "content_sha256": "ee0e25249b253e95ea03294f5bad903029c01599d2dabcb346c9e438731896d5",
+      "content_type": "text/html",
+      "extractor": "bs4-main-content/1",
+      "fetched_at": "2026-08-24T13:53:35.977813Z",
+      "final_url": "https://agentkitcore.example/pricing",
+      "headings": [
+        "Pricing"
+      ],
+      "http_status": 200,
+      "role": "pricing",
+      "source_id": "src-1ba2a460f0d7",
+      "text": "Pricing\nAgentKit Core is Apache-2.0 licensed and free. A hosted control plane is planned.\nEvery plan includes a 14 day trial. No card is required to start.",
+      "title": "Pricing - AgentKit Core",
+      "truncated": false,
+      "url": "https://agentkitcore.example/pricing"
+    },
+    {
+      "body_truncated": false,
+      "char_count": 255,
+      "company_id": "agentkit-core",
+      "content_sha256": "22e39c1dce547ce90eb3d48ef44c41ba3f2d75eb9e804677c5c64e35647c69a6",
+      "content_type": "text/html",
+      "extractor": "bs4-main-content/1",
+      "fetched_at": "2026-08-24T13:53:35.978552Z",
+      "final_url": "https://agentkitcore.example/about",
+      "headings": [
+        "About AgentKit Core"
+      ],
+      "http_status": 200,
+      "role": "about",
+      "source_id": "src-9b09330fa7d4",
+      "text": "About AgentKit Core\nAgentKit Core was founded in 2025 by two engineers who previously built internal tools for operations teams. The team is four people.\nAgentKit Core is self-serve: a business can sign up and connect its systems without talking to sales.",
+      "title": "About AgentKit Core",
+      "truncated": false,
+      "url": "https://agentkitcore.example/about"
+    }
+  ],
+  "schema_version": "1.1.0",
+  "sources": [
+    {
+      "domain": "agentkitcore.example",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T13:53:35.976755Z",
+      "source_id": "src-0fc8ced2da30",
+      "title": "AgentKit Core - Open-source runtime for building tool-using agents",
+      "url": "https://agentkitcore.example/"
+    },
+    {
+      "domain": "agentkitcore.example",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T13:53:35.977813Z",
+      "source_id": "src-1ba2a460f0d7",
+      "title": "Pricing - AgentKit Core",
+      "url": "https://agentkitcore.example/pricing"
+    },
+    {
+      "domain": "agentkitcore.example",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T13:53:35.978552Z",
+      "source_id": "src-9b09330fa7d4",
+      "title": "About AgentKit Core",
+      "url": "https://agentkitcore.example/about"
+    }
+  ],
+  "status": "success",
+  "total_chars": 801,
+  "warnings": []
+}

@@ -1,0 +1,47 @@
+{
+  "candidate_count": 9,
+  "company_pages": [
+    "agentkit-core",
+    "claimlane",
+    "deskloop",
+    "frontdeskly",
+    "ledgerpilot",
+    "permitpath",
+    "quotecrate",
+    "rotamesh",
+    "stockmind"
+  ],
+  "component_status_counts": {
+    "not_assessable": 27,
+    "supported": 36
+  },
+  "confidence_counts": {
+    "medium": 9
+  },
+  "failures": [],
+  "output_paths": [
+    "site/index.html",
+    "site/companies/agentkit-core.html",
+    "site/companies/claimlane.html",
+    "site/companies/deskloop.html",
+    "site/companies/frontdeskly.html",
+    "site/companies/ledgerpilot.html",
+    "site/companies/permitpath.html",
+    "site/companies/quotecrate.html",
+    "site/companies/rotamesh.html",
+    "site/companies/stockmind.html",
+    "site/assets/styles.css",
+    "site/assets/app.js"
+  ],
+  "pages_written": 10,
+  "recommendations": {
+    "pass": 9
+  },
+  "removed_paths": [],
+  "run_id": "offline-demo",
+  "schema_version": "1.1.0",
+  "sources_cited": 36,
+  "template_version": "site_v1",
+  "upstream_fingerprint": "fp1:ec3845c44065b223",
+  "warnings": []
+}

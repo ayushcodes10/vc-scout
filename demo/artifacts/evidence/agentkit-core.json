@@ -1,0 +1,166 @@
+{
+  "claims": [
+    {
+      "category": "traction",
+      "caveat": null,
+      "claim": "The supplied (not a website page) states: The thread has 96 comments on Hacker News.",
+      "claim_id": "ev-863c88dea71a",
+      "company_id": "agentkit-core",
+      "excerpts": [
+        {
+          "excerpt": "The thread has 96 comments on Hacker News.",
+          "source_id": "src-95fbecd39cff"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-95fbecd39cff"
+      ],
+      "verification_status": "community_signal"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "The supplied homepage states: What AgentKit Core does AgentKit Core is an open-source runtime for building tool-using agents.",
+      "claim_id": "ev-978a5f63e1e3",
+      "company_id": "agentkit-core",
+      "excerpts": [
+        {
+          "excerpt": "What AgentKit Core does AgentKit Core is an open-source runtime for building tool-using agents.",
+          "source_id": "src-0fc8ced2da30"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-0fc8ced2da30"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "The supplied pricing states: Pricing AgentKit Core is Apache-2.0 licensed and free.",
+      "claim_id": "ev-9907b8670a45",
+      "company_id": "agentkit-core",
+      "excerpts": [
+        {
+          "excerpt": "Pricing AgentKit Core is Apache-2.0 licensed and free.",
+          "source_id": "src-1ba2a460f0d7"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-1ba2a460f0d7"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "team",
+      "caveat": null,
+      "claim": "The supplied about states: About AgentKit Core AgentKit Core was founded in 2025 by two engineers who previously built internal tools for operations teams.",
+      "claim_id": "ev-c684282e7be8",
+      "company_id": "agentkit-core",
+      "excerpts": [
+        {
+          "excerpt": "About AgentKit Core AgentKit Core was founded in 2025 by two engineers who previously built internal tools for operations teams.",
+          "source_id": "src-9b09330fa7d4"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-9b09330fa7d4"
+      ],
+      "verification_status": "company_claim"
+    }
+  ],
+  "company_id": "agentkit-core",
+  "confidence_inputs": {
+    "claims_by_category": {
+      "product": 2,
+      "team": 1,
+      "traction": 1
+    },
+    "claims_by_verification": {
+      "community_signal": 1,
+      "company_claim": 3
+    },
+    "claims_total": 4,
+    "conflicts": 0,
+    "distinct_domains": 2,
+    "inferred_claims": 0,
+    "unknowns": 1
+  },
+  "conflicts": [],
+  "generated_at": "2026-08-24T13:53:35.983713Z",
+  "model": "fake-model-1",
+  "prompt_version": "evidence_v1",
+  "provider": "fake",
+  "schema_version": "1.1.0",
+  "source_coverage": {
+    "hn_sources": 1,
+    "pages_supplied": 3,
+    "sources_cited": 4,
+    "sources_supplied": 4,
+    "supplied_chars": 1205,
+    "truncated_pages": [],
+    "website_available": true
+  },
+  "sources": [
+    {
+      "domain": "news.ycombinator.com",
+      "hn_num_comments": 96,
+      "hn_object_id": "9758529",
+      "hn_points": 310,
+      "kind": "hn_story",
+      "published_at": "2026-08-09T00:00:00Z",
+      "retrieved_at": "2026-08-24T13:53:35.943072Z",
+      "source_id": "src-95fbecd39cff",
+      "title": "Show HN: AgentKit Core - Open-source runtime for building tool-using agents",
+      "url": "https://news.ycombinator.com/item?id=9758529"
+    },
+    {
+      "domain": "agentkitcore.example",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T13:53:35.976755Z",
+      "source_id": "src-0fc8ced2da30",
+      "title": "AgentKit Core - Open-source runtime for building tool-using agents",
+      "url": "https://agentkitcore.example/"
+    },
+    {
+      "domain": "agentkitcore.example",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T13:53:35.977813Z",
+      "source_id": "src-1ba2a460f0d7",
+      "title": "Pricing - AgentKit Core",
+      "url": "https://agentkitcore.example/pricing"
+    },
+    {
+      "domain": "agentkitcore.example",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T13:53:35.978552Z",
+      "source_id": "src-9b09330fa7d4",
+      "title": "About AgentKit Core",
+      "url": "https://agentkitcore.example/about"
+    }
+  ],
+  "unknowns": [
+    {
+      "category": "market",
+      "question": "How large is the buyer population this product addresses?",
+      "reason": null
+    }
+  ],
+  "warnings": []
+}

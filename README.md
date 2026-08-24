@@ -9,35 +9,88 @@ claim cites an evidence ID, every evidence claim cites a source URL, the final
 recommendation is made by deterministic policy rather than by a model, and a whole run
 replays from persisted artifacts with no network and no API key.
 
-> **Status: in progress.** Stages 1-7 (foundation, domain contracts, discovery, website
-> enrichment, evidence extraction, scoring and the recommendation policy, the Markdown
-> memos and ranking, and the static site) are implemented. `serve`, `run` and `demo` are
-> declared but not yet implemented - they report which stage owns them and exit non-zero.
-> See `docs/PLAN.md` for the full plan and stage order.
+> **Status.** The pipeline runs end to end: discovery, website enrichment, evidence
+> extraction, scoring, the deterministic recommendation, Markdown memos, the static site
+> and a reviewer-ready export. `serve` is the one declared command still unimplemented.
+> See `docs/PLAN.md` for the plan and `worklog/` for how each stage actually went.
 
 ## Quick start
 
 ```bash
 uv sync
-uv run vc-scout --help      # full command surface
-uv run vc-scout config      # active rubric, thresholds and confidence policy
-```
+export ANTHROPIC_API_KEY=...      # required only for a live run
 
-Evidence extraction is the only stage that needs a credential:
-
-```bash
-export ANTHROPIC_API_KEY=...   # required only for a live run
-export LLM_MODEL=claude-opus-5  # optional; this is the default
-```
-
-Once the pipeline stages land, the partner-facing entry point is:
-
-```bash
 uv run vc-scout run \
-  --query "AI agents for SMB operations" \
+  --query "AI customer support and back-office automation for small businesses" \
   --limit 15 \
-  --run-id ai-agents-smb-demo
+  --run-id ai-smb-ops-demo \
+  --provider anthropic \
+  --model claude-sonnet-5 \
+  --effort low
 ```
+
+One command runs the whole pipeline - **source → enrich → evidence → analysis → memos →
+site** - and prints a stage timeline, the recommendation counts and where everything landed.
+Roughly 15 candidates costs about 45 HTTP requests and 30 model calls.
+
+### Try it with no API key
+
+```bash
+uv run vc-scout demo --run-id offline-demo
+```
+
+The same orchestrator, the same stages, the same HTTP and Algolia clients - only the
+transport underneath them serves committed fixtures instead of the internet, and the
+provider is deterministic. It produces real memos and a real site in about a second.
+
+### Resume, rather than repeat
+
+Running `run` again on a finished run makes **no network and no provider call**: every stage
+whose artifacts are still current is resumed. Rebuild one stage and everything derived from
+it with `--force-stage`, which never touches anything upstream:
+
+```bash
+uv run vc-scout run ... --force-stage analysis   # re-analyse, re-render, re-publish
+uv run vc-scout run ... --stop-after evidence    # stop early, then continue later
+```
+
+### Look at the result
+
+```bash
+python3 -m http.server 8000 --directory outputs/runs/ai-smb-ops-demo/site
+# then open http://127.0.0.1:8000/
+```
+
+### Hand it to a reviewer
+
+```bash
+uv run vc-scout export-demo --run-id ai-smb-ops-demo
+```
+
+Writes a self-contained `demo/` directory - the site, the memos, the ranking, every
+validated artifact, and one AI call end to end with what was sent, what came back and what
+was checked. No raw HTML, no credentials, no absolute paths: the export refuses to write
+rather than ship any of them.
+
+### Individual stages
+
+Every stage is also its own command, which is how the pipeline was built and how it is
+debugged:
+
+```bash
+uv run vc-scout --help              # full command surface
+uv run vc-scout config              # active rubric, thresholds and confidence policy
+uv run vc-scout source   --query "..." --run-id my-run
+uv run vc-scout enrich   --run-id my-run
+uv run vc-scout analyze  --run-id my-run --evidence-only
+uv run vc-scout analyze  --run-id my-run
+uv run vc-scout recommend --run-id my-run
+uv run vc-scout build-ui --run-id my-run
+```
+
+A stage run this way carries no provenance fingerprint, so a later `run` reruns it rather
+than trusting it. That is deliberate: an artifact whose input cannot be established is not
+an artifact a memo should be built on.
 
 ## Commands
 
@@ -51,9 +104,10 @@ uv run vc-scout run \
 | `render` | Deprecated alias for `recommend` | available |
 | `build-ui` | Generate the static research site | available |
 | `build-site` | Deprecated alias for `build-ui` | available |
-| `serve` | Serve a generated report locally | planned (stage 8) |
-| `run` | Full pipeline end to end | planned (stage 9) |
-| `demo` | Rebuild the committed offline demo run | planned (stage 9) |
+| `serve` | Serve a generated report locally | planned |
+| `run` | Full pipeline end to end, with resume | available |
+| `demo` | The whole pipeline offline, from committed fixtures | available |
+| `export-demo` | Assemble a reviewer-ready `demo/` directory | available |
 | `config` | Show the live rubric and thresholds | available |
 
 ## Discovery

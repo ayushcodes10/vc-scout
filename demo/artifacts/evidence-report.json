@@ -1,0 +1,280 @@
+{
+  "candidates": [
+    {
+      "attempts": [
+        {
+          "attempt": 1,
+          "error_category": null,
+          "input_tokens": 748,
+          "latency_seconds": 0.0,
+          "model": "fake-model-1",
+          "output_tokens": 64,
+          "provider": "fake",
+          "request_id": "fake-req-001",
+          "stop_reason": "tool_use",
+          "succeeded": true,
+          "validation_errors": []
+        }
+      ],
+      "claims": 4,
+      "company_id": "deskloop",
+      "conflicts": 0,
+      "error_category": null,
+      "error_detail": null,
+      "sources_supplied": 4,
+      "succeeded": true,
+      "truncated_sources": [],
+      "unknowns": 1,
+      "website_available": true
+    },
+    {
+      "attempts": [
+        {
+          "attempt": 1,
+          "error_category": null,
+          "input_tokens": 713,
+          "latency_seconds": 0.0,
+          "model": "fake-model-1",
+          "output_tokens": 64,
+          "provider": "fake",
+          "request_id": "fake-req-002",
+          "stop_reason": "tool_use",
+          "succeeded": true,
+          "validation_errors": []
+        }
+      ],
+      "claims": 4,
+      "company_id": "stockmind",
+      "conflicts": 0,
+      "error_category": null,
+      "error_detail": null,
+      "sources_supplied": 4,
+      "succeeded": true,
+      "truncated_sources": [],
+      "unknowns": 1,
+      "website_available": true
+    },
+    {
+      "attempts": [
+        {
+          "attempt": 1,
+          "error_category": null,
+          "input_tokens": 738,
+          "latency_seconds": 0.0,
+          "model": "fake-model-1",
+          "output_tokens": 64,
+          "provider": "fake",
+          "request_id": "fake-req-003",
+          "stop_reason": "tool_use",
+          "succeeded": true,
+          "validation_errors": []
+        }
+      ],
+      "claims": 4,
+      "company_id": "ledgerpilot",
+      "conflicts": 0,
+      "error_category": null,
+      "error_detail": null,
+      "sources_supplied": 4,
+      "succeeded": true,
+      "truncated_sources": [],
+      "unknowns": 1,
+      "website_available": true
+    },
+    {
+      "attempts": [
+        {
+          "attempt": 1,
+          "error_category": null,
+          "input_tokens": 730,
+          "latency_seconds": 0.0,
+          "model": "fake-model-1",
+          "output_tokens": 64,
+          "provider": "fake",
+          "request_id": "fake-req-004",
+          "stop_reason": "tool_use",
+          "succeeded": true,
+          "validation_errors": []
+        }
+      ],
+      "claims": 4,
+      "company_id": "permitpath",
+      "conflicts": 0,
+      "error_category": null,
+      "error_detail": null,
+      "sources_supplied": 4,
+      "succeeded": true,
+      "truncated_sources": [],
+      "unknowns": 1,
+      "website_available": true
+    },
+    {
+      "attempts": [
+        {
+          "attempt": 1,
+          "error_category": null,
+          "input_tokens": 717,
+          "latency_seconds": 0.0,
+          "model": "fake-model-1",
+          "output_tokens": 64,
+          "provider": "fake",
+          "request_id": "fake-req-005",
+          "stop_reason": "tool_use",
+          "succeeded": true,
+          "validation_errors": []
+        }
+      ],
+      "claims": 4,
+      "company_id": "rotamesh",
+      "conflicts": 0,
+      "error_category": null,
+      "error_detail": null,
+      "sources_supplied": 4,
+      "succeeded": true,
+      "truncated_sources": [],
+      "unknowns": 1,
+      "website_available": true
+    },
+    {
+      "attempts": [
+        {
+          "attempt": 1,
+          "error_category": null,
+          "input_tokens": 701,
+          "latency_seconds": 0.0,
+          "model": "fake-model-1",
+          "output_tokens": 64,
+          "provider": "fake",
+          "request_id": "fake-req-006",
+          "stop_reason": "tool_use",
+          "succeeded": true,
+          "validation_errors": []
+        }
+      ],
+      "claims": 4,
+      "company_id": "quotecrate",
+      "conflicts": 0,
+      "error_category": null,
+      "error_detail": null,
+      "sources_supplied": 4,
+      "succeeded": true,
+      "truncated_sources": [],
+      "unknowns": 1,
+      "website_available": true
+    },
+    {
+      "attempts": [
+        {
+          "attempt": 1,
+          "error_category": null,
+          "input_tokens": 729,
+          "latency_seconds": 0.0,
+          "model": "fake-model-1",
+          "output_tokens": 64,
+          "provider": "fake",
+          "request_id": "fake-req-007",
+          "stop_reason": "tool_use",
+          "succeeded": true,
+          "validation_errors": []
+        }
+      ],
+      "claims": 4,
+      "company_id": "frontdeskly",
+      "conflicts": 0,
+      "error_category": null,
+      "error_detail": null,
+      "sources_supplied": 4,
+      "succeeded": true,
+      "truncated_sources": [],
+      "unknowns": 1,
+      "website_available": true
+    },
+    {
+      "attempts": [
+        {
+          "attempt": 1,
+          "error_category": null,
+          "input_tokens": 734,
+          "latency_seconds": 0.0,
+          "model": "fake-model-1",
+          "output_tokens": 64,
+          "provider": "fake",
+          "request_id": "fake-req-008",
+          "stop_reason": "tool_use",
+          "succeeded": true,
+          "validation_errors": []
+        }
+      ],
+      "claims": 4,
+      "company_id": "agentkit-core",
+      "conflicts": 0,
+      "error_category": null,
+      "error_detail": null,
+      "sources_supplied": 4,
+      "succeeded": true,
+      "truncated_sources": [],
+      "unknowns": 1,
+      "website_available": true
+    },
+    {
+      "attempts": [
+        {
+          "attempt": 1,
+          "error_category": null,
+          "input_tokens": 714,
+          "latency_seconds": 0.0,
+          "model": "fake-model-1",
+          "output_tokens": 64,
+          "provider": "fake",
+          "request_id": "fake-req-009",
+          "stop_reason": "tool_use",
+          "succeeded": true,
+          "validation_errors": []
+        }
+      ],
+      "claims": 4,
+      "company_id": "claimlane",
+      "conflicts": 0,
+      "error_category": null,
+      "error_detail": null,
+      "sources_supplied": 4,
+      "succeeded": true,
+      "truncated_sources": [],
+      "unknowns": 1,
+      "website_available": true
+    }
+  ],
+  "counts": {
+    "attempts": 9,
+    "candidates": 9,
+    "claims": 36,
+    "conflicts": 0,
+    "input_tokens": 6524,
+    "output_tokens": 576,
+    "retried": 0,
+    "stale_attempts_removed": 0,
+    "succeeded": 9,
+    "unknowns": 9,
+    "without_website": 0
+  },
+  "failures_by_category": {},
+  "generated_at": "2026-08-24T13:53:35.983713Z",
+  "limits": {
+    "max_attempts": 2,
+    "max_chars_per_candidate": 18000,
+    "max_chars_per_page": 6000,
+    "max_tokens": 8192
+  },
+  "model": "fake-model-1",
+  "notes": [
+    "Every candidate appears here, including those whose extraction failed. A company is never dropped for being hard to extract evidence about.",
+    "Claim identifiers are derived from claim content after validation; the model does not supply them."
+  ],
+  "output_schema_version": "evidence-schema-1",
+  "prompt_sha256": "ef10f8233af184f389fceb49d51b32a80b8cdd01d98a154e0378b1ba8e621f59",
+  "prompt_version": "evidence_v1",
+  "provider": "fake",
+  "run_id": "offline-demo",
+  "schema_version": "1.1.0",
+  "upstream_fingerprint": "fp1:1713eefbc087d90d"
+}

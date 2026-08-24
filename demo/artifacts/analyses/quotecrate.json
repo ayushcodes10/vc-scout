@@ -1,0 +1,223 @@
+{
+  "analysis": {
+    "analysis_warnings": [],
+    "buyer": "Derived from the supplied evidence.",
+    "company_id": "quotecrate",
+    "competitive_observations": [],
+    "confidence_rationale": [
+      "4 of 4 supplied source(s) were cited by at least one claim.",
+      "4 evidence claim(s) across 3 of 5 categories.",
+      "A page from the company's own website was read.",
+      "3 of 4 claim(s) are company-authored; 1 come from other voices.",
+      "No finding was identified as corroborated by separate sources.",
+      "1 question(s) were left unanswered."
+    ],
+    "corroborated_findings": [],
+    "generated_at": "2026-08-24T13:53:35.996945Z",
+    "identity_warnings": [],
+    "market_assessment": {
+      "evidence_claim_ids": [
+        "ev-70f10b70c982"
+      ],
+      "text": "Offline derived assessment based only on the supplied evidence.",
+      "unknown_references": []
+    },
+    "model": "fake-model-1",
+    "model_suggested_recommendation": "watch",
+    "open_questions": [],
+    "plain_language_product": "An offline derived description based only on the supplied evidence.",
+    "product_assessment": {
+      "evidence_claim_ids": [
+        "ev-70f10b70c982"
+      ],
+      "text": "Offline derived assessment based only on the supplied evidence.",
+      "unknown_references": []
+    },
+    "prompt_version": "analysis_v2",
+    "provider": "fake",
+    "recommendation_changers": [
+      "Verified evidence of paying customers and retention.",
+      "Founder background and prior experience in this workflow."
+    ],
+    "research_confidence": {
+      "components": {
+        "category_span": 0.6,
+        "claim_volume": 0.5,
+        "corroboration": 0.0,
+        "independence": 0.25,
+        "source_coverage": 1.0,
+        "website": 1.0
+      },
+      "level": "medium",
+      "missing": [
+        "market"
+      ],
+      "reasons": [
+        "4 of 4 supplied source(s) were cited by at least one claim.",
+        "4 evidence claim(s) across 3 of 5 categories.",
+        "A page from the company's own website was read.",
+        "3 of 4 claim(s) are company-authored; 1 come from other voices.",
+        "No finding was identified as corroborated by separate sources.",
+        "1 question(s) were left unanswered."
+      ],
+      "score": 0.5475
+    },
+    "risks": [
+      {
+        "evidence_claim_ids": [],
+        "text": "The supplied dossier leaves recorded questions unanswered.",
+        "unknown_references": [
+          "unk-b708a44d0f04"
+        ]
+      }
+    ],
+    "schema_version": "1.1.0",
+    "score_components": [
+      {
+        "assessment_status": "supported",
+        "caveats": [],
+        "component": "pain_roi",
+        "evidence_claim_ids": [
+          "ev-70f10b70c982"
+        ],
+        "maximum": 20,
+        "rationale": "Derived offline from the supplied dossier. The score reflects what the cited evidence establishes and the uncertainty that remains.",
+        "score": 10,
+        "unknown_references": []
+      },
+      {
+        "assessment_status": "supported",
+        "caveats": [],
+        "component": "wedge",
+        "evidence_claim_ids": [
+          "ev-776a19787b5f"
+        ],
+        "maximum": 15,
+        "rationale": "Derived offline from the supplied dossier. The score reflects what the cited evidence establishes and the uncertainty that remains.",
+        "score": 8,
+        "unknown_references": []
+      },
+      {
+        "assessment_status": "supported",
+        "caveats": [],
+        "component": "distribution",
+        "evidence_claim_ids": [
+          "ev-daa965e1e5e8"
+        ],
+        "maximum": 15,
+        "rationale": "Derived offline from the supplied dossier. The score reflects what the cited evidence establishes and the uncertainty that remains.",
+        "score": 8,
+        "unknown_references": []
+      },
+      {
+        "assessment_status": "supported",
+        "caveats": [],
+        "component": "defensibility",
+        "evidence_claim_ids": [
+          "ev-509cabaf57ba"
+        ],
+        "maximum": 15,
+        "rationale": "Derived offline from the supplied dossier. The score reflects what the cited evidence establishes and the uncertainty that remains.",
+        "score": 8,
+        "unknown_references": []
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "team",
+        "evidence_claim_ids": [],
+        "maximum": 15,
+        "rationale": "The supplied dossier does not establish this dimension, so it is recorded as unassessed rather than scored against the company.",
+        "score": 3,
+        "unknown_references": [
+          "unk-b708a44d0f04"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "traction",
+        "evidence_claim_ids": [],
+        "maximum": 10,
+        "rationale": "The supplied dossier does not establish this dimension, so it is recorded as unassessed rather than scored against the company.",
+        "score": 2,
+        "unknown_references": [
+          "unk-b708a44d0f04"
+        ]
+      },
+      {
+        "assessment_status": "not_assessable",
+        "caveats": [],
+        "component": "market_timing",
+        "evidence_claim_ids": [],
+        "maximum": 10,
+        "rationale": "The supplied dossier does not establish this dimension, so it is recorded as unassessed rather than scored against the company.",
+        "score": 2,
+        "unknown_references": [
+          "unk-b708a44d0f04"
+        ]
+      }
+    ],
+    "team_assessment": {
+      "evidence_claim_ids": [
+        "ev-70f10b70c982"
+      ],
+      "text": "Offline derived assessment based only on the supplied evidence.",
+      "unknown_references": []
+    },
+    "thesis_assessment": {
+      "evidence_claim_ids": [
+        "ev-70f10b70c982"
+      ],
+      "rationale": "This offline response does not assess thesis fit; the verdict is left undetermined.",
+      "unknown_references": [],
+      "verdict": "undetermined"
+    },
+    "thesis_version": "thesis_v1",
+    "total_score": 41,
+    "workflow": "Derived from the supplied evidence."
+  },
+  "recommendation": {
+    "band": "pass",
+    "band_label": "0-64",
+    "cap_reason": null,
+    "capped": false,
+    "company_id": "quotecrate",
+    "confidence": {
+      "components": {
+        "category_span": 0.6,
+        "claim_volume": 0.5,
+        "corroboration": 0.0,
+        "independence": 0.25,
+        "source_coverage": 1.0,
+        "website": 1.0
+      },
+      "level": "medium",
+      "missing": [
+        "market"
+      ],
+      "reasons": [
+        "4 of 4 supplied source(s) were cited by at least one claim.",
+        "4 evidence claim(s) across 3 of 5 categories.",
+        "A page from the company's own website was read.",
+        "3 of 4 claim(s) are company-authored; 1 come from other voices.",
+        "No finding was identified as corroborated by separate sources.",
+        "1 question(s) were left unanswered."
+      ],
+      "score": 0.5475
+    },
+    "decided_at": "2026-08-24T13:53:35.996945Z",
+    "decision": "pass",
+    "guardrails_applied": [],
+    "model_disagreed": true,
+    "model_suggested": "watch",
+    "policy_version": "2.0.0",
+    "rationale": [
+      "Scored 41/100 against the rubric, which falls in the 0-64 band (pass).",
+      "Research confidence is medium (0.55).",
+      "3 dimension(s) could not be assessed from the available evidence: team, traction, market_timing. Only 65 of 100 points were assessable."
+    ],
+    "schema_version": "1.1.0",
+    "total_score": 41
+  }
+}

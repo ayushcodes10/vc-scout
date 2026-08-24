@@ -1,0 +1,166 @@
+{
+  "claims": [
+    {
+      "category": "traction",
+      "caveat": null,
+      "claim": "The supplied (not a website page) states: The thread has 22 comments on Hacker News.",
+      "claim_id": "ev-5e2296537787",
+      "company_id": "frontdeskly",
+      "excerpts": [
+        {
+          "excerpt": "The thread has 22 comments on Hacker News.",
+          "source_id": "src-71899c333fce"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-71899c333fce"
+      ],
+      "verification_status": "community_signal"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "The supplied homepage states: What Frontdeskly does Frontdeskly answers inbound phone calls for dental and veterinary clinics, books appointments into the practice management system, and takes messages outside hours.",
+      "claim_id": "ev-c2401fd4721a",
+      "company_id": "frontdeskly",
+      "excerpts": [
+        {
+          "excerpt": "What Frontdeskly does Frontdeskly answers inbound phone calls for dental and veterinary clinics, books appointments into the practice management system, and takes messages outside hours.",
+          "source_id": "src-beca1a805c44"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-beca1a805c44"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "The supplied pricing states: Pricing Frontdeskly is 299 dollars per clinic per month including 500 answered calls.",
+      "claim_id": "ev-460be7fdb072",
+      "company_id": "frontdeskly",
+      "excerpts": [
+        {
+          "excerpt": "Pricing Frontdeskly is 299 dollars per clinic per month including 500 answered calls.",
+          "source_id": "src-4e5dd4128867"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-4e5dd4128867"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "team",
+      "caveat": null,
+      "claim": "The supplied about states: About Frontdeskly Frontdeskly was founded in 2025 by two engineers who previously built internal tools for operations teams.",
+      "claim_id": "ev-a326dd231623",
+      "company_id": "frontdeskly",
+      "excerpts": [
+        {
+          "excerpt": "About Frontdeskly Frontdeskly was founded in 2025 by two engineers who previously built internal tools for operations teams.",
+          "source_id": "src-7baf3c8f4399"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-7baf3c8f4399"
+      ],
+      "verification_status": "company_claim"
+    }
+  ],
+  "company_id": "frontdeskly",
+  "confidence_inputs": {
+    "claims_by_category": {
+      "product": 2,
+      "team": 1,
+      "traction": 1
+    },
+    "claims_by_verification": {
+      "community_signal": 1,
+      "company_claim": 3
+    },
+    "claims_total": 4,
+    "conflicts": 0,
+    "distinct_domains": 2,
+    "inferred_claims": 0,
+    "unknowns": 1
+  },
+  "conflicts": [],
+  "generated_at": "2026-08-24T13:53:35.983713Z",
+  "model": "fake-model-1",
+  "prompt_version": "evidence_v1",
+  "provider": "fake",
+  "schema_version": "1.1.0",
+  "source_coverage": {
+    "hn_sources": 1,
+    "pages_supplied": 3,
+    "sources_cited": 4,
+    "sources_supplied": 4,
+    "supplied_chars": 1206,
+    "truncated_pages": [],
+    "website_available": true
+  },
+  "sources": [
+    {
+      "domain": "news.ycombinator.com",
+      "hn_num_comments": 22,
+      "hn_object_id": "9290759",
+      "hn_points": 46,
+      "kind": "hn_story",
+      "published_at": "2026-08-02T00:00:00Z",
+      "retrieved_at": "2026-08-24T13:53:35.943072Z",
+      "source_id": "src-71899c333fce",
+      "title": "Show HN: Frontdeskly - AI receptionist for dental and veterinary clinics",
+      "url": "https://news.ycombinator.com/item?id=9290759"
+    },
+    {
+      "domain": "frontdeskly.example",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T13:53:35.973692Z",
+      "source_id": "src-beca1a805c44",
+      "title": "Frontdeskly - AI receptionist for dental and veterinary clinics",
+      "url": "https://frontdeskly.example/"
+    },
+    {
+      "domain": "frontdeskly.example",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T13:53:35.974675Z",
+      "source_id": "src-4e5dd4128867",
+      "title": "Pricing - Frontdeskly",
+      "url": "https://frontdeskly.example/pricing"
+    },
+    {
+      "domain": "frontdeskly.example",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T13:53:35.975448Z",
+      "source_id": "src-7baf3c8f4399",
+      "title": "About Frontdeskly",
+      "url": "https://frontdeskly.example/about"
+    }
+  ],
+  "unknowns": [
+    {
+      "category": "market",
+      "question": "How large is the buyer population this product addresses?",
+      "reason": null
+    }
+  ],
+  "warnings": []
+}

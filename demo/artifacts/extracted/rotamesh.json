@@ -1,0 +1,110 @@
+{
+  "company_id": "rotamesh",
+  "failures": [],
+  "generated_at": "2026-08-24T13:53:35.953075Z",
+  "pages": [
+    {
+      "body_truncated": false,
+      "char_count": 404,
+      "company_id": "rotamesh",
+      "content_sha256": "5e736249e78a20455ccd47d7121feb22e81301c3dd2ad07ba355d3a736687662",
+      "content_type": "text/html",
+      "extractor": "bs4-main-content/1",
+      "fetched_at": "2026-08-24T13:53:35.967690Z",
+      "final_url": "https://rotamesh.example/",
+      "headings": [
+        "What Rotamesh does",
+        "The workflow"
+      ],
+      "http_status": 200,
+      "role": "homepage",
+      "source_id": "src-86f92f5239d6",
+      "text": "What Rotamesh does\nRotamesh builds weekly staff rotas for cafes and restaurants from historical sales, staff availability and local trading rules. It writes the published rota back into Deputy and sends shift confirmations over SMS.\nThe workflow\nRotamesh works inside the weekly staff rota that the business already runs every week. Nothing about the existing process has to change first.\nPricing · About",
+      "title": "Rotamesh - Shift scheduling agent for hospitality operators",
+      "truncated": false,
+      "url": "https://rotamesh.example/"
+    },
+    {
+      "body_truncated": false,
+      "char_count": 152,
+      "company_id": "rotamesh",
+      "content_sha256": "c2a4ad7b10f09233487ead465f0b6e19a80c590e6737a66910b54be12ebd6b07",
+      "content_type": "text/html",
+      "extractor": "bs4-main-content/1",
+      "fetched_at": "2026-08-24T13:53:35.968800Z",
+      "final_url": "https://rotamesh.example/pricing",
+      "headings": [
+        "Pricing"
+      ],
+      "http_status": 200,
+      "role": "pricing",
+      "source_id": "src-3286a6a75b38",
+      "text": "Pricing\nRotamesh is 4 dollars per employee per month with a 60 dollar monthly minimum.\nEvery plan includes a 14 day trial. No card is required to start.",
+      "title": "Pricing - Rotamesh",
+      "truncated": false,
+      "url": "https://rotamesh.example/pricing"
+    },
+    {
+      "body_truncated": false,
+      "char_count": 240,
+      "company_id": "rotamesh",
+      "content_sha256": "60fb1f4261a1eb738f71efd32d16dc6427354840615d1888da30e1565609f966",
+      "content_type": "text/html",
+      "extractor": "bs4-main-content/1",
+      "fetched_at": "2026-08-24T13:53:35.969473Z",
+      "final_url": "https://rotamesh.example/about",
+      "headings": [
+        "About Rotamesh"
+      ],
+      "http_status": 200,
+      "role": "about",
+      "source_id": "src-9a4c12aadbd0",
+      "text": "About Rotamesh\nRotamesh was founded in 2025 by two engineers who previously built internal tools for operations teams. The team is four people.\nRotamesh is self-serve: a business can sign up and connect its systems without talking to sales.",
+      "title": "About Rotamesh",
+      "truncated": false,
+      "url": "https://rotamesh.example/about"
+    }
+  ],
+  "schema_version": "1.1.0",
+  "sources": [
+    {
+      "domain": "rotamesh.example",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T13:53:35.968800Z",
+      "source_id": "src-3286a6a75b38",
+      "title": "Pricing - Rotamesh",
+      "url": "https://rotamesh.example/pricing"
+    },
+    {
+      "domain": "rotamesh.example",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T13:53:35.967690Z",
+      "source_id": "src-86f92f5239d6",
+      "title": "Rotamesh - Shift scheduling agent for hospitality operators",
+      "url": "https://rotamesh.example/"
+    },
+    {
+      "domain": "rotamesh.example",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T13:53:35.969473Z",
+      "source_id": "src-9a4c12aadbd0",
+      "title": "About Rotamesh",
+      "url": "https://rotamesh.example/about"
+    }
+  ],
+  "status": "success",
+  "total_chars": 796,
+  "warnings": []
+}

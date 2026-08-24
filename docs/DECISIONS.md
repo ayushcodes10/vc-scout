@@ -959,3 +959,63 @@ being judged by another, and the only symptom would be unexplained retries.
 
 **Cost.** The prompt file is no longer self-contained: reading it does not show the whole
 instruction. The recorded request artifact does, which is what an auditor actually reads.
+
+## D50 - Resume is decided by fingerprint, not by the presence of a file
+
+**Decision.** Each derived report records a fingerprint of the artifacts it was derived
+from: a SHA-256 over a canonical projection of those inputs, with timestamps excluded. A
+stage is skipped only when its report exists, validates, covers every current candidate,
+*and* carries the fingerprint of the input as it stands now. Anything else reruns.
+
+**Why.** "The report exists, so skip the stage" quietly becomes "render last week's analysis
+over this week's evidence", and nothing in the output says so. The whole pipeline is built
+on being able to trace a memo sentence to a URL; a memo silently built on superseded
+evidence breaks that at the root, and it breaks it invisibly.
+
+Timestamps are excluded because a rerun that produces identical evidence one second later
+has not changed the input, and treating that as a change would make resume useless. The
+projections record identity and shape - which companies, which claims, which statuses - not
+prose, so a reworded rationale does not invalidate the memo built from it.
+
+**Cost.** An artifact written by a single-stage command carries no fingerprint, so a later
+`run` reruns that stage rather than trusting it. That costs time on a mixed workflow. It is
+the right direction to fail in: rerunning is expensive, and quietly reusing is wrong.
+
+## D51 - The demo runs the pipeline; it does not simulate it
+
+**Decision.** `vc-scout demo` calls the same orchestrator, the same six stages and the same
+production HTTP and Algolia clients. Only two things are swapped: an `httpx.MockTransport`
+serving two committed fixture files, and the deterministic fake provider. It produces real
+memos and a real site.
+
+**Why.** A demo that reimplements the pipeline proves the demo works. Everything a reviewer
+would want to see exercised - request construction, URL safety, redirect handling, robots,
+extraction, excerpt verification, the validators, the policy - stays on the real path.
+
+The fake provider makes the *model* offline and nothing else. Sourcing and enrichment are a
+separate dependency and are made offline separately, by injection, because pretending one
+covers the other is how a test ends up making a live request nobody expected.
+
+**Cost.** The fixtures are hand-written, so the demo shows a corpus chosen to exercise the
+pipeline rather than a real market. The fake provider quotes its supplied pages verbatim
+rather than reasoning about them, so demo scores show the mechanism, not a judgement.
+
+## D52 - The export refuses rather than ships
+
+**Decision.** `export-demo` copies the site, the memos, the ranking, every validated
+artifact and one AI call. Every file is scanned on the way out for credential-shaped
+strings, header names and absolute filesystem paths, and the export raises rather than
+writes if it finds one. `raw/` is never copied.
+
+**Why.** `demo/` is intended to be committed, which makes it the one directory in this
+project where a mistake is permanent and public. A check that refuses is worth more than a
+convention that is usually followed - and nothing in the pipeline persists a header, so the
+check should never fire, which is exactly the condition under which people stop checking.
+
+Raw page bodies are excluded because they are the input to extraction, not evidence: the
+extracted text and the verified excerpts are what any claim rests on, and shipping
+unreviewed third-party markup into a repository buys nothing.
+
+**Cost.** A reviewer cannot diff the extracted text against the original HTML from `demo/`
+alone; that stays in the run directory. The AI trace is one call rather than all of them,
+chosen deterministically as the highest-ranked successful candidate.

@@ -51,8 +51,6 @@ def test_each_command_has_its_own_help(command: str) -> None:
     ("command", "args"),
     [
         ("serve", ["--run-id", "demo"]),
-        ("run", ["--query", "q", "--run-id", "demo"]),
-        ("demo", []),
     ],
 )
 def test_placeholder_commands_report_honestly(command: str, args: list[str]) -> None:
@@ -783,3 +781,133 @@ def test_build_site_still_works_as_a_deprecated_alias(tmp_path: Path) -> None:
     assert result.exit_code == 0, result.output
     assert "this command is now `vc-scout build-ui`" in result.output
     assert "Generated 4 page(s)" in result.output
+
+
+# -- run, demo and export-demo -----------------------------------------------
+
+
+def test_run_help_puts_the_happy_path_first() -> None:
+    output = runner.invoke(app, ["run", "--help"]).output
+    for option in ("--query", "--limit", "--run-id", "--provider", "--model", "--effort"):
+        assert option in output
+    for option in ("--max-extra-pages", "--force-stage", "--stop-after"):
+        assert option in output
+    assert "10<=x<=20" in output
+
+
+@pytest.mark.parametrize(
+    ("args", "message"),
+    [
+        (["--force-stage", "nonsense"], "--force-stage must be one of"),
+        (["--stop-after", "nonsense"], "--stop-after must be one of"),
+        (["--provider", "openai"], "unknown provider"),
+        (["--query", "   "], "--query must not be empty"),
+    ],
+)
+def test_run_validates_every_option_before_touching_the_filesystem(
+    tmp_path: Path, args: list[str], message: str
+) -> None:
+    base = ["run", "--query", "q", "--run-id", "demo-run", "--runs-root", str(tmp_path)]
+    # The bad value replaces the good one where they collide.
+    invocation = base + args
+    result = runner.invoke(app, invocation)
+
+    assert result.exit_code == 1
+    assert message in result.output
+    assert not (tmp_path / "demo-run").exists()
+
+
+def test_run_rejects_a_limit_outside_the_band(tmp_path: Path) -> None:
+    for limit in ("9", "21"):
+        result = runner.invoke(
+            app,
+            [
+                "run",
+                "--query",
+                "q",
+                "--run-id",
+                "r",
+                "--runs-root",
+                str(tmp_path),
+                "--limit",
+                limit,
+            ],
+        )
+        assert result.exit_code != 0
+        assert not (tmp_path / "r").exists()
+
+
+def test_run_refuses_the_live_provider_without_a_key(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    result = runner.invoke(
+        app,
+        [
+            "run",
+            "--query",
+            "q",
+            "--run-id",
+            "live-run",
+            "--runs-root",
+            str(tmp_path),
+            "--provider",
+            "anthropic",
+        ],
+    )
+    assert result.exit_code == 1
+    assert "ANTHROPIC_API_KEY is not set" in result.output
+    assert not (tmp_path / "live-run" / "candidates.json").exists()
+
+
+def test_demo_runs_the_whole_pipeline_without_a_credential(tmp_path: Path) -> None:
+    result = runner.invoke(app, ["demo", "--run-id", "offline-demo", "--runs-root", str(tmp_path)])
+
+    assert result.exit_code == 0, result.output
+    assert "no credential required" in result.output
+    for stage in ("source", "enrich", "evidence", "analysis", "recommend", "ui"):
+        assert stage in result.output
+    assert "Preview the site with:" in result.output
+    store = RunStore("offline-demo", runs_root=tmp_path)
+    assert store.run_report_path().is_file()
+    assert (store.site_dir / "index.html").is_file()
+    assert list(store.resolve("memos").glob("*.md"))
+
+
+def test_demo_repeated_resumes_every_stage(tmp_path: Path) -> None:
+    runner.invoke(app, ["demo", "--run-id", "offline-demo", "--runs-root", str(tmp_path)])
+    result = runner.invoke(app, ["demo", "--run-id", "offline-demo", "--runs-root", str(tmp_path)])
+
+    assert result.exit_code == 0, result.output
+    assert result.output.count("resumed") >= 6
+
+
+def test_export_demo_writes_the_reviewer_directory(tmp_path: Path) -> None:
+    runner.invoke(app, ["demo", "--run-id", "offline-demo", "--runs-root", str(tmp_path)])
+    destination = tmp_path / "demo-export"
+    result = runner.invoke(
+        app,
+        [
+            "export-demo",
+            "--run-id",
+            "offline-demo",
+            "--runs-root",
+            str(tmp_path),
+            "--destination",
+            str(destination),
+        ],
+    )
+
+    assert result.exit_code == 0, result.output
+    assert "memo(s)" in result.output
+    assert "AI trace:" in result.output
+    assert (destination / "README.md").is_file()
+    assert (destination / "site" / "index.html").is_file()
+
+
+def test_export_demo_refuses_a_run_that_was_never_rendered(tmp_path: Path) -> None:
+    result = runner.invoke(
+        app, ["export-demo", "--run-id", "nothing", "--runs-root", str(tmp_path)]
+    )
+    assert result.exit_code == 1
+    assert "recommendation-report.json" in result.output

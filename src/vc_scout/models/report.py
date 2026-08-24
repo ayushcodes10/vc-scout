@@ -18,6 +18,8 @@ from vc_scout.models.enums import (
     ConfidenceLevel,
     EnrichmentStatus,
     LlmErrorCategory,
+    PipelineStage,
+    PipelineStageStatus,
     Recommendation,
 )
 from vc_scout.models.page import PageFailure
@@ -37,7 +39,9 @@ __all__ = [
     "PageFailureRecord",
     "UiReport",
     "RecommendationReport",
+    "RunReport",
     "SourceReport",
+    "StageRun",
     "VariantResult",
 ]
 
@@ -120,6 +124,11 @@ class EnrichmentReport(ArtifactModel):
     counts: dict[str, int] = Field(default_factory=dict)
     failures_by_category: dict[str, int] = Field(default_factory=dict)
     #: The bounds this run was executed under, so a replay can be compared like for like.
+    #: Fingerprint of the artifacts this report was derived from, stamped by the pipeline
+    #: orchestrator. ``None`` means the stage ran outside the orchestrator and its
+    #: provenance is unknown - which a resume treats as a reason to rerun, never as a
+    #: reason to trust.
+    upstream_fingerprint: str | None = None
     limits: dict[str, int] = Field(default_factory=dict)
     notes: list[str] = Field(default_factory=list)
 
@@ -179,6 +188,11 @@ class EvidenceReport(ArtifactModel):
     candidates: list[EvidenceOutcome] = Field(default_factory=list)
     counts: dict[str, int] = Field(default_factory=dict)
     failures_by_category: dict[str, int] = Field(default_factory=dict)
+    #: Fingerprint of the artifacts this report was derived from, stamped by the pipeline
+    #: orchestrator. ``None`` means the stage ran outside the orchestrator and its
+    #: provenance is unknown - which a resume treats as a reason to rerun, never as a
+    #: reason to trust.
+    upstream_fingerprint: str | None = None
     limits: dict[str, int] = Field(default_factory=dict)
     notes: list[str] = Field(default_factory=list)
 
@@ -253,6 +267,11 @@ class AnalysisReport(ArtifactModel):
     recommendations: dict[str, int] = Field(default_factory=dict)
     guardrails: dict[str, int] = Field(default_factory=dict)
     failures_by_category: dict[str, int] = Field(default_factory=dict)
+    #: Fingerprint of the artifacts this report was derived from, stamped by the pipeline
+    #: orchestrator. ``None`` means the stage ran outside the orchestrator and its
+    #: provenance is unknown - which a resume treats as a reason to rerun, never as a
+    #: reason to trust.
+    upstream_fingerprint: str | None = None
     limits: dict[str, int] = Field(default_factory=dict)
     notes: list[str] = Field(default_factory=list)
 
@@ -319,6 +338,11 @@ class RecommendationReport(ArtifactModel):
     memos: list[MemoOutcome] = Field(default_factory=list)
     warnings: list[str] = Field(default_factory=list)
     failures: list[MemoFailure] = Field(default_factory=list)
+    #: Fingerprint of the artifacts this report was derived from, stamped by the pipeline
+    #: orchestrator. ``None`` means the stage ran outside the orchestrator and its
+    #: provenance is unknown - which a resume treats as a reason to rerun, never as a
+    #: reason to trust.
+    upstream_fingerprint: str | None = None
 
 
 class PageFailureRecord(RecordModel):
@@ -351,3 +375,67 @@ class UiReport(RecordModel):
     sources_cited: int = Field(default=0, ge=0)
     warnings: list[str] = Field(default_factory=list)
     failures: list[PageFailureRecord] = Field(default_factory=list)
+    #: Fingerprint of the artifacts this report was derived from, stamped by the pipeline
+    #: orchestrator. ``None`` means the stage ran outside the orchestrator and its
+    #: provenance is unknown - which a resume treats as a reason to rerun, never as a
+    #: reason to trust.
+    upstream_fingerprint: str | None = None
+
+
+class StageRun(RecordModel):
+    """What one pipeline stage did, in the order the orchestrator ran it."""
+
+    stage: PipelineStage
+    status: PipelineStageStatus
+    #: True when the stage was skipped because a valid, current artifact already existed.
+    resumed: bool = False
+    #: Why it was skipped or rerun, in one line. Always populated for a skip.
+    decision: str | None = None
+    duration_seconds: float = Field(default=0.0, ge=0.0)
+    candidates_in: int = Field(default=0, ge=0)
+    candidates_out: int = Field(default=0, ge=0)
+    failures: int = Field(default=0, ge=0)
+    artifacts: list[str] = Field(default_factory=list)
+    warnings: list[str] = Field(default_factory=list)
+    upstream_fingerprint: str | None = None
+
+
+class RunReport(ArtifactModel):
+    """The persisted ``run-report.json`` document.
+
+    The one artifact that describes a whole run rather than one stage of it: what was
+    asked for, which stages ran and which resumed, what flowed between them, what it cost,
+    and every version that shaped the output.
+
+    Unlike the stage reports, this one carries timestamps. A run is an event, and when it
+    happened is a fact about it - so ``run-report.json`` is the single artifact a byte-for-
+    byte replay is not expected to reproduce.
+    """
+
+    run_id: str
+    query: str
+    requested_limit: int = Field(ge=1)
+    provider: str
+    model: str
+    effort: str
+    started_at: datetime
+    completed_at: datetime | None = None
+    duration_seconds: float = Field(default=0.0, ge=0.0)
+
+    stages: list[StageRun] = Field(default_factory=list)
+    #: How many candidates entered and left each stage, keyed by stage name.
+    candidate_flow: dict[str, int] = Field(default_factory=dict)
+    recommendations: dict[str, int] = Field(default_factory=dict)
+    token_usage: dict[str, int] = Field(default_factory=dict)
+    failure_summary: dict[str, int] = Field(default_factory=dict)
+    warnings: list[str] = Field(default_factory=list)
+
+    site_path: str | None = None
+    ranking_path: str | None = None
+    memos_path: str | None = None
+    artifacts: dict[str, str] = Field(default_factory=dict)
+    versions: dict[str, str] = Field(default_factory=dict)
+    #: One line per stage recording whether it ran or resumed, and why.
+    resumability: dict[str, str] = Field(default_factory=dict)
+    stopped_after: PipelineStage | None = None
+    forced_stages: list[PipelineStage] = Field(default_factory=list)

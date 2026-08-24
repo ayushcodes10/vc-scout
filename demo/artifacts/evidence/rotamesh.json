@@ -1,0 +1,166 @@
+{
+  "claims": [
+    {
+      "category": "traction",
+      "caveat": null,
+      "claim": "The supplied (not a website page) states: The thread has 18 comments on Hacker News.",
+      "claim_id": "ev-c589230260ff",
+      "company_id": "rotamesh",
+      "excerpts": [
+        {
+          "excerpt": "The thread has 18 comments on Hacker News.",
+          "source_id": "src-74a241828f50"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-74a241828f50"
+      ],
+      "verification_status": "community_signal"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "The supplied homepage states: What Rotamesh does Rotamesh builds weekly staff rotas for cafes and restaurants from historical sales, staff availability and local trading rules.",
+      "claim_id": "ev-5da3af2a48ca",
+      "company_id": "rotamesh",
+      "excerpts": [
+        {
+          "excerpt": "What Rotamesh does Rotamesh builds weekly staff rotas for cafes and restaurants from historical sales, staff availability and local trading rules.",
+          "source_id": "src-86f92f5239d6"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-86f92f5239d6"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "The supplied pricing states: Pricing Rotamesh is 4 dollars per employee per month with a 60 dollar monthly minimum.",
+      "claim_id": "ev-21e258640710",
+      "company_id": "rotamesh",
+      "excerpts": [
+        {
+          "excerpt": "Pricing Rotamesh is 4 dollars per employee per month with a 60 dollar monthly minimum.",
+          "source_id": "src-3286a6a75b38"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-3286a6a75b38"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "team",
+      "caveat": null,
+      "claim": "The supplied about states: About Rotamesh Rotamesh was founded in 2025 by two engineers who previously built internal tools for operations teams.",
+      "claim_id": "ev-31af8d004d60",
+      "company_id": "rotamesh",
+      "excerpts": [
+        {
+          "excerpt": "About Rotamesh Rotamesh was founded in 2025 by two engineers who previously built internal tools for operations teams.",
+          "source_id": "src-9a4c12aadbd0"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-9a4c12aadbd0"
+      ],
+      "verification_status": "company_claim"
+    }
+  ],
+  "company_id": "rotamesh",
+  "confidence_inputs": {
+    "claims_by_category": {
+      "product": 2,
+      "team": 1,
+      "traction": 1
+    },
+    "claims_by_verification": {
+      "community_signal": 1,
+      "company_claim": 3
+    },
+    "claims_total": 4,
+    "conflicts": 0,
+    "distinct_domains": 2,
+    "inferred_claims": 0,
+    "unknowns": 1
+  },
+  "conflicts": [],
+  "generated_at": "2026-08-24T13:53:35.983713Z",
+  "model": "fake-model-1",
+  "prompt_version": "evidence_v1",
+  "provider": "fake",
+  "schema_version": "1.1.0",
+  "source_coverage": {
+    "hn_sources": 1,
+    "pages_supplied": 3,
+    "sources_cited": 4,
+    "sources_supplied": 4,
+    "supplied_chars": 1189,
+    "truncated_pages": [],
+    "website_available": true
+  },
+  "sources": [
+    {
+      "domain": "news.ycombinator.com",
+      "hn_num_comments": 18,
+      "hn_object_id": "9807567",
+      "hn_points": 41,
+      "kind": "hn_story",
+      "published_at": "2026-07-30T00:00:00Z",
+      "retrieved_at": "2026-08-24T13:53:35.943072Z",
+      "source_id": "src-74a241828f50",
+      "title": "Show HN: Rotamesh - Shift scheduling agent for hospitality operators",
+      "url": "https://news.ycombinator.com/item?id=9807567"
+    },
+    {
+      "domain": "rotamesh.example",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T13:53:35.967690Z",
+      "source_id": "src-86f92f5239d6",
+      "title": "Rotamesh - Shift scheduling agent for hospitality operators",
+      "url": "https://rotamesh.example/"
+    },
+    {
+      "domain": "rotamesh.example",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T13:53:35.968800Z",
+      "source_id": "src-3286a6a75b38",
+      "title": "Pricing - Rotamesh",
+      "url": "https://rotamesh.example/pricing"
+    },
+    {
+      "domain": "rotamesh.example",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T13:53:35.969473Z",
+      "source_id": "src-9a4c12aadbd0",
+      "title": "About Rotamesh",
+      "url": "https://rotamesh.example/about"
+    }
+  ],
+  "unknowns": [
+    {
+      "category": "market",
+      "question": "How large is the buyer population this product addresses?",
+      "reason": null
+    }
+  ],
+  "warnings": []
+}

@@ -24,6 +24,8 @@ __all__ = [
     "RubricDimension",
     "SourceKind",
     "VerificationStatus",
+    "PipelineStage",
+    "PipelineStageStatus",
     "StageName",
     "StageStatus",
     "TractionKind",
@@ -243,4 +245,33 @@ class StageStatus(StrEnum):
     OK = "ok"
     PARTIAL = "partial"
     FAILED = "failed"
+    SKIPPED = "skipped"
+
+
+class PipelineStage(StrEnum):
+    """The six stages the one-command pipeline runs, in execution order."""
+
+    SOURCE = "source"
+    ENRICH = "enrich"
+    EVIDENCE = "evidence"
+    ANALYSIS = "analysis"
+    RECOMMEND = "recommend"
+    UI = "ui"
+
+
+class PipelineStageStatus(StrEnum):
+    """How one stage of a pipeline run ended.
+
+    Distinct from :class:`StageStatus`, which versions the per-stage record inside a run
+    manifest. ``partial`` is the important one here: a stage that lost individual
+    candidates and kept going is not a failure, and flattening it into one would hide the
+    per-candidate isolation the whole pipeline is built on.
+    """
+
+    COMPLETED = "completed"
+    #: Ran, produced output, and lost at least one candidate along the way.
+    PARTIAL = "partial"
+    #: Did not produce usable output. Whether the run continues depends on the stage.
+    FAILED = "failed"
+    #: Not run: resumed from a valid artifact, stopped short of, or blocked upstream.
     SKIPPED = "skipped"

@@ -1,0 +1,166 @@
+{
+  "claims": [
+    {
+      "category": "traction",
+      "caveat": null,
+      "claim": "The supplied (not a website page) states: The thread has 12 comments on Hacker News.",
+      "claim_id": "ev-3efd1a5fb6ac",
+      "company_id": "stockmind",
+      "excerpts": [
+        {
+          "excerpt": "The thread has 12 comments on Hacker News.",
+          "source_id": "src-c9b46b008788"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-c9b46b008788"
+      ],
+      "verification_status": "community_signal"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "The supplied homepage states: What Stockmind does Stockmind watches point-of-sale data from independent retailers and prepares purchase orders when stock cover falls below the cover target.",
+      "claim_id": "ev-f764e34cae5f",
+      "company_id": "stockmind",
+      "excerpts": [
+        {
+          "excerpt": "What Stockmind does Stockmind watches point-of-sale data from independent retailers and prepares purchase orders when stock cover falls below the cover target.",
+          "source_id": "src-b9b98fedfc0f"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-b9b98fedfc0f"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "product",
+      "caveat": null,
+      "claim": "The supplied pricing states: Pricing Stockmind is 129 dollars per store per month.",
+      "claim_id": "ev-0225404d482d",
+      "company_id": "stockmind",
+      "excerpts": [
+        {
+          "excerpt": "Pricing Stockmind is 129 dollars per store per month.",
+          "source_id": "src-746d7d1fec4d"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-746d7d1fec4d"
+      ],
+      "verification_status": "company_claim"
+    },
+    {
+      "category": "team",
+      "caveat": null,
+      "claim": "The supplied about states: About Stockmind Stockmind was founded in 2025 by two engineers who previously built internal tools for operations teams.",
+      "claim_id": "ev-6aedd6b7c8b7",
+      "company_id": "stockmind",
+      "excerpts": [
+        {
+          "excerpt": "About Stockmind Stockmind was founded in 2025 by two engineers who previously built internal tools for operations teams.",
+          "source_id": "src-8c868af59aa3"
+        }
+      ],
+      "inference_status": "explicit",
+      "source_ids": [
+        "src-8c868af59aa3"
+      ],
+      "verification_status": "company_claim"
+    }
+  ],
+  "company_id": "stockmind",
+  "confidence_inputs": {
+    "claims_by_category": {
+      "product": 2,
+      "team": 1,
+      "traction": 1
+    },
+    "claims_by_verification": {
+      "community_signal": 1,
+      "company_claim": 3
+    },
+    "claims_total": 4,
+    "conflicts": 0,
+    "distinct_domains": 2,
+    "inferred_claims": 0,
+    "unknowns": 1
+  },
+  "conflicts": [],
+  "generated_at": "2026-08-24T13:53:35.983713Z",
+  "model": "fake-model-1",
+  "prompt_version": "evidence_v1",
+  "provider": "fake",
+  "schema_version": "1.1.0",
+  "source_coverage": {
+    "hn_sources": 1,
+    "pages_supplied": 3,
+    "sources_cited": 4,
+    "sources_supplied": 4,
+    "supplied_chars": 1150,
+    "truncated_pages": [],
+    "website_available": true
+  },
+  "sources": [
+    {
+      "domain": "news.ycombinator.com",
+      "hn_num_comments": 12,
+      "hn_object_id": "9812950",
+      "hn_points": 37,
+      "kind": "hn_story",
+      "published_at": "2026-07-25T00:00:00Z",
+      "retrieved_at": "2026-08-24T13:53:35.943072Z",
+      "source_id": "src-c9b46b008788",
+      "title": "Show HN: Stockmind - Inventory reorder agent for independent retailers",
+      "url": "https://news.ycombinator.com/item?id=9812950"
+    },
+    {
+      "domain": "stockmind-io.example",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T13:53:35.957202Z",
+      "source_id": "src-b9b98fedfc0f",
+      "title": "Stockmind - Inventory reorder agent for independent retailers",
+      "url": "https://stockmind-io.example/"
+    },
+    {
+      "domain": "stockmind-io.example",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T13:53:35.958478Z",
+      "source_id": "src-746d7d1fec4d",
+      "title": "Pricing - Stockmind",
+      "url": "https://stockmind-io.example/pricing"
+    },
+    {
+      "domain": "stockmind-io.example",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T13:53:35.959498Z",
+      "source_id": "src-8c868af59aa3",
+      "title": "About Stockmind",
+      "url": "https://stockmind-io.example/about"
+    }
+  ],
+  "unknowns": [
+    {
+      "category": "market",
+      "question": "How large is the buyer population this product addresses?",
+      "reason": null
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex">
+<title>Portfolio — offline-demo — VC Scout</title>
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<header class="site-header">
+<div class="wrap site-header__inner">
+<div>
+<h1 class="wordmark">VC Scout</h1>
+<p class="tagline">Evidence-grounded startup triage</p>
+</div>
+<div class="header-meta">
+<span class="muted small">Run <span class="run-id">offline-demo</span></span>
+<a href="../ranking.md">Export ranking</a>
+</div>
+</div>
+</header>
+<main id="main">
+<div class="wrap">
+<section aria-labelledby="summary-heading">
+<h2 id="summary-heading" class="section-label">Run summary</h2>
+<div class="summary">
+<div class="summary__cell">
+<p class="summary__label">Candidates</p>
+<p class="summary__value">9</p>
+</div>
+<div class="summary__cell">
+<p class="summary__label">Take a meeting</p>
+<p class="summary__value">0</p>
+</div>
+<div class="summary__cell">
+<p class="summary__label">Watch</p>
+<p class="summary__value">0</p>
+</div>
+<div class="summary__cell">
+<p class="summary__label">Pass</p>
+<p class="summary__value">9</p>
+</div>
+<div class="summary__cell">
+<p class="summary__label">High</p>
+<p class="summary__value">0</p>
+</div>
+<div class="summary__cell">
+<p class="summary__label">Medium</p>
+<p class="summary__value">9</p>
+</div>
+<div class="summary__cell">
+<p class="summary__label">Low</p>
+<p class="summary__value">0</p>
+</div>
+<div class="summary__cell">
+<p class="summary__label">Sources cited</p>
+<p class="summary__value">36</p>
+</div>
+</div>
+</section>
+
+<section aria-labelledby="pipeline-heading">
+<h2 id="pipeline-heading" class="section-label">Pipeline</h2>
+<form class="controls" id="vcs-controls" hidden>
+<div class="field field--grow">
+<label for="vcs-search">Search</label>
+<input type="search" id="vcs-search" name="q" autocomplete="off" placeholder="Company or product">
+</div>
+<div class="field">
+<label for="vcs-call">Recommendation</label>
+<select id="vcs-call" name="call">
+<option value="">All</option>
+<option value="take-a-meeting">Take a meeting</option>
+<option value="watch">Watch</option>
+<option value="pass">Pass</option>
+</select>
+</div>
+<div class="field">
+<label for="vcs-confidence">Confidence</label>
+<select id="vcs-confidence" name="confidence">
+<option value="">All</option>
+<option value="high">High</option>
+<option value="medium">Medium</option>
+<option value="low">Low</option>
+</select>
+</div>
+<div class="field">
+<label for="vcs-fit">Thesis fit</label>
+<select id="vcs-fit" name="fit">
+<option value="">All</option>
+<option value="aligned">Aligned</option>
+<option value="adjacent">Adjacent</option>
+<option value="outside">Outside the thesis</option>
+<option value="not">Not established</option>
+</select>
+</div>
+<div class="field">
+<label for="vcs-sort">Sort by</label>
+<select id="vcs-sort" name="sort">
+<option value="workflow">Workflow priority</option>
+<option value="score">Score</option>
+<option value="confidence">Confidence</option>
+<option value="name">Company name</option>
+</select>
+</div>
+<div class="field field--action">
+<button type="button" id="vcs-reset" class="button--secondary">Reset</button>
+</div>
+</form>
+<p class="result-count" id="vcs-count" role="status">Showing all 9 analysed candidates. Triage order: recommendation, then score, then confidence, then name.</p>
+<p class="result-count" id="vcs-empty" hidden>No candidate matches these filters.</p>
+
+<div class="table-wrap">
+<table id="vcs-table">
+<caption class="visually-hidden">Analysed candidates in triage order. This is not a quality ranking.</caption>
+<thead>
+<tr>
+<th scope="col">#</th>
+<th scope="col">Company</th>
+<th scope="col">Call</th>
+<th scope="col">Score</th>
+<th scope="col">Confidence</th>
+<th scope="col">Thesis fit</th>
+<th scope="col">Product, buyer and workflow</th>
+<th scope="col">Context</th>
+</tr>
+</thead>
+<tbody>
+<tr data-company="agentkit-core">
+<td data-label="Rank" class="rank">1</td>
+<td data-label="Company">
+<a class="company-name" href="companies/agentkit-core.html">AgentKit Core</a>
+<p class="cell-note">
+<a href="companies/agentkit-core.html">View analysis</a>
+<span class="dot">·</span> <a class="external" href="https://agentkitcore.example/" rel="noopener noreferrer nofollow">Website</a>
+</p>
+</td>
+<td data-label="Call">
+<span class="badge badge--pass">Pass</span>
+</td>
+<td data-label="Score">
+<span class="score-cell">
+<span class="score-value">41<span class="muted">/100</span></span>
+<span class="bar"><span class="bar__fill bar__fill--pass bar__w40"></span></span>
+</span>
+</td>
+<td data-label="Confidence">medium</td>
+<td data-label="Thesis fit" class="secondary">Not established by the sources</td>
+<td data-label="Product, buyer and workflow">
+<p class="clamp-2">An offline derived description based only on the supplied evidence.</p>
+<p class="cell-note clamp-1"><span class="meta-label">Buyer</span> Derived from the supplied evidence.</p>
+<p class="cell-note clamp-1"><span class="meta-label">Workflow</span> Derived from the supplied evidence.</p>
+</td>
+<td data-label="Context" class="secondary">
+<p class="cell-note">Max 82/100</p>
+<span class="chip chip--flag">Policy override</span>
+</td>
+</tr>
+<tr data-company="claimlane">
+<td data-label="Rank" class="rank">2</td>
+<td data-label="Company">
+<a class="company-name" href="companies/claimlane.html">Claimlane</a>
+<p class="cell-note">
+<a href="companies/claimlane.html">View analysis</a>
+<span class="dot">·</span> <a class="external" href="https://claimlane.example/" rel="noopener noreferrer nofollow">Website</a>
+</p>
+</td>
+<td data-label="Call">
+<span class="badge badge--pass">Pass</span>
+</td>
+<td data-label="Score">
+<span class="score-cell">
+<span class="score-value">41<span class="muted">/100</span></span>
+<span class="bar"><span class="bar__fill bar__fill--pass bar__w40"></span></span>
+</span>
+</td>
+<td data-label="Confidence">medium</td>
+<td data-label="Thesis fit" class="secondary">Not established by the sources</td>
+<td data-label="Product, buyer and workflow">
+<p class="clamp-2">An offline derived description based only on the supplied evidence.</p>
+<p class="cell-note clamp-1"><span class="meta-label">Buyer</span> Derived from the supplied evidence.</p>
+<p class="cell-note clamp-1"><span class="meta-label">Workflow</span> Derived from the supplied evidence.</p>
+</td>
+<td data-label="Context" class="secondary">
+<p class="cell-note">Max 82/100</p>
+<span class="chip chip--flag">Policy override</span>
+</td>
+</tr>
+<tr data-company="deskloop">
+<td data-label="Rank" class="rank">3</td>
+<td data-label="Company">
+<a class="company-name" href="companies/deskloop.html">Deskloop</a>
+<p class="cell-note">
+<a href="companies/deskloop.html">View analysis</a>
+<span class="dot">·</span> <a class="external" href="https://deskloop.example/" rel="noopener noreferrer nofollow">Website</a>
+</p>
+</td>
+<td data-label="Call">
+<span class="badge badge--pass">Pass</span>
+</td>
+<td data-label="Score">
+<span class="score-cell">
+<span class="score-value">41<span class="muted">/100</span></span>
+<span class="bar"><span class="bar__fill bar__fill--pass bar__w40"></span></span>
+</span>
+</td>
+<td data-label="Confidence">medium</td>
+<td data-label="Thesis fit" class="secondary">Not established by the sources</td>
+<td data-label="Product, buyer and workflow">
+<p class="clamp-2">An offline derived description based only on the supplied evidence.</p>
+<p class="cell-note clamp-1"><span class="meta-label">Buyer</span> Derived from the supplied evidence.</p>
+<p class="cell-note clamp-1"><span class="meta-label">Workflow</span> Derived from the supplied evidence.</p>
+</td>
+<td data-label="Context" class="secondary">
+<p class="cell-note">Max 82/100</p>
+<span class="chip chip--flag">Policy override</span>
+</td>
+</tr>
+<tr data-company="frontdeskly">
+<td data-label="Rank" class="rank">4</td>
+<td data-label="Company">
+<a class="company-name" href="companies/frontdeskly.html">Frontdeskly</a>
+<p class="cell-note">
+<a href="companies/frontdeskly.html">View analysis</a>
+<span class="dot">·</span> <a class="external" href="https://frontdeskly.example/" rel="noopener noreferrer nofollow">Website</a>
+</p>
+</td>
+<td data-label="Call">
+<span class="badge badge--pass">Pass</span>
+</td>
+<td data-label="Score">
+<span class="score-cell">
+<span class="score-value">41<span class="muted">/100</span></span>
+<span class="bar"><span class="bar__fill bar__fill--pass bar__w40"></span></span>
+</span>
+</td>
+<td data-label="Confidence">medium</td>
+<td data-label="Thesis fit" class="secondary">Not established by the sources</td>
+<td data-label="Product, buyer and workflow">
+<p class="clamp-2">An offline derived description based only on the supplied evidence.</p>
+<p class="cell-note clamp-1"><span class="meta-label">Buyer</span> Derived from the supplied evidence.</p>
+<p class="cell-note clamp-1"><span class="meta-label">Workflow</span> Derived from the supplied evidence.</p>
+</td>
+<td data-label="Context" class="secondary">
+<p class="cell-note">Max 82/100</p>
+<span class="chip chip--flag">Policy override</span>
+</td>
+</tr>
+<tr data-company="ledgerpilot">
+<td data-label="Rank" class="rank">5</td>
+<td data-label="Company">
+<a class="company-name" href="companies/ledgerpilot.html">LedgerPilot</a>
+<p class="cell-note">
+<a href="companies/ledgerpilot.html">View analysis</a>
+<span class="dot">·</span> <a class="external" href="https://ledgerpilot.example/" rel="noopener noreferrer nofollow">Website</a>
+</p>
+</td>
+<td data-label="Call">
+<span class="badge badge--pass">Pass</span>
+</td>
+<td data-label="Score">
+<span class="score-cell">
+<span class="score-value">41<span class="muted">/100</span></span>
+<span class="bar"><span class="bar__fill bar__fill--pass bar__w40"></span></span>
+</span>
+</td>
+<td data-label="Confidence">medium</td>
+<td data-label="Thesis fit" class="secondary">Not established by the sources</td>
+<td data-label="Product, buyer and workflow">
+<p class="clamp-2">An offline derived description based only on the supplied evidence.</p>
+<p class="cell-note clamp-1"><span class="meta-label">Buyer</span> Derived from the supplied evidence.</p>
+<p class="cell-note clamp-1"><span class="meta-label">Workflow</span> Derived from the supplied evidence.</p>
+</td>
+<td data-label="Context" class="secondary">
+<p class="cell-note">Max 82/100</p>
+<span class="chip chip--flag">Policy override</span>
+</td>
+</tr>
+<tr data-company="permitpath">
+<td data-label="Rank" class="rank">6</td>
+<td data-label="Company">
+<a class="company-name" href="companies/permitpath.html">PermitPath</a>
+<p class="cell-note">
+<a href="companies/permitpath.html">View analysis</a>
+<span class="dot">·</span> <a class="external" href="https://permitpath.example/" rel="noopener noreferrer nofollow">Website</a>
+</p>
+</td>
+<td data-label="Call">
+<span class="badge badge--pass">Pass</span>
+</td>
+<td data-label="Score">
+<span class="score-cell">
+<span class="score-value">41<span class="muted">/100</span></span>
+<span class="bar"><span class="bar__fill bar__fill--pass bar__w40"></span></span>
+</span>
+</td>
+<td data-label="Confidence">medium</td>
+<td data-label="Thesis fit" class="secondary">Not established by the sources</td>
+<td data-label="Product, buyer and workflow">
+<p class="clamp-2">An offline derived description based only on the supplied evidence.</p>
+<p class="cell-note clamp-1"><span class="meta-label">Buyer</span> Derived from the supplied evidence.</p>
+<p class="cell-note clamp-1"><span class="meta-label">Workflow</span> Derived from the supplied evidence.</p>
+</td>
+<td data-label="Context" class="secondary">
+<p class="cell-note">Max 82/100</p>
+<span class="chip chip--flag">Policy override</span>
+</td>
+</tr>
+<tr data-company="quotecrate">
+<td data-label="Rank" class="rank">7</td>
+<td data-label="Company">
+<a class="company-name" href="companies/quotecrate.html">Quotecrate</a>
+<p class="cell-note">
+<a href="companies/quotecrate.html">View analysis</a>
+<span class="dot">·</span> <a class="external" href="https://quotecrate.example/" rel="noopener noreferrer nofollow">Website</a>
+</p>
+</td>
+<td data-label="Call">
+<span class="badge badge--pass">Pass</span>
+</td>
+<td data-label="Score">
+<span class="score-cell">
+<span class="score-value">41<span class="muted">/100</span></span>
+<span class="bar"><span class="bar__fill bar__fill--pass bar__w40"></span></span>
+</span>
+</td>
+<td data-label="Confidence">medium</td>
+<td data-label="Thesis fit" class="secondary">Not established by the sources</td>
+<td data-label="Product, buyer and workflow">
+<p class="clamp-2">An offline derived description based only on the supplied evidence.</p>
+<p class="cell-note clamp-1"><span class="meta-label">Buyer</span> Derived from the supplied evidence.</p>
+<p class="cell-note clamp-1"><span class="meta-label">Workflow</span> Derived from the supplied evidence.</p>
+</td>
+<td data-label="Context" class="secondary">
+<p class="cell-note">Max 82/100</p>
+<span class="chip chip--flag">Policy override</span>
+</td>
+</tr>
+<tr data-company="rotamesh">
+<td data-label="Rank" class="rank">8</td>
+<td data-label="Company">
+<a class="company-name" href="companies/rotamesh.html">Rotamesh</a>
+<p class="cell-note">
+<a href="companies/rotamesh.html">View analysis</a>
+<span class="dot">·</span> <a class="external" href="https://rotamesh.example/" rel="noopener noreferrer nofollow">Website</a>
+</p>
+</td>
+<td data-label="Call">
+<span class="badge badge--pass">Pass</span>
+</td>
+<td data-label="Score">
+<span class="score-cell">
+<span class="score-value">41<span class="muted">/100</span></span>
+<span class="bar"><span class="bar__fill bar__fill--pass bar__w40"></span></span>
+</span>
+</td>
+<td data-label="Confidence">medium</td>
+<td data-label="Thesis fit" class="secondary">Not established by the sources</td>
+<td data-label="Product, buyer and workflow">
+<p class="clamp-2">An offline derived description based only on the supplied evidence.</p>
+<p class="cell-note clamp-1"><span class="meta-label">Buyer</span> Derived from the supplied evidence.</p>
+<p class="cell-note clamp-1"><span class="meta-label">Workflow</span> Derived from the supplied evidence.</p>
+</td>
+<td data-label="Context" class="secondary">
+<p class="cell-note">Max 82/100</p>
+<span class="chip chip--flag">Policy override</span>
+</td>
+</tr>
+<tr data-company="stockmind">
+<td data-label="Rank" class="rank">9</td>
+<td data-label="Company">
+<a class="company-name" href="companies/stockmind.html">Stockmind</a>
+<p class="cell-note">
+<a href="companies/stockmind.html">View analysis</a>
+<span class="dot">·</span> <a class="external" href="https://stockmind-io.example/" rel="noopener noreferrer nofollow">Website</a>
+</p>
+</td>
+<td data-label="Call">
+<span class="badge badge--pass">Pass</span>
+</td>
+<td data-label="Score">
+<span class="score-cell">
+<span class="score-value">41<span class="muted">/100</span></span>
+<span class="bar"><span class="bar__fill bar__fill--pass bar__w40"></span></span>
+</span>
+</td>
+<td data-label="Confidence">medium</td>
+<td data-label="Thesis fit" class="secondary">Not established by the sources</td>
+<td data-label="Product, buyer and workflow">
+<p class="clamp-2">An offline derived description based only on the supplied evidence.</p>
+<p class="cell-note clamp-1"><span class="meta-label">Buyer</span> Derived from the supplied evidence.</p>
+<p class="cell-note clamp-1"><span class="meta-label">Workflow</span> Derived from the supplied evidence.</p>
+</td>
+<td data-label="Context" class="secondary">
+<p class="cell-note">Max 82/100</p>
+<span class="chip chip--flag">Policy override</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section aria-labelledby="reference-heading">
+<h2 id="reference-heading" class="section-label">Reference</h2>
+<details class="disclosure">
+<summary>Investment thesis, rubric and thresholds <span class="chip">thesis_v1</span></summary>
+<div class="disclosure__body">
+<blockquote class="thesis-quote">We invest in seed-stage, AI-native software companies that automate recurring, revenue-critical workflows for SMBs. The product should produce measurable value within 30 days, integrate into an existing system of record and develop defensibility through proprietary workflow data, distribution, integrations or operational depth rather than relying only on model access.</blockquote>
+<ul class="rule-list small">
+<li>Take a meeting at 80/100 and above, watch from 65 to 79, pass below 65.</li>
+<li>Research confidence is high at 0.65 and above, medium from 0.40, low below that.</li>
+<li>A dimension&#39;s assessment status caps what it may score: supported 100%, partially supported 70%, not assessable 50%, contradicted 100%.</li>
+</ul>
+<p class="small muted note-inline">A low score means the evidence available did not support a higher one. It is not a finding that the company is weak, and where a dimension could not be assessed at all the page says so rather than scoring it as a failure. The ordering below is a triage queue, not a quality ranking.</p>
+</div>
+</details>
+<details class="disclosure">
+<summary>Why no company was recommended for a meeting</summary>
+<div class="disclosure__body">
+<ul class="rule-list">
+<li>No candidate reached the take-a-meeting band at 80/100.</li>
+<li>Across 9 analysed candidate(s), the 63 scored dimension slots were assessed as: 36 supported, 0 partially supported, 0 contradicted, 27 not assessable.</li>
+<li>For 0 of 9 candidate(s) the recorded assessment statuses capped the achievable total below 80 before any judgement about the company; the highest achievable total was 82/100.</li>
+<li>No score was raised to produce a recommendation.</li>
+</ul>
+</div>
+</details>
+</section>
+</div>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<p>Generated by VC Scout from persisted run artifacts. Scores are recomputed in Python from the analysis model&#39;s per-dimension components; research confidence and the final recommendation are produced by deterministic policy, not by a model.</p>
+</div>
+</footer>
+<script type="application/json" id="vcs-filter-data">[{"call":"pass","confidence":"medium","fit":"not","id":"agentkit-core","name":"agentkit core","rank":1,"score":41,"text":"agentkit core agentkit-core an offline derived description based only on the supplied evidence. derived from the supplied evidence. derived from the supplied evidence. not established by the sources"},{"call":"pass","confidence":"medium","fit":"not","id":"claimlane","name":"claimlane","rank":2,"score":41,"text":"claimlane claimlane an offline derived description based only on the supplied evidence. derived from the supplied evidence. derived from the supplied evidence. not established by the sources"},{"call":"pass","confidence":"medium","fit":"not","id":"deskloop","name":"deskloop","rank":3,"score":41,"text":"deskloop deskloop an offline derived description based only on the supplied evidence. derived from the supplied evidence. derived from the supplied evidence. not established by the sources"},{"call":"pass","confidence":"medium","fit":"not","id":"frontdeskly","name":"frontdeskly","rank":4,"score":41,"text":"frontdeskly frontdeskly an offline derived description based only on the supplied evidence. derived from the supplied evidence. derived from the supplied evidence. not established by the sources"},{"call":"pass","confidence":"medium","fit":"not","id":"ledgerpilot","name":"ledgerpilot","rank":5,"score":41,"text":"ledgerpilot ledgerpilot an offline derived description based only on the supplied evidence. derived from the supplied evidence. derived from the supplied evidence. not established by the sources"},{"call":"pass","confidence":"medium","fit":"not","id":"permitpath","name":"permitpath","rank":6,"score":41,"text":"permitpath permitpath an offline derived description based only on the supplied evidence. derived from the supplied evidence. derived from the supplied evidence. not established by the sources"},{"call":"pass","confidence":"medium","fit":"not","id":"quotecrate","name":"quotecrate","rank":7,"score":41,"text":"quotecrate quotecrate an offline derived description based only on the supplied evidence. derived from the supplied evidence. derived from the supplied evidence. not established by the sources"},{"call":"pass","confidence":"medium","fit":"not","id":"rotamesh","name":"rotamesh","rank":8,"score":41,"text":"rotamesh rotamesh an offline derived description based only on the supplied evidence. derived from the supplied evidence. derived from the supplied evidence. not established by the sources"},{"call":"pass","confidence":"medium","fit":"not","id":"stockmind","name":"stockmind","rank":9,"score":41,"text":"stockmind stockmind an offline derived description based only on the supplied evidence. derived from the supplied evidence. derived from the supplied evidence. not established by the sources"}]</script>
+<script src="assets/app.js" defer></script>
+</body>
+</html>

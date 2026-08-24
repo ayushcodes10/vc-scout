@@ -1,0 +1,975 @@
+{
+  "counts": {
+    "candidates_adjacent": 2,
+    "candidates_direct": 7,
+    "candidates_kept": 9,
+    "eligible_adjacent": 2,
+    "eligible_direct": 7,
+    "hits_fetched": 120,
+    "rejected_duplicate_story": 110,
+    "rejected_irrelevant_topic": 1,
+    "unique_domains": 9,
+    "unique_stories": 10,
+    "usable_product_urls": 10
+  },
+  "discarded": [
+    {
+      "detail": null,
+      "object_id": "9888310",
+      "reason": "duplicate_story",
+      "title": "Show HN: Deskloop - AI support agent that resolves SMB helpdesk tickets",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9073955",
+      "reason": "duplicate_story",
+      "title": "Show HN: LedgerPilot - AI bookkeeping agent for trades businesses",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9807567",
+      "reason": "duplicate_story",
+      "title": "Show HN: Rotamesh - Shift scheduling agent for hospitality operators",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9101039",
+      "reason": "duplicate_story",
+      "title": "Show HN: Claimlane - Insurance claim intake automation for brokers",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9812950",
+      "reason": "duplicate_story",
+      "title": "Show HN: Stockmind - Inventory reorder agent for independent retailers",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9034678",
+      "reason": "duplicate_story",
+      "title": "Show HN: PermitPath - Permit application agent for specialty contractors",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9758529",
+      "reason": "duplicate_story",
+      "title": "Show HN: AgentKit Core - Open-source runtime for building tool-using agents",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9290759",
+      "reason": "duplicate_story",
+      "title": "Show HN: Frontdeskly - AI receptionist for dental and veterinary clinics",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9689242",
+      "reason": "duplicate_story",
+      "title": "Show HN: Quotecrate - Quote generation agent for building suppliers",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9275982",
+      "reason": "duplicate_story",
+      "title": "Show HN: Payrunner - Payroll exception handling for small accountancies",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9888310",
+      "reason": "duplicate_story",
+      "title": "Show HN: Deskloop - AI support agent that resolves SMB helpdesk tickets",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9073955",
+      "reason": "duplicate_story",
+      "title": "Show HN: LedgerPilot - AI bookkeeping agent for trades businesses",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9807567",
+      "reason": "duplicate_story",
+      "title": "Show HN: Rotamesh - Shift scheduling agent for hospitality operators",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9101039",
+      "reason": "duplicate_story",
+      "title": "Show HN: Claimlane - Insurance claim intake automation for brokers",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9812950",
+      "reason": "duplicate_story",
+      "title": "Show HN: Stockmind - Inventory reorder agent for independent retailers",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9034678",
+      "reason": "duplicate_story",
+      "title": "Show HN: PermitPath - Permit application agent for specialty contractors",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9758529",
+      "reason": "duplicate_story",
+      "title": "Show HN: AgentKit Core - Open-source runtime for building tool-using agents",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9290759",
+      "reason": "duplicate_story",
+      "title": "Show HN: Frontdeskly - AI receptionist for dental and veterinary clinics",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9689242",
+      "reason": "duplicate_story",
+      "title": "Show HN: Quotecrate - Quote generation agent for building suppliers",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9275982",
+      "reason": "duplicate_story",
+      "title": "Show HN: Payrunner - Payroll exception handling for small accountancies",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9888310",
+      "reason": "duplicate_story",
+      "title": "Show HN: Deskloop - AI support agent that resolves SMB helpdesk tickets",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9073955",
+      "reason": "duplicate_story",
+      "title": "Show HN: LedgerPilot - AI bookkeeping agent for trades businesses",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9807567",
+      "reason": "duplicate_story",
+      "title": "Show HN: Rotamesh - Shift scheduling agent for hospitality operators",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9101039",
+      "reason": "duplicate_story",
+      "title": "Show HN: Claimlane - Insurance claim intake automation for brokers",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9812950",
+      "reason": "duplicate_story",
+      "title": "Show HN: Stockmind - Inventory reorder agent for independent retailers",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9034678",
+      "reason": "duplicate_story",
+      "title": "Show HN: PermitPath - Permit application agent for specialty contractors",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9758529",
+      "reason": "duplicate_story",
+      "title": "Show HN: AgentKit Core - Open-source runtime for building tool-using agents",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9290759",
+      "reason": "duplicate_story",
+      "title": "Show HN: Frontdeskly - AI receptionist for dental and veterinary clinics",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9689242",
+      "reason": "duplicate_story",
+      "title": "Show HN: Quotecrate - Quote generation agent for building suppliers",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9275982",
+      "reason": "duplicate_story",
+      "title": "Show HN: Payrunner - Payroll exception handling for small accountancies",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9888310",
+      "reason": "duplicate_story",
+      "title": "Show HN: Deskloop - AI support agent that resolves SMB helpdesk tickets",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9073955",
+      "reason": "duplicate_story",
+      "title": "Show HN: LedgerPilot - AI bookkeeping agent for trades businesses",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9807567",
+      "reason": "duplicate_story",
+      "title": "Show HN: Rotamesh - Shift scheduling agent for hospitality operators",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9101039",
+      "reason": "duplicate_story",
+      "title": "Show HN: Claimlane - Insurance claim intake automation for brokers",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9812950",
+      "reason": "duplicate_story",
+      "title": "Show HN: Stockmind - Inventory reorder agent for independent retailers",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9034678",
+      "reason": "duplicate_story",
+      "title": "Show HN: PermitPath - Permit application agent for specialty contractors",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9758529",
+      "reason": "duplicate_story",
+      "title": "Show HN: AgentKit Core - Open-source runtime for building tool-using agents",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9290759",
+      "reason": "duplicate_story",
+      "title": "Show HN: Frontdeskly - AI receptionist for dental and veterinary clinics",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9689242",
+      "reason": "duplicate_story",
+      "title": "Show HN: Quotecrate - Quote generation agent for building suppliers",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9275982",
+      "reason": "duplicate_story",
+      "title": "Show HN: Payrunner - Payroll exception handling for small accountancies",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9888310",
+      "reason": "duplicate_story",
+      "title": "Show HN: Deskloop - AI support agent that resolves SMB helpdesk tickets",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9073955",
+      "reason": "duplicate_story",
+      "title": "Show HN: LedgerPilot - AI bookkeeping agent for trades businesses",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9807567",
+      "reason": "duplicate_story",
+      "title": "Show HN: Rotamesh - Shift scheduling agent for hospitality operators",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9101039",
+      "reason": "duplicate_story",
+      "title": "Show HN: Claimlane - Insurance claim intake automation for brokers",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9812950",
+      "reason": "duplicate_story",
+      "title": "Show HN: Stockmind - Inventory reorder agent for independent retailers",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9034678",
+      "reason": "duplicate_story",
+      "title": "Show HN: PermitPath - Permit application agent for specialty contractors",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9758529",
+      "reason": "duplicate_story",
+      "title": "Show HN: AgentKit Core - Open-source runtime for building tool-using agents",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9290759",
+      "reason": "duplicate_story",
+      "title": "Show HN: Frontdeskly - AI receptionist for dental and veterinary clinics",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9689242",
+      "reason": "duplicate_story",
+      "title": "Show HN: Quotecrate - Quote generation agent for building suppliers",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9275982",
+      "reason": "duplicate_story",
+      "title": "Show HN: Payrunner - Payroll exception handling for small accountancies",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9888310",
+      "reason": "duplicate_story",
+      "title": "Show HN: Deskloop - AI support agent that resolves SMB helpdesk tickets",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9073955",
+      "reason": "duplicate_story",
+      "title": "Show HN: LedgerPilot - AI bookkeeping agent for trades businesses",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9807567",
+      "reason": "duplicate_story",
+      "title": "Show HN: Rotamesh - Shift scheduling agent for hospitality operators",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9101039",
+      "reason": "duplicate_story",
+      "title": "Show HN: Claimlane - Insurance claim intake automation for brokers",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9812950",
+      "reason": "duplicate_story",
+      "title": "Show HN: Stockmind - Inventory reorder agent for independent retailers",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9034678",
+      "reason": "duplicate_story",
+      "title": "Show HN: PermitPath - Permit application agent for specialty contractors",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9758529",
+      "reason": "duplicate_story",
+      "title": "Show HN: AgentKit Core - Open-source runtime for building tool-using agents",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9290759",
+      "reason": "duplicate_story",
+      "title": "Show HN: Frontdeskly - AI receptionist for dental and veterinary clinics",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9689242",
+      "reason": "duplicate_story",
+      "title": "Show HN: Quotecrate - Quote generation agent for building suppliers",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9275982",
+      "reason": "duplicate_story",
+      "title": "Show HN: Payrunner - Payroll exception handling for small accountancies",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9888310",
+      "reason": "duplicate_story",
+      "title": "Show HN: Deskloop - AI support agent that resolves SMB helpdesk tickets",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9073955",
+      "reason": "duplicate_story",
+      "title": "Show HN: LedgerPilot - AI bookkeeping agent for trades businesses",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9807567",
+      "reason": "duplicate_story",
+      "title": "Show HN: Rotamesh - Shift scheduling agent for hospitality operators",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9101039",
+      "reason": "duplicate_story",
+      "title": "Show HN: Claimlane - Insurance claim intake automation for brokers",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9812950",
+      "reason": "duplicate_story",
+      "title": "Show HN: Stockmind - Inventory reorder agent for independent retailers",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9034678",
+      "reason": "duplicate_story",
+      "title": "Show HN: PermitPath - Permit application agent for specialty contractors",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9758529",
+      "reason": "duplicate_story",
+      "title": "Show HN: AgentKit Core - Open-source runtime for building tool-using agents",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9290759",
+      "reason": "duplicate_story",
+      "title": "Show HN: Frontdeskly - AI receptionist for dental and veterinary clinics",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9689242",
+      "reason": "duplicate_story",
+      "title": "Show HN: Quotecrate - Quote generation agent for building suppliers",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9275982",
+      "reason": "duplicate_story",
+      "title": "Show HN: Payrunner - Payroll exception handling for small accountancies",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9888310",
+      "reason": "duplicate_story",
+      "title": "Show HN: Deskloop - AI support agent that resolves SMB helpdesk tickets",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9073955",
+      "reason": "duplicate_story",
+      "title": "Show HN: LedgerPilot - AI bookkeeping agent for trades businesses",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9807567",
+      "reason": "duplicate_story",
+      "title": "Show HN: Rotamesh - Shift scheduling agent for hospitality operators",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9101039",
+      "reason": "duplicate_story",
+      "title": "Show HN: Claimlane - Insurance claim intake automation for brokers",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9812950",
+      "reason": "duplicate_story",
+      "title": "Show HN: Stockmind - Inventory reorder agent for independent retailers",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9034678",
+      "reason": "duplicate_story",
+      "title": "Show HN: PermitPath - Permit application agent for specialty contractors",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9758529",
+      "reason": "duplicate_story",
+      "title": "Show HN: AgentKit Core - Open-source runtime for building tool-using agents",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9290759",
+      "reason": "duplicate_story",
+      "title": "Show HN: Frontdeskly - AI receptionist for dental and veterinary clinics",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9689242",
+      "reason": "duplicate_story",
+      "title": "Show HN: Quotecrate - Quote generation agent for building suppliers",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9275982",
+      "reason": "duplicate_story",
+      "title": "Show HN: Payrunner - Payroll exception handling for small accountancies",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9888310",
+      "reason": "duplicate_story",
+      "title": "Show HN: Deskloop - AI support agent that resolves SMB helpdesk tickets",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9073955",
+      "reason": "duplicate_story",
+      "title": "Show HN: LedgerPilot - AI bookkeeping agent for trades businesses",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9807567",
+      "reason": "duplicate_story",
+      "title": "Show HN: Rotamesh - Shift scheduling agent for hospitality operators",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9101039",
+      "reason": "duplicate_story",
+      "title": "Show HN: Claimlane - Insurance claim intake automation for brokers",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9812950",
+      "reason": "duplicate_story",
+      "title": "Show HN: Stockmind - Inventory reorder agent for independent retailers",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9034678",
+      "reason": "duplicate_story",
+      "title": "Show HN: PermitPath - Permit application agent for specialty contractors",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9758529",
+      "reason": "duplicate_story",
+      "title": "Show HN: AgentKit Core - Open-source runtime for building tool-using agents",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9290759",
+      "reason": "duplicate_story",
+      "title": "Show HN: Frontdeskly - AI receptionist for dental and veterinary clinics",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9689242",
+      "reason": "duplicate_story",
+      "title": "Show HN: Quotecrate - Quote generation agent for building suppliers",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9275982",
+      "reason": "duplicate_story",
+      "title": "Show HN: Payrunner - Payroll exception handling for small accountancies",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9888310",
+      "reason": "duplicate_story",
+      "title": "Show HN: Deskloop - AI support agent that resolves SMB helpdesk tickets",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9073955",
+      "reason": "duplicate_story",
+      "title": "Show HN: LedgerPilot - AI bookkeeping agent for trades businesses",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9807567",
+      "reason": "duplicate_story",
+      "title": "Show HN: Rotamesh - Shift scheduling agent for hospitality operators",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9101039",
+      "reason": "duplicate_story",
+      "title": "Show HN: Claimlane - Insurance claim intake automation for brokers",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9812950",
+      "reason": "duplicate_story",
+      "title": "Show HN: Stockmind - Inventory reorder agent for independent retailers",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9034678",
+      "reason": "duplicate_story",
+      "title": "Show HN: PermitPath - Permit application agent for specialty contractors",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9758529",
+      "reason": "duplicate_story",
+      "title": "Show HN: AgentKit Core - Open-source runtime for building tool-using agents",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9290759",
+      "reason": "duplicate_story",
+      "title": "Show HN: Frontdeskly - AI receptionist for dental and veterinary clinics",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9689242",
+      "reason": "duplicate_story",
+      "title": "Show HN: Quotecrate - Quote generation agent for building suppliers",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9275982",
+      "reason": "duplicate_story",
+      "title": "Show HN: Payrunner - Payroll exception handling for small accountancies",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9888310",
+      "reason": "duplicate_story",
+      "title": "Show HN: Deskloop - AI support agent that resolves SMB helpdesk tickets",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9073955",
+      "reason": "duplicate_story",
+      "title": "Show HN: LedgerPilot - AI bookkeeping agent for trades businesses",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9807567",
+      "reason": "duplicate_story",
+      "title": "Show HN: Rotamesh - Shift scheduling agent for hospitality operators",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9101039",
+      "reason": "duplicate_story",
+      "title": "Show HN: Claimlane - Insurance claim intake automation for brokers",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9812950",
+      "reason": "duplicate_story",
+      "title": "Show HN: Stockmind - Inventory reorder agent for independent retailers",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9034678",
+      "reason": "duplicate_story",
+      "title": "Show HN: PermitPath - Permit application agent for specialty contractors",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9758529",
+      "reason": "duplicate_story",
+      "title": "Show HN: AgentKit Core - Open-source runtime for building tool-using agents",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9290759",
+      "reason": "duplicate_story",
+      "title": "Show HN: Frontdeskly - AI receptionist for dental and veterinary clinics",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9689242",
+      "reason": "duplicate_story",
+      "title": "Show HN: Quotecrate - Quote generation agent for building suppliers",
+      "url": null
+    },
+    {
+      "detail": null,
+      "object_id": "9275982",
+      "reason": "duplicate_story",
+      "title": "Show HN: Payrunner - Payroll exception handling for small accountancies",
+      "url": null
+    },
+    {
+      "detail": "no AI-automation signal in the title, one-liner or URL",
+      "object_id": "9275982",
+      "reason": "irrelevant_topic",
+      "title": "Show HN: Payrunner - Payroll exception handling for small accountancies",
+      "url": "https://payrunner-app.example/"
+    }
+  ],
+  "failures": [],
+  "formula_version": "2.0.0",
+  "generated_at": "2026-08-24T13:53:35.943072Z",
+  "minimum_relevance": 0.2,
+  "notes": [
+    "Kept 9 candidates against a requested limit of 10: 1 short. Only 7 directly relevant and 2 adjacent candidates survived the relevance gate. The shortlist was not padded with off-topic results."
+  ],
+  "ordering_policy": "lexicographic: (1) relevance class, direct before adjacent; (2) relevance score; (3) composite quality score over engagement, recency and query variant quality. Engagement can only order candidates that are already equal on class and relevance score.",
+  "query": "AI customer support and back-office automation for small businesses",
+  "relevance_after_selection": {
+    "adjacent": 2,
+    "direct": 7,
+    "irrelevant": 0
+  },
+  "relevance_before_selection": {
+    "adjacent": 2,
+    "direct": 7,
+    "irrelevant": 1
+  },
+  "requested_limit": 10,
+  "run_id": "offline-demo",
+  "schema_version": "1.1.0",
+  "shortfall": 1,
+  "variants": [
+    {
+      "endpoint": "search",
+      "error": null,
+      "hits_returned": 10,
+      "label": "query-show-hn",
+      "pages_fetched": 1,
+      "query": "AI customer support and back-office automation for small businesses",
+      "raw_paths": [
+        "raw/hn/query-show-hn-p0.json"
+      ],
+      "tags": "show_hn",
+      "weight": 1.0
+    },
+    {
+      "endpoint": "search",
+      "error": null,
+      "hits_returned": 10,
+      "label": "query-launch-hn",
+      "pages_fetched": 1,
+      "query": "AI customer support and back-office automation for small businesses",
+      "raw_paths": [
+        "raw/hn/query-launch-hn-p0.json"
+      ],
+      "tags": "launch_hn",
+      "weight": 0.85
+    },
+    {
+      "endpoint": "search",
+      "error": null,
+      "hits_returned": 10,
+      "label": "query-story",
+      "pages_fetched": 1,
+      "query": "AI customer support and back-office automation for small businesses",
+      "raw_paths": [
+        "raw/hn/query-story-p0.json"
+      ],
+      "tags": "story",
+      "weight": 0.5
+    },
+    {
+      "endpoint": "search",
+      "error": null,
+      "hits_returned": 10,
+      "label": "intent-smb",
+      "pages_fetched": 1,
+      "query": "AI automation SMB small business",
+      "raw_paths": [
+        "raw/hn/intent-smb-p0.json"
+      ],
+      "tags": "(show_hn,launch_hn)",
+      "weight": 0.95
+    },
+    {
+      "endpoint": "search",
+      "error": null,
+      "hits_returned": 10,
+      "label": "intent-small-business",
+      "pages_fetched": 1,
+      "query": "AI automation small business owners",
+      "raw_paths": [
+        "raw/hn/intent-small-business-p0.json"
+      ],
+      "tags": "(show_hn,launch_hn)",
+      "weight": 0.95
+    },
+    {
+      "endpoint": "search",
+      "error": null,
+      "hits_returned": 10,
+      "label": "intent-business-operations",
+      "pages_fetched": 1,
+      "query": "AI automation business operations",
+      "raw_paths": [
+        "raw/hn/intent-business-operations-p0.json"
+      ],
+      "tags": "(show_hn,launch_hn)",
+      "weight": 0.95
+    },
+    {
+      "endpoint": "search",
+      "error": null,
+      "hits_returned": 10,
+      "label": "intent-customer-support",
+      "pages_fetched": 1,
+      "query": "AI automation customer support service helpdesk",
+      "raw_paths": [
+        "raw/hn/intent-customer-support-p0.json"
+      ],
+      "tags": "(show_hn,launch_hn)",
+      "weight": 0.9
+    },
+    {
+      "endpoint": "search",
+      "error": null,
+      "hits_returned": 10,
+      "label": "intent-sales",
+      "pages_fetched": 1,
+      "query": "AI automation sales CRM leads outreach",
+      "raw_paths": [
+        "raw/hn/intent-sales-p0.json"
+      ],
+      "tags": "(show_hn,launch_hn)",
+      "weight": 0.9
+    },
+    {
+      "endpoint": "search",
+      "error": null,
+      "hits_returned": 10,
+      "label": "intent-finance-accounting",
+      "pages_fetched": 1,
+      "query": "AI automation finance accounting bookkeeping invoicing",
+      "raw_paths": [
+        "raw/hn/intent-finance-accounting-p0.json"
+      ],
+      "tags": "(show_hn,launch_hn)",
+      "weight": 0.9
+    },
+    {
+      "endpoint": "search",
+      "error": null,
+      "hits_returned": 10,
+      "label": "intent-scheduling",
+      "pages_fetched": 1,
+      "query": "AI automation scheduling booking dispatch appointments",
+      "raw_paths": [
+        "raw/hn/intent-scheduling-p0.json"
+      ],
+      "tags": "(show_hn,launch_hn)",
+      "weight": 0.9
+    },
+    {
+      "endpoint": "search",
+      "error": null,
+      "hits_returned": 10,
+      "label": "intent-back-office",
+      "pages_fetched": 1,
+      "query": "AI automation back office admin workflow paperwork",
+      "raw_paths": [
+        "raw/hn/intent-back-office-p0.json"
+      ],
+      "tags": "(show_hn,launch_hn)",
+      "weight": 0.9
+    },
+    {
+      "endpoint": "search",
+      "error": null,
+      "hits_returned": 10,
+      "label": "intent-ecommerce-retail",
+      "pages_fetched": 1,
+      "query": "AI automation ecommerce retail store inventory orders",
+      "raw_paths": [
+        "raw/hn/intent-ecommerce-retail-p0.json"
+      ],
+      "tags": "(show_hn,launch_hn)",
+      "weight": 0.9
+    }
+  ]
+}

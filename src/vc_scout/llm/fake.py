@@ -106,12 +106,91 @@ def derive_response(request: LlmRequest) -> dict[str, Any]:
     """A schema-valid response for whichever tool ``request`` asked for."""
     if request.schema_name == ANALYSIS_TOOL_NAME:
         return _analysis_response(request)
-    return _evidence_response()
+    return _evidence_response(request)
 
 
-def _evidence_response() -> dict[str, Any]:
-    """A structurally valid evidence response that asserts nothing about any company."""
-    return {"claims": [], "unknowns": [], "conflicts": [], "warnings": []}
+#: The supplied-source blocks the evidence stage renders, and the fields inside one.
+_SOURCE_BLOCK = re.compile(
+    r"----- BEGIN UNTRUSTED SOURCE (?P<sid>src-[0-9a-f]{12}) -----\n(?P<body>.*?)\n"
+    r"----- END UNTRUSTED SOURCE (?P=sid) -----",
+    re.DOTALL,
+)
+_BLOCK_FIELD = re.compile(r"^(?P<key>kind|page_role): (?P<value>.+)$", re.MULTILINE)
+
+#: Roles map to the evidence category the page actually speaks to.
+_ROLE_CATEGORY = {
+    "homepage": "product",
+    "product": "product",
+    "pricing": "product",
+    "customers": "traction",
+    "about": "team",
+    "team": "team",
+}
+
+#: A quotable span: long enough to be a citation, short enough to stay one.
+_MIN_EXCERPT, _MAX_EXCERPT, _MAX_CLAIMS = 40, 200, 5
+
+
+def _quotable(text: str) -> str | None:
+    """The first sentence-length span of ``text``, copied verbatim.
+
+    Verbatim is the whole point. The excerpt is verified against the supplied source before
+    a dossier is written, so a fake that paraphrased would be rejected by the same check
+    that catches a model inventing a quotation.
+    """
+    for candidate in re.split(r"(?<=[.!?])\s+", " ".join(text.split())):
+        if _MIN_EXCERPT <= len(candidate) <= _MAX_EXCERPT:
+            return candidate
+    return None
+
+
+def _evidence_response(request: LlmRequest) -> dict[str, Any]:
+    """Evidence quoted verbatim out of the sources the request supplied.
+
+    Asserts nothing the payload does not contain: every claim is "the supplied page states
+    X", where X is a span copied from that page. That keeps an offline run honest - the
+    dossier it produces is a real citation chain over real fixture text - while inventing
+    no fact about any company.
+    """
+    payload = request.user_payload
+    claims: list[dict[str, Any]] = []
+    seen_categories: set[str] = set()
+
+    for match in _SOURCE_BLOCK.finditer(payload):
+        if len(claims) >= _MAX_CLAIMS:
+            break
+        body = match.group("body")
+        fields = {f.group("key"): f.group("value").strip() for f in _BLOCK_FIELD.finditer(body)}
+        text = body.split("text:\n", 1)[-1]
+        excerpt = _quotable(text)
+        if excerpt is None:
+            continue
+        community = fields.get("kind", "").startswith("hn_")
+        category = (
+            "traction" if community else _ROLE_CATEGORY.get(fields.get("page_role", ""), "product")
+        )
+        seen_categories.add(category)
+        claims.append(
+            {
+                "category": category,
+                "claim": f"The supplied {fields.get('page_role') or fields.get('kind', 'source')} "
+                f"states: {excerpt}",
+                "excerpts": [{"source_id": match.group("sid"), "excerpt": excerpt}],
+                "verification_status": "community_signal" if community else "company_claim",
+                "inference_status": "explicit",
+            }
+        )
+
+    unknowns = [
+        {"category": category, "question": question}
+        for category, question in (
+            ("team", "Who works at this company, and what did they do before?"),
+            ("traction", "How many customers does this company have?"),
+            ("market", "How large is the buyer population this product addresses?"),
+        )
+        if category not in seen_categories
+    ]
+    return {"claims": claims, "unknowns": unknowns, "conflicts": [], "warnings": []}
 
 
 def _rubric_from(payload: str) -> dict[str, int]:

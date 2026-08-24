@@ -1,0 +1,161 @@
+{
+ "hits": [
+  {
+   "_tags": [
+    "story",
+    "show_hn",
+    "author_founder_deskloop"
+   ],
+   "author": "founder_deskloop",
+   "created_at": "2026-08-08T00:00:00Z",
+   "created_at_i": 1786147200,
+   "num_comments": 31,
+   "objectID": "9888310",
+   "points": 64,
+   "title": "Show HN: Deskloop - AI support agent that resolves SMB helpdesk tickets",
+   "url": "https://deskloop.example/"
+  },
+  {
+   "_tags": [
+    "story",
+    "show_hn",
+    "author_founder_ledgerpilot"
+   ],
+   "author": "founder_ledgerpilot",
+   "created_at": "2026-08-11T00:00:00Z",
+   "created_at_i": 1786406400,
+   "num_comments": 44,
+   "objectID": "9073955",
+   "points": 88,
+   "title": "Show HN: LedgerPilot - AI bookkeeping agent for trades businesses",
+   "url": "https://ledgerpilot.example/"
+  },
+  {
+   "_tags": [
+    "story",
+    "show_hn",
+    "author_founder_rotamesh"
+   ],
+   "author": "founder_rotamesh",
+   "created_at": "2026-07-30T00:00:00Z",
+   "created_at_i": 1785369600,
+   "num_comments": 18,
+   "objectID": "9807567",
+   "points": 41,
+   "title": "Show HN: Rotamesh - Shift scheduling agent for hospitality operators",
+   "url": "https://rotamesh.example/"
+  },
+  {
+   "_tags": [
+    "story",
+    "show_hn",
+    "author_founder_claimlane"
+   ],
+   "author": "founder_claimlane",
+   "created_at": "2026-08-05T00:00:00Z",
+   "created_at_i": 1785888000,
+   "num_comments": 27,
+   "objectID": "9101039",
+   "points": 55,
+   "title": "Show HN: Claimlane - Insurance claim intake automation for brokers",
+   "url": "https://claimlane.example/"
+  },
+  {
+   "_tags": [
+    "story",
+    "show_hn",
+    "author_founder_stockmind-io"
+   ],
+   "author": "founder_stockmind-io",
+   "created_at": "2026-07-25T00:00:00Z",
+   "created_at_i": 1784937600,
+   "num_comments": 12,
+   "objectID": "9812950",
+   "points": 37,
+   "title": "Show HN: Stockmind - Inventory reorder agent for independent retailers",
+   "url": "https://stockmind-io.example/"
+  },
+  {
+   "_tags": [
+    "story",
+    "show_hn",
+    "author_founder_permitpath"
+   ],
+   "author": "founder_permitpath",
+   "created_at": "2026-08-14T00:00:00Z",
+   "created_at_i": 1786665600,
+   "num_comments": 39,
+   "objectID": "9034678",
+   "points": 72,
+   "title": "Show HN: PermitPath - Permit application agent for specialty contractors",
+   "url": "https://permitpath.example/"
+  },
+  {
+   "_tags": [
+    "story",
+    "show_hn",
+    "author_founder_agentkitcore"
+   ],
+   "author": "founder_agentkitcore",
+   "created_at": "2026-08-09T00:00:00Z",
+   "created_at_i": 1786233600,
+   "num_comments": 96,
+   "objectID": "9758529",
+   "points": 310,
+   "title": "Show HN: AgentKit Core - Open-source runtime for building tool-using agents",
+   "url": "https://agentkitcore.example/"
+  },
+  {
+   "_tags": [
+    "story",
+    "show_hn",
+    "author_founder_frontdeskly"
+   ],
+   "author": "founder_frontdeskly",
+   "created_at": "2026-08-02T00:00:00Z",
+   "created_at_i": 1785628800,
+   "num_comments": 22,
+   "objectID": "9290759",
+   "points": 46,
+   "title": "Show HN: Frontdeskly - AI receptionist for dental and veterinary clinics",
+   "url": "https://frontdeskly.example/"
+  },
+  {
+   "_tags": [
+    "story",
+    "show_hn",
+    "author_founder_quotecrate"
+   ],
+   "author": "founder_quotecrate",
+   "created_at": "2026-07-21T00:00:00Z",
+   "created_at_i": 1784592000,
+   "num_comments": 9,
+   "objectID": "9689242",
+   "points": 29,
+   "title": "Show HN: Quotecrate - Quote generation agent for building suppliers",
+   "url": "https://quotecrate.example/"
+  },
+  {
+   "_tags": [
+    "story",
+    "show_hn",
+    "author_founder_payrunner-app"
+   ],
+   "author": "founder_payrunner-app",
+   "created_at": "2026-08-06T00:00:00Z",
+   "created_at_i": 1785974400,
+   "num_comments": 25,
+   "objectID": "9275982",
+   "points": 51,
+   "title": "Show HN: Payrunner - Payroll exception handling for small accountancies",
+   "url": "https://payrunner-app.example/"
+  }
+ ],
+ "hitsPerPage": 45,
+ "nbHits": 10,
+ "nbPages": 1,
+ "page": 0,
+ "params": "advancedSyntax=true",
+ "processingTimeMS": 5,
+ "query": "AI customer support and back-office automation for small businesses"
+}

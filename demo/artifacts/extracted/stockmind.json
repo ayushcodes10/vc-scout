@@ -1,0 +1,110 @@
+{
+  "company_id": "stockmind",
+  "failures": [],
+  "generated_at": "2026-08-24T13:53:35.953075Z",
+  "pages": [
+    {
+      "body_truncated": false,
+      "char_count": 392,
+      "company_id": "stockmind",
+      "content_sha256": "3e1954a54fd4c1505e4d155239779b965cfee491eee2dd4d3ddc3a66b144cad1",
+      "content_type": "text/html",
+      "extractor": "bs4-main-content/1",
+      "fetched_at": "2026-08-24T13:53:35.957202Z",
+      "final_url": "https://stockmind-io.example/",
+      "headings": [
+        "What Stockmind does",
+        "The workflow"
+      ],
+      "http_status": 200,
+      "role": "homepage",
+      "source_id": "src-b9b98fedfc0f",
+      "text": "What Stockmind does\nStockmind watches point-of-sale data from independent retailers and prepares purchase orders when stock cover falls below the cover target. It connects to Square, Lightspeed and Shopify POS.\nThe workflow\nStockmind works inside the purchase order preparation that the business already runs every week. Nothing about the existing process has to change first.\nPricing · About",
+      "title": "Stockmind - Inventory reorder agent for independent retailers",
+      "truncated": false,
+      "url": "https://stockmind-io.example/"
+    },
+    {
+      "body_truncated": false,
+      "char_count": 119,
+      "company_id": "stockmind",
+      "content_sha256": "5d9bb93a8b231a864657940042f33722b40dde41f2a3b65673c1867ac58d1e98",
+      "content_type": "text/html",
+      "extractor": "bs4-main-content/1",
+      "fetched_at": "2026-08-24T13:53:35.958478Z",
+      "final_url": "https://stockmind-io.example/pricing",
+      "headings": [
+        "Pricing"
+      ],
+      "http_status": 200,
+      "role": "pricing",
+      "source_id": "src-746d7d1fec4d",
+      "text": "Pricing\nStockmind is 129 dollars per store per month.\nEvery plan includes a 14 day trial. No card is required to start.",
+      "title": "Pricing - Stockmind",
+      "truncated": false,
+      "url": "https://stockmind-io.example/pricing"
+    },
+    {
+      "body_truncated": false,
+      "char_count": 243,
+      "company_id": "stockmind",
+      "content_sha256": "5b18d9fb384176bc06f3288d0ee7a75bc521f068bbbcaffa7f835c8d5d06e164",
+      "content_type": "text/html",
+      "extractor": "bs4-main-content/1",
+      "fetched_at": "2026-08-24T13:53:35.959498Z",
+      "final_url": "https://stockmind-io.example/about",
+      "headings": [
+        "About Stockmind"
+      ],
+      "http_status": 200,
+      "role": "about",
+      "source_id": "src-8c868af59aa3",
+      "text": "About Stockmind\nStockmind was founded in 2025 by two engineers who previously built internal tools for operations teams. The team is four people.\nStockmind is self-serve: a business can sign up and connect its systems without talking to sales.",
+      "title": "About Stockmind",
+      "truncated": false,
+      "url": "https://stockmind-io.example/about"
+    }
+  ],
+  "schema_version": "1.1.0",
+  "sources": [
+    {
+      "domain": "stockmind-io.example",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T13:53:35.958478Z",
+      "source_id": "src-746d7d1fec4d",
+      "title": "Pricing - Stockmind",
+      "url": "https://stockmind-io.example/pricing"
+    },
+    {
+      "domain": "stockmind-io.example",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T13:53:35.959498Z",
+      "source_id": "src-8c868af59aa3",
+      "title": "About Stockmind",
+      "url": "https://stockmind-io.example/about"
+    },
+    {
+      "domain": "stockmind-io.example",
+      "hn_num_comments": null,
+      "hn_object_id": null,
+      "hn_points": null,
+      "kind": "company_page",
+      "published_at": null,
+      "retrieved_at": "2026-08-24T13:53:35.957202Z",
+      "source_id": "src-b9b98fedfc0f",
+      "title": "Stockmind - Inventory reorder agent for independent retailers",
+      "url": "https://stockmind-io.example/"
+    }
+  ],
+  "status": "success",
+  "total_chars": 754,
+  "warnings": []
+}
