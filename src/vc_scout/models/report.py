@@ -31,6 +31,9 @@ __all__ = [
     "EvidenceAttempt",
     "EvidenceOutcome",
     "EvidenceReport",
+    "MemoFailure",
+    "MemoOutcome",
+    "RecommendationReport",
     "SourceReport",
     "VariantResult",
 ]
@@ -249,3 +252,67 @@ class AnalysisReport(ArtifactModel):
     failures_by_category: dict[str, int] = Field(default_factory=dict)
     limits: dict[str, int] = Field(default_factory=dict)
     notes: list[str] = Field(default_factory=list)
+
+
+class MemoOutcome(RecordModel):
+    """One rendered memo, and the facts a reviewer would otherwise have to measure.
+
+    ``words`` counts prose rather than raw tokens: a Markdown table's pipes are not words a
+    partner reads, and counting them would make a scorecard-heavy memo look twice as long
+    as it is.
+    """
+
+    company_id: str
+    memo_path: str
+    words: int = Field(ge=0)
+    sources_referenced: int = Field(ge=0)
+    unresolved_sources: int = Field(ge=0)
+    decision: Recommendation
+    total_score: int = Field(ge=0)
+    maximum_achievable_score: int = Field(ge=0)
+    warnings: list[str] = Field(default_factory=list)
+
+
+class MemoFailure(RecordModel):
+    """One candidate that produced no memo, and why.
+
+    A failure here is per candidate and never stops the run: the other memos are still
+    written, the ranking still renders, and this record - not a missing file - is how the
+    gap is reported.
+    """
+
+    company_id: str
+    reason: str
+    detail: str | None = None
+
+
+class RecommendationReport(ArtifactModel):
+    """The persisted ``recommendation-report.json`` document.
+
+    Carries no timestamp, by design. Rendering reads only validated artifacts and writes
+    only deterministic output, so the same inputs produce byte-identical memos, ranking and
+    report - which is what makes a re-render a check rather than a new opinion.
+    """
+
+    run_id: str
+    template_version: str
+    candidate_count: int = Field(ge=0)
+    memos_written: int = Field(ge=0)
+    ranking_path: str
+    #: Ordered exactly as the ranking table presents them - triage order, not quality order.
+    ordered_company_ids: list[str] = Field(default_factory=list)
+    recommendations: dict[str, int] = Field(default_factory=dict)
+    #: ``min`` and ``max`` of the totals rendered, absent when nothing rendered.
+    score_range: dict[str, int] = Field(default_factory=dict)
+    confidence_counts: dict[str, int] = Field(default_factory=dict)
+    guardrail_counts: dict[str, int] = Field(default_factory=dict)
+    component_status_counts: dict[str, int] = Field(default_factory=dict)
+    model_policy_disagreements: int = Field(default=0, ge=0)
+    #: Distinct sources cited across every memo, and how many of those could not be given
+    #: a title or a URL from any artifact in the run.
+    referenced_sources: int = Field(default=0, ge=0)
+    missing_source_metadata: int = Field(default=0, ge=0)
+    candidates_with_meeting_unreachable: int = Field(default=0, ge=0)
+    memos: list[MemoOutcome] = Field(default_factory=list)
+    warnings: list[str] = Field(default_factory=list)
+    failures: list[MemoFailure] = Field(default_factory=list)

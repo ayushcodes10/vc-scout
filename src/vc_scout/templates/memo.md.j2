@@ -1,0 +1,92 @@
+{#-
+  One partner-ready memo.
+
+  Every value arriving here is already neutralised and already decided by
+  vc_scout.render.memo; this template places text and never interprets it. No inline
+  conditionals: Jinja's trim_blocks removes the newline after a block tag, so a statement
+  and its attribution are joined in the view model, not here.
+
+  There is deliberately no generated timestamp. The same artifacts must render byte for
+  byte identically, every time.
+-#}
+# {{ view.name }}
+
+**{{ view.badge }}** · {{ view.score }}/{{ view.maximum_score }} · {{ view.confidence_label }} confidence
+
+**One-sentence call:** {{ view.call_sentence }}
+
+## Snapshot
+
+| Field | Value |
+| --- | --- |
+{% for row in view.snapshot %}
+| {{ row.label }} | {{ row.value }} |
+{% endfor %}
+
+## Why this call
+
+{{ view.reading }}
+
+{% for line in view.rationale %}
+- {{ line }}
+{% endfor %}
+{% for line in view.guardrails %}
+- **Guardrail applied.** {{ line }}
+{% endfor %}
+- **Thesis fit.** {{ view.thesis_line.line }}
+
+## Investment view
+
+### Team
+
+{{ view.team.line }}
+
+### Product
+
+{{ view.product.line }}
+
+### Market
+
+{{ view.market.line }}
+
+## Scorecard
+
+| Dimension | Score | Assessment | Rationale | Sources |
+| --- | ---: | --- | --- | --- |
+{% for row in view.score_rows %}
+| {{ row.dimension }} | {{ row.score }} | {{ row.status }} | {{ row.rationale }} | {{ row.sources }} |
+{% endfor %}
+| {{ view.total_row.dimension }} | {{ view.total_row.score }} | {{ view.total_row.status }} | {{ view.total_row.rationale }} | {{ view.total_row.sources }} |
+
+## Key risks and open questions
+
+{% if view.risks %}
+{% for item in view.risks %}
+- {{ item.line }}
+{% endfor %}
+{% else %}
+- Nothing was recorded here: no risk was identified and no question was left open.
+{% endif %}
+
+## What would change our mind
+
+{% for changer in view.changers %}
+- {{ changer }}
+{% endfor %}
+
+## Sources
+
+{% if view.sources %}
+{% for source in view.sources %}
+**[{{ source.marker }}]** {{ source.title }} · {{ source.role }} · {{ source.url }} · observed {{ source.observed }}
+{% if source.excerpt %}
+  > {{ source.excerpt }}
+{% endif %}
+{% endfor %}
+{% else %}
+No source is cited above: no evidence claim could be extracted for this company.
+{% endif %}
+
+## Generation note
+
+{{ view.generation_note }}

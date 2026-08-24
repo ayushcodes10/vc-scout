@@ -1,0 +1,85 @@
+{#-
+  The portfolio ranking: the reviewer's entry point.
+
+  Like the memo template it places finished strings and decides nothing, and it carries no
+  generated timestamp so the same artifacts render identically every time.
+-#}
+# Investment ranking — {{ view.run_id }}
+
+{{ view.memo_count }} of {{ view.candidate_count }} candidate(s) in this run were analysed and have a memo.
+
+{% for label, count in view.recommendation_counts %}
+- **{{ label }}:** {{ count }}
+{% endfor %}
+
+## The thesis being applied
+
+> {{ view.thesis }}
+
+*Thesis version {{ view.thesis_version }}.*
+
+## Rubric and thresholds
+
+| Dimension | Max | What it asks |
+| --- | ---: | --- |
+{% for title, points, description in view.rubric_rows %}
+| {{ title }} | {{ points }} | {{ description }} |
+{% endfor %}
+
+{% for line in view.thresholds %}
+- {{ line }}
+{% endfor %}
+
+## How to read a low score
+
+{% for line in view.evidence_note %}
+{{ line }}
+
+{% endfor %}
+## Ranking
+
+| Rank | Company | Call | Score | Confidence | Thesis fit | Max achievable | Primary rationale | Memo |
+| ---: | --- | --- | ---: | --- | --- | ---: | --- | --- |
+{% for row in view.rows %}
+| {{ row.rank }} | {{ row.company }} | {{ row.call }} | {{ row.score }} | {{ row.confidence }} | {{ row.thesis_fit }} | {{ row.maximum_achievable }} | {{ row.rationale }} | {{ row.memo_link }} |
+{% endfor %}
+
+## Guardrail overrides
+
+{% if view.guardrail_lines %}
+The deterministic policy moved or held a call in the following cases. A guardrail never raises a recommendation.
+
+{% for line in view.guardrail_lines %}
+- {{ line }}
+{% endfor %}
+{% else %}
+No policy guardrail fired in this run.
+{% endif %}
+
+## Where the model and the policy disagreed
+
+{% if view.disagreement_lines %}
+The analysis model's suggestion is recorded for evaluation and never consulted by the policy. It differed from the binding call here:
+
+{% for line in view.disagreement_lines %}
+- {{ line }}
+{% endfor %}
+{% else %}
+The analysis model's advisory suggestion matched the deterministic call for every candidate.
+{% endif %}
+
+{% if view.no_meeting %}
+## Why no meeting recommendation
+
+{% for line in view.no_meeting %}
+- {{ line }}
+{% endfor %}
+{% endif %}
+
+{% if view.missing %}
+## Candidates without a memo
+
+{% for line in view.missing %}
+- {{ line }}
+{% endfor %}
+{% endif %}

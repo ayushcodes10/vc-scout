@@ -22,6 +22,7 @@ REQUIRED_COMMANDS = [
     "source",
     "enrich",
     "analyze",
+    "recommend",
     "render",
     "build-site",
     "serve",
@@ -48,7 +49,6 @@ def test_each_command_has_its_own_help(command: str) -> None:
 @pytest.mark.parametrize(
     ("command", "args"),
     [
-        ("render", ["--run-id", "demo"]),
         ("build-site", ["--run-id", "demo"]),
         ("serve", ["--run-id", "demo"]),
         ("run", ["--query", "q", "--run-id", "demo"]),
@@ -584,3 +584,119 @@ def test_a_filtered_rerun_does_not_need_force_for_other_candidates(
     # co-00 does, so re-running it does.
     assert runner.invoke(app, [*base, "--company-id", "co-00"]).exit_code == 1
     assert runner.invoke(app, [*base, "--company-id", "co-00", "--force"]).exit_code == 0
+
+
+# -- recommend ---------------------------------------------------------------
+
+
+def _seed_for_recommend(tmp_path: Path) -> RunStore:
+    from tests.unit.memo_fixtures import bundles, mismatch_analysis, seed_rendered_run
+
+    store = RunStore("source-test", runs_root=tmp_path)
+    seeds = bundles(3)
+    seed_rendered_run(store, [(bundle, mismatch_analysis(bundle)) for bundle in seeds])
+    return store
+
+
+def test_recommend_renders_memos_and_reports_the_shortlist(tmp_path: Path) -> None:
+    _seed_for_recommend(tmp_path)
+    result = runner.invoke(
+        app, ["recommend", "--run-id", "source-test", "--runs-root", str(tmp_path)]
+    )
+
+    assert result.exit_code == 0, result.output
+    assert "Rendered 3 of 3 candidate memo(s)" in result.output
+    assert "Recommendations: pass=3" in result.output
+    assert "ranking.md" in result.output
+    assert "recommendation-report.json" in result.output
+    for company_id in ("co-00", "co-01", "co-02"):
+        assert company_id in result.output
+        assert (tmp_path / "source-test" / "memos" / f"{company_id}.md").is_file()
+
+
+def test_recommend_needs_no_provider_and_no_api_key(tmp_path: Path) -> None:
+    """The command declares no --provider and no --model, and reads no credential."""
+    _seed_for_recommend(tmp_path)
+    help_text = runner.invoke(app, ["recommend", "--help"]).output
+    assert "--provider" not in help_text
+    assert "--model" not in help_text
+    assert "API_KEY" not in help_text
+
+    result = runner.invoke(
+        app, ["recommend", "--run-id", "source-test", "--runs-root", str(tmp_path)]
+    )
+    assert result.exit_code == 0, result.output
+
+
+def test_recommend_refuses_to_clobber_existing_output_without_force(tmp_path: Path) -> None:
+    _seed_for_recommend(tmp_path)
+    first = runner.invoke(
+        app, ["recommend", "--run-id", "source-test", "--runs-root", str(tmp_path)]
+    )
+    assert first.exit_code == 0
+
+    second = runner.invoke(
+        app, ["recommend", "--run-id", "source-test", "--runs-root", str(tmp_path)]
+    )
+    assert second.exit_code == 1
+    assert "already has rendered output" in second.output
+    assert "--force" in second.output
+
+    forced = runner.invoke(
+        app,
+        ["recommend", "--run-id", "source-test", "--runs-root", str(tmp_path), "--force"],
+    )
+    assert forced.exit_code == 0, forced.output
+
+
+def test_recommend_requires_an_analysed_run(tmp_path: Path) -> None:
+    result = runner.invoke(app, ["recommend", "--run-id", "missing", "--runs-root", str(tmp_path)])
+    assert result.exit_code == 1
+    assert "candidates.json" in result.output
+
+
+def test_recommend_rejects_an_unusable_run_id(tmp_path: Path) -> None:
+    result = runner.invoke(
+        app, ["recommend", "--run-id", "../escape", "--runs-root", str(tmp_path)]
+    )
+    assert result.exit_code == 1
+    assert "invalid run id" in result.output
+
+
+def test_recommend_reports_an_unreachable_meeting_band(tmp_path: Path) -> None:
+    from tests.unit.memo_fixtures import bundles, seed_rendered_run, thin_analysis
+
+    store = RunStore("source-test", runs_root=tmp_path)
+    seeds = bundles(2)
+    seed_rendered_run(store, [(bundle, thin_analysis(bundle)) for bundle in seeds])
+    result = runner.invoke(
+        app, ["recommend", "--run-id", "source-test", "--runs-root", str(tmp_path)]
+    )
+
+    assert result.exit_code == 0, result.output
+    assert "the take-a-meeting band was unreachable for 2 of 2 candidate(s)" in result.output
+
+
+def test_recommend_surfaces_a_candidate_that_could_not_be_rendered(tmp_path: Path) -> None:
+    from tests.unit.memo_fixtures import bundles, mismatch_analysis, seed_rendered_run
+
+    store = RunStore("source-test", runs_root=tmp_path)
+    seeds = bundles(2)
+    seed_rendered_run(store, [(seeds[0], mismatch_analysis(seeds[0])), (seeds[1], None)])
+    result = runner.invoke(
+        app, ["recommend", "--run-id", "source-test", "--runs-root", str(tmp_path)]
+    )
+
+    # One candidate failing is not a run failure: the exit code stays 0 and the gap is
+    # reported rather than hidden.
+    assert result.exit_code == 0, result.output
+    assert "Rendered 1 of 2 candidate memo(s)" in result.output
+    assert "co-01: no analysis was produced" in result.output
+
+
+def test_render_still_works_as_a_deprecated_alias(tmp_path: Path) -> None:
+    _seed_for_recommend(tmp_path)
+    result = runner.invoke(app, ["render", "--run-id", "source-test", "--runs-root", str(tmp_path)])
+    assert result.exit_code == 0, result.output
+    assert "this command is now `vc-scout recommend`" in result.output
+    assert "Rendered 3 of 3 candidate memo(s)" in result.output

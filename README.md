@@ -9,11 +9,12 @@ claim cites an evidence ID, every evidence claim cites a source URL, the final
 recommendation is made by deterministic policy rather than by a model, and a whole run
 replays from persisted artifacts with no network and no API key.
 
-> **Status: in progress.** Stages 1-5 (foundation, domain contracts, discovery, website
-> enrichment, evidence extraction, scoring and the recommendation policy) are
-> implemented. Memos and the static UI are not yet built.
-> The pipeline commands are declared but not yet implemented - they report which stage
-> owns them and exit non-zero. See `docs/PLAN.md` for the full plan and stage order.
+> **Status: in progress.** Stages 1-6 (foundation, domain contracts, discovery, website
+> enrichment, evidence extraction, scoring and the recommendation policy, and the
+> Markdown memos and ranking) are implemented. The static HTML report is not yet built.
+> `build-site`, `serve`, `run` and `demo` are declared but not yet implemented - they
+> report which stage owns them and exit non-zero. See `docs/PLAN.md` for the full plan
+> and stage order.
 
 ## Quick start
 
@@ -47,7 +48,8 @@ uv run vc-scout run \
 | `enrich` | Fetch and extract public company pages | available |
 | `analyze --evidence-only` | Extract source-grounded evidence | available |
 | `analyze` | Score and apply the recommendation policy | available |
-| `render` | Write Markdown memos and the ranking | planned (stage 7) |
+| `recommend` | Write partner-ready memos and the ranking | available |
+| `render` | Deprecated alias for `recommend` | available |
 | `build-site` | Generate the static report | planned (stage 8) |
 | `serve` | Serve a generated report locally | planned (stage 8) |
 | `run` | Full pipeline end to end | planned (stage 9) |
@@ -263,6 +265,62 @@ Bands are `80-100` take a meeting, `65-79` watch, `0-64` pass. Then:
 
 Every guardrail that fires is named in the artifact, next to the band it moved from, the
 model's suggestion, and whether the two disagreed.
+
+## Memos and the ranking
+
+`vc-scout recommend` turns the stored artifacts into a partner-ready read. It makes no
+provider call, needs no API key and touches no network — it renders what earlier stages
+already validated.
+
+```bash
+uv run vc-scout recommend --run-id source-test
+uv run vc-scout recommend --run-id source-test --force   # re-render over existing output
+```
+
+```
+outputs/runs/source-test/
+├── memos/<company_id>.md          # one ~700-900 word memo per candidate
+├── ranking.md                     # the reviewer's entry point
+└── recommendation-report.json     # what was rendered, and what could not be
+```
+
+Each memo opens with the call, the score and the confidence, then a snapshot table, *why
+this call* (the policy's own rationale, verbatim, plus every guardrail in plain language),
+a Team/Product/Market view, the seven-dimension scorecard, risks and open questions, the
+two-or-three things that would change the call, and a numbered source list:
+
+```markdown
+# rulemesh.com
+
+**Pass** · 40/100 · high confidence
+
+**One-sentence call:** Pass: rulemesh.com scored 40/100 against the thesis rubric on
+high-confidence research, with thesis fit recorded as adjacent - short of what a meeting needs.
+...
+| Pain and measurable ROI | 8 / 20 | Partially supported | Compliance is plausibly recurring… | [S1] [S2] |
+...
+**[S1]** Compliance Requirements Engineers Can Actually Implement | RuleMesh · company homepage · <https://rulemesh.com/> · observed 2026-08-23
+```
+
+Three properties are worth knowing:
+
+* **Deterministic.** Same artifacts, same bytes. Nothing here carries a generated
+  timestamp, and every collection is sorted, so re-rendering is a check rather than a new
+  opinion.
+* **Every citation resolves.** `[S1]` markers are numbered in reading order, each resolves
+  to exactly one source entry, and every listed source is cited somewhere above. A source
+  URL is rendered as its own link text, so a memo cannot show a label that points somewhere
+  else. Internal `ev-`/`unk-` identifiers never appear as a reader-facing citation.
+* **Untrusted text stays text.** Company names, page titles, model narrative and page
+  excerpts all came off third-party pages. They are neutralised before rendering, so they
+  can contribute words but never headings, tables, code blocks, HTML, images or links.
+
+`ranking.md` carries the thesis, the rubric, the thresholds, the run summary and a table
+ordered by call, then score, then confidence, then name. That ordering is a **triage
+queue**, not a quality ranking, and the document says so: a watch that exists only because
+the research came up short is not a claim that the company is better than one that was
+passed on evidence. When no candidate reaches the meeting band, the ranking explains why
+from the run's own counts rather than talking a candidate up to fill it.
 
 ## Investment thesis
 

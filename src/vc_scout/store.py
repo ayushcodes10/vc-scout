@@ -23,6 +23,7 @@ from vc_scout.models.report import (
     AnalysisReport,
     EnrichmentReport,
     EvidenceReport,
+    RecommendationReport,
     SourceReport,
 )
 from vc_scout.util.ids import digest, is_valid_company_id, is_valid_run_id, slugify
@@ -147,6 +148,9 @@ class RunStore:
 
     def ranking_path(self) -> Path:
         return self.resolve("ranking.md")
+
+    def recommendation_report_path(self) -> Path:
+        return self.resolve("recommendation-report.json")
 
     def manifest_path(self) -> Path:
         return self.resolve("run-manifest.json")
@@ -325,6 +329,43 @@ class RunStore:
             else None
         )
         return analysis, recommendation
+
+    def write_memo(self, company_id: str, markdown: str) -> Path:
+        """Persist one company's memo. The path is built from a validated company ID."""
+        return self.write_text(self.memo_path(company_id), markdown)
+
+    def read_memo(self, company_id: str) -> str:
+        path = self.memo_path(company_id)
+        if not path.is_file():
+            raise StoreError(f"missing memo for {company_id!r} in run {self.run_id!r}")
+        return path.read_text(encoding="utf-8")
+
+    def delete_memo(self, company_id: str) -> bool:
+        """Remove one candidate's memo, if it has one.
+
+        The same narrow contract as :meth:`delete_analysis`. A candidate that fails to
+        render in this run must not be represented by a memo from an earlier one - a stale
+        memo is worse than a missing one, because the ranking will not link to it and
+        nothing else says it is out of date.
+        """
+        path = self.memo_path(company_id)
+        if not path.is_file():
+            return False
+        path.unlink()
+        return True
+
+    def memo_company_ids(self) -> list[str]:
+        """Company IDs that already have a memo, in stable order."""
+        directory = self.resolve("memos")
+        if not directory.is_dir():
+            return []
+        return sorted(path.stem for path in directory.glob("*.md"))
+
+    def write_recommendation_report(self, report: RecommendationReport) -> Path:
+        return self.write_model(self.recommendation_report_path(), report)
+
+    def read_recommendation_report(self) -> RecommendationReport:
+        return self.read_model(self.recommendation_report_path(), RecommendationReport)
 
     def write_manifest(self, manifest: RunManifest) -> Path:
         return self.write_model(self.manifest_path(), manifest)

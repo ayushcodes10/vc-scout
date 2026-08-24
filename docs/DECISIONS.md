@@ -793,3 +793,76 @@ reconstructed from the ceiling table.
 **Cost.** Two more fields to keep coherent with the scores, and a headroom number that is
 easy to misread as a prediction of what the company could score with better evidence. It is
 not: it is the ceiling implied by the statuses actually recorded on this evidence.
+
+## D41 - Rendering is deterministic, not another model call
+
+**Decision.** Memos and the ranking are rendered from validated artifacts by Jinja2
+templates that place finished strings. No language model is involved in the memo text, the
+one-sentence call, the ranking order or the explanation of why a call was made. The output
+carries no generated timestamp, every collection is sorted, and the same artifacts produce
+byte-identical files.
+
+**Why.** The pipeline already spends two model calls and one deterministic policy on each
+company. A third call to "write the memo" would be a fourth opinion sitting on top of those
+three, free to soften a pass, dramatise a risk, or restate a score it had no part in
+computing - and nothing downstream would catch it, because prose is not schema-checkable.
+Rendering is also the only stage a reviewer can verify by re-running it: if the bytes match,
+the memo is the artifacts.
+
+**Cost.** The wording is a template, so it is less fluent than a model would write, and every
+new phrasing case - a new guardrail, a new call kind - has to be added in code. That is the
+right place for it: those cases are decisions, and decisions belong in reviewed code.
+
+## D42 - The reader cites [S1], the pipeline cites ev-…
+
+**Decision.** A memo's reader-facing citation is a compact marker, `[S1]`, assigned in the
+order the document first uses it and resolving to exactly one entry in a numbered source
+list at the foot of the memo. Internal identifiers - `ev-…` for evidence claims, `unk-…` for
+recorded unknowns - never appear as a reader-facing citation. A statement anchored only to a
+recorded unknown is labelled *Open question* rather than left unattributed.
+
+**Why.** Both audiences are real and they need different things. A partner needs to know
+which page a sentence came from, in one glance, with a URL to click. A reviewer needs to
+follow the chain back through claim IDs to excerpts. Showing the reviewer's identifiers to
+the partner makes the memo unreadable; showing the partner's markers to the reviewer loses
+nothing, because the analysis artifact keeps the full chain.
+
+**Cost.** One more mapping to keep honest, and marker numbering depends on document order -
+reordering a section renumbers every citation in it. Two tests hold the invariants: every
+marker resolves to exactly one entry, and every listed source is cited above.
+
+## D43 - Untrusted text may contribute words, never structure
+
+**Decision.** Every string in a memo that did not originate in this codebase - a company
+name, a page title, an excerpt, the model narrative written from those pages - is
+neutralised before rendering: whitespace collapses so it cannot span lines, control and
+bidirectional characters are dropped, and Markdown's inline structural characters are
+escaped. Source URLs render as autolinks, so link text always equals link target. Only
+`http` and `https` become links at all.
+
+**Why.** A memo is assembled from pages the firm does not control. Pasting that text into
+Markdown hands whoever wrote the page the ability to add a heading, forge a scorecard row,
+embed a tracking pixel, or show "Verified filing" over a link to somewhere else. The last of
+those is why link text is never separate from the URL: a deceptive label is simply not
+expressible in this renderer.
+
+**Cost.** Escaping is visible in the raw Markdown - `not\_assessable` rather than
+`not_assessable` - and legitimate emphasis in source text is flattened. Rendered output is
+unaffected, and the alternative is trusting a stranger's website with the memo's structure.
+
+## D44 - The ranking is a triage queue and says so
+
+**Decision.** `ranking.md` sorts by recommendation, then score descending, then confidence,
+then company name, and states in the document that this is the order to work the list in
+rather than a quality ordering. When no candidate reaches the meeting band, a section
+explains why from the run's own counts - assessment statuses across every scored slot, how
+many candidates the ceilings put out of reach - and no score is raised to fill the band.
+
+**Why.** Watch outranks pass in a triage queue because a watch needs an action. But a watch
+that exists only because the research came up short says nothing good about the company, and
+a pass on a company the evidence positively places outside the thesis is a *finding*. An
+ordering cannot express that difference, so leaving it implied would invite exactly the
+misreading this pipeline is built to prevent.
+
+**Cost.** A reader who only scans the table still sees watch above pass. The prose above it,
+the per-row primary rationale, and the memos themselves all carry the distinction.

@@ -36,6 +36,11 @@ from vc_scout.stages.analysis import (
 )
 from vc_scout.stages.enrich import MAX_EXTRA_PAGES, EnrichOutcome, run_enrich
 from vc_scout.stages.evidence import EvidenceStageOutcome, run_evidence
+from vc_scout.stages.recommend import (
+    MissingArtifactError,
+    RecommendStageOutcome,
+    run_recommend,
+)
 from vc_scout.stages.source import DEFAULT_WINDOW_DAYS, SourceOutcome, run_source
 from vc_scout.store import RunStore, StoreError
 
@@ -413,9 +418,116 @@ def _report_evidence(outcome: EvidenceStageOutcome) -> None:
 
 
 @app.command()
-def render(run_id: str = _RUN_ID, runs_root: Path = _RUNS_ROOT) -> None:
-    """Render one-page Markdown memos and the ranking table."""
-    _placeholder("render", "stage 7", "render memos/<company_id>.md and ranking.md")
+def recommend(
+    run_id: str = _RUN_ID,
+    runs_root: Path = _RUNS_ROOT,
+    force: bool = typer.Option(
+        False, "--force", help="Overwrite existing memos, ranking and report."
+    ),
+) -> None:
+    """Render partner-ready memos and the portfolio ranking from the stored artifacts.
+
+    Offline and deterministic: no provider is selected, no API key is required, and the
+    same artifacts always produce the same bytes.
+    """
+    try:
+        store = RunStore(run_id, runs_root=runs_root)
+    except StoreError as exc:
+        typer.secho(f"vc-scout recommend: {exc}", fg=typer.colors.RED, err=True)
+        raise typer.Exit(code=1) from exc
+
+    existing = store.memo_company_ids()
+    if (
+        existing or store.ranking_path().exists() or store.recommendation_report_path().exists()
+    ) and not force:
+        typer.secho(
+            f"vc-scout recommend: run {run_id!r} already has rendered output "
+            f"({len(existing)} memo(s)). Pass --force to re-render.",
+            fg=typer.colors.YELLOW,
+            err=True,
+        )
+        raise typer.Exit(code=1)
+
+    try:
+        outcome = run_recommend(store=store)
+    except MissingArtifactError as exc:
+        typer.secho(f"vc-scout recommend: {exc}", fg=typer.colors.RED, err=True)
+        raise typer.Exit(code=1) from exc
+    _report_recommend(outcome)
+
+
+@app.command()
+def render(
+    run_id: str = _RUN_ID,
+    runs_root: Path = _RUNS_ROOT,
+    force: bool = typer.Option(
+        False, "--force", help="Overwrite existing memos, ranking and report."
+    ),
+) -> None:
+    """Deprecated alias for `recommend`, kept because the delivered CLI declared it."""
+    typer.secho(
+        "vc-scout render: this command is now `vc-scout recommend`. Running it.",
+        fg=typer.colors.YELLOW,
+        err=True,
+    )
+    recommend(run_id=run_id, runs_root=runs_root, force=force)
+
+
+def _report_recommend(outcome: RecommendStageOutcome) -> None:
+    """Print the shortlist in the order the ranking presents it."""
+    report = outcome.report
+
+    typer.echo(
+        f"Rendered {report.memos_written} of {report.candidate_count} candidate memo(s) "
+        f"using template {report.template_version}."
+    )
+    typer.echo(
+        "Recommendations: "
+        + "  ".join(f"{name}={total}" for name, total in sorted(report.recommendations.items()))
+        + f"   model/policy disagreements: {report.model_policy_disagreements}"
+    )
+    if report.score_range:
+        typer.echo(
+            f"Scores {report.score_range['min']}-{report.score_range['max']}/100.  "
+            f"Sources cited: {report.referenced_sources}.  "
+            f"Confidence: "
+            + "  ".join(f"{k}={v}" for k, v in sorted(report.confidence_counts.items()))
+        )
+    for guardrail, total in sorted(report.guardrail_counts.items()):
+        typer.echo(f"  guardrail {total:>3}  {guardrail}")
+
+    typer.echo("")
+    for rank, memo in enumerate(report.memos, start=1):
+        reach = "" if memo.maximum_achievable_score >= TAKE_A_MEETING_AT else " -"
+        typer.echo(
+            f"  {rank:>2}. {memo.company_id:<26} {memo.decision.value:<15} "
+            f"{memo.total_score:>3}/100  max={memo.maximum_achievable_score:>3}{reach}  "
+            f"{memo.words:>3} words, {memo.sources_referenced} source(s)"
+        )
+
+    if report.candidates_with_meeting_unreachable:
+        typer.secho(
+            f"\n  - the take-a-meeting band was unreachable for "
+            f"{report.candidates_with_meeting_unreachable} of {report.memos_written} "
+            "candidate(s) under their recorded assessment statuses.",
+            fg=typer.colors.YELLOW,
+        )
+    if report.missing_source_metadata:
+        typer.secho(
+            f"  ! {report.missing_source_metadata} cited source(s) have no recorded URL and "
+            "render with their internal identifier.",
+            fg=typer.colors.YELLOW,
+        )
+    for warning in report.warnings:
+        typer.secho(f"  ! {warning}", fg=typer.colors.YELLOW)
+    for failure in report.failures:
+        typer.secho(f"  ! {failure.company_id}: {failure.reason}", fg=typer.colors.YELLOW, err=True)
+
+    typer.echo("")
+    typer.echo(
+        f"Wrote {report.memos_written} memo(s) to memos/, plus {outcome.ranking_path} and "
+        f"{outcome.report_path}"
+    )
 
 
 @app.command("build-site")
