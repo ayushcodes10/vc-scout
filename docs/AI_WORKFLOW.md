@@ -137,16 +137,40 @@ the company ID. `demo/ai-trace/README.md` states the rule and the numbers that s
 
 ---
 
-## Author reflections to complete
+## Author reflections
 
-TODO(author): would you act on this shortlist? If not, is the gap in the sourcing, the
-evidence available, or the rubric?
+### 1. Would I act on this shortlist?
 
-TODO(author): the deterministic policy overruled the model on 6 of 15 candidates. Reading
-those six, was the policy right each time, or is a guardrail miscalibrated?
+I would not take a meeting directly from this shortlist yet. I would keep the five Watch
+companies in a research queue and gather stronger evidence on founders, customers,
+traction, and workflow ROI. The primary limitation was evidence availability, followed by
+sourcing quality: Hacker News surfaced relevant products, but not enough independently
+verifiable investment signals. I would keep the rubric conservative rather than lower the
+bar to manufacture a meeting recommendation.
 
-TODO(author): where did reviewing the agent's work cost you more than writing it yourself
-would have, and where did it clearly cost less?
+### 2. Was the policy right where it overruled the model?
 
-TODO(author): which of the five constraints above would you keep if you had to drop two,
-and what would you accept breaking in exchange?
+I reviewed the seven model-policy disagreements - 7 of 15 candidates - and believe the
+deterministic policy was right in each case. It prevented missing evidence from becoming a
+negative judgment by moving uncertain companies to Watch, while also preventing the model
+from giving an optimistic Watch when the evidence-backed score remained clearly below the
+threshold. I would keep the guardrails as implemented, although I would revisit them after
+observing whether the Watch queue becomes too large across several real runs.
+
+### 3. Where did working with AI help, and where did reviewing it cost more?
+
+Working with AI saved significant implementation time, especially for generating stage
+scaffolding, tests, validation cases, documentation, and repetitive integration work.
+Reviewing it took more effort around subtle judgment-heavy failures, such as relevance
+ranking, oversized structured-output schemas, stale artifacts, and conflict validation, but
+overall it was still much faster than building and testing the complete pipeline alone.
+
+### 4. Which constraints would I keep if I had to drop two?
+
+If I had to remove two safeguards, I would keep excerpt verification, evidence-ID
+integrity, and the deterministic scoring and recommendation policy. These protect the most
+important properties of the system: claims remain traceable to real source text, evidence
+cannot leak across companies, and identical validated inputs produce consistent investment
+decisions. I would give up strict provider-side structured output and automatic retry,
+accepting more malformed responses, failed candidates, and occasional manual recovery
+rather than accepting fabricated evidence or inconsistent recommendations.
